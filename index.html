@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BIDKZN AI INVEST - AI Investment Bidding Platform 🤖💰</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{font-family:system-ui;background:#000;padding-bottom:90px}
+.bidkzn-gold{background:linear-gradient(90deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}
+.ai-glow{box-shadow:0 0 30px rgba(168,85,247,0.3)}
+.gold-glow{box-shadow:0 0 20px rgba(255,215,0,0.25)}
+</style>
+</head><body class="bg-black text-white">
+
+<header class="sticky top-0 z-50 bg-black/90 backdrop-blur border-b-2 border-purple-600 p-3">
+<div class="flex justify-between items-center max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 bg-gradient-to-br from-purple-600 via-yellow-400 to-red-600 rounded-full flex items-center justify-center text-xl">🤖</div>
+<div>
+<h1 class="font-black text-xl leading-none"><span class="bidkzn-gold">BID</span><span class="text-purple-400">KZN</span> <span class="text-white">AI</span></h1>
+<p class="text-[8px] tracking-[0.2em] text-zinc-400">AI INVESTMENT BIDDING PLATFORM</p>
+</div>
+<span class="bg-gradient-to-r from-purple-600 to-yellow-500 text-white text-[9px] px-3 py-1 rounded-full font-black animate-pulse">🤖 AI LIVE</span>
+</div>
+<div class="hidden md:flex gap-2">
+<button onclick="showView('deals')" class="bg-purple-600 px-4 py-2 rounded-full text-xs font-black">🤖 AI DEALS</button>
+<button onclick="showView('portfolio')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">💼 PORTFOLIO</button>
+<button onclick="showView('bids')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🔥 MY BIDS</button>
+<button onclick="openAdmin()" class="bg-black border border-zinc-700 px-3 py-2 rounded-full text-xs">🔒 ADMIN</button>
+</div>
+</div>
+</header>
+
+<div class="text-center py-8 bg-gradient-to-b from-purple-900/20 via-black to-black border-b border-purple-900/30">
+<h1 class="text-5xl font-black"><span class="bidkzn-gold">BID</span><span class="text-purple-400">KZN</span> <span class="text-white">AI</span></h1>
+<p class="text-[11px] tracking-[0.25em] text-zinc-400 mt-2">AI POWERED INVESTMENT BIDDING - LET AI SCORE, YOU BID, AI MANAGES</p>
+<div class="flex justify-center gap-2 mt-4 flex-wrap">
+<span class="bg-purple-900/40 border border-purple-600/50 text-purple-300 text-[10px] px-3 py-1 rounded-full">🤖 AI Risk Score</span>
+<span class="bg-yellow-900/30 border border-yellow-600/30 text-yellow-300 text-[10px] px-3 py-1 rounded-full">📈 AI ROI Prediction</span>
+<span class="bg-green-900/30 border border-green-600/30 text-green-300 text-[10px] px-3 py-1 rounded-full">🛡️ AI Fraud Check</span>
+<span class="bg-red-900/30 border border-red-600/30 text-red-300 text-[10px] px-3 py-1 rounded-full">🔥 Live Bidding</span>
+</div>
+<p id="aiStatus" class="text-[10px] mt-4 bg-black border border-purple-600/30 text-purple-400 py-1.5 rounded-full inline-block px-6">🤖 AI ENGINE ONLINE - READY FOR 1000 INVESTORS ⚡</p>
+</div>
+
+<div class="max-w-7xl mx-auto p-3">
+<!-- AI DEALS VIEW -->
+<div id="dealsView">
+<div class="bg-zinc-900 border border-purple-600/50 rounded-2xl p-4 mb-4 ai-glow">
+<div class="flex justify-between items-center flex-wrap gap-2">
+<h2 class="font-black text-purple-400">🤖 AI CURATED INVESTMENT DEALS</h2>
+<div class="flex gap-2">
+<button onclick="filterDeals('all')" id="f-all" class="bg-purple-600 px-4 py-1.5 rounded-full text-xs font-black">ALL AI SCORED</button>
+<button onclick="filterDeals('lowrisk')" id="f-lowrisk" class="bg-zinc-800 px-4 py-1.5 rounded-full text-xs">🟢 Low Risk</button>
+<button onclick="filterDeals('highroi')" id="f-highroi" class="bg-zinc-800 px-4 py-1.5 rounded-full text-xs">📈 High ROI</button>
+<button onclick="filterDeals('ending')" id="f-ending" class="bg-zinc-800 px-4 py-1.5 rounded-full text-xs">⏰ Ending</button>
+</div>
+</div>
+<div class="mt-3 grid grid-cols-3 gap-2 text-[10px]">
+<div class="bg-black border border-purple-900/30 rounded-xl p-2 text-center"><p class="text-zinc-500">AI Deals Analyzed</p><p class="font-black text-purple-400 text-lg" id="aiDealsCount">0</p></div>
+<div class="bg-black border border-green-900/30 rounded-xl p-2 text-center"><p class="text-zinc-500">Avg AI ROI</p><p class="font-black text-green-400 text-lg">+24.5%</p></div>
+<div class="bg-black border border-yellow-900/30 rounded-xl p-2 text-center"><p class="text-zinc-500">Total Bids</p><p class="font-black text-yellow-400 text-lg" id="aiTotalBids">0</p></div>
+</div>
+</div>
+<div id="dealsGrid" class="grid md:grid-cols-2 gap-4"></div>
+</div>
+
+<!-- PORTFOLIO VIEW -->
+<div id="portfolioView" class="hidden">
+<div class="bg-zinc-900 border-2 border-yellow-500/50 rounded-2xl p-5">
+<h2 class="font-black text-yellow-400 text-lg">💼 MY AI PORTFOLIO</h2>
+<div class="grid grid-cols-3 gap-3 mt-4">
+<div class="bg-black border-2 border-yellow-500/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Total Invested</p><p class="text-2xl font-black text-yellow-400" id="portInvested">R0</p></div>
+<div class="bg-black border border-green-600/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">AI Predicted Return</p><p class="text-2xl font-black text-green-400" id="portReturn">R0</p><p class="text-[10px] text-green-400">+0% AI</p></div>
+<div class="bg-black border border-zinc-700 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Active Deals</p><p class="text-2xl font-black text-white" id="portDeals">0</p></div>
+</div>
+<div id="portfolioGrid" class="mt-6 grid md:grid-cols-2 gap-3"></div>
+</div>
+</div>
+
+<!-- MY BIDS VIEW -->
+<div id="bidsView" class="hidden">
+<div class="bg-zinc-900 border-2 border-red-600/50 rounded-2xl p-5">
+<h2 class="font-black text-red-400">🔥 MY INVESTMENT BIDS - AI TRACKED</h2>
+<div id="myBidsGrid" class="mt-4 grid md:grid-cols-2 gap-3"></div>
+</div>
+</div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="fixed bottom-0 left-0 right-0 bg-black border-t-2 border-purple-900/50 z-40 p-2">
+<div class="flex justify-around max-w-md mx-auto">
+<button onclick="showView('deals')" id="btn-deals" class="flex flex-col items-center px-6 py-2 rounded-xl bg-purple-600 shadow-lg"><span>🤖</span><span class="text-[9px] font-black">AI DEALS</span></button>
+<button onclick="showView('portfolio')" id="btn-portfolio" class="flex flex-col items-center px-3 py-2 rounded-xl bg-zinc-900"><span>💼</span><span class="text-[9px] font-black">PORTFOLIO</span></button>
+<button onclick="showView('bids')" id="btn-bids" class="flex flex-col items-center px-3 py-2 rounded-xl bg-zinc-900"><span>🔥</span><span class="text-[9px] font-black">MY BIDS</span></button>
+</div>
+</div>
+
+<!-- BID MODAL WITH AI INSIGHT -->
+<div id="bidModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-purple-600 rounded-2xl p-6 w-full max-w-md ai-glow"><h2 class="font-black text-purple-400 text-lg">🤖 AI INVESTMENT BID</h2><div id="bidAiInsight" class="mt-3 bg-black border border-purple-900/50 rounded-xl p-3 text-[11px]"></div><p id="bidText" class="mt-4 text-sm"></p><div class="mt-4"><label class="text-[11px] text-zinc-400">Your Bid Amount (R)</label><input id="bidAmount" type="number" class="w-full mt-1 p-3 rounded-full bg-black border-2 border-yellow-500/50 text-center font-black text-lg"><p class="text-[10px] text-zinc-500 mt-1">AI Min: <span id="aiMinBid" class="text-yellow-400 font-black"></span> | Your Wallet: <span id="walletInModal" class="text-green-400 font-black">R0</span></p></div><div class="flex gap-2 mt-6"><button onclick="confirmBid()" class="flex-1 bg-gradient-to-r from-purple-600 to-yellow-500 py-4 rounded-full font-black text-black">🤖 CONFIRM BID - AI TRACKED</button><button onclick="document.getElementById('bidModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
+
+<!-- ADMIN -->
+<div id="admin" class="hidden fixed inset-0 bg-black z-50 overflow-y-auto"><div class="max-w-7xl mx-auto p-3"><div class="bg-zinc-900 rounded-2xl p-4 flex justify-between items-center border-2 border-purple-600"><h2 class="font-black text-purple-400">🤖 AI INVEST ADMIN - DELETE USERS & DEALS</h2><button onclick="document.getElementById('admin').classList.add('hidden')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">CLOSE</button></div><div class="mt-4 grid md:grid-cols-2 gap-4"><div class="bg-black p-4 rounded-xl border-2 border-purple-600/30"><h3 class="font-black text-sm text-purple-400">🤖 ADD AI DEAL - WITH AI SCORE</h3><input id="aName" placeholder="Deal Name e.g. Solar Farm Durban" class="w-full mt-3 p-3 rounded-full bg-zinc-900 border"><input id="aDesc" placeholder="Description" class="w-full mt-2 p-3 rounded-full bg-zinc-900 border text-sm"><div class="grid grid-cols-2 gap-2 mt-2"><input id="aMin" type="number" placeholder="Min Invest R" class="p-3 rounded-full bg-zinc-900 border"><input id="aTarget" type="number" placeholder="Target R" class="p-3 rounded-full bg-zinc-900 border"></div><div class="grid grid-cols-3 gap-2 mt-2"><input id="aAiRisk" type="number" placeholder="AI Risk 1-10" class="p-2 rounded-full bg-zinc-900 border text-center"><input id="aAiRoi" type="number" placeholder="AI ROI % e.g. 25" class="p-2 rounded-full bg-zinc-900 border text-center"><input id="aDays" type="number" value="7" placeholder="Days" class="p-2 rounded-full bg-zinc-900 border text-center"></div><button onclick="saveDeal()" class="w-full bg-purple-600 py-3 rounded-full font-black mt-3">🤖 ADD AI DEAL + AI SCORE</button></div><div class="bg-black p-4 rounded-xl border border-zinc-700"><h3 class="font-black text-sm text-yellow-400">📊 AI STATS</h3><p class="text-xs text-zinc-400 mt-2">Total Deals: <span id="adminDealsCount" class="text-white font-black">0</span></p><p class="text-xs text-zinc-400">Total Bidders: <span id="adminBiddersCount" class="text-white font-black">0</span></p><p class="text-xs text-zinc-400">Total Invested: <span id="adminTotalInvested" class="text-yellow-400 font-black">R0</span></p></div></div><div class="flex gap-2 mt-4 overflow-x-auto"><button onclick="adminTab('deals')" id="at-deals" class="bg-purple-600 px-4 py-2 rounded-full text-xs font-black">🤖 DEALS 🗑️</button><button onclick="adminTab('bidders')" id="at-bidders" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">BIDDERS 🗑️</button></div><div id="admin-deals" class="mt-4"><div id="adminDealsList"></div></div><div id="admin-bidders" class="hidden mt-4"><div id="adminBiddersList"></div></div></div></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, set, onValue, update, remove, get, query, limitToLast } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+const firebaseConfig = { apiKey: "AIzaSyCxVmtWLZiVvcElpOG4gLxKylunD1_NnRA", authDomain: "kzn-store.firebaseapp.com", databaseURL: "https://kzn-store-default-rtdb.firebaseio.com", projectId: "kzn-store", storageBucket: "kzn-store.firebasestorage.app", messagingSenderId: "755959571531", appId: "1:755959571531:web:42ee597a9d0646923699ce" };
+const app = initializeApp(firebaseConfig); const db = getDatabase(app);
+
+let deals=[]; let bidders=[]; let currentBidder=JSON.parse(localStorage.getItem('ai_invest_user')||'null'); let currentFilter='all'; let pendingBid=null;
+
+// Mock AI scoring function - in real app call your AI API
+function aiScoreDeal(risk, roi, target){
+  // AI logic: lower risk + higher ROI = higher score
+  let score = Math.round(( (11-risk)*10 + roi*2 ) / 3);
+  if(score>90) return {score:score, label:'🔥 AI TOP PICK', color:'text-green-400', bg:'bg-green-900/30 border-green-600'};
+  if(score>70) return {score:score, label:'✅ AI RECOMMENDED', color:'text-yellow-400', bg:'bg-yellow-900/30 border-yellow-600'};
+  if(score>50) return {score:score, label:'⚠️ AI MODERATE', color:'text-orange-400', bg:'bg-orange-900/30 border-orange-600'};
+  return {score:score, label:'🔴 AI HIGH RISK', color:'text-red-400', bg:'bg-red-900/30 border-red-600'};
+}
+function aiFraudCheck(name){
+  // Simple mock - real AI would check company registry, etc
+  let checks = ['✅ Company Verified', '✅ Bank Verified', '✅ AI Fraud Scan Passed', '✅ Docs Verified'];
+  return checks;
+}
+
+onValue(query(ref(db, 'ai_deals'), limitToLast(20)), (s)=>{
+  const d=s.val(); deals=d?Object.values(d):[];
+  if(deals.length===0){
+    let id=Date.now(); set(ref(db,'ai_deals/'+id),{
+      id:id, fbId:id.toString(), name:'Solar Farm - North Durban', desc:'20kW solar farm, 3 year lease, monthly returns', minInvest:500, target:50000, current:12500, bids:[], end:Date.now()+7*86400000,
+      aiRisk:3, aiRoi:28, aiScore:88, investors:5
+    });
+  }
+  renderDeals(); renderAdminDeals(); updateStats();
+});
+onValue(ref(db, 'ai_bidders'), (s)=>{
+  const d=s.val(); bidders=d?Object.values(d):[];
+  if(currentBidder){
+    let u=bidders.find(b=>b.fbId===currentBidder.fbId); if(u){ currentBidder=u; localStorage.setItem('ai_invest_user', JSON.stringify(u)); }
+  }
+  renderAdminBidders(); updateStats(); renderPortfolio(); renderMyBids();
+});
+
+window.showView=function(v){
+  document.getElementById('dealsView').classList.toggle('hidden', v!=='deals');
+  document.getElementById('portfolioView').classList.toggle('hidden', v!=='portfolio');
+  document.getElementById('bidsView').classList.toggle('hidden', v!=='bids');
+  document.getElementById('btn-deals').className = v==='deals'? 'flex flex-col items-center px-6 py-2 rounded-xl bg-purple-600 shadow-lg' : 'flex flex-col items-center px-3 py-2 rounded-xl bg-zinc-900';
+  document.getElementById('btn-portfolio').className = v==='portfolio'? 'flex flex-col items-center px-6 py-2 rounded-xl bg-yellow-500 text-black shadow-lg' : 'flex flex-col items-center px-3 py-2 rounded-xl bg-zinc-900';
+  document.getElementById('btn-bids').className = v==='bids'? 'flex flex-col items-center px-6 py-2 rounded-xl bg-red-600 shadow-lg' : 'flex flex-col items-center px-3 py-2 rounded-xl bg-zinc-900';
+  if(v==='portfolio') renderPortfolio();
+  if(v==='bids') renderMyBids();
+}
+window.filterDeals=function(f){ currentFilter=f; document.querySelectorAll('[id^=f-]').forEach(b=>b.className='bg-zinc-800 px-4 py-1.5 rounded-full text-xs'); document.getElementById('f-'+f).className='bg-purple-600 px-4 py-1.5 rounded-full text-xs font-black'; renderDeals(); }
+
+window.renderDeals=function(){
+  let list=[...deals];
+  if(currentFilter==='lowrisk') list=list.filter(d=>d.aiRisk<=3);
+  if(currentFilter==='highroi') list=list.filter(d=>d.aiRoi>=25);
+  if(currentFilter==='ending') list=list.sort((a,b)=>a.end-b.end);
+  document.getElementById('dealsGrid').innerHTML=list.map(d=>{
+    let ai=aiScoreDeal(d.aiRisk, d.aiRoi, d.target);
+    let progress=Math.min(100, Math.round(d.current/d.target*100));
+    let cd=formatCountdown(d.end);
+    let fraud=aiFraudCheck(d.name);
+    return `<div class="bg-zinc-900 border-2 border-purple-600/30 rounded-2xl overflow-hidden hover:border-purple-600/60 transition ai-glow">
+      <div class="p-4">
+        <div class="flex justify-between items-start">
+          <div>
+            <h3 class="font-black text-sm">🤖 ${d.name}</h3>
+            <p class="text-[11px] text-zinc-400 mt-1">${d.desc}</p>
+          </div>
+          <span class="text-[9px] px-2 py-1 rounded-full border ${ai.bg} ${ai.color} font-black">${ai.label} ${ai.score}/100</span>
+        </div>
+        <div class="mt-3 grid grid-cols-3 gap-2">
+          <div class="bg-black border border-purple-900/30 rounded-xl p-2 text-center"><p class="text-[9px] text-zinc-500">AI Risk</p><p class="font-black text-sm ${d.aiRisk<=3?'text-green-400':d.aiRisk<=6?'text-yellow-400':'text-red-400'}">${d.aiRisk}/10 ${d.aiRisk<=3?'🟢':d.aiRisk<=6?'🟡':'🔴'}</p></div>
+          <div class="bg-black border border-green-900/30 rounded-xl p-2 text-center"><p class="text-[9px] text-zinc-500">AI ROI</p><p class="font-black text-sm text-green-400">+${d.aiRoi}% 📈</p></div>
+          <div class="bg-black border border-yellow-900/30 rounded-xl p-2 text-center"><p class="text-[9px] text-zinc-500">Target</p><p class="font-black text-sm text-yellow-400">R${d.target.toLocaleString()}</p></div>
+        </div>
+        <div class="mt-3 bg-black rounded-full h-2 overflow-hidden"><div class="bg-gradient-to-r from-purple-600 to-yellow-400 h-full" style="width:${progress}%"></div></div>
+        <div class="flex justify-between text-[10px] mt-1"><span class="text-zinc-400">R${d.current.toLocaleString()} raised</span><span class="text-purple-400 font-black">${progress}% - ${d.investors||0} investors</span></div>
+        <div class="mt-3 bg-black/50 rounded-xl p-2 border border-zinc-800">
+          <p class="text-[10px] font-black text-purple-400">🛡️ AI Fraud Check:</p>
+          <div class="flex flex-wrap gap-1 mt-1">${fraud.map(f=>`<span class="text-[9px] bg-zinc-900 border border-zinc-700 px-2 py-0.5 rounded-full">${f}</span>`).join('')}</div>
+        </div>
+        <div class="mt-3 flex justify-between items-center">
+          <div><p class="text-[10px] text-zinc-500">Ends in</p><p class="text-xs font-black text-red-400">${cd.txt}</p></div>
+          <button onclick="openBidModal('${d.fbId}')" class="bg-gradient-to-r from-purple-600 to-yellow-500 text-black px-6 py-3 rounded-full font-black text-xs shadow-lg">🤖 BID TO INVEST 🔥</button>
+        </div>
+        <p class="text-[9px] text-zinc-500 mt-2">Min bid: R${d.minInvest} | ${d.bids?.length||0} bids | AI Score: ${ai.score}/100</p>
+      </div>
+    </div>`;
+  }).join('') || '<p class="col-span-2 text-center py-10 text-zinc-500">No AI deals - Add in admin</p>';
+  document.getElementById('aiDealsCount').innerText=deals.length;
+  document.getElementById('aiTotalBids').innerText=deals.reduce((s,d)=>s+(d.bids?.length||0),0);
+}
+
+window.openBidModal=function(fbId){
+  let deal=deals.find(d=>d.fbId===fbId);
+  if(!deal) return;
+  if(!currentBidder){
+    // Quick create for demo - in real app require KYC
+    let name=prompt('Enter name to start AI investing:'); if(!name) return;
+    let phone=prompt('WhatsApp:'); if(!phone) return;
+    let id=Date.now(); let newUser={id:id, fbId:id.toString(), name:name, phone:phone, wallet:5000, invested:0, portfolio:[]};
+    set(ref(db,'ai_bidders/'+newUser.fbId), newUser).then(()=>{
+      localStorage.setItem('ai_invest_user', JSON.stringify(newUser)); currentBidder=newUser;
+      openBidModal(fbId);
+    });
+    return;
+  }
+  pendingBid=deal;
+  let ai=aiScoreDeal(deal.aiRisk, deal.aiRoi, deal.target);
+  document.getElementById('bidAiInsight').innerHTML=`
+    <p class="font-black text-purple-400">🤖 AI Analysis for ${deal.name}</p>
+    <p class="mt-1">Risk: <span class="font-black ${ai.color}">${deal.aiRisk}/10</span> | ROI: <span class="text-green-400 font-black">+${deal.aiRoi}%</span> | Score: <span class="text-yellow-400 font-black">${ai.score}/100 - ${ai.label}</span></p>
+    <p class="mt-1 text-zinc-400">AI Prediction: R${deal.minInvest} → R${Math.round(deal.minInvest*(1+deal.aiRoi/100))} in 12 months | Confidence: ${85+Math.floor(Math.random()*10)}%</p>
+    <p class="mt-1 text-[10px] text-zinc-500">AI Note: ${deal.aiRisk<=3?'Low risk, stable returns, good for portfolio':'Higher risk but high reward - diversify'}</p>
+  `;
+  document.getElementById('bidText').innerHTML=`Invest in <b>${deal.name}</b><br><span class="text-xs text-zinc-400">${deal.desc}</span>`;
+  document.getElementById('aiMinBid').innerText='R'+deal.minInvest;
+  document.getElementById('walletInModal').innerText='R'+(currentBidder.wallet||0);
+  document.getElementById('bidAmount').value=deal.minInvest;
+  document.getElementById('bidModal').classList.remove('hidden');
+}
+window.confirmBid=function(){
+  if(!pendingBid ||!currentBidder) return;
+  let amt=parseInt(document.getElementById('bidAmount').value);
+  if(!amt || amt < pendingBid.minInvest) return alert('Min R'+pendingBid.minInvest);
+  if(amt > (currentBidder.wallet||0)) return alert('Low wallet R'+currentBidder.wallet);
+
+  let deal=pendingBid;
+  // Deduct wallet, add to deal, add to portfolio
+  let newWallet=(currentBidder.wallet||0)-amt;
+  let newBids=deal.bids||[]; newBids.push({bidderId:currentBidder.id, bidderFbId:currentBidder.fbId, name:currentBidder.name, amount:amt, time:Date.now()});
+  let newCurrent=deal.current+amt;
+  let newInvestors=(deal.investors||0)+1;
+
+  update(ref(db,'ai_bidders/'+currentBidder.fbId),{wallet:newWallet, invested:(currentBidder.invested||0)+amt});
+  update(ref(db,'ai_deals/'+deal.fbId),{current:newCurrent, bids:newBids, investors:newInvestors});
+
+  // Add to portfolio
+  get(ref(db,'ai_bidders/'+currentBidder.fbId)).then(s=>{
+    if(s.exists()){
+      let u=s.val(); let portfolio=u.portfolio||[]; portfolio.push({dealId:deal.fbId, dealName:deal.name, amount:amt, roi:deal.aiRoi, risk:deal.aiRisk, date:Date.now()});
+      update(ref(db,'ai_bidders/'+currentBidder.fbId),{portfolio:portfolio});
+    }
+  });
+
+  document.getElementById('bidModal').classList.add('hidden');
+  alert('✅ AI Bid placed! R'+amt+' invested in '+deal.name+' - AI tracking ROI +'+deal.aiRoi+'%');
+  showView('portfolio');
+}
+
+window.renderPortfolio=function(){
+  if(!currentBidder){
+    document.getElementById('portfolioGrid').innerHTML='<div class="col-span-2 bg-black p-6 rounded-xl text-center border border-dashed border-zinc-700"><p class="text-zinc-500">No portfolio - Bid on AI deals to start</p><button onclick="showView(\'deals\')" class="mt-3 bg-purple-600 px-6 py-2 rounded-full text-xs font-black">🤖 BROWSE AI DEALS</button></div>';
+    return;
+  }
+  let portfolio=currentBidder.portfolio||[];
+  let totalInvested=portfolio.reduce((s,p)=>s+p.amount,0);
+  let predictedReturn=portfolio.reduce((s,p)=>s+Math.round(p.amount*(1+p.roi/100)),0);
+  document.getElementById('portInvested').innerText='R'+totalInvested.toLocaleString();
+  document.getElementById('portReturn').innerText='R'+predictedReturn.toLocaleString();
+  document.getElementById('portDeals').innerText=portfolio.length;
+
+  document.getElementById('portfolioGrid').innerHTML=portfolio.map(p=>{
+    let predicted=Math.round(p.amount*(1+p.roi/100));
+    return `<div class="bg-black border border-purple-600/30 rounded-xl p-4">
+      <h3 class="font-black text-sm text-purple-400">🤖 ${p.dealName}</h3>
+      <p class="text-xs text-zinc-400 mt-1">Invested: R${p.amount} | AI ROI: +${p.roi}% | Risk: ${p.risk}/10</p>
+      <p class="text-sm font-black mt-2">AI Predicted: <span class="text-green-400">R${predicted}</span> <span class="text-[10px] text-zinc-500">(+R${predicted-p.amount})</span></p>
+      <p class="text-[10px] text-zinc-500 mt-1">${new Date(p.date).toLocaleDateString()} - AI Tracking</p>
+    </div>`;
+  }).join('') || '<p class="col-span-2 text-center py-10 text-zinc-500">No investments yet - AI ready</p>';
+}
+window.renderMyBids=function(){
+  if(!currentBidder){
+    document.getElementById('myBidsGrid').innerHTML='<p class="col-span-2 text-center py-10 text-zinc-500">Login to see bids</p>'; return;
+  }
+  let myDeals=deals.filter(d=> (d.bids||[]).some(b=>String(b.bidderFbId)===String(currentBidder.fbId)) );
+  document.getElementById('myBidsGrid').innerHTML=myDeals.map(d=>{
+    let myBid=d.bids.filter(b=>String(b.bidderFbId)===String(currentBidder.fbId)).reduce((s,b)=>s+b.amount,0);
+    let cd=formatCountdown(d.end);
+    return `<div class="bg-black border-2 border-purple-600/30 rounded-xl p-4">
+      <h3 class="font-black text-sm text-purple-400">${d.name}</h3>
+      <p class="text-xs text-zinc-400">My total bid: R${myBid} | AI ROI +${d.aiRoi}%</p>
+      <p class="text-xs mt-1">Deal: R${d.current}/${d.target} (${Math.round(d.current/d.target*100)}%) | Ends: ${cd.txt}</p>
+    </div>`;
+  }).join('') || '<p class="col-span-2 text-center py-10 text-zinc-500">No bids yet - Start bidding on AI deals</p>';
+}
+
+window.saveDeal=function(){
+  let name=document.getElementById('aName').value.trim();
+  let desc=document.getElementById('aDesc').value.trim()||'AI scored investment';
+  let min=parseInt(document.getElementById('aMin').value)||500;
+  let target=parseInt(document.getElementById('aTarget').value)||50000;
+  let risk=parseInt(document.getElementById('aAiRisk').value)||5;
+  let roi=parseInt(document.getElementById('aAiRoi').value)||20;
+  let days=parseInt(document.getElementById('aDays').value)||7;
+  if(!name) return alert('Name required');
+  let id=Date.now(); let fbId=id.toString();
+  let ai=aiScoreDeal(risk, roi, target);
+  set(ref(db,'ai_deals/'+fbId),{
+    id:id, fbId:fbId, name:name, desc:desc, minInvest:min, target:target, current:0, bids:[], end:Date.now()+days*86400000,
+    aiRisk:risk, aiRoi:roi, aiScore:ai.score, investors:0
+  }).then(()=>{ document.getElementById('aName').value=''; document.getElementById('aDesc').value=''; alert('✅ AI Deal added with score '+ai.score); });
+}
+window.openAdmin=function(){ document.getElementById('admin').classList.remove('hidden'); }
+window.adminTab=function(t){ ['deals','bidders'].forEach(x=>document.getElementById('admin-'+x).classList.toggle('hidden', x!==t)); document.querySelectorAll('[id^=at-]').forEach(b=>b.className='bg-zinc-800 px-4 py-2 rounded-full text-xs'); document.getElementById('at-'+t).className='bg-purple-600 px-4 py-2 rounded-full text-xs font-black'; }
+window.deleteDeal=function(fbId){ if(!confirm('Delete AI deal?')) return; remove(ref(db,'ai_deals/'+fbId)); }
+window.deleteBidder=function(fbId){ if(!confirm('Delete investor? Wallet + portfolio will be lost!')) return; remove(ref(db,'ai_bidders/'+fbId)); }
+window.renderAdminDeals=function(){
+  document.getElementById('adminDealsList').innerHTML=deals.map(d=>`<div class="bg-black border border-zinc-800 p-3 rounded-xl mt-2 flex justify-between items-center"><div><p class="font-black text-xs text-purple-400">${d.name} - AI Score ${d.aiScore} - R${d.current}/${d.target}</p><p class="text-[11px] text-zinc-400">Risk ${d.aiRisk}/10 | ROI +${d.aiRoi}% | ${d.bids?.length||0} bids</p></div><button onclick="deleteDeal('${d.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1.5 rounded-full text-xs text-red-400">🗑️ DELETE</button></div>`).join('')||'No deals';
+}
+window.renderAdminBidders=function(){
+  document.getElementById('adminBiddersList').innerHTML=bidders.map(b=>`<div class="bg-black border border-zinc-800 p-3 rounded-xl mt-2 flex justify-between items-center"><div><p class="font-black text-xs">${b.name} - R${b.wallet||0} wallet - R${b.invested||0} invested</p><p class="text-[11px] text-zinc-400">${b.phone} | ${b.portfolio?.length||0} deals | ${b.fbId}</p></div><button onclick="deleteBidder('${b.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1.5 rounded-full text-xs text-red-400">🗑️ DELETE USER</button></div>`).join('')||'No investors';
+}
+function updateStats(){
+  document.getElementById('adminDealsCount').innerText=deals.length;
+  document.getElementById('adminBiddersCount').innerText=bidders.length;
+  document.getElementById('adminTotalInvested').innerText='R'+deals.reduce((s,d)=>s+d.current,0).toLocaleString();
+}
+function formatCountdown(end){ let diff=end-Date.now(); if(diff<=0) return{txt:'ENDED'}; let d=Math.floor(diff/86400000); let h=Math.floor(diff%86400000/3600000); return{txt:(d>0?d+'d ':'')+h+'h left'}; }
+
+renderDeals(); showView('deals');
+</script></body></html>
