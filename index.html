@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BIDKZN - Bidder Login Areas - WhatsApp 0789313670</title>
+<title>BIDKZN - Security Question - Forgot Password - WhatsApp 0789313670</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -8,10 +8,11 @@ body{font-family:system-ui;background:#000;padding-bottom:90px}
 .bidkzn-gold{background:linear-gradient(90deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}
 .whatsapp-float{position:fixed;bottom:20px;right:20px;z-index:100;background:#25D366;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.4);animation:pulseWhatsapp 2s infinite}
 @keyframes pulseWhatsapp{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+.profile-pic-preview{width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid #FFD700}
 </style>
 </head><body class="bg-black text-white">
 
-<a id="whatsappFloat" href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20I%20want%20to%20buy%20voucher%20code" target="_blank" class="whatsapp-float">
+<a id="whatsappFloat" href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20I%20want%20to%20buy%20voucher%20code%20ID%20account" target="_blank" class="whatsapp-float">
 <i class="fab fa-whatsapp text-white text-2xl"></i>
 </a>
 
@@ -21,7 +22,7 @@ body{font-family:system-ui;background:#000;padding-bottom:90px}
 <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-full flex items-center justify-center font-black text-black">B</div>
 <div>
 <h1 class="font-black text-lg"><span class="bidkzn-gold">BID</span><span class="text-white">KZN</span></h1>
-<p class="text-[8px] text-zinc-400">BIDDER LOGIN AREAS - WhatsApp 0789313670</p>
+<p class="text-[8px] text-zinc-400">BIDDER ACCOUNT - ID + First Name + Surname + DOB + Profile Picture + Security Question - WhatsApp 0789313670</p>
 </div>
 </div>
 <div class="flex gap-2 items-center flex-wrap" id="headerButtons"></div>
@@ -29,7 +30,7 @@ body{font-family:system-ui;background:#000;padding-bottom:90px}
 </header>
 
 <div class="text-center py-3 bg-gradient-to-b from-yellow-900/20 to-black border-b border-yellow-900/20">
-<p class="text-[11px] text-zinc-300">Need voucher code for BIDKZN? WhatsApp Admin: <a id="whatsappNumberDisplay" href="https://wa.me/27789313670" target="_blank" class="text-[#25D366] font-black underline"><i class="fab fa-whatsapp"></i> <span id="adminPhoneDisplay">+27 78 931 3670</span></a> - ONE voucher = amount you wish to invest</p>
+<p class="text-[11px] text-zinc-300">BIDKZN - Security Question for Forgot Password - WhatsApp Admin: <a id="whatsappNumberDisplay" href="https://wa.me/27789313670" target="_blank" class="text-[#25D366] font-black underline"><i class="fab fa-whatsapp"></i> <span id="adminPhoneDisplay">+27 78 931 3670</span></a> - ID + First Name + Surname + DOB + Profile Picture + Security Question</p>
 </div>
 
 <div id="bidderAuthView" class="max-w-6xl mx-auto p-3">
@@ -37,176 +38,216 @@ body{font-family:system-ui;background:#000;padding-bottom:90px}
 
 <div class="bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-6">
 <h2 class="font-black text-xl text-yellow-400"><i class="fas fa-sign-in-alt"></i> BIDKZN - BIDDER LOGIN AREA</h2>
-<p class="text-[11px] text-zinc-400 mt-2">Login to BIDKZN to bid - Wallet loaded with 1 voucher - WhatsApp Admin 0789313670</p>
+<p class="text-[11px] text-zinc-400 mt-2">Login with Phone + Password - ID Account + Security Question for recovery</p>
 <div class="mt-6 space-y-3">
-<label class="text-[11px] text-zinc-400">📱 WhatsApp Phone Number (Login ID)</label>
-<input id="loginPhone" type="tel" placeholder="0789313670" class="w-full p-4 rounded-full bg-black border-2 border-yellow-500 text-center font-black text-lg">
-<label class="text-[11px] text-zinc-400">🔒 Password / PIN</label>
-<input id="loginPassword" type="password" placeholder="Enter password" class="w-full p-4 rounded-full bg-black border-2 border-zinc-700 text-center font-black text-lg">
+<label class="text-[11px] text-zinc-400">📱 WhatsApp Phone - Login ID - BIDKZN ID Account</label>
+<input id="loginPhone" type="tel" placeholder="0789313670 - BIDKZN ID Account" class="w-full p-4 rounded-full bg-black border-2 border-yellow-500 text-center font-black text-lg">
+<label class="text-[11px] text-zinc-400">🔒 Password / PIN - BIDKZN ID Account</label>
+<input id="loginPassword" type="password" placeholder="Enter password - BIDKZN ID Account" class="w-full p-4 rounded-full bg-black border-2 border-zinc-700 text-center font-black text-lg">
 <button onclick="bidderLogin()" class="w-full bg-yellow-400 text-black py-4 rounded-full font-black text-lg mt-4">
-<i class="fas fa-sign-in-alt"></i> LOGIN AS BIDDER - BIDKZN
+<i class="fas fa-sign-in-alt"></i> LOGIN AS BIDDER - BIDKZN ID Account
 </button>
-<div class="flex gap-2 mt-3">
-<a href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20I%20forgot%20password" target="_blank" class="flex-1 bg-zinc-800 border border-[#25D366]/30 py-3 rounded-full text-xs text-center">
-<i class="fab fa-whatsapp text-[#25D366]"></i> Forgot Password? WhatsApp Admin 0789313670
+<button onclick="openForgotPassword()" class="w-full mt-3 bg-red-900/30 border-2 border-red-600 py-3 rounded-full text-sm font-black text-red-400">
+<i class="fas fa-key"></i> FORGOT PASSWORD? - Answer Security Question - BIDKZN ID Account
+</button>
+<a href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20I%20forgot%20password%20and%20security%20answer%20bidder%20ID%20account" target="_blank" class="block mt-2 bg-zinc-800 border border-[#25D366]/30 py-3 rounded-full text-xs text-center">
+<i class="fab fa-whatsapp text-[#25D366]"></i> Still can't login? WhatsApp Admin 0789313670 - BIDKZN ID Account
 </a>
 </div>
-</div>
 <div id="loggedBidderInfo" class="mt-6 hidden bg-black border border-green-600 rounded-xl p-4">
-<p class="font-black text-green-400 text-sm">✅ Logged in as Bidder - BIDKZN:</p>
+<div class="flex items-center gap-3">
+<img id="loggedProfilePic" src="" class="profile-pic-preview hidden">
+<div>
+<p class="font-black text-green-400 text-sm">✅ Logged in - BIDKZN ID Account - Security Question Set:</p>
 <p class="text-white font-black" id="loggedName">-</p>
 <p class="text-[11px] text-zinc-400" id="loggedPhone">-</p>
-<p class="text-[11px] text-yellow-400">Wallet: R<span id="loggedWallet">0</span> - Ready to bid - BIDKZN</p>
-<div class="flex gap-2 mt-3">
-<button onclick="showView('profile')" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black">👤 WALLET AREA</button>
-<button onclick="showView('flash')" class="bg-red-600 px-4 py-2 rounded-full text-xs font-black">⚡ FLASH BIDDING AREA</button>
-<button onclick="bidderLogout()" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">LOGOUT</button>
+<p class="text-[10px] text-zinc-500" id="loggedID">ID: - | DOB: - | Security Question: ✅</p>
+<p class="text-[11px] text-yellow-400">Wallet: R<span id="loggedWallet">0</span> - BIDKZN ID Account</p>
+</div>
+</div>
+<div class="flex gap-2 mt-3 flex-wrap">
+<button onclick="showView('profile')" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black">👤 WALLET AREA - BIDKZN ID</button>
+<button onclick="showView('flash')" class="bg-red-600 px-4 py-2 rounded-full text-xs font-black">⚡ FLASH AREA - BIDKZN ID</button>
+<button onclick="bidderLogout()" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">LOGOUT - BIDKZN ID Account</button>
 </div>
 </div>
 </div>
 
 <div class="bg-black border-2 border-green-600 rounded-2xl p-6">
-<h2 class="font-black text-xl text-green-400"><i class="fas fa-user-plus"></i> BIDKZN - BIDDER REGISTER AREA</h2>
-<p class="text-[11px] text-zinc-400 mt-2">Create bidder account for BIDKZN - Load wallet with 1 voucher via WhatsApp 0789313670</p>
+<h2 class="font-black text-xl text-green-400"><i class="fas fa-user-plus"></i> BIDKZN - BIDDER ACCOUNT CREATING - ID + Security Question</h2>
+<p class="text-[11px] text-zinc-400 mt-2">Create bidder account with ID Number + First Name + Surname + DOB + Profile Picture + Security Question for forgot password - BIDKZN - WhatsApp 0789313670</p>
+
 <div class="mt-6 space-y-3">
-<label class="text-[11px] text-zinc-400">👤 Full Name</label>
-<input id="regName" type="text" placeholder="John Doe" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-zinc-700 text-center font-black">
-<label class="text-[11px] text-zinc-400">📱 WhatsApp Phone - Login ID for BIDKZN</label>
-<input id="regPhone" type="tel" placeholder="0789313670" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-green-600 text-center font-black text-lg">
-<label class="text-[11px] text-zinc-400">🔒 Create Password / PIN</label>
-<input id="regPassword" type="password" placeholder="Create password min 4 digits" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-zinc-700 text-center font-black text-lg">
-<label class="text-[11px] text-zinc-400">🔒 Confirm Password</label>
-<input id="regPassword2" type="password" placeholder="Confirm password" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-zinc-700 text-center font-black text-lg">
-<button onclick="bidderRegister()" class="w-full bg-green-600 py-4 rounded-full font-black text-lg mt-4">
-<i class="fas fa-user-plus"></i> REGISTER AS BIDDER - BIDKZN
-</button>
-<div class="mt-3 bg-[#25D366]/10 border border-[#25D366]/30 rounded-xl p-3">
-<p class="text-[11px] font-black text-[#25D366]"><i class="fab fa-whatsapp"></i> After register for BIDKZN, WhatsApp Admin 0789313670 to buy voucher code</p>
-<a href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20I%20just%20registered%20as%20bidder%20I%20want%20to%20buy%20voucher%20code" target="_blank" class="mt-2 bg-[#25D366] px-4 py-2 rounded-full text-xs font-black inline-block">
-<i class="fab fa-whatsapp"></i> WhatsApp Admin 0789313670 - Buy Voucher - BIDKZN
-</a>
-</div>
+
+<div class="bg-zinc-900 border border-yellow-500/30 rounded-xl p-4">
+<p class="font-black text-xs text-yellow-400"><i class="fas fa-camera"></i> Profile Picture - BIDKZN ID Account + Security Question</p>
+<div class="flex items-center gap-4 mt-3">
+<img id="regProfilePreview" src="https://via.placeholder.com/100x100/000000/FFD700?text=BIDKZN" class="profile-pic-preview">
+<div class="flex-1">
+<input id="regProfilePic" type="file" accept="image/*" onchange="previewProfilePic(this)" class="w-full p-2 rounded-full bg-black border border-zinc-700 text-xs">
+<p class="text-[10px] text-zinc-500 mt-1">Upload profile picture - BIDKZN ID Account + Security Question</p>
+<button onclick="document.getElementById('regProfilePic').click()" class="mt-2 bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black"><i class="fas fa-camera"></i> Choose Profile Picture - BIDKZN ID Account</button>
 </div>
 </div>
 </div>
 
-<div class="mt-8 bg-zinc-900 border border-zinc-700 rounded-2xl p-5">
-<h3 class="font-black text-sm text-yellow-400"><i class="fas fa-th-large"></i> BIDKZN - BIDDER AREAS - After Login</h3>
-<div class="grid md:grid-cols-4 gap-3 mt-4">
-<div class="bg-black border border-yellow-500/30 rounded-xl p-4 text-center"><p class="text-2xl">👤</p><p class="font-black text-xs text-yellow-400 mt-2">WALLET AREA</p><p class="text-[10px] text-zinc-400">Load wallet with 1 voucher via WhatsApp 0789313670</p><button onclick="requireLogin('profile')" class="mt-2 bg-yellow-400 text-black px-4 py-2 rounded-full text-[10px] font-black w-full">GO TO WALLET AREA - BIDKZN</button></div>
-<div class="bg-black border border-red-600/30 rounded-xl p-4 text-center"><p class="text-2xl">⚡</p><p class="font-black text-xs text-red-400 mt-2">FLASH BIDDING AREA</p><p class="text-[10px] text-zinc-400">Bid with wallet loaded via 1 voucher</p><button onclick="requireLogin('flash')" class="mt-2 bg-red-600 px-4 py-2 rounded-full text-[10px] font-black w-full">GO TO FLASH BIDDING - BIDKZN</button></div>
-<div class="bg-black border border-green-600/30 rounded-xl p-4 text-center"><p class="text-2xl">🏆</p><p class="font-black text-xs text-green-400 mt-2">MY WINS AREA</p><p class="text-[10px] text-zinc-400">See coins won</p><button onclick="requireLogin('mywins')" class="mt-2 bg-green-600 px-4 py-2 rounded-full text-[10px] font-black w-full">GO TO MY WINS - BIDKZN</button></div>
-<div class="bg-black border border-purple-600/30 rounded-xl p-4 text-center"><p class="text-2xl">💼</p><p class="font-black text-xs text-purple-400 mt-2">MY COINS AREA</p><p class="text-[10px] text-zinc-400">View my coins, sell for flash</p><button onclick="requireLogin('mycoins')" class="mt-2 bg-zinc-800 px-4 py-2 rounded-full text-[10px] font-black w-full">GO TO MY COINS - BIDKZN</button></div>
+<label class="text-[11px] text-zinc-400">🪪 ID Number - 13 digits - BIDKZN ID Account + Security Question</label>
+<input id="regIDNumber" type="text" maxlength="13" placeholder="e.g. 9001015009087 - 13 digits ID Number - BIDKZN ID Account" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black tracking-widest">
+
+<div class="grid grid-cols-2 gap-2">
+<div>
+<label class="text-[11px] text-zinc-400">👤 First Name - BIDKZN ID Account</label>
+<input id="regFirstName" type="text" placeholder="First Name e.g. John - BIDKZN ID Account" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-zinc-700 text-center font-black">
+</div>
+<div>
+<label class="text-[11px] text-zinc-400">👤 Surname - BIDKZN ID Account</label>
+<input id="regSurname" type="text" placeholder="Surname e.g. Doe - BIDKZN ID Account" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-zinc-700 text-center font-black">
+</div>
+</div>
+
+<label class="text-[11px] text-zinc-400">📅 Date of Birth - BIDKZN ID Account + Security Question</label>
+<input id="regDOB" type="date" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-zinc-700 text-center font-black">
+
+<label class="text-[11px] text-zinc-400">📱 WhatsApp Phone - Login ID for BIDKZN ID Account + Security Question</label>
+<input id="regPhone" type="tel" placeholder="0789313670 - BIDKZN Login ID - ID Account" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-green-600 text-center font-black text-lg">
+
+<div class="bg-red-900/20 border-2 border-red-600/50 rounded-xl p-4">
+<p class="font-black text-sm text-red-400"><i class="fas fa-shield-alt"></i> SECURITY QUESTION - For Forgot Password - BIDKZN ID Account - Important!</p>
+<p class="text-[10px] text-zinc-400 mt-1">Choose security question + answer - Used when you forget password - BIDKZN ID Account - Keep answer secret but remember it</p>
+
+<label class="text-[11px] text-zinc-300 mt-3 block">❓ Select Security Question - BIDKZN ID Account</label>
+<select id="regSecurityQuestion" class="w-full p-4 rounded-full bg-black border-2 border-red-600 text-center font-black text-sm text-white">
+<option value="">-- Choose Security Question for BIDKZN ID Account --</option>
+<option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+<option value="What was your first pet's name?">What was your first pet's name?</option>
+<option value="What is your favourite food?">What is your favourite food?</option>
+<option value="What city were you born in?">What city were you born in?</option>
+<option value="What is your father's middle name?">What is your father's middle name?</option>
+<option value="What was your first school name?">What was your first school name?</option>
+<option value="What is your ID number last 4 digits?">What is your ID number last 4 digits?</option>
+<option value="What is your favourite colour?">What is your favourite colour?</option>
+<option value="What is your grandmother's name?">What is your grandmother's name?</option>
+<option value="What is your childhood nickname?">What is your childhood nickname?</option>
+</select>
+
+<label class="text-[11px] text-zinc-300 mt-3 block">🔑 Security Answer - BIDKZN ID Account - Remember this for forgot password</label>
+<input id="regSecurityAnswer" type="text" placeholder="Enter security answer - Remember for forgot password - BIDKZN ID Account" class="w-full p-4 rounded-full bg-black border-2 border-red-600 text-center font-black">
+
+<p class="text-[10px] text-yellow-400 mt-2">⚠️ Important: Remember security question + answer - You will need it when you forget password for BIDKZN ID Account - Security question when creating bidding account when client forget password - BIDKZN</p>
+</div>
+
+<label class="text-[11px] text-zinc-400">🔒 Create Password / PIN - BIDKZN ID Account + Security Question</label>
+<input id="regPassword" type="password" placeholder="Create password min 4 digits - BIDKZN ID Account" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-zinc-700 text-center font-black text-lg">
+
+<label class="text-[11px] text-zinc-400">🔒 Confirm Password - BIDKZN ID Account + Security Question</label>
+<input id="regPassword2" type="password" placeholder="Confirm password - BIDKZN ID Account + Security Question" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-zinc-700 text-center font-black text-lg">
+
+<button onclick="bidderRegister()" class="w-full bg-green-600 py-4 rounded-full font-black text-lg mt-4">
+<i class="fas fa-user-plus"></i> CREATE BIDDER ACCOUNT - BIDKZN - ID + Picture + Security Question
+</button>
+
+<div class="mt-3 bg-[#25D366]/10 border border-[#25D366]/30 rounded-xl p-3">
+<p class="text-[11px] font-black text-[#25D366]"><i class="fab fa-whatsapp"></i> After creating BIDKZN bidder account with ID + First Name + Surname + DOB + Profile Picture + Security Question, WhatsApp Admin 0789313670 to buy voucher code - BIDKZN ID Account</p>
+<a href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20I%20just%20created%20bidder%20account%20with%20ID%20number%20and%20security%20question%20I%20want%20to%20buy%20voucher%20code" target="_blank" class="mt-2 bg-[#25D366] px-4 py-2 rounded-full text-xs font-black inline-block">
+<i class="fab fa-whatsapp"></i> WhatsApp Admin 0789313670 - Buy Voucher - BIDKZN ID + Security Question Account
+</a>
+</div>
+</div>
 </div>
 </div>
 </div>
 
 <div id="mainApp" class="hidden max-w-6xl mx-auto p-3">
 
-<div class="bg-black border-2 border-green-600 rounded-xl p-3 flex justify-between items-center mb-4">
-<div class="flex items-center gap-3">
-<div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-full flex items-center justify-center font-black text-black text-xl" id="profileAvatar">U</div>
+<div class="bg-black border-2 border-green-600 rounded-xl p-4 mb-4">
+<div class="flex justify-between items-start flex-wrap gap-4">
+<div class="flex items-center gap-4">
+<img id="profileAvatarImg" src="https://via.placeholder.com/100x100/000000/FFD700?text=BIDKZN" class="profile-pic-preview">
 <div>
-<p class="font-black text-sm">BIDKZN Bidder: <span id="profileName">-</span></p>
-<p class="text-[11px] text-zinc-400">Phone: <span id="profilePhone">-</span> | ID: <span id="profileId">-</span> | BIDKZN | WhatsApp: <a href="https://wa.me/27789313670" target="_blank" class="text-[#25D366] font-black">0789313670</a></p>
+<p class="font-black text-lg">BIDKZN Bidder: <span id="profileName">-</span></p>
+<p class="text-[11px] text-zinc-300">First Name: <span id="profileFirstName" class="text-white font-black">-</span> | Surname: <span id="profileSurname" class="text-white font-black">-</span></p>
+<p class="text-[11px] text-zinc-300">ID Number: <span id="profileIDNumber" class="text-yellow-400 font-black">-</span> | DOB: <span id="profileDOB" class="text-white">-</span></p>
+<p class="text-[11px] text-zinc-400">Phone: <span id="profilePhone">-</span> | ID: <span id="profileId">-</span> | Security Q: <span id="profileSecurityQ" class="text-green-400">✅ Set</span> | WhatsApp: <a href="https://wa.me/27789313670" target="_blank" class="text-[#25D366] font-black">0789313670</a></p>
 </div>
 </div>
-<div class="flex gap-2 items-center">
-<div class="text-right mr-3">
-<p class="text-[10px] text-zinc-400">BIDKZN WALLET BALANCE</p>
-<p class="text-2xl font-black text-yellow-400" id="walletBalance">R0.00</p>
+<div class="text-right">
+<p class="text-[10px] text-zinc-400">BIDKZN WALLET - ID Account + Security Question</p>
+<p class="text-3xl font-black text-yellow-400" id="walletBalance">R0.00</p>
+<p class="text-[9px] text-zinc-500" id="profileExtra">ID Verified + Security Question Set - BIDKZN</p>
+<button onclick="editBidderProfile()" class="mt-2 bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black"><i class="fas fa-edit"></i> EDIT PROFILE - BIDKZN ID + Security Q</button>
+<button onclick="bidderLogout()" class="mt-2 ml-2 bg-red-900/30 border border-red-600 px-4 py-2 rounded-full text-xs text-red-400">LOGOUT - BIDKZN ID Account</button>
 </div>
-<button onclick="bidderLogout()" class="bg-red-900/30 border border-red-600 px-4 py-2 rounded-full text-xs text-red-400">LOGOUT - BIDKZN</button>
 </div>
 </div>
 
 <div class="flex gap-2 mb-4 overflow-x-auto">
-<button onclick="showView('profile')" id="nav-profile" class="bg-yellow-400 text-black px-5 py-3 rounded-full text-xs font-black"><i class="fas fa-wallet"></i> WALLET AREA - Load 1 Voucher</button>
-<button onclick="showView('flash')" id="nav-flash" class="bg-zinc-800 px-5 py-3 rounded-full text-xs font-black"><i class="fas fa-bolt"></i> FLASH BIDDING AREA</button>
-<button onclick="showView('mywins')" id="nav-mywins" class="bg-zinc-800 px-5 py-3 rounded-full text-xs font-black"><i class="fas fa-trophy"></i> MY WINS AREA</button>
-<button onclick="showView('mycoins')" id="nav-mycoins" class="bg-zinc-800 px-5 py-3 rounded-full text-xs"><i class="fas fa-coins"></i> MY COINS AREA</button>
-<a href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20Bidder%20Area%20I%20need%20voucher" target="_blank" class="bg-[#25D366] px-5 py-3 rounded-full text-xs font-black"><i class="fab fa-whatsapp"></i> WhatsApp 0789313670 - BIDKZN</a>
+<button onclick="showView('profile')" id="nav-profile" class="bg-yellow-400 text-black px-5 py-3 rounded-full text-xs font-black"><i class="fas fa-wallet"></i> WALLET AREA - BIDKZN ID + Security Q</button>
+<button onclick="showView('flash')" id="nav-flash" class="bg-zinc-800 px-5 py-3 rounded-full text-xs font-black"><i class="fas fa-bolt"></i> FLASH BIDDING AREA - BIDKZN ID</button>
+<button onclick="showView('mywins')" id="nav-mywins" class="bg-zinc-800 px-5 py-3 rounded-full text-xs font-black"><i class="fas fa-trophy"></i> MY WINS AREA - BIDKZN ID</button>
+<button onclick="showView('mycoins')" id="nav-mycoins" class="bg-zinc-800 px-5 py-3 rounded-full text-xs"><i class="fas fa-coins"></i> MY COINS AREA - BIDKZN ID</button>
+<a href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20Bidder%20Account%20ID%20Security%20Question%20I%20need%20voucher" target="_blank" class="bg-[#25D366] px-5 py-3 rounded-full text-xs font-black"><i class="fab fa-whatsapp"></i> WhatsApp 0789313670 - BIDKZN ID + Security Q</a>
 </div>
 
 <div id="profileView" class="hidden">
 <div class="bg-black border-2 border-green-600 rounded-2xl p-5">
-<h3 class="font-black text-green-400 text-lg"><i class="fas fa-wallet"></i> BIDKZN - WALLET AREA - Load with 1 Voucher via WhatsApp 0789313670</h3>
+<h3 class="font-black text-green-400 text-lg"><i class="fas fa-wallet"></i> BIDKZN - WALLET AREA - ID + Security Question Account</h3>
 <div class="mt-3 bg-[#25D366]/10 border border-[#25D366]/30 rounded-xl p-3 flex justify-between items-center flex-wrap gap-2">
 <div>
-<p class="text-[11px] font-black text-[#25D366]"><i class="fab fa-whatsapp"></i> BIDKZN - Buy Voucher via WhatsApp 0789313670 - ONE voucher = amount you wish to invest</p>
-<p class="text-[10px] text-zinc-400">BIDKZN - WhatsApp Admin 0789313670, pay, get code BIDKZN-A1B2-C3D4 R1000, enter below</p>
+<p class="text-[11px] font-black text-[#25D366]"><i class="fab fa-whatsapp"></i> BIDKZN - Buy Voucher via WhatsApp 0789313670 - ONE voucher = amount to invest - Bidder ID Account with Security Question</p>
 </div>
-<a id="whatsappBuyVoucher" href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20I%20want%20voucher%20R1000" target="_blank" class="bg-[#25D366] px-5 py-3 rounded-full text-xs font-black">
-<i class="fab fa-whatsapp"></i> BUY VOUCHER - BIDKZN - WhatsApp 0789313670
+<a id="whatsappBuyVoucher" href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20I%20want%20voucher%20R1000%20ID%20account%20security%20question" target="_blank" class="bg-[#25D366] px-5 py-3 rounded-full text-xs font-black">
+<i class="fab fa-whatsapp"></i> BUY VOUCHER - BIDKZN - WhatsApp 0789313670 - ID + Security Q Account
 </a>
 </div>
 <div class="mt-4 flex gap-2 flex-col md:flex-row">
-<input id="voucherCodeInput" placeholder="Enter ONE voucher code for BIDKZN - e.g. BIDKZN-A1B2-C3D4" class="flex-1 p-5 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black tracking-widest uppercase text-yellow-400 text-lg">
-<button onclick="loadWalletWithVoucher()" class="bg-green-600 px-8 py-5 rounded-full font-black text-sm">🎟️ LOAD WALLET WITH 1 VOUCHER - BIDKZN</button>
+<input id="voucherCodeInput" placeholder="Enter ONE voucher code for BIDKZN ID + Security Q Account - BIDKZN-A1B2-C3D4" class="flex-1 p-5 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black tracking-widest uppercase text-yellow-400 text-lg">
+<button onclick="loadWalletWithVoucher()" class="bg-green-600 px-8 py-5 rounded-full font-black text-sm">🎟️ LOAD WALLET - BIDKZN ID + Security Q Account</button>
 </div>
 <div id="voucherLoadResult" class="mt-3 hidden"></div>
-</div>
-
-<div class="mt-6 grid md:grid-cols-3 gap-3">
-<div class="bg-black border border-green-600/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Wallet Loaded via Voucher - BIDKZN</p><p class="text-xl font-black text-green-400" id="statLoaded">R0</p></div>
-<div class="bg-black border border-yellow-500/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Pending Admin - BIDKZN</p><p class="text-xl font-black text-yellow-400" id="statPending">0</p></div>
-<div class="bg-black border border-red-600/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Ready to Bid - BIDKZN</p><p class="text-xl font-black text-red-400" id="statReady">R0</p></div>
-</div>
-
-<div class="mt-6 grid md:grid-cols-2 gap-4">
-<div class="bg-zinc-900 border border-zinc-700 rounded-2xl p-4"><h3 class="font-black text-sm"><i class="fas fa-clock"></i> BIDKZN - My Voucher Loads - Waiting Admin 0789313670</h3><div id="myLoadRequests" class="mt-3 space-y-2 max-h-64 overflow-y-auto"></div></div>
-<div class="bg-zinc-900 border border-zinc-700 rounded-2xl p-4"><h3 class="font-black text-sm"><i class="fas fa-history"></i> BIDKZN - Wallet History</h3><div id="walletHistory" class="mt-3 space-y-2 max-h-64 overflow-y-auto"></div></div>
 </div>
 </div>
 
 <div id="flashView" class="hidden">
 <div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-4 mb-4">
-<div class="flex justify-between items-center"><h2 class="font-black text-red-400"><i class="fas fa-bolt"></i> BIDKZN - FLASH BIDDING AREA - Wallet Loaded with 1 Voucher Required</h2><span class="bg-yellow-400 text-black text-[10px] px-3 py-1 rounded-full font-black">Wallet: R<span id="flashWalletBalance">0</span> - BIDKZN</span></div>
+<div class="flex justify-between items-center"><h2 class="font-black text-red-400"><i class="fas fa-bolt"></i> BIDKZN - FLASH BIDDING AREA - ID + Security Question Account</h2><span class="bg-yellow-400 text-black text-[10px] px-3 py-1 rounded-full font-black">Wallet: R<span id="flashWalletBalance">0</span> - BIDKZN ID + Security Q Account</span></div>
 <div id="walletCheck" class="mt-3 hidden"></div>
-<p class="text-[11px] text-zinc-400 mt-2">Need voucher for BIDKZN? <a id="whatsappFlashNeed" href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20I%20need%20voucher%20for%20flash%20bidding" target="_blank" class="text-[#25D366] font-black"><i class="fab fa-whatsapp"></i> WhatsApp Admin 0789313670 for Voucher - BIDKZN</a></p>
 </div>
 <div id="flashGrid" class="grid md:grid-cols-2 gap-4"></div>
-<div id="upcomingFlash" class="mt-6"><h3 class="font-black text-sm text-yellow-400">⏰ UPCOMING FLASH - BIDKZN - Load wallet via WhatsApp 0789313670</h3><div id="upcomingGrid" class="mt-3 grid md:grid-cols-2 gap-4"></div></div>
+<div id="upcomingFlash" class="mt-6"><h3 class="font-black text-sm text-yellow-400">⏰ UPCOMING FLASH - BIDKZN ID + Security Question Account</h3><div id="upcomingGrid" class="mt-3 grid md:grid-cols-2 gap-4"></div></div>
 </div>
 
-<div id="mywinsView" class="hidden"><div class="bg-zinc-900 border-2 border-green-600 rounded-2xl p-5"><h2 class="font-black text-green-400 text-xl"><i class="fas fa-trophy"></i> BIDKZN - MY WINS AREA</h2><div id="myWinsList" class="mt-6 space-y-3"></div></div></div>
-<div id="mycoinsView" class="hidden"><div class="bg-zinc-900 border-2 border-yellow-500/50 rounded-2xl p-5"><h2 class="font-black text-yellow-400"><i class="fas fa-coins"></i> BIDKZN - MY COINS AREA - Sell for Voucher Payout</h2><div id="myCoinsList" class="mt-4 space-y-3"></div></div></div>
+<div id="mywinsView" class="hidden"><div class="bg-zinc-900 border-2 border-green-600 rounded-2xl p-5"><h2 class="font-black text-green-400 text-xl"><i class="fas fa-trophy"></i> BIDKZN - MY WINS AREA - ID + Security Question Account</h2><div id="myWinsList" class="mt-6 space-y-3"></div></div></div>
+<div id="mycoinsView" class="hidden"><div class="bg-zinc-900 border-2 border-yellow-500/50 rounded-2xl p-5"><h2 class="font-black text-yellow-400"><i class="fas fa-coins"></i> BIDKZN - MY COINS AREA - ID + Security Question Account</h2><div id="myCoinsList" class="mt-4 space-y-3"></div></div></div>
 </div>
 
 <div id="admin" class="hidden fixed inset-0 bg-black z-50 overflow-y-auto"><div class="max-w-6xl mx-auto p-3">
-<div class="bg-zinc-900 rounded-2xl p-4 flex justify-between items-center border-2 border-yellow-500"><h2 class="font-black text-yellow-400">🔒 ADMIN - BIDKZN - 0789313670</h2><button onclick="document.getElementById('admin').classList.add('hidden')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">CLOSE - BIDKZN</button></div>
+<div class="bg-zinc-900 rounded-2xl p-4 flex justify-between items-center border-2 border-yellow-500"><h2 class="font-black text-yellow-400">🔒 ADMIN - BIDKZN - ID + Profile Picture + Security Question - 0789313670</h2><button onclick="document.getElementById('admin').classList.add('hidden')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">CLOSE - BIDKZN ID + Security Q</button></div>
 
 <div class="mt-4 bg-black border-2 border-[#25D366] rounded-xl p-4">
-<h3 class="font-black text-sm text-[#25D366]"><i class="fab fa-whatsapp"></i> WhatsApp Admin 0789313670 - BIDKZN</h3>
+<h3 class="font-black text-sm text-[#25D366]"><i class="fab fa-whatsapp"></i> WhatsApp Admin 0789313670 - BIDKZN ID + Security Question Accounts</h3>
 <div class="flex gap-2 mt-3">
 <input id="adminPhoneInput" value="27789313670" class="flex-1 p-3 rounded-full bg-zinc-900 border-2 border-[#25D366] text-center font-black">
 <input id="adminPhoneDisplayInput" value="+27 78 931 3670" class="flex-1 p-3 rounded-full bg-zinc-900 border text-center">
-<button onclick="saveAdminPhone()" class="bg-[#25D366] text-black px-6 py-3 rounded-full font-black"><i class="fab fa-whatsapp"></i> SAVE - BIDKZN - 0789313670</button>
+<button onclick="saveAdminPhone()" class="bg-[#25D366] text-black px-6 py-3 rounded-full font-black"><i class="fab fa-whatsapp"></i> SAVE - BIDKZN - 0789313670 - ID + Security Q</button>
 </div>
-<p class="text-[10px] text-zinc-500 mt-2">Current: <span id="currentAdminPhone" class="text-[#25D366] font-black">27789313670</span> - <span id="currentAdminDisplay">+27 78 931 3670</span> - BIDKZN</p>
 </div>
 
 <div class="mt-4 bg-black border-2 border-yellow-500 rounded-xl p-4">
-<h3 class="font-black text-sm text-yellow-400">🎟️ BIDKZN - CREATE VOUCHERS - Clients WhatsApp 0789313670 to buy</h3>
+<h3 class="font-black text-sm text-yellow-400">🎟️ BIDKZN - CREATE VOUCHERS - ID + Security Question Accounts - WhatsApp 0789313670</h3>
 <div class="grid md:grid-cols-4 gap-2 mt-3">
-<input id="voucherAmount" type="number" placeholder="Amount e.g. 1000 - BIDKZN" class="p-3 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black">
+<input id="voucherAmount" type="number" placeholder="Amount e.g. 1000 - BIDKZN ID + Security Q Account" class="p-3 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black">
 <input id="voucherCount" type="number" value="5" class="p-3 rounded-full bg-zinc-900 border text-center">
 <input id="voucherPrefix" placeholder="BIDKZN" value="BIDKZN" class="p-3 rounded-full bg-zinc-900 border text-center font-black uppercase">
-<button onclick="createVouchers()" class="bg-yellow-400 text-black p-3 rounded-full font-black">🎟️ CREATE VOUCHERS - BIDKZN</button>
-</div>
-<div class="flex gap-2 mt-3 flex-wrap">
-<button onclick="createQuickVoucher(500)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">R500 - BIDKZN Voucher</button>
-<button onclick="createQuickVoucher(1000)" class="bg-green-900/30 border border-green-600 px-4 py-2 rounded-full text-xs text-green-400">R1000 - BIDKZN</button>
-<button onclick="shareVouchersWhatsApp()" class="bg-[#25D366] px-4 py-2 rounded-full text-xs font-black"><i class="fab fa-whatsapp"></i> SHARE VOUCHERS WhatsApp 0789313670 - BIDKZN</button>
+<button onclick="createVouchers()" class="bg-yellow-400 text-black p-3 rounded-full font-black">🎟️ CREATE VOUCHERS - BIDKZN ID + Security Q Account</button>
 </div>
 </div>
 
 <div class="flex gap-2 mt-4 overflow-x-auto">
-<button onclick="adminTab('bidders')" id="at-bidders" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black"><i class="fas fa-users"></i> BIDDERS - BIDKZN</button>
-<button onclick="adminTab('loads')" id="at-loads" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🎟️ PENDING LOADS - BIDKZN</button>
-<button onclick="adminTab('vouchers')" id="at-vouchers" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🎟️ VOUCHERS - BIDKZN</button>
-<button onclick="adminTab('pending')" id="at-pending" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">⏳ FLASH PENDING - BIDKZN</button>
-<button onclick="adminTab('live')" id="at-live" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🔴 LIVE FLASH - BIDKZN</button>
+<button onclick="adminTab('bidders')" id="at-bidders" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black"><i class="fas fa-users"></i> BIDDERS - ID + Picture + Security Q - BIDKZN</button>
+<button onclick="adminTab('loads')" id="at-loads" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🎟️ PENDING LOADS - BIDKZN ID + Security Q</button>
+<button onclick="adminTab('vouchers')" id="at-vouchers" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🎟️ VOUCHERS - BIDKZN ID + Security Q</button>
+<button onclick="adminTab('pending')" id="at-pending" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">⏳ FLASH PENDING - BIDKZN ID + Security Q</button>
+<button onclick="adminTab('live')" id="at-live" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🔴 LIVE FLASH - BIDKZN ID + Security Q</button>
 </div>
 
 <div id="admin-bidders" class="mt-4"><div id="adminBiddersList"></div></div>
@@ -216,16 +257,94 @@ body{font-family:system-ui;background:#000;padding-bottom:90px}
 <div id="admin-live" class="hidden mt-4"><div id="adminLiveList"></div></div>
 </div></div>
 
-<div id="sellModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-yellow-400">📤 SELL - BIDKZN</h2><p id="sellText" class="text-sm mt-3"></p><div class="mt-4 bg-black p-4 rounded-xl border"><input id="sellQty" type="number" min="1" value="1" class="w-full p-3 rounded-full bg-zinc-900 border text-center font-black"><input id="sellPrice" type="number" class="w-full mt-2 p-3 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black text-lg"><input id="sellDesc" placeholder="Description - BIDKZN" class="w-full mt-2 p-3 rounded-full bg-zinc-900 border text-sm"></div><div class="flex gap-2 mt-6"><button onclick="confirmSell()" class="flex-1 bg-yellow-400 text-black py-4 rounded-full font-black">SEND TO ADMIN - BIDKZN</button><button onclick="document.getElementById('sellModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
-<div id="approvalModal" class="hidden fixed inset-0 bg-black/90 z-[60] flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-red-400">✅ APPROVE FLASH + SET TIME - BIDKZN</h2><p id="approvalText" class="text-sm mt-3"></p><input id="publicTime" type="datetime-local" class="w-full mt-3 p-3 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black"><div class="flex gap-2 mt-6"><button onclick="confirmApproval()" class="flex-1 bg-red-600 py-4 rounded-full font-black">APPROVE & SCHEDULE - BIDKZN</button><button onclick="document.getElementById('approvalModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
-<div id="flashBidModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-red-400"><i class="fas fa-bolt"></i> BIDKZN - FLASH BID</h2><p id="flashBidText" class="text-sm mt-3"></p><div class="mt-4 bg-black p-4 rounded-xl border-2 border-red-600/50"><input id="flashBidAmount" type="number" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black text-xl text-red-400"><p class="text-[10px] text-zinc-500 mt-2">Min R<span id="flashMin">0</span> | Wallet R<span id="flashWallet">0</span> - BIDKZN - WhatsApp 0789313670</p></div><div class="flex gap-2 mt-6"><button onclick="confirmFlashBid()" class="flex-1 bg-red-600 py-4 rounded-full font-black">BID R<span id="flashBidBtn">0</span> - BIDKZN</button><button onclick="document.getElementById('flashBidModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
+<div id="forgotPasswordModal" class="hidden fixed inset-0 bg-black/90 z-[70] flex items-center justify-center p-4 overflow-y-auto"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto"><h2 class="font-black text-red-400 text-xl"><i class="fas fa-key"></i> FORGOT PASSWORD - BIDKZN - Security Question - ID Account</h2>
+<p class="text-[11px] text-zinc-400 mt-2">Enter phone, answer security question, reset password - BIDKZN - ID + First Name + Surname + DOB + Profile Picture + Security Question</p>
+
+<div id="forgotStep1" class="mt-4">
+<label class="text-[11px] text-zinc-400">📱 Enter WhatsApp Phone - BIDKZN ID Account - Forgot Password</label>
+<input id="forgotPhone" type="tel" placeholder="0789313670 - BIDKZN ID Account - Enter phone for forgot password" class="w-full p-4 rounded-full bg-black border-2 border-yellow-500 text-center font-black text-lg">
+<button onclick="forgotCheckPhone()" class="w-full bg-yellow-400 text-black py-4 rounded-full font-black mt-4"><i class="fas fa-search"></i> CHECK PHONE - BIDKZN - Find Security Question</button>
+</div>
+
+<div id="forgotStep2" class="hidden mt-4 bg-black border-2 border-red-600/50 rounded-xl p-4">
+<p class="font-black text-sm text-yellow-400">Bidder Found - BIDKZN ID Account:</p>
+<p class="text-[11px] text-zinc-400 mt-1">Name: <span id="forgotName" class="text-white font-black">-</span> | ID: <span id="forgotIDNumber" class="text-yellow-400">-</span></p>
+<p class="text-[11px] text-zinc-400">First Name: <span id="forgotFirstName" class="text-white">-</span> | Surname: <span id="forgotSurname" class="text-white">-</span> | DOB: <span id="forgotDOB" class="text-white">-</span></p>
+<div class="mt-4 bg-red-900/20 border border-red-600/30 rounded-xl p-3">
+<p class="text-[11px] text-zinc-300">❓ Security Question - BIDKZN ID Account - Answer to reset password:</p>
+<p id="forgotSecurityQuestion" class="font-black text-red-400 text-sm mt-2">-</p>
+<label class="text-[11px] text-zinc-400 mt-3 block">🔑 Your Security Answer - BIDKZN ID Account - Forgot Password</label>
+<input id="forgotSecurityAnswer" type="text" placeholder="Enter your security answer - BIDKZN ID Account - Forgot password" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black">
+<p class="text-[10px] text-zinc-500 mt-2">Enter security answer you set when creating bidding account - BIDKZN ID Account - Security question when creating bidding account when client forget password</p>
+</div>
+<button onclick="forgotVerifyAnswer()" class="w-full bg-red-600 py-4 rounded-full font-black mt-4"><i class="fas fa-check"></i> VERIFY ANSWER - BIDKZN ID Account - Security Question</button>
+</div>
+
+<div id="forgotStep3" class="hidden mt-4 bg-black border-2 border-green-600/50 rounded-xl p-4">
+<p class="font-black text-sm text-green-400">✅ Security Answer Correct - BIDKZN ID Account - Reset Password:</p>
+<p class="text-[11px] text-zinc-400 mt-1">Bidder: <span id="forgotName2" class="text-white font-black">-</span> ID <span id="forgotIDNumber2" class="text-yellow-400">-</span> - You can now reset password - BIDKZN ID Account + Security Question</p>
+<label class="text-[11px] text-zinc-400 mt-3 block">🔒 New Password - BIDKZN ID Account - Security Question Verified</label>
+<input id="forgotNewPassword" type="password" placeholder="Enter new password min 4 digits - BIDKZN ID Account" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-green-600 text-center font-black text-lg">
+<label class="text-[11px] text-zinc-400 mt-2 block">🔒 Confirm New Password - BIDKZN ID Account</label>
+<input id="forgotNewPassword2" type="password" placeholder="Confirm new password - BIDKZN ID Account - Security Question" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-green-600 text-center font-black text-lg">
+<button onclick="forgotResetPassword()" class="w-full bg-green-600 py-4 rounded-full font-black mt-4"><i class="fas fa-key"></i> RESET PASSWORD - BIDKZN ID + Security Question Account</button>
+</div>
+
+<div class="flex gap-2 mt-6">
+<button onclick="document.getElementById('forgotPasswordModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full text-xs">CLOSE - BIDKZN ID + Security Q</button>
+<a href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20I%20forgot%20password%20and%20security%20answer%20ID%20account%20help" target="_blank" class="flex-1 bg-[#25D366] py-3 rounded-full text-xs font-black text-center"><i class="fab fa-whatsapp"></i> WhatsApp Admin 0789313670 - Help</a>
+</div>
+</div></div>
+
+<div id="editProfileModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 overflow-y-auto"><div class="bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto"><h2 class="font-black text-yellow-400"><i class="fas fa-edit"></i> EDIT PROFILE - BIDKZN ID + Security Question</h2>
+<div class="mt-4 space-y-3">
+<div class="flex items-center gap-4">
+<img id="editProfilePreview" src="" class="profile-pic-preview">
+<div>
+<input id="editProfilePic" type="file" accept="image/*" onchange="previewEditProfilePic(this)" class="w-full p-2 rounded-full bg-black border border-zinc-700 text-xs">
+<button onclick="document.getElementById('editProfilePic').click()" class="mt-2 bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black"><i class="fas fa-camera"></i> Change Picture - BIDKZN ID + Security Q</button>
+</div>
+</div>
+<label class="text-[11px] text-zinc-400">🪪 ID Number - BIDKZN ID + Security Q Account</label>
+<input id="editIDNumber" type="text" maxlength="13" class="w-full p-3 rounded-full bg-black border-2 border-yellow-500 text-center font-black">
+<div class="grid grid-cols-2 gap-2">
+<div><label class="text-[11px] text-zinc-400">👤 First Name - BIDKZN ID</label><input id="editFirstName" type="text" class="w-full p-3 rounded-full bg-black border text-center font-black"></div>
+<div><label class="text-[11px] text-zinc-400">👤 Surname - BIDKZN ID</label><input id="editSurname" type="text" class="w-full p-3 rounded-full bg-black border text-center font-black"></div>
+</div>
+<label class="text-[11px] text-zinc-400">📅 DOB - BIDKZN ID + Security Q Account</label>
+<input id="editDOB" type="date" class="w-full p-3 rounded-full bg-black border text-center font-black">
+<label class="text-[11px] text-zinc-400">📱 Phone - BIDKZN Login ID - ID + Security Q Account</label>
+<input id="editPhone" type="tel" class="w-full p-3 rounded-full bg-black border text-center font-black">
+<div class="bg-red-900/20 border border-red-600/30 rounded-xl p-3">
+<p class="font-black text-xs text-red-400"><i class="fas fa-shield-alt"></i> Security Question - BIDKZN ID Account - Edit</p>
+<select id="editSecurityQuestion" class="w-full mt-2 p-3 rounded-full bg-black border-2 border-red-600 text-center font-black text-sm text-white">
+<option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+<option value="What was your first pet's name?">What was your first pet's name?</option>
+<option value="What is your favourite food?">What is your favourite food?</option>
+<option value="What city were you born in?">What city were you born in?</option>
+<option value="What is your father's middle name?">What is your father's middle name?</option>
+<option value="What was your first school name?">What was your first school name?</option>
+<option value="What is your ID number last 4 digits?">What is your ID number last 4 digits?</option>
+<option value="What is your favourite colour?">What is your favourite colour?</option>
+<option value="What is your grandmother's name?">What is your grandmother's name?</option>
+<option value="What is your childhood nickname?">What is your childhood nickname?</option>
+</select>
+<input id="editSecurityAnswer" type="text" placeholder="Security Answer - BIDKZN ID + Security Q Account" class="w-full mt-2 p-3 rounded-full bg-black border-2 border-red-600 text-center font-black">
+</div>
+</div>
+<div class="flex gap-2 mt-6"><button onclick="saveBidderProfile()" class="flex-1 bg-yellow-400 text-black py-4 rounded-full font-black">SAVE PROFILE - BIDKZN ID + Security Q + Picture</button><button onclick="document.getElementById('editProfileModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL - BIDKZN ID + Security Q</button></div>
+</div></div>
+
+<div id="sellModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-yellow-400">📤 SELL - BIDKZN ID + Security Q Account</h2><p id="sellText" class="text-sm mt-3"></p><div class="mt-4 bg-black p-4 rounded-xl border"><input id="sellQty" type="number" min="1" value="1" class="w-full p-3 rounded-full bg-zinc-900 border text-center font-black"><input id="sellPrice" type="number" class="w-full mt-2 p-3 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black text-lg"><input id="sellDesc" placeholder="Description - BIDKZN ID + Security Q Account" class="w-full mt-2 p-3 rounded-full bg-zinc-900 border text-sm"></div><div class="flex gap-2 mt-6"><button onclick="confirmSell()" class="flex-1 bg-yellow-400 text-black py-4 rounded-full font-black">SEND TO ADMIN - BIDKZN ID + Security Q</button><button onclick="document.getElementById('sellModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
+<div id="approvalModal" class="hidden fixed inset-0 bg-black/90 z-[60] flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-red-400">✅ APPROVE FLASH + SET TIME - BIDKZN ID + Security Q Account</h2><p id="approvalText" class="text-sm mt-3"></p><input id="publicTime" type="datetime-local" class="w-full mt-3 p-3 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black"><div class="flex gap-2 mt-6"><button onclick="confirmApproval()" class="flex-1 bg-red-600 py-4 rounded-full font-black">APPROVE & SCHEDULE - BIDKZN ID + Security Q</button><button onclick="document.getElementById('approvalModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
+<div id="flashBidModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-red-400"><i class="fas fa-bolt"></i> BIDKZN - FLASH BID - ID + Security Q Account</h2><p id="flashBidText" class="text-sm mt-3"></p><div class="mt-4 bg-black p-4 rounded-xl border-2 border-red-600/50"><input id="flashBidAmount" type="number" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black text-xl text-red-400"><p class="text-[10px] text-zinc-500 mt-2">Min R<span id="flashMin">0</span> | Wallet R<span id="flashWallet">0</span> - BIDKZN ID + Security Q Account - WhatsApp 0789313670</p></div><div class="flex gap-2 mt-6"><button onclick="confirmFlashBid()" class="flex-1 bg-red-600 py-4 rounded-full font-black">BID R<span id="flashBidBtn">0</span> - BIDKZN ID + Security Q</button><button onclick="document.getElementById('flashBidModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 const firebaseConfig = { apiKey: "AIzaSyCxVmtWLZiVvcElpOG4gLxKylunD1_NnRA", authDomain: "kzn-store.firebaseapp.com", databaseURL: "https://kzn-store-default-rtdb.firebaseio.com", projectId: "kzn-store", storageBucket: "kzn-store.firebasestorage.app", messagingSenderId: "755959571531", appId: "1:755959571531:web:42ee597a9d0646923699ce" };
 const app = initializeApp(firebaseConfig); const db = getDatabase(app);
-let bids=[]; let users=[]; let flashRequests=[]; let vouchers=[]; let voucherLoads=[]; let currentUser=JSON.parse(localStorage.getItem('coin_user')||'null'); let pendingSell=null; let pendingApproval=null; let pendingFlashBid=null; let adminPhone="27789313670"; let adminDisplay="+27 78 931 3670";
+let bids=[]; let users=[]; let flashRequests=[]; let vouchers=[]; let voucherLoads=[]; let currentUser=JSON.parse(localStorage.getItem('coin_user')||'null'); let pendingSell=null; let pendingApproval=null; let pendingFlashBid=null; let adminPhone="27789313670"; let adminDisplay="+27 78 931 3670"; let tempProfilePic=""; let tempEditProfilePic=""; let forgotUser=null;
 
 onValue(ref(db, 'admin_config/whatsapp'), (s)=>{ if(s.exists()){ let cfg=s.val(); adminPhone=cfg.phone||adminPhone; adminDisplay=cfg.display||adminDisplay; updateWhatsAppLinks(); } });
 onValue(ref(db, 'coin_bids'), (s)=>{ bids=s.val()?Object.values(s.val()):[]; renderAll(); });
@@ -237,11 +356,10 @@ onValue(ref(db, 'voucher_loads'), (s)=>{ voucherLoads=s.val()?Object.values(s.va
 function genVoucherCode(prefix){ let chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; let code=prefix+'-'; for(let i=0;i<4;i++) code+=chars[Math.floor(Math.random()*chars.length)]; code+='-'; for(let i=0;i<4;i++) code+=chars[Math.floor(Math.random()*chars.length)]; return code; }
 function normalizePhone(p){ return p.replace(/[^0-9]/g,''); }
 function updateWhatsAppLinks(){
-  let msg=encodeURIComponent("Hi Admin BIDKZN I want to buy voucher code for wallet loading - BIDKZN");
-  let msgBuy=encodeURIComponent("Hi Admin BIDKZN I want to buy voucher code R1000 for wallet loading - BIDKZN");
-  let msgFlash=encodeURIComponent("Hi Admin BIDKZN I need voucher for flash bidding - BIDKZN");
+  let msg=encodeURIComponent("Hi Admin BIDKZN I want to buy voucher code for wallet loading - BIDKZN ID Account with security question");
+  let msgBuy=encodeURIComponent("Hi Admin BIDKZN I want to buy voucher code R1000 for wallet loading - BIDKZN ID Account with profile picture and security question");
   let ids=['whatsappFloat','whatsappNumberDisplay','whatsappBuyVoucher','whatsappFlashNeed'];
-  ids.forEach(id=>{ let el=document.getElementById(id); if(el){ let base=`https://wa.me/${adminPhone}`; if(id.includes('Buy')) el.href=`${base}?text=${msgBuy}`; else if(id.includes('Flash')) el.href=`${base}?text=${msgFlash}`; else if(id.includes('NumberDisplay')) el.href=base; else el.href=`${base}?text=${msg}`; } });
+  ids.forEach(id=>{ let el=document.getElementById(id); if(el){ let base=`https://wa.me/${adminPhone}`; if(id.includes('Buy')) el.href=`${base}?text=${msgBuy}`; else if(id.includes('NumberDisplay')) el.href=base; else el.href=`${base}?text=${msg}`; } });
   let disp=document.getElementById('adminPhoneDisplay'); if(disp) disp.innerText=adminDisplay;
   let curPhone=document.getElementById('currentAdminPhone'); if(curPhone) curPhone.innerText=adminPhone;
   let curDisp=document.getElementById('currentAdminDisplay'); if(curDisp) curDisp.innerText=adminDisplay;
@@ -251,121 +369,280 @@ function showMainApp(){ document.getElementById('bidderAuthView').classList.add(
 function renderHeaderButtons(){
   let header=document.getElementById('headerButtons');
   if(currentUser){
+    let pic=currentUser.profilePic?`<img src="${currentUser.profilePic}" class="w-8 h-8 rounded-full border-2 border-yellow-400 object-cover">`:'';
     header.innerHTML=`
-      <span class="bg-green-900/30 border border-green-600 text-green-400 text-[10px] px-3 py-1 rounded-full"><i class="fas fa-user"></i> BIDKZN Bidder: ${currentUser.name} - R${currentUser.wallet||0}</span>
-      <a href="https://wa.me/${adminPhone}?text=Hi%20Admin%20BIDKZN%20I%20need%20voucher%20bidder%20${currentUser.name}" target="_blank" class="bg-[#25D366] w-10 h-10 rounded-full flex items-center justify-center"><i class="fab fa-whatsapp text-white text-xl"></i></a>
-      <button onclick="showView('profile')" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black">👤 WALLET AREA - BIDKZN</button>
-      <button onclick="showView('flash')" class="bg-zinc-800 px-3 py-2 rounded-full text-xs">⚡ FLASH AREA - BIDKZN</button>
-      <button onclick="bidderLogout()" class="bg-red-900/30 border border-red-600 px-3 py-2 rounded-full text-xs text-red-400">LOGOUT - BIDKZN</button>
-      <button onclick="openAdmin()" class="bg-black border border-zinc-700 px-3 py-2 rounded-full text-xs">🔒 ADMIN - BIDKZN</button>
+      <div class="flex items-center gap-2 bg-green-900/30 border border-green-600 text-green-400 text-[10px] px-3 py-1 rounded-full">${pic} BIDKZN ID Account: ${currentUser.firstName||currentUser.name} ${currentUser.surname||''} ID ${currentUser.idNumber||'-'} Security Q ✅ R${currentUser.wallet||0}</div>
+      <a href="https://wa.me/${adminPhone}?text=Hi%20Admin%20BIDKZN%20ID%20Security%20Question%20Account%20I%20need%20voucher%20bidder%20${currentUser.firstName||currentUser.name}" target="_blank" class="bg-[#25D366] w-10 h-10 rounded-full flex items-center justify-center"><i class="fab fa-whatsapp text-white text-xl"></i></a>
+      <button onclick="showView('profile')" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black">👤 WALLET AREA - BIDKZN ID + Security Q</button>
+      <button onclick="showView('flash')" class="bg-zinc-800 px-3 py-2 rounded-full text-xs">⚡ FLASH AREA - BIDKZN ID + Security Q</button>
+      <button onclick="bidderLogout()" class="bg-red-900/30 border border-red-600 px-3 py-2 rounded-full text-xs text-red-400">LOGOUT - BIDKZN ID + Security Q</button>
+      <button onclick="openAdmin()" class="bg-black border border-zinc-700 px-3 py-2 rounded-full text-xs">🔒 ADMIN - BIDKZN ID + Security Q</button>
     `;
   } else {
     header.innerHTML=`
-      <a href="https://wa.me/${adminPhone}?text=Hi%20Admin%20BIDKZN%20I%20need%20voucher" target="_blank" class="bg-[#25D366] w-10 h-10 rounded-full flex items-center justify-center"><i class="fab fa-whatsapp text-white text-xl"></i></a>
-      <button onclick="document.getElementById('bidderAuthView').scrollIntoView({behavior:'smooth'})" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black"><i class="fas fa-sign-in-alt"></i> BIDDER LOGIN - BIDKZN</button>
-      <button onclick="openAdmin()" class="bg-black border border-zinc-700 px-3 py-2 rounded-full text-xs">🔒 ADMIN - BIDKZN</button>
+      <a href="https://wa.me/${adminPhone}?text=Hi%20Admin%20BIDKZN%20ID%20Security%20Question%20Account%20I%20need%20voucher" target="_blank" class="bg-[#25D366] w-10 h-10 rounded-full flex items-center justify-center"><i class="fab fa-whatsapp text-white text-xl"></i></a>
+      <button onclick="document.getElementById('bidderAuthView').scrollIntoView({behavior:'smooth'})" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black"><i class="fas fa-sign-in-alt"></i> BIDDER LOGIN - BIDKZN ID + Security Q + Picture</button>
+      <button onclick="openAdmin()" class="bg-black border border-zinc-700 px-3 py-2 rounded-full text-xs">🔒 ADMIN - BIDKZN ID + Security Q Account</button>
     `;
   }
 }
 
+window.previewProfilePic=function(input){ if(input.files && input.files[0]){ let reader=new FileReader(); reader.onload=function(e){ tempProfilePic=e.target.result; document.getElementById('regProfilePreview').src=tempProfilePic; }; reader.readAsDataURL(input.files[0]); } }
+window.previewEditProfilePic=function(input){ if(input.files && input.files[0]){ let reader=new FileReader(); reader.onload=function(e){ tempEditProfilePic=e.target.result; document.getElementById('editProfilePreview').src=tempEditProfilePic; }; reader.readAsDataURL(input.files[0]); } }
+
 window.bidderRegister=async function(){
-  let name=document.getElementById('regName').value.trim();
+  let idNumber=document.getElementById('regIDNumber').value.trim();
+  let firstName=document.getElementById('regFirstName').value.trim();
+  let surname=document.getElementById('regSurname').value.trim();
+  let dob=document.getElementById('regDOB').value;
   let phone=document.getElementById('regPhone').value.trim();
+  let secQ=document.getElementById('regSecurityQuestion').value.trim();
+  let secA=document.getElementById('regSecurityAnswer').value.trim();
   let pass=document.getElementById('regPassword').value.trim();
   let pass2=document.getElementById('regPassword2').value.trim();
-  if(!name||!phone||!pass) return alert('Fill all - Name, Phone, Password - BIDKZN - Bidder Register Area');
-  if(pass.length<4) return alert('Password min 4 - BIDKZN');
-  if(pass!==pass2) return alert('Passwords not matching - BIDKZN');
+
+  if(!idNumber||!firstName||!surname||!dob||!phone||!secQ||!secA||!pass) return alert('Fill all - ID Number + First Name + Surname + DOB + Phone + Security Question + Security Answer + Password + Profile Picture - BIDKZN Bidder Account Creating with Security Question when creating bidding account when client forget password');
+  if(idNumber.length!==13 ||!/^\d+$/.test(idNumber)) return alert('ID Number must be 13 digits - BIDKZN ID Account + Security Question');
+  if(secA.length<2) return alert('Security Answer too short - BIDKZN ID Account + Security Question - Enter answer for security question when creating bidding account when client forget password');
+  if(pass.length<4) return alert('Password min 4 - BIDKZN ID Account + Security Question');
+  if(pass!==pass2) return alert('Passwords not matching - BIDKZN ID Account + Security Question');
   let normPhone=normalizePhone(phone);
-  if(users.some(u=>normalizePhone(u.phone)===normPhone)) return alert('Phone already registered as bidder for BIDKZN - Go to BIDDER LOGIN AREA and login with phone '+phone+' and password - Or WhatsApp Admin '+adminDisplay+' 0789313670 for BIDKZN');
+  if(users.some(u=>normalizePhone(u.phone)===normPhone)) return alert('Phone already registered as bidder for BIDKZN ID + Security Question Account - Go to BIDDER LOGIN AREA and login with phone '+phone+' and password - Or use FORGOT PASSWORD with security question - Or WhatsApp Admin '+adminDisplay+' 0789313670 for BIDKZN');
+  if(users.some(u=>u.idNumber===idNumber)) return alert('ID Number already registered for BIDKZN ID + Security Question Account - ID '+idNumber+' already exists - Each ID only one account - BIDKZN ID Account + Security Question');
+
+  let fullName=firstName+' '+surname;
   let id=Date.now(); let fbId=id.toString();
-  let newUser={ id:id, fbId:fbId, name:name, phone:phone, normPhone:normPhone, password:pass, wallet:0, vouchersRedeemed:0, createdAt:Date.now(), role:'bidder', website:'BIDKZN' };
+  let profilePic=tempProfilePic||'https://via.placeholder.com/100x100/000000/FFD700?text='+encodeURIComponent(firstName[0]+surname[0]);
+
+  let newUser={
+    id:id,
+    fbId:fbId,
+    idNumber:idNumber,
+    firstName:firstName,
+    surname:surname,
+    name:fullName,
+    fullName:fullName,
+    dob:dob,
+    dateOfBirth:dob,
+    phone:phone,
+    normPhone:normPhone,
+    securityQuestion:secQ,
+    securityAnswer:secA.toLowerCase().trim(),
+    securityAnswerOriginal:secA,
+    password:pass,
+    profilePic:profilePic,
+    wallet:0,
+    vouchersRedeemed:0,
+    createdAt:Date.now(),
+    role:'bidder',
+    website:'BIDKZN',
+    accountType:'Bidder Account with ID + First Name + Surname + DOB + Profile Picture + Security Question for forgot password'
+  };
+
   await set(ref(db,'coin_users/'+fbId), newUser);
   localStorage.setItem('coin_user', JSON.stringify(newUser));
   currentUser=newUser;
-  alert(`✅ REGISTERED FOR BIDKZN!\n\nWebsite: BIDKZN\nBidder: ${name}\nPhone (Login ID): ${phone}\nPassword: ${pass}\n\nYou are now logged in to BIDKZN!\n\nNEXT - BIDKZN:\n1. WhatsApp Admin ${adminDisplay} 0789313670 to buy voucher code (ONE voucher = amount you wish to invest) - BIDKZN\n2. Go to WALLET AREA - BIDKZN → Enter voucher code → Admin approves → Wallet +R\n3. Go to FLASH BIDDING AREA - BIDKZN → Bid with loaded wallet\n\nBIDKZN - Bidder login area active!`);
+  alert(`✅ BIDDER ACCOUNT CREATED FOR BIDKZN - ID + Security Question!\n\nBIDKZN Bidder Account with ID Number + First Name + Surname + DOB + Profile Picture + Security Question Created!\n\nID Number: ${idNumber}\nFirst Name: ${firstName}\nSurname: ${surname}\nDOB: ${dob}\nPhone: ${phone}\nSecurity Question: ${secQ}\nSecurity Answer: ${secA}\nPassword: ${pass}\nProfile Picture: Uploaded ✅\n\n⚠️ IMPORTANT - Security question when creating bidding account when client forget password - Remember:\nSecurity Question: ${secQ}\nAnswer: ${secA}\n\nYou will need security question + answer when you forget password - BIDKZN ID + Security Question Account\n\nYou are now logged in to BIDKZN!\n\nNEXT - BIDKZN ID + Security Question Account:\n1. WhatsApp Admin ${adminDisplay} 0789313670 to buy voucher code\n2. Go to WALLET AREA → Enter voucher code → Admin approves → Wallet +R\n3. Go to FLASH BIDDING AREA → Bid\n\nBIDKZN - Bidder account with ID + Picture + Security Question active!`);
   showMainApp(); showView('profile');
 }
 
 window.bidderLogin=async function(){
   let phone=document.getElementById('loginPhone').value.trim();
   let pass=document.getElementById('loginPassword').value.trim();
-  if(!phone||!pass) return alert('Enter phone and password - BIDKZN - Bidder Login Area');
+  if(!phone||!pass) return alert('Enter phone and password - BIDKZN ID + Security Question Account - Bidder Login Area');
   let normPhone=normalizePhone(phone);
   let user=users.find(u=>normalizePhone(u.phone)===normPhone);
-  if(!user) return alert(`Bidder not found for BIDKZN with phone ${phone}\n\nGo to BIDDER REGISTER AREA for BIDKZN to register as new bidder\nWhatsApp Admin ${adminDisplay} 0789313670 for BIDKZN help`);
-  if(user.password && user.password!==pass) return alert(`Wrong password for BIDKZN bidder ${user.name} (${user.phone})\n\nTry again - If forgot password, WhatsApp Admin ${adminDisplay} 0789313670 to reset - BIDKZN`);
+  if(!user) return alert(`Bidder not found for BIDKZN ID + Security Question Account with phone ${phone}\n\nGo to BIDDER ACCOUNT CREATING for BIDKZN to register with ID Number + First Name + Surname + DOB + Profile Picture + Security Question + Security Answer + Password\nOr use FORGOT PASSWORD with security question if you forgot password\nWhatsApp Admin ${adminDisplay} 0789313670 for BIDKZN help - ID + Security Question Account`);
+  if(user.password && user.password!==pass) return alert(`Wrong password for BIDKZN ID + Security Question Account bidder ${user.firstName||user.name} ${user.surname||''} ID ${user.idNumber||''} (${user.phone})\n\nTry again - If forgot password, click FORGOT PASSWORD? - Answer Security Question - BIDKZN ID + Security Question Account - Security question when creating bidding account when client forget password\n\nSecurity Question: ${user.securityQuestion||'Not set - Old account - WhatsApp Admin 0789313670'}\n\nIf you forgot security answer too, WhatsApp Admin ${adminDisplay} 0789313670 to reset - BIDKZN ID + Security Question Account`);
   if(!user.password){ await update(ref(db,'coin_users/'+user.fbId),{ password:pass, normPhone:normPhone }); user.password=pass; }
   localStorage.setItem('coin_user', JSON.stringify(user));
   currentUser=user;
-  let infoEl=document.getElementById('loggedBidderInfo'); if(infoEl){ infoEl.classList.remove('hidden'); document.getElementById('loggedName').innerText=user.name+' - BIDKZN'; document.getElementById('loggedPhone').innerText=user.phone+' - BIDKZN Login'; document.getElementById('loggedWallet').innerText=user.wallet||0; }
-  alert(`✅ LOGGED IN TO BIDKZN!\n\nWelcome ${user.name} - BIDKZN - Bidder Area\nPhone: ${user.phone}\nWallet: R${user.wallet||0}\n\nYou have access to BIDKZN:\n👤 WALLET AREA - Load with 1 voucher via WhatsApp ${adminDisplay} 0789313670 - BIDKZN\n⚡ FLASH BIDDING AREA - Bid with loaded wallet - BIDKZN\n🏆 MY WINS AREA - BIDKZN\n💼 MY COINS AREA - BIDKZN`);
+  let infoEl=document.getElementById('loggedBidderInfo'); if(infoEl){ infoEl.classList.remove('hidden'); let picEl=document.getElementById('loggedProfilePic'); if(picEl && user.profilePic){ picEl.src=user.profilePic; picEl.classList.remove('hidden'); } document.getElementById('loggedName').innerText=(user.firstName||user.name)+' '+(user.surname||'')+' - BIDKZN ID + Security Q Account'; document.getElementById('loggedPhone').innerText=user.phone+' - BIDKZN Login - ID '+ (user.idNumber||'-'); let idEl=document.getElementById('loggedID'); if(idEl) idEl.innerText=`ID: ${user.idNumber||'-'} | DOB: ${user.dob||user.dateOfBirth||'-'} | First Name: ${user.firstName||'-'} | Surname: ${user.surname||'-'} | Security Q: ${user.securityQuestion?'✅ '+user.securityQuestion:'❌ Not set'}`; document.getElementById('loggedWallet').innerText=user.wallet||0; }
+  alert(`✅ LOGGED IN TO BIDKZN - ID + Security Question Account!\n\nWelcome ${user.firstName||user.name} ${user.surname||''} - BIDKZN - Bidder Account with ID + Security Question\nID Number: ${user.idNumber||'-'}\nSecurity Question: ${user.securityQuestion||'-'} - Set ✅\nPhone: ${user.phone}\nWallet: R${user.wallet||0}\nProfile Picture: ${user.profilePic?'✅':'❌'}\n\nYou have access to BIDKZN ID + Security Question Account`);
   showMainApp(); showView('profile');
 }
 
+window.openForgotPassword=function(){
+  document.getElementById('forgotPasswordModal').classList.remove('hidden');
+  document.getElementById('forgotStep1').classList.remove('hidden');
+  document.getElementById('forgotStep2').classList.add('hidden');
+  document.getElementById('forgotStep3').classList.add('hidden');
+  document.getElementById('forgotPhone').value=document.getElementById('loginPhone').value.trim()||'';
+  forgotUser=null;
+}
+
+window.forgotCheckPhone=function(){
+  let phone=document.getElementById('forgotPhone').value.trim();
+  if(!phone) return alert('Enter phone number for BIDKZN ID + Security Question Account - Forgot password - Enter WhatsApp phone - BIDKZN');
+  let normPhone=normalizePhone(phone);
+  let user=users.find(u=>normalizePhone(u.phone)===normPhone);
+  if(!user) return alert(`Bidder not found for BIDKZN ID + Security Question Account with phone ${phone} - Forgot password - Phone not found - BIDKZN ID + Security Question Account - Go to BIDDER ACCOUNT CREATING to register with ID Number + First Name + Surname + DOB + Profile Picture + Security Question - BIDKZN`);
+  if(!user.securityQuestion) return alert(`Bidder ${user.firstName||user.name} ${user.surname||''} ID ${user.idNumber||''} has no security question set - Old account - BIDKZN ID Account - WhatsApp Admin ${adminDisplay} 0789313670 to reset password manually - BIDKZN ID + Security Question Account - Security question when creating bidding account when client forget password`);
+  forgotUser=user;
+  document.getElementById('forgotStep1').classList.add('hidden');
+  document.getElementById('forgotStep2').classList.remove('hidden');
+  document.getElementById('forgotName').innerText=user.firstName+' '+user.surname;
+  document.getElementById('forgotFirstName').innerText=user.firstName||'-';
+  document.getElementById('forgotSurname').innerText=user.surname||'-';
+  document.getElementById('forgotIDNumber').innerText=user.idNumber||'-';
+  document.getElementById('forgotDOB').innerText=user.dob||user.dateOfBirth||'-';
+  document.getElementById('forgotSecurityQuestion').innerText=user.securityQuestion;
+}
+
+window.forgotVerifyAnswer=function(){
+  if(!forgotUser) return alert('No bidder found - BIDKZN ID + Security Question Account - Enter phone first - Forgot password');
+  let answer=document.getElementById('forgotSecurityAnswer').value.trim().toLowerCase();
+  if(!answer) return alert('Enter security answer - BIDKZN ID + Security Question Account - Forgot password - Enter answer to security question - BIDKZN ID + Security Question');
+  let correctAnswer=(forgotUser.securityAnswer||'').toLowerCase().trim();
+  if(answer!==correctAnswer) return alert(`❌ Wrong security answer for BIDKZN ID + Security Question Account - Bidder ${forgotUser.firstName} ${forgotUser.surname} ID ${forgotUser.idNumber}\n\nYour answer: ${answer}\nCorrect answer is different - Try again - Security question: ${forgotUser.securityQuestion}\n\nSecurity question when creating bidding account when client forget password - BIDKZN ID + Security Question Account\n\nIf you forgot security answer too, WhatsApp Admin ${adminDisplay} 0789313670 for BIDKZN ID + Security Question Account help - Admin can reset password in ADMIN → BIDDERS → Reset Password`);
+  document.getElementById('forgotStep2').classList.add('hidden');
+  document.getElementById('forgotStep3').classList.remove('hidden');
+  document.getElementById('forgotName2').innerText=forgotUser.firstName+' '+forgotUser.surname;
+  document.getElementById('forgotIDNumber2').innerText=forgotUser.idNumber||'-';
+  alert(`✅ Security Answer Correct for BIDKZN ID + Security Question Account!\n\nBidder: ${forgotUser.firstName} ${forgotUser.surname} ID ${forgotUser.idNumber}\nSecurity Question: ${forgotUser.securityQuestion}\nYour Answer: ${document.getElementById('forgotSecurityAnswer').value.trim()} - Correct ✅\n\nYou can now reset password for BIDKZN ID + Security Question Account - Enter new password - BIDKZN ID + Security Question Account - Security question when creating bidding account when client forget password`);
+}
+
+window.forgotResetPassword=async function(){
+  if(!forgotUser) return alert('No bidder - BIDKZN ID + Security Question Account - Forgot password');
+  let newPass=document.getElementById('forgotNewPassword').value.trim();
+  let newPass2=document.getElementById('forgotNewPassword2').value.trim();
+  if(!newPass||!newPass2) return alert('Enter new password and confirm - BIDKZN ID + Security Question Account - Forgot password - Reset password');
+  if(newPass.length<4) return alert('Password min 4 digits - BIDKZN ID + Security Question Account - Forgot password');
+  if(newPass!==newPass2) return alert('Passwords not matching - BIDKZN ID + Security Question Account - Forgot password - Reset password');
+  await update(ref(db,'coin_users/'+forgotUser.fbId),{ password:newPass });
+  document.getElementById('forgotPasswordModal').classList.add('hidden');
+  alert(`✅ PASSWORD RESET SUCCESSFUL FOR BIDKZN ID + Security Question Account!\n\nBidder: ${forgotUser.firstName} ${forgotUser.surname} ID ${forgotUser.idNumber} Phone ${forgotUser.phone}\n\nNew Password: ${newPass}\n\nYou can now login in BIDDER LOGIN AREA - BIDKZN ID + Security Question Account with:\nPhone: ${forgotUser.phone}\nNew Password: ${newPass}\n\nSecurity Question remains: ${forgotUser.securityQuestion}\nSecurity Answer remains: ${forgotUser.securityAnswerOriginal||forgotUser.securityAnswer}\n\nBIDKZN ID + Security Question Account - Security question when creating bidding account when client forget password - Password reset via security question successful!`);
+  document.getElementById('loginPhone').value=forgotUser.phone;
+  document.getElementById('loginPassword').value=newPass;
+}
+
 window.bidderLogout=function(){
-  if(!confirm('Logout from BIDKZN bidder login area? Bidder: '+(currentUser?.name||'')+' - BIDKZN' )) return;
+  if(!confirm('Logout from BIDKZN ID + Security Question Account? Bidder: '+(currentUser?.firstName||currentUser?.name||'')+' '+(currentUser?.surname||'')+' ID '+(currentUser?.idNumber||'')+' - BIDKZN ID + Security Question Account' )) return;
   localStorage.removeItem('coin_user');
   currentUser=null;
   showBidderAuth();
   let infoEl=document.getElementById('loggedBidderInfo'); if(infoEl) infoEl.classList.add('hidden');
   document.getElementById('loginPhone').value=''; document.getElementById('loginPassword').value='';
-  alert('✅ Logged out from BIDKZN - Go to BIDDER LOGIN AREA - BIDKZN to login again with phone + password - BIDKZN');
+  alert('✅ Logged out from BIDKZN ID + Security Question Account - Go to BIDDER LOGIN AREA - BIDKZN ID + Security Question + Picture to login again - Or use FORGOT PASSWORD with security question if you forget password - BIDKZN ID + Security Question Account');
 }
 
-window.requireLogin=function(view){ if(!currentUser){ alert('Please login in BIDDER LOGIN AREA for BIDKZN first - Login with phone + password to access '+view+' area - BIDKZN'); document.getElementById('bidderAuthView').scrollIntoView({behavior:'smooth'}); return; } showMainApp(); showView(view); }
+window.editBidderProfile=function(){
+  if(!currentUser) return;
+  document.getElementById('editIDNumber').value=currentUser.idNumber||'';
+  document.getElementById('editFirstName').value=currentUser.firstName||'';
+  document.getElementById('editSurname').value=currentUser.surname||'';
+  document.getElementById('editDOB').value=currentUser.dob||currentUser.dateOfBirth||'';
+  document.getElementById('editPhone').value=currentUser.phone||'';
+  document.getElementById('editSecurityQuestion').value=currentUser.securityQuestion||'What is your mother\'s maiden name?';
+  document.getElementById('editSecurityAnswer').value=currentUser.securityAnswerOriginal||currentUser.securityAnswer||'';
+  document.getElementById('editProfilePreview').src=currentUser.profilePic||'https://via.placeholder.com/100x100/000000/FFD700?text=BIDKZN';
+  tempEditProfilePic=currentUser.profilePic||'';
+  document.getElementById('editProfileModal').classList.remove('hidden');
+}
+
+window.saveBidderProfile=async function(){
+  if(!currentUser) return;
+  let idNumber=document.getElementById('editIDNumber').value.trim();
+  let firstName=document.getElementById('editFirstName').value.trim();
+  let surname=document.getElementById('editSurname').value.trim();
+  let dob=document.getElementById('editDOB').value;
+  let phone=document.getElementById('editPhone').value.trim();
+  let secQ=document.getElementById('editSecurityQuestion').value.trim();
+  let secA=document.getElementById('editSecurityAnswer').value.trim();
+
+  if(!idNumber||!firstName||!surname||!dob||!phone||!secQ||!secA) return alert('Fill all - ID Number + First Name + Surname + DOB + Phone + Security Question + Security Answer - BIDKZN ID + Security Question Account');
+  if(idNumber.length!==13) return alert('ID Number must be 13 digits - BIDKZN ID + Security Question Account');
+
+  let fullName=firstName+' '+surname;
+  let updates={
+    idNumber:idNumber,
+    firstName:firstName,
+    surname:surname,
+    name:fullName,
+    fullName:fullName,
+    dob:dob,
+    dateOfBirth:dob,
+    phone:phone,
+    normPhone:normalizePhone(phone),
+    securityQuestion:secQ,
+    securityAnswer:secA.toLowerCase().trim(),
+    securityAnswerOriginal:secA,
+  };
+  if(tempEditProfilePic) updates.profilePic=tempEditProfilePic;
+
+  await update(ref(db,'coin_users/'+currentUser.fbId), updates);
+  document.getElementById('editProfileModal').classList.add('hidden');
+  alert(`✅ Profile updated for BIDKZN ID + Security Question Account!\n\nID Number: ${idNumber}\nFirst Name: ${firstName}\nSurname: ${surname}\nDOB: ${dob}\nPhone: ${phone}\nSecurity Question: ${secQ}\nSecurity Answer: ${secA}\nProfile Picture: ${tempEditProfilePic?'Updated ✅':'Kept'}\n\nBIDKZN - Bidder account with ID + Picture + Security Question updated - Security question when creating bidding account when client forget password - Updated!`);
+}
+
+window.requireLogin=function(view){ if(!currentUser){ alert('Please login in BIDDER LOGIN AREA for BIDKZN ID + Security Question Account first - Login with phone + password to access '+view+' area - Or use FORGOT PASSWORD with security question if you forgot password - BIDKZN ID + First Name + Surname + DOB + Profile Picture + Security Question'); document.getElementById('bidderAuthView').scrollIntoView({behavior:'smooth'}); return; } showMainApp(); showView(view); }
 window.showView=function(v){ if(!currentUser && v!=='bidderAuth'){ showBidderAuth(); return; } document.getElementById('profileView').classList.toggle('hidden', v!=='profile'); document.getElementById('flashView').classList.toggle('hidden', v!=='flash'); document.getElementById('mywinsView').classList.toggle('hidden', v!=='mywins'); document.getElementById('mycoinsView').classList.toggle('hidden', v!=='mycoins'); ['profile','flash','mywins','mycoins'].forEach(nav=>{ let btn=document.getElementById('nav-'+nav); if(btn){ if(nav===v) btn.className='bg-yellow-400 text-black px-5 py-3 rounded-full text-xs font-black'; else btn.className='bg-zinc-800 px-5 py-3 rounded-full text-xs'; } }); }
-window.loadWalletWithVoucher=async function(){ if(!currentUser){ showBidderAuth(); return; } let code=document.getElementById('voucherCodeInput').value.trim().toUpperCase(); if(!code) return alert('Enter ONE voucher code - Buy via WhatsApp Admin '+adminDisplay+' 0789313670 - BIDKZN'); let voucher=vouchers.find(v=>v.code===code); if(!voucher){ document.getElementById('voucherLoadResult').classList.remove('hidden'); document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-red-900/30 border border-red-600 p-4 rounded-xl text-center"><p class="text-red-400 font-black">❌ Invalid voucher ${code} for BIDKZN - WhatsApp Admin ${adminDisplay} 0789313670 to buy - BIDKZN</p><p class="text-[11px] text-zinc-400"><a href="https://wa.me/${adminPhone}?text=Hi%20Admin%20BIDKZN%20I%20need%20voucher%20${code}" target="_blank" class="text-[#25D366] font-black"><i class="fab fa-whatsapp"></i> WhatsApp Admin ${adminDisplay} 0789313670 - BIDKZN</a></p></div>`; return; } if(voucher.status!=='active'){ document.getElementById('voucherLoadResult').classList.remove('hidden'); document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-red-900/30 border border-red-600 p-4 rounded-xl text-center"><p class="text-red-400 font-black">❌ Voucher already used ${code} - BIDKZN</p></div>`; return; } if(voucherLoads.some(vl=>vl.voucherCode===code && String(vl.userFbId)===String(currentUser.fbId) && vl.status==='pending')){ document.getElementById('voucherLoadResult').classList.remove('hidden'); document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-yellow-900/30 border border-yellow-600 p-4 rounded-xl text-center"><p class="text-yellow-400 font-black">⏳ Already requested ${code} - Waiting admin ${adminDisplay} 0789313670 approval - BIDKZN</p></div>`; return; } let id=Date.now(); let fbId=id.toString(); await set(ref(db,'voucher_loads/'+fbId),{ id:id, fbId:fbId, userId:currentUser.id, userFbId:currentUser.fbId, userName:currentUser.name, userPhone:currentUser.phone, voucherCode:code, voucherFbId:voucher.fbId, amount:voucher.amount, status:'pending', createdAt:Date.now(), website:'BIDKZN' }); document.getElementById('voucherCodeInput').value=''; document.getElementById('voucherLoadResult').classList.remove('hidden'); document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-yellow-900/30 border-2 border-yellow-600 p-4 rounded-xl text-center"><p class="text-yellow-400 font-black">⏳ VOUCHER LOAD SENT - BIDKZN - Waiting Admin ${adminDisplay} 0789313670 Approval</p><p class="text-white">Voucher ${code} R${voucher.amount} - ONE voucher for amount to invest - BIDKZN - Bidder: ${currentUser.name}</p><p class="text-[11px] text-zinc-400 mt-1">Admin ${adminDisplay} 0789313670 will approve → Wallet +R${voucher.amount} → Then bid in FLASH BIDDING AREA - BIDKZN</p></div>`; }
+window.loadWalletWithVoucher=async function(){ if(!currentUser){ showBidderAuth(); return; } let code=document.getElementById('voucherCodeInput').value.trim().toUpperCase(); if(!code) return alert('Enter ONE voucher code - Buy via WhatsApp Admin '+adminDisplay+' 0789313670 - BIDKZN ID + Security Question Account'); let voucher=vouchers.find(v=>v.code===code); if(!voucher){ document.getElementById('voucherLoadResult').classList.remove('hidden'); document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-red-900/30 border border-red-600 p-4 rounded-xl text-center"><p class="text-red-400 font-black">❌ Invalid voucher ${code} for BIDKZN ID + Security Question Account - WhatsApp Admin ${adminDisplay} 0789313670 to buy</p></div>`; return; } if(voucher.status!=='active'){ document.getElementById('voucherLoadResult').classList.remove('hidden'); document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-red-900/30 border border-red-600 p-4 rounded-xl text-center"><p class="text-red-400 font-black">❌ Voucher already used ${code} - BIDKZN ID + Security Question Account</p></div>`; return; } if(voucherLoads.some(vl=>vl.voucherCode===code && String(vl.userFbId)===String(currentUser.fbId) && vl.status==='pending')){ document.getElementById('voucherLoadResult').classList.remove('hidden'); document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-yellow-900/30 border border-yellow-600 p-4 rounded-xl text-center"><p class="text-yellow-400 font-black">⏳ Already requested ${code} - Waiting admin ${adminDisplay} 0789313670 approval - BIDKZN ID + Security Question Account</p></div>`; return; } let id=Date.now(); let fbId=id.toString(); await set(ref(db,'voucher_loads/'+fbId),{ id:id, fbId:fbId, userId:currentUser.id, userFbId:currentUser.fbId, userName:currentUser.firstName+' '+currentUser.surname, userFirstName:currentUser.firstName, userSurname:currentUser.surname, userIDNumber:currentUser.idNumber, userPhone:currentUser.phone, voucherCode:code, voucherFbId:voucher.fbId, amount:voucher.amount, status:'pending', createdAt:Date.now(), website:'BIDKZN ID + Security Question Account' }); document.getElementById('voucherCodeInput').value=''; document.getElementById('voucherLoadResult').classList.remove('hidden'); document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-yellow-900/30 border-2 border-yellow-600 p-4 rounded-xl text-center"><p class="text-yellow-400 font-black">⏳ VOUCHER LOAD SENT - BIDKZN ID + Security Question ACCOUNT - Waiting Admin ${adminDisplay} 0789313670 Approval</p><p class="text-white">Bidder: ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber} Security Q ✅ - Voucher ${code} R${voucher.amount} - BIDKZN ID + Security Q Account</p></div>`; }
 
-window.renderProfile=function(){ if(!currentUser){ return; } document.getElementById('profileName').innerText=currentUser.name; document.getElementById('profilePhone').innerText=currentUser.phone; document.getElementById('profileId').innerText=currentUser.fbId; document.getElementById('profileAvatar').innerText=(currentUser.name||'U')[0].toUpperCase(); document.getElementById('walletBalance').innerText='R'+(currentUser.wallet||0).toFixed(2); let myLoads=voucherLoads.filter(vl=>String(vl.userFbId)===String(currentUser.fbId)); let approved=myLoads.filter(vl=>vl.status==='approved'); let pending=myLoads.filter(vl=>vl.status==='pending'); let total=approved.reduce((s,vl)=>s+vl.amount,0); let statLoadedEl=document.getElementById('statLoaded'); if(statLoadedEl) statLoadedEl.innerText='R'+total.toLocaleString()+' - BIDKZN'; let statPendingEl=document.getElementById('statPending'); if(statPendingEl) statPendingEl.innerText=pending.length; let statReadyEl=document.getElementById('statReady'); if(statReadyEl) statReadyEl.innerText='R'+(currentUser.wallet||0).toLocaleString()+' - BIDKZN'; let myLoadEl=document.getElementById('myLoadRequests'); if(myLoadEl) myLoadEl.innerHTML=myLoads.slice().reverse().map(vl=>`<div class="bg-black border ${vl.status==='pending'?'border-yellow-500/50':'border-green-600/50'} p-3 rounded-xl flex justify-between"><div><p class="font-black text-xs ${vl.status==='pending'?'text-yellow-400':'text-green-400'}">🎟️ ${vl.voucherCode} - R${vl.amount} - ${vl.status.toUpperCase()} - BIDKZN</p><p class="text-[11px] text-zinc-400">${new Date(vl.createdAt).toLocaleString()} ${vl.approvedAt?`| Approved ${new Date(vl.approvedAt).toLocaleString()}`:''} - BIDKZN - Bidder: ${currentUser.name}</p></div><span class="text-[10px] ${vl.status==='pending'?'bg-yellow-900/30 text-yellow-400':'bg-green-900/30 text-green-400'} px-3 py-1 rounded-full font-black">${vl.status.toUpperCase()} - BIDKZN</span></div>`).join('') || `<p class="text-xs text-zinc-500">No loads - BIDKZN - <a href="https://wa.me/${adminPhone}?text=Hi%20Admin%20BIDKZN%20I%20want%20voucher%20bidder%20${currentUser.name}" target="_blank" class="text-[#25D366] font-black"><i class="fab fa-whatsapp"></i> WhatsApp Admin ${adminDisplay} 0789313670 to buy voucher - BIDKZN</a></p>`; }
+window.renderProfile=function(){
+  if(!currentUser){ return; }
+  let fullName=(currentUser.firstName||'')+' '+(currentUser.surname||'');
+  document.getElementById('profileName').innerText=fullName.trim()||currentUser.name;
+  document.getElementById('profileFirstName').innerText=currentUser.firstName||'-';
+  document.getElementById('profileSurname').innerText=currentUser.surname||'-';
+  document.getElementById('profileIDNumber').innerText=currentUser.idNumber||'-';
+  document.getElementById('profileDOB').innerText=currentUser.dob||currentUser.dateOfBirth||'-';
+  document.getElementById('profilePhone').innerText=currentUser.phone;
+  document.getElementById('profileId').innerText=currentUser.fbId;
+  let secQEl=document.getElementById('profileSecurityQ'); if(secQEl) secQEl.innerText=currentUser.securityQuestion?'✅ Set - '+currentUser.securityQuestion:'❌ Not set';
+  let avatarImg=document.getElementById('profileAvatarImg');
+  if(avatarImg) avatarImg.src=currentUser.profilePic||'https://via.placeholder.com/100x100/000000/FFD700?text='+(currentUser.firstName?.[0]||'B');
+  document.getElementById('walletBalance').innerText='R'+(currentUser.wallet||0).toFixed(2);
+  document.getElementById('profileExtra').innerText=`ID: ${currentUser.idNumber||'-'} | DOB: ${currentUser.dob||currentUser.dateOfBirth||'-'} | Security Q: ${currentUser.securityQuestion?'✅ Set':'❌'} | BIDKZN ID + Security Q Account Verified - Profile Picture ${currentUser.profilePic?'✅':'❌'} - Security Question Set for Forgot Password`;
+}
 
-window.renderFlashMarket=function(){ if(!currentUser){ return; } let flashBalEl=document.getElementById('flashWalletBalance'); if(flashBalEl) flashBalEl.innerText=(currentUser.wallet||0).toFixed(0)+' - BIDKZN'; let walletCheckEl=document.getElementById('walletCheck'); if(walletCheckEl){ if((currentUser.wallet||0)<10){ walletCheckEl.classList.remove('hidden'); walletCheckEl.innerHTML=`<div class="bg-yellow-900/30 border border-yellow-600 p-3 rounded-xl text-center"><p class="text-yellow-400 font-black">⚠️ Wallet R${currentUser.wallet||0} - BIDKZN - Load with 1 voucher via WhatsApp Admin ${adminDisplay} 0789313670</p><p class="text-[11px] text-zinc-400"><a href="https://wa.me/${adminPhone}?text=Hi%20Admin%20BIDKZN%20I%20want%20voucher%20R1000%20bidder%20${currentUser.name}" target="_blank" class="bg-[#25D366] px-4 py-2 rounded-full text-xs font-black"><i class="fab fa-whatsapp"></i> WhatsApp Admin ${adminDisplay} - Buy Voucher - BIDKZN</a></p></div>`; } else { walletCheckEl.classList.remove('hidden'); walletCheckEl.innerHTML=`<div class="bg-green-900/30 border border-green-600 p-3 rounded-xl text-center"><p class="text-green-400 font-black">✅ Wallet R${currentUser.wallet} loaded - BIDKZN - Ready to bid in FLASH BIDDING AREA - BIDKZN!</p></div>`; } } let now=Date.now(); let live=flashRequests.filter(r=>r.status==='scheduled' && r.publicTime && r.publicTime<=now); let upcoming=flashRequests.filter(r=>r.status==='scheduled' && r.publicTime && r.publicTime>now); let flashGridEl=document.getElementById('flashGrid'); if(flashGridEl) flashGridEl.innerHTML=live.map(r=>{ let highest=r.highestBid||0; let isWinning=r.highestBidderFbId && String(r.highestBidderFbId)===String(currentUser.fbId); return `<div class="bg-zinc-900 border-2 ${r.coin==='moc'?'border-yellow-500':'border-purple-600'} rounded-2xl p-5"><div class="flex justify-between"><h3 class="font-black text-sm ${r.coin==='moc'?'text-yellow-400':'text-purple-400'}">${r.qty}x ${r.coinName} - FLASH - BIDKZN</h3><span class="bg-red-600 text-white text-[10px] px-3 py-1 rounded-full animate-pulse">LIVE - BIDKZN</span></div><div class="mt-3 grid grid-cols-2 gap-2 text-center"><div class="bg-black border rounded-xl p-2"><p class="text-[9px] text-zinc-500">ASKING - BIDKZN</p><p class="font-black">R${r.sellPrice}</p></div><div class="bg-black border-2 border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">HIGHEST BID - BIDKZN</p><p class="font-black text-green-400 text-lg">R${highest||r.sellPrice}</p><p class="text-[9px] ${isWinning?'text-green-400 font-black':''}">${isWinning?'YOU WINNING - BIDKZN':(highest>0?r.highestBidderName:'Be first - BIDKZN')}</p></div></div><p class="text-[11px] text-zinc-400 mt-2">Seller ${r.sellerName} - ${r.desc} - ${r.flashBids?.length||0} bids - BIDKZN</p><button onclick="openFlashBid('${r.fbId}')" class="w-full mt-4 bg-red-600 py-4 rounded-full font-black"><i class="fas fa-bolt"></i> BID - BIDKZN - Wallet Loaded via WhatsApp ${adminDisplay}</button></div>`; }).join('') || `<div class="col-span-2 bg-black p-8 rounded-2xl text-center border-2 border-dashed"><p class="text-zinc-500">No live flash - BIDKZN - Load wallet with 1 voucher via WhatsApp Admin ${adminDisplay} 0789313670 to be ready - BIDKZN</p><a href="https://wa.me/${adminPhone}?text=Hi%20Admin%20BIDKZN%20I%20want%20voucher%20bidder%20${currentUser.name}" target="_blank" class="mt-3 bg-[#25D366] px-6 py-3 rounded-full text-sm font-black inline-block"><i class="fab fa-whatsapp"></i> WhatsApp Admin ${adminDisplay} 0789313670 - Buy Voucher - BIDKZN</a></div>`; let upcomingEl=document.getElementById('upcomingGrid'); if(upcomingEl) upcomingEl.innerHTML=upcoming.sort((a,b)=>a.publicTime-b.publicTime).map(r=>{ let diff=r.publicTime-now; let h=Math.floor(diff/3600000); let m=Math.floor((diff%3600000)/60000); return `<div class="bg-zinc-900 border border-yellow-500/30 rounded-xl p-4 opacity-75"><h3 class="font-black text-xs text-yellow-400">${r.qty}x ${r.coinName} - In ${h}h ${m}m - BIDKZN - Load wallet via WhatsApp ${adminDisplay}</h3><p class="text-[11px] text-zinc-400">Seller ${r.sellerName} - R${r.sellPrice} - BIDKZN</p></div>`; }).join('') || '<p class="text-xs text-zinc-500">No upcoming - BIDKZN</p>'; }
+window.renderFlashMarket=function(){ if(!currentUser){ return; } let flashBalEl=document.getElementById('flashWalletBalance'); if(flashBalEl) flashBalEl.innerText=(currentUser.wallet||0).toFixed(0)+' - BIDKZN ID + Security Q Account '+ (currentUser.firstName||''); let walletCheckEl=document.getElementById('walletCheck'); if(walletCheckEl){ if((currentUser.wallet||0)<10){ walletCheckEl.classList.remove('hidden'); walletCheckEl.innerHTML=`<div class="bg-yellow-900/30 border border-yellow-600 p-3 rounded-xl text-center"><p class="text-yellow-400 font-black">⚠️ Wallet R${currentUser.wallet||0} - BIDKZN ID + Security Q Account ${currentUser.firstName||''} ${currentUser.surname||''} ID ${currentUser.idNumber||''} - Load with 1 voucher via WhatsApp Admin ${adminDisplay} 0789313670</p></div>`; } else { walletCheckEl.classList.remove('hidden'); walletCheckEl.innerHTML=`<div class="bg-green-900/30 border border-green-600 p-3 rounded-xl text-center"><p class="text-green-400 font-black">✅ Wallet R${currentUser.wallet} loaded - BIDKZN ID + Security Q Account ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber} Security Q ✅ - Ready to bid!</p></div>`; } } let now=Date.now(); let live=flashRequests.filter(r=>r.status==='scheduled' && r.publicTime && r.publicTime<=now); let upcoming=flashRequests.filter(r=>r.status==='scheduled' && r.publicTime && r.publicTime>now); let flashGridEl=document.getElementById('flashGrid'); if(flashGridEl) flashGridEl.innerHTML=live.map(r=>{ let highest=r.highestBid||0; let isWinning=r.highestBidderFbId && String(r.highestBidderFbId)===String(currentUser.fbId); return `<div class="bg-zinc-900 border-2 ${r.coin==='moc'?'border-yellow-500':'border-purple-600'} rounded-2xl p-5"><div class="flex justify-between"><h3 class="font-black text-sm ${r.coin==='moc'?'text-yellow-400':'text-purple-400'}">${r.qty}x ${r.coinName} - FLASH - BIDKZN ID + Security Q Account</h3><span class="bg-red-600 text-white text-[10px] px-3 py-1 rounded-full animate-pulse">LIVE - BIDKZN ID + Security Q</span></div><div class="mt-3 grid grid-cols-2 gap-2 text-center"><div class="bg-black border rounded-xl p-2"><p class="text-[9px] text-zinc-500">ASKING - BIDKZN ID + Security Q</p><p class="font-black">R${r.sellPrice}</p></div><div class="bg-black border-2 border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">HIGHEST BID - BIDKZN ID + Security Q</p><p class="font-black text-green-400 text-lg">R${highest||r.sellPrice}</p><p class="text-[9px] ${isWinning?'text-green-400 font-black':''}">${isWinning?'YOU WINNING - BIDKZN ID + Security Q '+ (currentUser.firstName||''): (highest>0?r.highestBidderName:'Be first - BIDKZN ID + Security Q Account')}</p></div></div><p class="text-[11px] text-zinc-400 mt-2">Seller ${r.sellerName} - ${r.desc} - BIDKZN ID + Security Q Account</p><button onclick="openFlashBid('${r.fbId}')" class="w-full mt-4 bg-red-600 py-4 rounded-full font-black"><i class="fas fa-bolt"></i> BID - BIDKZN ID + Security Q Account - Wallet Loaded via WhatsApp ${adminDisplay} - ${currentUser.firstName} ${currentUser.surname}</button></div>`; }).join('') || `<div class="col-span-2 bg-black p-8 rounded-2xl text-center border-2 border-dashed"><p class="text-zinc-500">No live flash - BIDKZN ID + Security Q Account ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber} - Load wallet with 1 voucher via WhatsApp Admin ${adminDisplay} 0789313670 - BIDKZN ID + Security Q Account</p></div>`; let upcomingEl=document.getElementById('upcomingGrid'); if(upcomingEl) upcomingEl.innerHTML=upcoming.sort((a,b)=>a.publicTime-b.publicTime).map(r=>{ let diff=r.publicTime-now; let h=Math.floor(diff/3600000); let m=Math.floor((diff%3600000)/60000); return `<div class="bg-zinc-900 border border-yellow-500/30 rounded-xl p-4 opacity-75"><h3 class="font-black text-xs text-yellow-400">${r.qty}x ${r.coinName} - In ${h}h ${m}m - BIDKZN ID + Security Q Account</h3><p class="text-[11px] text-zinc-400">Seller ${r.sellerName} - R${r.sellPrice} - BIDKZN ID + Security Q Account</p></div>`; }).join('') || '<p class="text-xs text-zinc-500">No upcoming - BIDKZN ID + Security Q Account</p>'; }
 
-window.openFlashBid=function(fbId){ if(!currentUser){ showBidderAuth(); return; } let req=flashRequests.find(r=>r.fbId===fbId); if(!req) return; if((currentUser.wallet||0)<10){ alert('Wallet R'+(currentUser.wallet||0)+' - BIDKZN - Load with 1 voucher via WhatsApp Admin '+adminDisplay+' 0789313670 - BIDKZN - Bidder login area'); showView('profile'); return; } pendingFlashBid=req; document.getElementById('flashBidText').innerHTML=`${req.qty}x ${req.coinName} - Seller ${req.sellerName} - Asking R${req.sellPrice}<br><br><span class="text-green-400 font-black">✅ BIDKZN - Wallet R${currentUser.wallet} loaded with 1 voucher via WhatsApp ${adminDisplay} - Ready! - Bidder: ${currentUser.name} - BIDKZN</span>`; document.getElementById('flashMin').innerText=req.highestBid?req.highestBid+10:req.sellPrice; document.getElementById('flashWallet').innerText=currentUser.wallet||0; document.getElementById('flashBidAmount').value=req.highestBid?req.highestBid+10:req.sellPrice; document.getElementById('flashBidBtn').innerText=req.highestBid?req.highestBid+10:req.sellPrice; document.getElementById('flashBidAmount').oninput=function(){ document.getElementById('flashBidBtn').innerText=this.value||0; }; document.getElementById('flashBidModal').classList.remove('hidden'); }
-window.confirmFlashBid=async function(){ if(!pendingFlashBid||!currentUser) return; let amt=parseInt(document.getElementById('flashBidAmount').value)||0; let min=(pendingFlashBid.highestBid||0)>0?pendingFlashBid.highestBid+10:pendingFlashBid.sellPrice; if(amt<min) return alert('Min R'+min+' - BIDKZN'); if(amt>(currentUser.wallet||0)) return alert('Low wallet R'+currentUser.wallet+' - BIDKZN - WhatsApp Admin '+adminDisplay+' 0789313670 to buy more voucher - BIDKZN'); let newFlashBids=pendingFlashBid.flashBids||[]; newFlashBids.push({ bidderId:currentUser.id, bidderFbId:currentUser.fbId, bidderName:currentUser.name, bidderPhone:currentUser.phone, amount:amt, time:Date.now() }); if(pendingFlashBid.highestBidderFbId && pendingFlashBid.highestBid>0){ let prev=users.find(u=>u.fbId===pendingFlashBid.highestBidderFbId); if(prev) await update(ref(db,'coin_users/'+prev.fbId),{ wallet:(prev.wallet||0)+pendingFlashBid.highestBid }); } await update(ref(db,'coin_users/'+currentUser.fbId),{ wallet:(currentUser.wallet||0)-amt }); await update(ref(db,'flash_requests/'+pendingFlashBid.fbId),{ flashBids:newFlashBids, highestBid:amt, highestBidderFbId:currentUser.fbId, highestBidderName:currentUser.name }); document.getElementById('flashBidModal').classList.add('hidden'); alert(`✅ BID R${amt} placed! BIDKZN - Wallet deducted R${amt} (loaded via WhatsApp ${adminDisplay} 0789313670 voucher before) - Bidder: ${currentUser.name} - BIDKZN - If outbid, refunded - BIDKZN`); }
+window.openFlashBid=function(fbId){ if(!currentUser){ showBidderAuth(); return; } let req=flashRequests.find(r=>r.fbId===fbId); if(!req) return; if((currentUser.wallet||0)<10){ alert('Wallet R'+(currentUser.wallet||0)+' - BIDKZN ID + Security Q Account '+ (currentUser.firstName||'')+' '+(currentUser.surname||'')+' ID '+(currentUser.idNumber||'')+' - Load with 1 voucher via WhatsApp Admin '+adminDisplay+' 0789313670'); showView('profile'); return; } pendingFlashBid=req; document.getElementById('flashBidText').innerHTML=`${req.qty}x ${req.coinName} - Seller ${req.sellerName} - Asking R${req.sellPrice}<br><br><span class="text-green-400 font-black">✅ BIDKZN ID + Security Q Account - Bidder: ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber} DOB ${currentUser.dob||currentUser.dateOfBirth} Security Q ✅ - Wallet R${currentUser.wallet} loaded - Ready! - BIDKZN ID + Security Q Account</span>`; document.getElementById('flashMin').innerText=req.highestBid?req.highestBid+10:req.sellPrice; document.getElementById('flashWallet').innerText=currentUser.wallet||0; document.getElementById('flashBidAmount').value=req.highestBid?req.highestBid+10:req.sellPrice; document.getElementById('flashBidBtn').innerText=req.highestBid?req.highestBid+10:req.sellPrice; document.getElementById('flashBidAmount').oninput=function(){ document.getElementById('flashBidBtn').innerText=this.value||0; }; document.getElementById('flashBidModal').classList.remove('hidden'); }
+window.confirmFlashBid=async function(){ if(!pendingFlashBid||!currentUser) return; let amt=parseInt(document.getElementById('flashBidAmount').value)||0; let min=(pendingFlashBid.highestBid||0)>0?pendingFlashBid.highestBid+10:pendingFlashBid.sellPrice; if(amt<min) return alert('Min R'+min+' - BIDKZN ID + Security Q Account'); if(amt>(currentUser.wallet||0)) return alert('Low wallet R'+currentUser.wallet+' - BIDKZN ID + Security Q Account '+ (currentUser.firstName||'')+' ID '+ (currentUser.idNumber||'')+' - WhatsApp Admin '+adminDisplay+' 0789313670'); let newFlashBids=pendingFlashBid.flashBids||[]; newFlashBids.push({ bidderId:currentUser.id, bidderFbId:currentUser.fbId, bidderName:currentUser.firstName+' '+currentUser.surname, bidderFirstName:currentUser.firstName, bidderSurname:currentUser.surname, bidderIDNumber:currentUser.idNumber, bidderPhone:currentUser.phone, amount:amt, time:Date.now() }); if(pendingFlashBid.highestBidderFbId && pendingFlashBid.highestBid>0){ let prev=users.find(u=>u.fbId===pendingFlashBid.highestBidderFbId); if(prev) await update(ref(db,'coin_users/'+prev.fbId),{ wallet:(prev.wallet||0)+pendingFlashBid.highestBid }); } await update(ref(db,'coin_users/'+currentUser.fbId),{ wallet:(currentUser.wallet||0)-amt }); await update(ref(db,'flash_requests/'+pendingFlashBid.fbId),{ flashBids:newFlashBids, highestBid:amt, highestBidderFbId:currentUser.fbId, highestBidderName:currentUser.firstName+' '+currentUser.surname, highestBidderIDNumber:currentUser.idNumber }); document.getElementById('flashBidModal').classList.add('hidden'); alert(`✅ BID R${amt} placed! BIDKZN ID + Security Q Account - Bidder: ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber} Security Q ✅ - Wallet deducted R${amt} - BIDKZN ID + Security Q Account`); }
 
-window.openAdmin=function(){ let pin=prompt('Admin PIN for BIDKZN?'); if(pin!=='10111') return alert('Wrong - BIDKZN'); document.getElementById('admin').classList.remove('hidden'); }
+window.openAdmin=function(){ let pin=prompt('Admin PIN for BIDKZN ID + Security Question Account?'); if(pin!=='10111') return alert('Wrong - BIDKZN ID + Security Question Account'); document.getElementById('admin').classList.remove('hidden'); }
 window.adminTab=function(t){ ['bidders','loads','vouchers','pending','live'].forEach(x=>{ let el=document.getElementById('admin-'+x); if(el) el.classList.toggle('hidden', x!==t); }); document.querySelectorAll('[id^=at-]').forEach(b=>b.className='bg-zinc-800 px-4 py-2 rounded-full text-xs'); let atEl=document.getElementById('at-'+t); if(atEl) atEl.className='bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black'; }
-window.createVouchers=async function(){ let amount=parseInt(document.getElementById('voucherAmount').value)||0; let count=parseInt(document.getElementById('voucherCount').value)||1; let prefix=(document.getElementById('voucherPrefix').value.trim()||'BIDKZN').toUpperCase(); if(amount<10) return alert('Min R10 - BIDKZN'); if(!confirm(`Create ${count} vouchers R${amount} each for BIDKZN? Bidders WhatsApp ${adminDisplay} 0789313670 to buy - BIDKZN`)) return; for(let i=0;i<count;i++){ let code=genVoucherCode(prefix); while(vouchers.some(v=>v.code===code)) code=genVoucherCode(prefix); let id=Date.now()+i; let fbId=id.toString(); await set(ref(db,'vouchers/'+fbId),{ id:id, fbId:fbId, code:code, amount:amount, status:'active', createdAt:Date.now(), createdBy:'admin', reason:'Voucher for BIDKZN - 1 voucher = R'+amount+' - WhatsApp '+adminDisplay+' 0789313670 - BIDKZN' }); } alert(`Created ${count} vouchers R${amount} for BIDKZN - Bidders WhatsApp ${adminDisplay} 0789313670 to buy - BIDKZN`); }
+window.createVouchers=async function(){ let amount=parseInt(document.getElementById('voucherAmount').value)||0; let count=parseInt(document.getElementById('voucherCount').value)||1; let prefix=(document.getElementById('voucherPrefix').value.trim()||'BIDKZN').toUpperCase(); if(amount<10) return alert('Min R10 - BIDKZN ID + Security Question Account'); if(!confirm(`Create ${count} vouchers R${amount} each for BIDKZN ID + Security Question Account? Bidders with ID Number + First Name + Surname + DOB + Profile Picture + Security Question WhatsApp ${adminDisplay} 0789313670 to buy - BIDKZN ID + Security Question Account`)) return; for(let i=0;i<count;i++){ let code=genVoucherCode(prefix); while(vouchers.some(v=>v.code===code)) code=genVoucherCode(prefix); let id=Date.now()+i; let fbId=id.toString(); await set(ref(db,'vouchers/'+fbId),{ id:id, fbId:fbId, code:code, amount:amount, status:'active', createdAt:Date.now(), createdBy:'admin', reason:'Voucher for BIDKZN ID + Security Question Account - 1 voucher = R'+amount+' - WhatsApp '+adminDisplay+' 0789313670 - Bidder with ID Number + First Name + Surname + DOB + Profile Picture + Security Question - BIDKZN ID + Security Question Account' }); } alert(`Created ${count} vouchers R${amount} for BIDKZN ID + Security Question Account - Bidders WhatsApp ${adminDisplay} 0789313670 to buy`); }
 window.createQuickVoucher=function(amt){ document.getElementById('voucherAmount').value=amt; document.getElementById('voucherCount').value=1; createVouchers(); }
-window.shareVouchersWhatsApp=function(){ let active=vouchers.filter(v=>v.status==='active').slice(0,10).map(v=>`${v.code} - R${v.amount}`).join('%0A'); if(!active) return alert('No active vouchers - BIDKZN'); let text=encodeURIComponent(`🎟️ BIDKZN - VOUCHERS AVAILABLE - WhatsApp Admin ${adminDisplay} 0789313670 to buy:%0A%0A${active}%0A%0AONE voucher = amount you wish to invest%0AWebsite: BIDKZN%0AWhatsApp ${adminDisplay} 0789313670 - BIDKZN`); window.open(`https://wa.me/${adminPhone}?text=${text}`, '_blank'); }
-window.copyVoucher=function(code){ navigator.clipboard.writeText(code).then(()=>alert('Copied '+code+' - BIDKZN - Send via WhatsApp 0789313670 to bidder - BIDKZN')); }
-window.deleteVoucher=function(fbId){ if(!confirm('Delete voucher? BIDKZN')) return; remove(ref(db,'vouchers/'+fbId)); }
-window.saveAdminPhone=async function(){ let phone=document.getElementById('adminPhoneInput').value.trim().replace(/[^0-9]/g,''); let display=document.getElementById('adminPhoneDisplayInput').value.trim()||'+'+phone; if(phone.length<10) return alert('Enter valid WhatsApp number e.g. 27789313670 for 0789313670 - BIDKZN'); adminPhone=phone; adminDisplay=display; await set(ref(db,'admin_config/whatsapp'),{ phone:phone, display:display, updatedAt:Date.now(), website:'BIDKZN' }); updateWhatsAppLinks(); renderHeaderButtons(); alert(`✅ WhatsApp admin ${phone} ${display} saved - BIDKZN - Floating icon now ${display} 0789313670 - BIDKZN`); }
+window.shareVouchersWhatsApp=function(){ let active=vouchers.filter(v=>v.status==='active').slice(0,10).map(v=>`${v.code} - R${v.amount}`).join('%0A'); if(!active) return alert('No active vouchers - BIDKZN ID + Security Question Account'); let text=encodeURIComponent(`🎟️ BIDKZN - VOUCHERS AVAILABLE - BIDDER ACCOUNT WITH ID + PROFILE PICTURE + SECURITY QUESTION - WhatsApp Admin ${adminDisplay} 0789313670 to buy:%0A%0A${active}%0A%0AONE voucher = amount you wish to invest%0AWebsite: BIDKZN - Bidder Account with ID Number + First Name + Surname + DOB + Profile Picture + Security Question for forgot password%0AWhatsApp ${adminDisplay} 0789313670 - BIDKZN ID + Security Question Account`); window.open(`https://wa.me/${adminPhone}?text=${text}`, '_blank'); }
+window.copyVoucher=function(code){ navigator.clipboard.writeText(code).then(()=>alert('Copied '+code+' - BIDKZN ID + Security Question Account - Send via WhatsApp 0789313670 to bidder with ID Number - BIDKZN ID + Security Question Account')); }
+window.deleteVoucher=function(fbId){ if(!confirm('Delete voucher? BIDKZN ID + Security Question Account')) return; remove(ref(db,'vouchers/'+fbId)); }
+window.saveAdminPhone=async function(){ let phone=document.getElementById('adminPhoneInput').value.trim().replace(/[^0-9]/g,''); let display=document.getElementById('adminPhoneDisplayInput').value.trim()||'+'+phone; if(phone.length<10) return alert('Enter valid WhatsApp number e.g. 27789313670 for 0789313670 - BIDKZN ID + Security Question Account'); adminPhone=phone; adminDisplay=display; await set(ref(db,'admin_config/whatsapp'),{ phone:phone, display:display, updatedAt:Date.now(), website:'BIDKZN ID + Security Question Account' }); updateWhatsAppLinks(); renderHeaderButtons(); alert(`✅ WhatsApp admin ${phone} ${display} saved - BIDKZN ID + Security Question Account - Floating icon now ${display} 0789313670`); }
 
 window.renderAdmin=function(){
-  let biddersListEl=document.getElementById('adminBiddersList'); if(biddersListEl) biddersListEl.innerHTML=`<div class="flex justify-between items-center mb-3"><h3 class="font-black text-sm text-yellow-400"><i class="fas fa-users"></i> BIDKZN - BIDDERS - Login Areas - Total ${users.length} bidders - BIDKZN</h3><span class="text-[11px] bg-black border border-zinc-700 px-3 py-1 rounded-full">WhatsApp Admin ${adminDisplay} 0789313670 - BIDKZN</span></div>` + users.slice().reverse().map(u=>`<div class="bg-black border border-zinc-800 p-3 rounded-xl mt-2 flex justify-between flex-wrap gap-2"><div><p class="font-black text-xs"><i class="fas fa-user"></i> ${u.name} - Wallet R${u.wallet||0} - ${u.phone} - <a href="https://wa.me/${u.phone?.replace(/[^0-9]/g,'')}" target="_blank" class="text-[#25D366]"><i class="fab fa-whatsapp"></i> WhatsApp ${u.phone}</a> - BIDKZN</p><p class="text-[11px] text-zinc-400">ID ${u.fbId} | Login: ${u.phone} + password | BIDKZN | Created ${u.createdAt?new Date(u.createdAt).toLocaleString():''} | Voucher loads ${voucherLoads.filter(vl=>vl.userFbId===u.fbId && vl.status==='approved').length} - R${voucherLoads.filter(vl=>vl.userFbId===u.fbId && vl.status==='approved').reduce((s,vl)=>s+vl.amount,0)} | Coins ${bids.filter(b=>b.userFbId===u.fbId).length} | BIDKZN</p></div><div class="flex flex-col gap-1"><div class="flex gap-1"><button onclick="resetBidderPassword('${u.fbId}')" class="bg-yellow-900/30 border border-yellow-600 px-3 py-1 rounded-full text-xs text-yellow-400"><i class="fas fa-key"></i> Reset Password - BIDKZN</button><button onclick="editBidder('${u.fbId}')" class="bg-zinc-800 px-3 py-1 rounded-full text-xs">EDIT - BIDKZN</button></div><div class="flex gap-1"><a href="https://wa.me/${u.phone?.replace(/[^0-9]/g,'')}?text=Hi%20${u.name}%20Bidder%20Area%20BIDKZN%20Your%20wallet%20is%20R${u.wallet||0}%20You%20can%20bid%20in%20flash%20market%20WhatsApp%20Admin%20${adminDisplay}%200789313670%20-%20BIDKZN" target="_blank" class="bg-[#25D366] px-3 py-1 rounded-full text-xs font-black"><i class="fab fa-whatsapp"></i> WhatsApp Bidder - BIDKZN</a><button onclick="deleteUser('${u.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1 rounded-full text-xs text-red-400">🗑️ DELETE - BIDKZN</button></div></div></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No bidders yet for BIDKZN - Bidders register in BIDDER REGISTER AREA for BIDKZN with phone + password - WhatsApp Admin '+adminDisplay+' 0789313670 - BIDKZN</p>';
+  let biddersListEl=document.getElementById('adminBiddersList'); if(biddersListEl) biddersListEl.innerHTML=`<div class="flex justify-between items-center mb-3"><h3 class="font-black text-sm text-yellow-400"><i class="fas fa-users"></i> BIDKZN - BIDDERS - ID Number + First Name + Surname + DOB + Profile Picture + Security Question - Total ${users.length} bidders - BIDKZN ID + Security Question Account</h3><span class="text-[11px] bg-black border border-zinc-700 px-3 py-1 rounded-full">WhatsApp Admin ${adminDisplay} 0789313670 - BIDKZN ID + Security Q Account</span></div>` + users.slice().reverse().map(u=>`<div class="bg-black border border-zinc-800 p-3 rounded-xl mt-2 flex justify-between flex-wrap gap-2"><div class="flex gap-3"><img src="${u.profilePic||'https://via.placeholder.com/60x60/000000/FFD700?text='+(u.firstName?.[0]||'B')}" class="w-16 h-16 rounded-full border-2 border-yellow-400 object-cover"><div><p class="font-black text-xs"><i class="fas fa-user"></i> ${u.firstName||''} ${u.surname||''} (${u.name}) - Wallet R${u.wallet||0} - ID ${u.idNumber||'-'} - DOB ${u.dob||u.dateOfBirth||'-'} - Phone ${u.phone} - Security Q: ${u.securityQuestion?'✅':'❌'} ${u.securityQuestion||''} - Answer: ${u.securityAnswerOriginal||u.securityAnswer||'-'} - <a href="https://wa.me/${u.phone?.replace(/[^0-9]/g,'')}" target="_blank" class="text-[#25D366]"><i class="fab fa-whatsapp"></i> WhatsApp ${u.phone}</a> - BIDKZN ID + Security Q Account</p><p class="text-[11px] text-zinc-400">ID Number: ${u.idNumber||'-'} | First Name: ${u.firstName||'-'} | Surname: ${u.surname||'-'} | DOB: ${u.dob||u.dateOfBirth||'-'} | Full Name: ${u.fullName||u.name} | Security Question: ${u.securityQuestion||'-'} | Security Answer: ${u.securityAnswerOriginal||u.securityAnswer||'-'} | ID ${u.fbId} | Login: ${u.phone} + password | BIDKZN ID + Security Q Account with Profile Picture + Security Question for forgot password | Created ${u.createdAt?new Date(u.createdAt).toLocaleString():''} | Voucher loads ${voucherLoads.filter(vl=>vl.userFbId===u.fbId && vl.status==='approved').length} - R${voucherLoads.filter(vl=>vl.userFbId===u.fbId && vl.status==='approved').reduce((s,vl)=>s+vl.amount,0)} | Coins ${bids.filter(b=>b.userFbId===u.fbId).length} | BIDKZN ID + Security Q Account - Profile Picture ${u.profilePic?'✅':'❌'} Security Q ${u.securityQuestion?'✅':'❌'}</p></div></div><div class="flex flex-col gap-1"><div class="flex gap-1"><button onclick="resetBidderPassword('${u.fbId}')" class="bg-yellow-900/30 border border-yellow-600 px-3 py-1 rounded-full text-xs text-yellow-400"><i class="fas fa-key"></i> Reset Password - ID + Security Q Account</button><button onclick="editBidderAdmin('${u.fbId}')" class="bg-zinc-800 px-3 py-1 rounded-full text-xs">EDIT - ID + Picture + Security Q - BIDKZN</button></div><div class="flex gap-1"><a href="https://wa.me/${u.phone?.replace(/[^0-9]/g,'')}?text=Hi%20${u.firstName||u.name}%20${u.surname||''}%20ID%20${u.idNumber||''}%20Bidder%20Account%20BIDKZN%20ID%20%2B%20Security%20Q%20Account%20Your%20wallet%20is%20R${u.wallet||0}%20Security%20Question%20${encodeURIComponent(u.securityQuestion||'')}%20You%20can%20bid%20in%20flash%20market%20WhatsApp%20Admin%20${adminDisplay}%200789313670%20-%20BIDKZN%20ID%20%2B%20Security%20Q%20Account" target="_blank" class="bg-[#25D366] px-3 py-1 rounded-full text-xs font-black"><i class="fab fa-whatsapp"></i> WhatsApp Bidder ID + Security Q</a><button onclick="deleteUser('${u.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1 rounded-full text-xs text-red-400">🗑️ DELETE - BIDKZN ID + Security Q</button></div></div></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No bidders yet for BIDKZN ID + Security Question Account - Bidders register in BIDDER ACCOUNT CREATING for BIDKZN with ID Number + First Name + Surname + DOB + Profile Picture + Security Question + Security Answer + Phone + Password - Security question when creating bidding account when client forget password - BIDKZN ID + Security Question Account - WhatsApp Admin '+adminDisplay+' 0789313670</p>';
 
   let pendingLoads=voucherLoads.filter(vl=>vl.status==='pending');
-  let adminLoadsEl=document.getElementById('adminLoadsList'); if(adminLoadsEl) adminLoadsEl.innerHTML=pendingLoads.slice().reverse().map(vl=>`<div class="bg-black border-2 border-yellow-500 rounded-xl p-4 mt-3 flex justify-between items-center flex-wrap gap-2"><div><p class="font-black text-sm text-yellow-400">🎟️ PENDING - BIDKZN - Bidder ${vl.userName} (${vl.userPhone}) - ${vl.voucherCode} - R${vl.amount}</p><p class="text-[11px] text-zinc-400">BIDKZN - Bidder login: ${vl.userPhone} - Requested ${new Date(vl.createdAt).toLocaleString()} - Voucher ${vl.voucherCode} - WhatsApp bidder <a href="https://wa.me/${vl.userPhone?.replace(/[^0-9]/g,'')}" target="_blank" class="text-[#25D366] font-black"><i class="fab fa-whatsapp"></i> ${vl.userPhone}</a> | Admin ${adminDisplay} 0789313670 - BIDKZN</p></div><div class="flex gap-2 ml-2 flex-wrap"><button onclick="approveVoucherLoad('${vl.fbId}')" class="bg-green-600 px-6 py-3 rounded-full text-xs font-black">✅ APPROVE R${vl.amount} - BIDKZN</button><button onclick="rejectVoucherLoad('${vl.fbId}')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">❌ REJECT - BIDKZN</button><a href="https://wa.me/${vl.userPhone?.replace(/[^0-9]/g,'')}?text=Hi%20${vl.userName}%20Bidder%20Area%20BIDKZN%20Your%20voucher%20${vl.voucherCode}%20R${vl.amount}%20has%20been%20approved%20Wallet%20%2BR${vl.amount}%20You%20can%20now%20bid%20in%20flash%20bidding%20area%20-%20BIDKZN%20WhatsApp%20Admin%20${adminDisplay}%200789313670" target="_blank" class="bg-[#25D366] px-4 py-2 rounded-full text-xs font-black"><i class="fab fa-whatsapp"></i> WhatsApp Bidder Approved - BIDKZN</a></div></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No pending loads - BIDKZN - Bidders load wallet with 1 voucher via WhatsApp Admin '+adminDisplay+' 0789313670 - BIDKZN</p>';
+  let adminLoadsEl=document.getElementById('adminLoadsList'); if(adminLoadsEl) adminLoadsEl.innerHTML=pendingLoads.slice().reverse().map(vl=>`<div class="bg-black border-2 border-yellow-500 rounded-xl p-4 mt-3 flex justify-between items-center flex-wrap gap-2"><div><p class="font-black text-sm text-yellow-400">🎟️ PENDING - BIDKZN ID + Security Q Account - Bidder ${vl.userFirstName||''} ${vl.userSurname||''} ID ${vl.userIDNumber||''} - ${vl.userName} (${vl.userPhone}) - ${vl.voucherCode} - R${vl.amount}</p><p class="text-[11px] text-zinc-400">BIDKZN ID + Security Q Account - Bidder: ${vl.userFirstName} ${vl.userSurname} ID ${vl.userIDNumber} - Login: ${vl.userPhone} - Requested ${new Date(vl.createdAt).toLocaleString()} - Voucher ${vl.voucherCode} - WhatsApp bidder ID + Security Q Account <a href="https://wa.me/${vl.userPhone?.replace(/[^0-9]/g,'')}" target="_blank" class="text-[#25D366] font-black"><i class="fab fa-whatsapp"></i> ${vl.userPhone}</a> | Admin ${adminDisplay} 0789313670 - BIDKZN ID + Security Q Account</p></div><div class="flex gap-2 ml-2 flex-wrap"><button onclick="approveVoucherLoad('${vl.fbId}')" class="bg-green-600 px-6 py-3 rounded-full text-xs font-black">✅ APPROVE R${vl.amount} - BIDKZN ID + Security Q Account</button><button onclick="rejectVoucherLoad('${vl.fbId}')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">❌ REJECT - BIDKZN ID + Security Q Account</button></div></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No pending loads - BIDKZN ID + Security Question Account - Bidders with ID Number + First Name + Surname + DOB + Profile Picture + Security Question load wallet with 1 voucher via WhatsApp Admin '+adminDisplay+' 0789313670 - BIDKZN ID + Security Question Account</p>';
 
-  let adminVouchersEl=document.getElementById('adminVouchersList'); if(adminVouchersEl) adminVouchersEl.innerHTML=`<p class="text-[11px] text-zinc-400 mb-2">BIDKZN - Total ${vouchers.length} | Active ${vouchers.filter(v=>v.status==='active').length} | WhatsApp Admin ${adminDisplay} 0789313670 - BIDKZN</p>` + vouchers.slice().reverse().map(v=>`<div class="bg-black border ${v.status==='active'?'border-yellow-500/50':'border-zinc-700'} p-3 rounded-xl mt-2 flex justify-between flex-wrap gap-2"><div><p class="font-black text-sm ${v.status==='active'?'text-yellow-400':'text-zinc-500'}">🎟️ ${v.code} - R${v.amount} - ${v.status.toUpperCase()} - BIDKZN</p><p class="text-[10px] text-zinc-500">${new Date(v.createdAt).toLocaleString()} | ${v.reason} ${v.redeemedByName?`| Redeemed by bidder ${v.redeemedByName} - BIDKZN`:''}</p></div><div class="flex gap-1 flex-wrap"><button onclick="copyVoucher('${v.code}')" class="bg-zinc-800 px-3 py-1 rounded-full text-xs">COPY - BIDKZN</button><a href="https://wa.me/${adminPhone}?text=Here%20is%20your%20voucher%20code%20for%20BIDKZN%20${v.code}%20R${v.amount}%20-%20Enter%20in%20wallet%20area%20bidder%20login%20-%20BIDKZN%20WhatsApp%20Admin%20${adminDisplay}%200789313670" target="_blank" class="bg-[#25D366] px-3 py-1 rounded-full text-xs font-black"><i class="fab fa-whatsapp"></i> SEND VIA WHATSAPP 0789313670 - BIDKZN</a><button onclick="deleteVoucher('${v.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1 rounded-full text-xs text-red-400">🗑️ - BIDKZN</button></div></div>`).join('') || 'No vouchers - BIDKZN - Create vouchers for WhatsApp 0789313670 sales - BIDKZN';
+  let adminVouchersEl=document.getElementById('adminVouchersList'); if(adminVouchersEl) adminVouchersEl.innerHTML=`<p class="text-[11px] text-zinc-400 mb-2">BIDKZN ID + Security Question Account - Total ${vouchers.length} | Active ${vouchers.filter(v=>v.status==='active').length} | WhatsApp Admin ${adminDisplay} 0789313670 - BIDKZN ID + Security Q Account</p>` + vouchers.slice().reverse().map(v=>`<div class="bg-black border ${v.status==='active'?'border-yellow-500/50':'border-zinc-700'} p-3 rounded-xl mt-2 flex justify-between flex-wrap gap-2"><div><p class="font-black text-sm ${v.status==='active'?'text-yellow-400':'text-zinc-500'}">🎟️ ${v.code} - R${v.amount} - ${v.status.toUpperCase()} - BIDKZN ID + Security Q Account</p><p class="text-[10px] text-zinc-500">${new Date(v.createdAt).toLocaleString()} | ${v.reason} ${v.redeemedByName?`| Redeemed by bidder ID + Security Q Account ${v.redeemedByName} ID ${v.redeemedByIDNumber||''}`:''}</p></div><div class="flex gap-1 flex-wrap"><button onclick="copyVoucher('${v.code}')" class="bg-zinc-800 px-3 py-1 rounded-full text-xs">COPY - BIDKZN ID + Security Q Account</button><a href="https://wa.me/${adminPhone}?text=Here%20is%20your%20voucher%20code%20for%20BIDKZN%20ID%20%2B%20Security%20Q%20Account%20${v.code}%20R${v.amount}%20-%20Enter%20in%20wallet%20area%20bidder%20login%20with%20ID%20%2B%20Security%20Q%20-%20BIDKZN%20ID%20%2B%20Security%20Q%20Account%20WhatsApp%20Admin%20${adminDisplay}%200789313670" target="_blank" class="bg-[#25D366] px-3 py-1 rounded-full text-xs font-black"><i class="fab fa-whatsapp"></i> SEND VIA WHATSAPP 0789313670 - BIDKZN ID + Security Q Account</a><button onclick="deleteVoucher('${v.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1 rounded-full text-xs text-red-400">🗑️ - BIDKZN ID + Security Q Account</button></div></div>`).join('') || 'No vouchers - BIDKZN ID + Security Question Account';
 
   let pendingFlash=flashRequests.filter(r=>r.status==='pending');
-  let adminPendingEl=document.getElementById('adminPendingList'); if(adminPendingEl) adminPendingEl.innerHTML=pendingFlash.map(r=>`<div class="bg-black border-2 border-red-600/30 rounded-xl p-4 mt-3 flex justify-between"><div><p class="font-black text-sm text-red-400">📤 ${r.qty}x ${r.coinName} - Bidder ${r.sellerName} - R${r.sellPrice} - BIDKZN</p><p class="text-[11px] text-zinc-400">${r.desc} - Bidder ${r.sellerPhone} - BIDKZN</p></div><button onclick="openApproval('${r.fbId}')" class="bg-red-600 px-4 py-2 rounded-full text-xs font-black">✅ APPROVE + TIME - BIDKZN</button></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No pending flash - BIDKZN</p>';
+  let adminPendingEl=document.getElementById('adminPendingList'); if(adminPendingEl) adminPendingEl.innerHTML=pendingFlash.map(r=>`<div class="bg-black border-2 border-red-600/30 rounded-xl p-4 mt-3 flex justify-between"><div><p class="font-black text-sm text-red-400">📤 ${r.qty}x ${r.coinName} - Bidder ${r.sellerName} - R${r.sellPrice} - BIDKZN ID + Security Q Account</p><p class="text-[11px] text-zinc-400">${r.desc} - Bidder ${r.sellerPhone} - BIDKZN ID + Security Q Account</p></div><button onclick="openApproval('${r.fbId}')" class="bg-red-600 px-4 py-2 rounded-full text-xs font-black">✅ APPROVE + TIME - BIDKZN ID + Security Q Account</button></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No pending flash - BIDKZN ID + Security Question Account</p>';
 
   let now=Date.now(); let live=flashRequests.filter(r=>r.status==='scheduled' && r.publicTime && r.publicTime<=now);
-  let adminLiveEl=document.getElementById('adminLiveList'); if(adminLiveEl) adminLiveEl.innerHTML=live.map(r=>`<div class="bg-black border-2 border-green-600 rounded-xl p-4 mt-3"><p class="font-black text-sm text-green-400">🔴 LIVE - BIDKZN - ${r.qty}x ${r.coinName} - Highest R${r.highestBid} by bidder ${r.highestBidderName} - BIDKZN - Wallet loaded via WhatsApp ${adminDisplay}</p><div class="flex gap-2 mt-2 flex-wrap"><button onclick="finalizeFlash('${r.fbId}')" class="flex-1 bg-green-600 py-2 rounded-full text-xs font-black">✅ FINALIZE - BIDKZN</button><a href="https://wa.me/${r.highestBidderFbId?users.find(u=>u.fbId===r.highestBidderFbId)?.phone?.replace(/[^0-9]/g,''):''}?text=Hi%20${r.highestBidderName}%20Bidder%20Area%20BIDKZN%20You%20are%20winning%20flash%20${r.qty}x%20${r.coinName}%20R${r.highestBid}%20WhatsApp%20Admin%20${adminDisplay}%200789313670%20-%20BIDKZN" target="_blank" class="bg-[#25D366] px-4 py-2 rounded-full text-xs font-black"><i class="fab fa-whatsapp"></i> WhatsApp Winning Bidder - BIDKZN</a></div></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No live - BIDKZN</p>';
+  let adminLiveEl=document.getElementById('adminLiveList'); if(adminLiveEl) adminLiveEl.innerHTML=live.map(r=>`<div class="bg-black border-2 border-green-600 rounded-xl p-4 mt-3"><p class="font-black text-sm text-green-400">🔴 LIVE - BIDKZN ID + Security Q Account - ${r.qty}x ${r.coinName} - Highest R${r.highestBid} by bidder ID ${r.highestBidderIDNumber||''} ${r.highestBidderName} - BIDKZN ID + Security Q Account - Wallet loaded via WhatsApp ${adminDisplay}</p><div class="flex gap-2 mt-2 flex-wrap"><button onclick="finalizeFlash('${r.fbId}')" class="flex-1 bg-green-600 py-2 rounded-full text-xs font-black">✅ FINALIZE - BIDKZN ID + Security Q Account</button></div></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No live - BIDKZN ID + Security Question Account</p>';
 }
 
-window.approveVoucherLoad=async function(fbId){ let load=voucherLoads.find(vl=>vl.fbId===fbId); if(!load) return; let voucher=vouchers.find(v=>v.fbId===load.voucherFbId); if(!voucher||voucher.status!=='active') return alert('Voucher not active - BIDKZN'); let user=users.find(u=>u.fbId===load.userFbId); if(!user) return; if(!confirm(`Approve bidder voucher load for BIDKZN ${load.voucherCode} R${load.amount} for bidder ${load.userName}? Wallet +R${load.amount} - BIDKZN - WhatsApp ${adminDisplay} 0789313670`)) return; await update(ref(db,'coin_users/'+user.fbId),{ wallet:(user.wallet||0)+load.amount }); await update(ref(db,'vouchers/'+voucher.fbId),{ status:'redeemed', redeemedByFbId:user.fbId, redeemedByName:user.name, redeemedAt:Date.now(), website:'BIDKZN' }); await update(ref(db,'voucher_loads/'+fbId),{ status:'approved', approvedAt:Date.now() }); alert(`✅ Approved for BIDKZN R${load.amount} for bidder ${user.name} - Wallet now R${(user.wallet||0)+load.amount} - BIDKZN - WhatsApp bidder: Your voucher ${load.voucherCode} approved, wallet +R${load.amount}, you can now bid in FLASH BIDDING AREA - BIDKZN - WhatsApp Admin ${adminDisplay} 0789313670`); }
-window.rejectVoucherLoad=async function(fbId){ if(!confirm('Reject bidder voucher load? BIDKZN - Voucher will remain active')) return; await update(ref(db,'voucher_loads/'+fbId),{ status:'rejected', rejectedAt:Date.now() }); }
-window.deleteVoucherLoad=function(fbId){ if(!confirm('Delete bidder load request? BIDKZN')) return; remove(ref(db,'voucher_loads/'+fbId)); }
-window.resetBidderPassword=function(fbId){ let u=users.find(x=>x.fbId===fbId); if(!u) return; let newPass=prompt(`Reset password for BIDKZN bidder ${u.name} (${u.phone}) - BIDKZN\n\nEnter new password / PIN for BIDKZN:`, '1234'); if(!newPass) return; update(ref(db,'coin_users/'+fbId),{ password:newPass }); alert(`✅ Password reset for BIDKZN bidder ${u.name}\n\nWebsite: BIDKZN\nNew password: ${newPass}\nLogin ID: ${u.phone}\n\nTell bidder to login in BIDDER LOGIN AREA - BIDKZN with phone ${u.phone} + new password ${newPass}\nWhatsApp bidder: https://wa.me/${u.phone?.replace(/[^0-9]/g,'')}?text=Hi%20${u.name}%20Your%20bidder%20password%20for%20BIDKZN%20has%20been%20reset%20to%20${newPass}%20Login%20with%20phone%20${u.phone}%20plus%20password%20${newPass}%20in%20BIDDER%20LOGIN%20AREA%20-%20BIDKZN`); }
-window.editBidder=function(fbId){ let u=users.find(x=>x.fbId===fbId); if(!u) return; let name=prompt('Edit bidder name - BIDKZN:', u.name); if(!name) return; let phone=prompt('Edit bidder phone (login ID) - BIDKZN:', u.phone); if(!phone) return; update(ref(db,'coin_users/'+fbId),{ name:name, phone:phone, normPhone:normalizePhone(phone) }); }
-window.openApproval=function(fbId){ let req=flashRequests.find(r=>r.fbId===fbId); if(!req) return; pendingApproval=req; document.getElementById('approvalText').innerHTML=`Approve for BIDKZN ${req.qty}x ${req.coinName} - Bidder ${req.sellerName} - R${req.sellPrice} - BIDKZN`; let def=new Date(Date.now()+3600000); def.setMinutes(def.getMinutes()-def.getTimezoneOffset()); document.getElementById('publicTime').value=def.toISOString().slice(0,16); document.getElementById('approvalModal').classList.remove('hidden'); }
-window.confirmApproval=async function(){ if(!pendingApproval) return; let timeStr=document.getElementById('publicTime').value; if(!timeStr) return alert('Choose time - BIDKZN'); let publicTime=new Date(timeStr).getTime(); await update(ref(db,'flash_requests/'+pendingApproval.fbId),{ status:'scheduled', publicTime:publicTime, approvedAt:Date.now(), website:'BIDKZN' }); document.getElementById('approvalModal').classList.add('hidden'); }
-window.finalizeFlash=async function(fbId){ let req=flashRequests.find(r=>r.fbId===fbId); if(!req||!req.highestBidderFbId) return alert('No bids - BIDKZN'); if(!confirm(`Finalize flash for BIDKZN ${req.qty}x ${req.coinName} to bidder ${req.highestBidderName} R${req.highestBid}? Already paid via wallet loaded with 1 voucher via WhatsApp ${adminDisplay} before bidding - BIDKZN`)) return; let seller=users.find(u=>u.fbId===req.sellerFbId); let buyer=users.find(u=>u.fbId===req.highestBidderFbId); if(!seller||!buyer) return; let code=genVoucherCode('BIDKZN'); let vid=Date.now(); let vfbId=vid.toString(); await set(ref(db,'vouchers/'+vfbId),{ id:vid, fbId:vfbId, code:code, amount:req.highestBid, status:'active', createdAt:Date.now(), reason:`Flash payout for BIDKZN ${req.qty}x ${req.coinName} to bidder ${seller.name} - WhatsApp Admin ${adminDisplay} 0789313670 - BIDKZN`, payoutToFbId:seller.fbId, payoutToName:seller.name }); let origBid=bids.find(b=>b.fbId===req.originalBidFbId); let newBidId=Date.now()+1; let newFbId=newBidId.toString(); let newBid={ id:newBidId, fbId:newFbId, userId:buyer.id, userFbId:buyer.fbId, userName:buyer.name, coin:req.coin, coinName:req.coinName, qty:req.qty, cost:req.highestBid, returnAmount:req.qty*150, profit:req.qty*50, returnPercent:50, buyDate:Date.now(), endDate:Date.now()+7*24*60*60*1000, status:'active', claimed:false, website:'BIDKZN' }; await set(ref(db,'coin_bids/'+newFbId), newBid); if(origBid) await remove(ref(db,'coin_bids/'+origBid.fbId)); await update(ref(db,'flash_requests/'+fbId),{ status:'finalized_paid', paid:true, finalizedAt:Date.now(), payoutVoucherCode:code }); alert(`Finalized for BIDKZN! Seller bidder ${seller.name} got voucher ${code} R${req.highestBid} - BIDKZN - WhatsApp seller: https://wa.me/${seller.phone?.replace(/[^0-9]/g,'')}?text=Your%20sale%20for%20BIDKZN%20${req.qty}x%20${req.coinName}%20sold%20R${req.highestBid}%20Voucher%20${code}%20WhatsApp%20Admin%20${adminDisplay}%200789313670%20-%20BIDKZN`); }
-window.deleteUser=function(fbId){ if(!confirm('Delete bidder for BIDKZN? Delete bidder account + wallet + coins? - BIDKZN')) return; bids.filter(b=>b.userFbId===fbId).forEach(b=>remove(ref(db,'coin_bids/'+b.fbId))); remove(ref(db,'coin_users/'+fbId)); if(currentUser&&currentUser.fbId===fbId){ localStorage.removeItem('coin_user'); currentUser=null; showBidderAuth(); } }
-window.renderMyWins=function(){ if(!currentUser){ return; } let myWins=flashRequests.filter(r=> String(r.highestBidderFbId)===String(currentUser.fbId) && (r.status==='finalized_paid' || r.status==='finalized')); let el=document.getElementById('myWinsList'); if(el) el.innerHTML=myWins.map(r=>`<div class="bg-black border-2 border-green-600 rounded-xl p-4"><p class="font-black text-green-400"><i class="fas fa-trophy"></i> WON - BIDKZN - ${r.qty}x ${r.coinName} - R${r.highestBid} - Paid via wallet loaded with 1 voucher via WhatsApp ${adminDisplay} before bidding - BIDKZN</p><p class="text-[11px] text-zinc-400">Seller bidder ${r.sellerName} got voucher ${r.payoutVoucherCode||''} R${r.highestBid} - WhatsApp Admin ${adminDisplay} 0789313670 - BIDKZN</p></div>`).join('') || '<p class="text-center py-6 text-zinc-500">No wins - BIDKZN - Load wallet with 1 voucher via WhatsApp Admin '+adminDisplay+' 0789313670, bid in FLASH BIDDING AREA - BIDKZN</p>'; }
-window.renderMyCoins=function(){ if(!currentUser){ return; } let myBids=bids.filter(b=>String(b.userFbId)===String(currentUser.fbId) &&!b.claimed); let el=document.getElementById('myCoinsList'); if(el) el.innerHTML=myBids.map(b=>`<div class="bg-black border rounded-xl p-4 flex justify-between"><div><p class="font-black text-sm"><i class="fas fa-coins"></i> ${b.qty}x ${b.coinName} - BIDKZN - Bought with wallet loaded via WhatsApp ${adminDisplay} voucher - BIDKZN</p></div><button onclick="openSellModal('${b.fbId}')" class="bg-yellow-400 text-black px-5 py-3 rounded-full text-xs font-black">SELL - BIDKZN</button></div>`).join('') || '<p class="text-center py-4 text-zinc-500">No coins - BIDKZN - Load wallet with 1 voucher via WhatsApp Admin '+adminDisplay+' 0789313670, bid to win - BIDKZN</p>'; }
-window.openSellModal=function(bidFbId){ if(!currentUser){ showBidderAuth(); return; } let bid=bids.find(b=>b.fbId===bidFbId); if(!bid) return; pendingSell=bid; document.getElementById('sellText').innerHTML=`Sell ${bid.qty}x ${bid.coinName} - BIDKZN - Voucher payout via WhatsApp ${adminDisplay} 0789313670 - BIDKZN`; document.getElementById('sellQty').value=bid.qty; document.getElementById('sellPrice').value=bid.cost; document.getElementById('sellDesc').value=`${bid.qty}x ${bid.coinName} - BIDKZN`; document.getElementById('sellModal').classList.remove('hidden'); }
-window.confirmSell=async function(){ if(!pendingSell||!currentUser) return; let qty=parseInt(document.getElementById('sellQty').value)||1; let sellPrice=parseInt(document.getElementById('sellPrice').value)||0; let desc=document.getElementById('sellDesc').value.trim(); let id=Date.now(); let fbId=id.toString(); await set(ref(db,'flash_requests/'+fbId),{ id:id, fbId:fbId, sellerId:currentUser.id, sellerFbId:currentUser.fbId, sellerName:currentUser.name, sellerPhone:currentUser.phone, originalBidFbId:pendingSell.fbId, originalCost:pendingSell.cost, originalBuyDate:pendingSell.buyDate, coin:pendingSell.coin, coinName:pendingSell.coinName, qty:qty, sellPrice:sellPrice, desc:desc, status:'pending', publicTime:null, createdAt:Date.now(), flashBids:[], highestBid:0, website:'BIDKZN' }); document.getElementById('sellModal').classList.add('hidden'); alert('Sell request sent for BIDKZN - Admin approves - BIDKZN - WhatsApp Admin '+adminDisplay+' 0789313670'); }
+window.approveVoucherLoad=async function(fbId){ let load=voucherLoads.find(vl=>vl.fbId===fbId); if(!load) return; let voucher=vouchers.find(v=>v.fbId===load.voucherFbId); if(!voucher||voucher.status!=='active') return alert('Voucher not active - BIDKZN ID + Security Question Account'); let user=users.find(u=>u.fbId===load.userFbId); if(!user) return; if(!confirm(`Approve bidder voucher load for BIDKZN ID + Security Question Account ${load.voucherCode} R${load.amount} for bidder ${load.userFirstName||load.userName} ${load.userSurname||''} ID ${load.userIDNumber||''} Security Q ✅? Wallet +R${load.amount} - BIDKZN ID + Security Question Account - WhatsApp ${adminDisplay} 0789313670`)) return; await update(ref(db,'coin_users/'+user.fbId),{ wallet:(user.wallet||0)+load.amount }); await update(ref(db,'vouchers/'+voucher.fbId),{ status:'redeemed', redeemedByFbId:user.fbId, redeemedByName:(user.firstName||user.name)+' '+(user.surname||''), redeemedByIDNumber:user.idNumber, redeemedAt:Date.now(), website:'BIDKZN ID + Security Question Account' }); await update(ref(db,'voucher_loads/'+fbId),{ status:'approved', approvedAt:Date.now() }); alert(`✅ Approved for BIDKZN ID + Security Question Account R${load.amount} for bidder ${user.firstName} ${user.surname} ID ${user.idNumber} Security Q ✅ - Wallet now R${(user.wallet||0)+load.amount} - BIDKZN ID + Security Question Account`); }
+window.rejectVoucherLoad=async function(fbId){ if(!confirm('Reject bidder voucher load? BIDKZN ID + Security Question Account - Voucher will remain active')) return; await update(ref(db,'voucher_loads/'+fbId),{ status:'rejected', rejectedAt:Date.now() }); }
+window.deleteVoucherLoad=function(fbId){ if(!confirm('Delete bidder load request? BIDKZN ID + Security Question Account')) return; remove(ref(db,'voucher_loads/'+fbId)); }
+window.resetBidderPassword=function(fbId){ let u=users.find(x=>x.fbId===fbId); if(!u) return; let newPass=prompt(`Reset password for BIDKZN ID + Security Question Account bidder ${u.firstName||u.name} ${u.surname||''} ID ${u.idNumber||''} (${u.phone}) - BIDKZN ID + Security Question Account\n\nSecurity Question: ${u.securityQuestion||'-'}\nSecurity Answer: ${u.securityAnswerOriginal||u.securityAnswer||'-'}\n\nEnter new password / PIN for BIDKZN ID + Security Question Account:`, '1234'); if(!newPass) return; update(ref(db,'coin_users/'+fbId),{ password:newPass }); alert(`✅ Password reset for BIDKZN ID + Security Question Account bidder ${u.firstName} ${u.surname} ID ${u.idNumber}\n\nWebsite: BIDKZN ID + Security Question Account\nNew password: ${newPass}\nLogin ID: ${u.phone}\nID Number: ${u.idNumber}\nSecurity Question: ${u.securityQuestion}\nSecurity Answer: ${u.securityAnswerOriginal||u.securityAnswer}\n\nTell bidder to login in BIDDER LOGIN AREA - BIDKZN ID + Security Question Account with phone ${u.phone} + new password ${newPass}\nSecurity question remains for forgot password`); }
+window.editBidderAdmin=function(fbId){ let u=users.find(x=>x.fbId===fbId); if(!u) return; currentUser=u; editBidderProfile(); document.getElementById('admin').classList.add('hidden'); }
+window.openApproval=function(fbId){ let req=flashRequests.find(r=>r.fbId===fbId); if(!req) return; pendingApproval=req; document.getElementById('approvalText').innerHTML=`Approve for BIDKZN ID + Security Question Account ${req.qty}x ${req.coinName} - Bidder ${req.sellerName} - R${req.sellPrice} - BIDKZN ID + Security Question Account`; let def=new Date(Date.now()+3600000); def.setMinutes(def.getMinutes()-def.getTimezoneOffset()); document.getElementById('publicTime').value=def.toISOString().slice(0,16); document.getElementById('approvalModal').classList.remove('hidden'); }
+window.confirmApproval=async function(){ if(!pendingApproval) return; let timeStr=document.getElementById('publicTime').value; if(!timeStr) return alert('Choose time - BIDKZN ID + Security Question Account'); let publicTime=new Date(timeStr).getTime(); await update(ref(db,'flash_requests/'+pendingApproval.fbId),{ status:'scheduled', publicTime:publicTime, approvedAt:Date.now(), website:'BIDKZN ID + Security Question Account' }); document.getElementById('approvalModal').classList.add('hidden'); }
+window.finalizeFlash=async function(fbId){ let req=flashRequests.find(r=>r.fbId===fbId); if(!req||!req.highestBidderFbId) return alert('No bids - BIDKZN ID + Security Question Account'); if(!confirm(`Finalize flash for BIDKZN ID + Security Question Account ${req.qty}x ${req.coinName} to bidder ID ${req.highestBidderIDNumber||''} ${req.highestBidderName} R${req.highestBid}? Already paid via wallet loaded with 1 voucher via WhatsApp ${adminDisplay} before bidding - BIDKZN ID + Security Question Account`)) return; let seller=users.find(u=>u.fbId===req.sellerFbId); let buyer=users.find(u=>u.fbId===req.highestBidderFbId); if(!seller||!buyer) return; let code=genVoucherCode('BIDKZN'); let vid=Date.now(); let vfbId=vid.toString(); await set(ref(db,'vouchers/'+vfbId),{ id:vid, fbId:vfbId, code:code, amount:req.highestBid, status:'active', createdAt:Date.now(), reason:`Flash payout for BIDKZN ID + Security Question Account ${req.qty}x ${req.coinName} to bidder ${seller.firstName||seller.name} ${seller.surname||''} ID ${seller.idNumber||''} - WhatsApp Admin ${adminDisplay} 0789313670 - BIDKZN ID + Security Question Account`, payoutToFbId:seller.fbId, payoutToName:seller.firstName+' '+seller.surname, payoutToIDNumber:seller.idNumber }); let origBid=bids.find(b=>b.fbId===req.originalBidFbId); let newBidId=Date.now()+1; let newFbId=newBidId.toString(); let newBid={ id:newBidId, fbId:newFbId, userId:buyer.id, userFbId:buyer.fbId, userName:buyer.firstName+' '+buyer.surname, userFirstName:buyer.firstName, userSurname:buyer.surname, userIDNumber:buyer.idNumber, coin:req.coin, coinName:req.coinName, qty:req.qty, cost:req.highestBid, returnAmount:req.qty*150, profit:req.qty*50, returnPercent:50, buyDate:Date.now(), endDate:Date.now()+7*24*60*60*1000, status:'active', claimed:false, website:'BIDKZN ID + Security Question Account' }; await set(ref(db,'coin_bids/'+newFbId), newBid); if(origBid) await remove(ref(db,'coin_bids/'+origBid.fbId)); await update(ref(db,'flash_requests/'+fbId),{ status:'finalized_paid', paid:true, finalizedAt:Date.now(), payoutVoucherCode:code }); alert(`Finalized for BIDKZN ID + Security Question Account! Seller bidder ${seller.firstName} ${seller.surname} ID ${seller.idNumber} got voucher ${code} R${req.highestBid} - BIDKZN ID + Security Question Account`); }
+window.deleteUser=function(fbId){ if(!confirm('Delete bidder for BIDKZN ID + Security Question Account? Delete bidder account with ID Number + First Name + Surname + DOB + Profile Picture + Security Question + wallet + coins? - BIDKZN ID + Security Question Account')) return; bids.filter(b=>b.userFbId===fbId).forEach(b=>remove(ref(db,'coin_bids/'+b.fbId))); remove(ref(db,'coin_users/'+fbId)); if(currentUser&&currentUser.fbId===fbId){ localStorage.removeItem('coin_user'); currentUser=null; showBidderAuth(); } }
+window.renderMyWins=function(){ if(!currentUser){ return; } let myWins=flashRequests.filter(r=> String(r.highestBidderFbId)===String(currentUser.fbId) && (r.status==='finalized_paid' || r.status==='finalized')); let el=document.getElementById('myWinsList'); if(el) el.innerHTML=myWins.map(r=>`<div class="bg-black border-2 border-green-600 rounded-xl p-4"><p class="font-black text-green-400"><i class="fas fa-trophy"></i> WON - BIDKZN ID + Security Q Account - ${r.qty}x ${r.coinName} - R${r.highestBid} - Bidder: ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber} Security Q ✅ - Paid via wallet loaded with 1 voucher via WhatsApp ${adminDisplay} before bidding - BIDKZN ID + Security Q Account</p></div>`).join('') || '<p class="text-center py-6 text-zinc-500">No wins - BIDKZN ID + Security Question Account - Load wallet with 1 voucher via WhatsApp Admin '+adminDisplay+' 0789313670, bid in FLASH BIDDING AREA - BIDKZN ID + Security Question Account</p>'; }
+window.renderMyCoins=function(){ if(!currentUser){ return; } let myBids=bids.filter(b=>String(b.userFbId)===String(currentUser.fbId) &&!b.claimed); let el=document.getElementById('myCoinsList'); if(el) el.innerHTML=myBids.map(b=>`<div class="bg-black border rounded-xl p-4 flex justify-between"><div><p class="font-black text-sm"><i class="fas fa-coins"></i> ${b.qty}x ${b.coinName} - BIDKZN ID + Security Q Account - ${b.userFirstName||''} ${b.userSurname||''} ID ${b.userIDNumber||''} Security Q ✅ - Bought with wallet loaded via WhatsApp ${adminDisplay} voucher</p></div><button onclick="openSellModal('${b.fbId}')" class="bg-yellow-400 text-black px-5 py-3 rounded-full text-xs font-black">SELL - BIDKZN ID + Security Q Account</button></div>`).join('') || '<p class="text-center py-4 text-zinc-500">No coins - BIDKZN ID + Security Question Account - Load wallet with 1 voucher via WhatsApp Admin '+adminDisplay+' 0789313670, bid to win - BIDKZN ID + Security Question Account</p>'; }
+window.openSellModal=function(bidFbId){ if(!currentUser){ showBidderAuth(); return; } let bid=bids.find(b=>b.fbId===bidFbId); if(!bid) return; pendingSell=bid; document.getElementById('sellText').innerHTML=`Sell ${bid.qty}x ${bid.coinName} - BIDKZN ID + Security Q Account - ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber} Security Q ✅ - Voucher payout via WhatsApp ${adminDisplay} 0789313670`; document.getElementById('sellQty').value=bid.qty; document.getElementById('sellPrice').value=bid.cost; document.getElementById('sellDesc').value=`${bid.qty}x ${bid.coinName} - BIDKZN ID + Security Q Account ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber}`; document.getElementById('sellModal').classList.remove('hidden'); }
+window.confirmSell=async function(){ if(!pendingSell||!currentUser) return; let qty=parseInt(document.getElementById('sellQty').value)||1; let sellPrice=parseInt(document.getElementById('sellPrice').value)||0; let desc=document.getElementById('sellDesc').value.trim(); let id=Date.now(); let fbId=id.toString(); await set(ref(db,'flash_requests/'+fbId),{ id:id, fbId:fbId, sellerId:currentUser.id, sellerFbId:currentUser.fbId, sellerName:currentUser.firstName+' '+currentUser.surname, sellerFirstName:currentUser.firstName, sellerSurname:currentUser.surname, sellerIDNumber:currentUser.idNumber, sellerPhone:currentUser.phone, originalBidFbId:pendingSell.fbId, originalCost:pendingSell.cost, originalBuyDate:pendingSell.buyDate, coin:pendingSell.coin, coinName:pendingSell.coinName, qty:qty, sellPrice:sellPrice, desc:desc, status:'pending', publicTime:null, createdAt:Date.now(), flashBids:[], highestBid:0, website:'BIDKZN ID + Security Question Account' }); document.getElementById('sellModal').classList.add('hidden'); alert('Sell request sent for BIDKZN ID + Security Question Account - Admin approves - BIDKZN ID + Security Question Account - WhatsApp Admin '+adminDisplay+' 0789313670'); }
 
 function renderAll(){
   if(currentUser){ showMainApp(); renderProfile(); renderFlashMarket(); renderMyWins(); renderMyCoins(); } else { showBidderAuth(); }
   renderAdmin(); updateWhatsAppLinks(); renderHeaderButtons();
-  if(currentUser){ let infoEl=document.getElementById('loggedBidderInfo'); if(infoEl){ infoEl.classList.remove('hidden'); document.getElementById('loggedName').innerText=currentUser.name+' - BIDKZN'; document.getElementById('loggedPhone').innerText=currentUser.phone+' - BIDKZN Login'; document.getElementById('loggedWallet').innerText=currentUser.wallet||0; } }
+  if(currentUser){ let infoEl=document.getElementById('loggedBidderInfo'); if(infoEl){ infoEl.classList.remove('hidden'); let picEl=document.getElementById('loggedProfilePic'); if(picEl && currentUser.profilePic){ picEl.src=currentUser.profilePic; picEl.classList.remove('hidden'); } document.getElementById('loggedName').innerText=(currentUser.firstName||currentUser.name)+' '+(currentUser.surname||'')+' - BIDKZN ID + Security Q Account'; document.getElementById('loggedPhone').innerText=currentUser.phone+' - BIDKZN Login - ID '+ (currentUser.idNumber||'-'); let idEl=document.getElementById('loggedID'); if(idEl) idEl.innerText=`ID: ${currentUser.idNumber||'-'} | DOB: ${currentUser.dob||currentUser.dateOfBirth||'-'} | First Name: ${currentUser.firstName||'-'} | Surname: ${currentUser.surname||'-'} | Security Q: ${currentUser.securityQuestion?'✅ '+currentUser.securityQuestion:'❌'}`; document.getElementById('loggedWallet').innerText=currentUser.wallet||0; } }
 }
 
 setInterval(()=>{ renderAll(); }, 2000);
