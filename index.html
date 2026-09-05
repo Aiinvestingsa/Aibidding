@@ -1,327 +1,274 @@
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BIDKZN AI INVEST - AI Investment Bidding Platform 🤖💰</title>
+<title>BIDKZN COINS - Daily Growth Display 📈</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<style>
-body{font-family:system-ui;background:#000;padding-bottom:90px}
-.bidkzn-gold{background:linear-gradient(90deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}
-.ai-glow{box-shadow:0 0 30px rgba(168,85,247,0.3)}
-.gold-glow{box-shadow:0 0 20px rgba(255,215,0,0.25)}
-</style>
+<style>body{font-family:system-ui;background:#000;padding-bottom:90px}.bidkzn-gold{background:linear-gradient(90deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}.grow-bar{transition:width 0.5s ease}</style>
 </head><body class="bg-black text-white">
+<header class="sticky top-0 z-50 bg-black border-b-2 border-yellow-500 p-3"><div class="flex justify-between items-center max-w-5xl mx-auto"><div class="flex items-center gap-2"><div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-full flex items-center justify-center font-black text-black">₿</div><div><h1 class="font-black text-lg"><span class="bidkzn-gold">BID</span><span class="text-white">KZN</span> <span class="text-yellow-400">COINS</span></h1><p class="text-[8px] text-zinc-400">DAILY GROWTH DISPLAY</p></div></div><div class="flex gap-2"><button onclick="showView('coins')" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black">🪙 COINS</button><button onclick="showView('portfolio')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">💼 PORTFOLIO + GROWTH</button><button onclick="openAdmin()" class="bg-black border border-zinc-700 px-3 py-2 rounded-full text-xs">🔒</button></div></div></header>
 
-<header class="sticky top-0 z-50 bg-black/90 backdrop-blur border-b-2 border-purple-600 p-3">
-<div class="flex justify-between items-center max-w-7xl mx-auto">
-<div class="flex items-center gap-3">
-<div class="w-11 h-11 bg-gradient-to-br from-purple-600 via-yellow-400 to-red-600 rounded-full flex items-center justify-center text-xl">🤖</div>
-<div>
-<h1 class="font-black text-xl leading-none"><span class="bidkzn-gold">BID</span><span class="text-purple-400">KZN</span> <span class="text-white">AI</span></h1>
-<p class="text-[8px] tracking-[0.2em] text-zinc-400">AI INVESTMENT BIDDING PLATFORM</p>
-</div>
-<span class="bg-gradient-to-r from-purple-600 to-yellow-500 text-white text-[9px] px-3 py-1 rounded-full font-black animate-pulse">🤖 AI LIVE</span>
-</div>
-<div class="hidden md:flex gap-2">
-<button onclick="showView('deals')" class="bg-purple-600 px-4 py-2 rounded-full text-xs font-black">🤖 AI DEALS</button>
-<button onclick="showView('portfolio')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">💼 PORTFOLIO</button>
-<button onclick="showView('bids')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🔥 MY BIDS</button>
-<button onclick="openAdmin()" class="bg-black border border-zinc-700 px-3 py-2 rounded-full text-xs">🔒 ADMIN</button>
-</div>
-</div>
-</header>
-
-<div class="text-center py-8 bg-gradient-to-b from-purple-900/20 via-black to-black border-b border-purple-900/30">
-<h1 class="text-5xl font-black"><span class="bidkzn-gold">BID</span><span class="text-purple-400">KZN</span> <span class="text-white">AI</span></h1>
-<p class="text-[11px] tracking-[0.25em] text-zinc-400 mt-2">AI POWERED INVESTMENT BIDDING - LET AI SCORE, YOU BID, AI MANAGES</p>
-<div class="flex justify-center gap-2 mt-4 flex-wrap">
-<span class="bg-purple-900/40 border border-purple-600/50 text-purple-300 text-[10px] px-3 py-1 rounded-full">🤖 AI Risk Score</span>
-<span class="bg-yellow-900/30 border border-yellow-600/30 text-yellow-300 text-[10px] px-3 py-1 rounded-full">📈 AI ROI Prediction</span>
-<span class="bg-green-900/30 border border-green-600/30 text-green-300 text-[10px] px-3 py-1 rounded-full">🛡️ AI Fraud Check</span>
-<span class="bg-red-900/30 border border-red-600/30 text-red-300 text-[10px] px-3 py-1 rounded-full">🔥 Live Bidding</span>
-</div>
-<p id="aiStatus" class="text-[10px] mt-4 bg-black border border-purple-600/30 text-purple-400 py-1.5 rounded-full inline-block px-6">🤖 AI ENGINE ONLINE - READY FOR 1000 INVESTORS ⚡</p>
+<div class="text-center py-6 bg-gradient-to-b from-yellow-900/20 to-black border-b border-yellow-900/20">
+<h1 class="text-4xl font-black"><span class="bidkzn-gold">DAILY</span> <span class="text-white">GROWTH COINS</span></h1>
+<p class="text-[11px] text-zinc-400 mt-2">BID → BUY → SEE DAILY GROWTH - AiMoc 7.14%/day - AiEUT 9.28%/day</p>
 </div>
 
-<div class="max-w-7xl mx-auto p-3">
-<!-- AI DEALS VIEW -->
-<div id="dealsView">
-<div class="bg-zinc-900 border border-purple-600/50 rounded-2xl p-4 mb-4 ai-glow">
-<div class="flex justify-between items-center flex-wrap gap-2">
-<h2 class="font-black text-purple-400">🤖 AI CURATED INVESTMENT DEALS</h2>
-<div class="flex gap-2">
-<button onclick="filterDeals('all')" id="f-all" class="bg-purple-600 px-4 py-1.5 rounded-full text-xs font-black">ALL AI SCORED</button>
-<button onclick="filterDeals('lowrisk')" id="f-lowrisk" class="bg-zinc-800 px-4 py-1.5 rounded-full text-xs">🟢 Low Risk</button>
-<button onclick="filterDeals('highroi')" id="f-highroi" class="bg-zinc-800 px-4 py-1.5 rounded-full text-xs">📈 High ROI</button>
-<button onclick="filterDeals('ending')" id="f-ending" class="bg-zinc-800 px-4 py-1.5 rounded-full text-xs">⏰ Ending</button>
+<div class="max-w-5xl mx-auto p-3">
+<div id="coinsView">
+<div class="grid md:grid-cols-2 gap-4">
+
+<!-- AiMoc -->
+<div class="bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-5">
+<div class="flex justify-between"><div class="flex items-center gap-3"><div class="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-2xl font-black text-black">M</div><div><h2 class="font-black text-xl text-yellow-400">AiMoc Coin</h2><p class="text-[11px] text-zinc-400">Daily Growth 7.14%</p></div></div><span class="bg-green-900/30 border border-green-600 text-green-400 text-[10px] px-3 py-1 rounded-full font-black">📈 50% in 7 Days</span></div>
+<div class="mt-4 grid grid-cols-3 gap-2 text-center">
+<div class="bg-black border border-yellow-500/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">COST</p><p class="font-black text-yellow-400">R100</p></div>
+<div class="bg-black border border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">DAILY GROWTH</p><p class="font-black text-green-400">+7.14%</p><p class="text-[9px] text-green-400">+R7.14/day</p></div>
+<div class="bg-black border border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">AFTER 7 DAYS</p><p class="font-black text-green-400">R150</p></div>
+</div>
+<div class="mt-4 bg-black rounded-xl p-3 border border-zinc-800">
+<p class="text-[11px] font-black text-yellow-400">📈 AiMoc Daily Growth Breakdown (R100 coin):</p>
+<div class="mt-2 space-y-1 text-[10px] font-mono">
+<div class="flex justify-between"><span class="text-zinc-500">Day 0 (Buy):</span><span class="text-white">R100.00</span><span class="text-zinc-400">0%</span></div>
+<div class="flex justify-between"><span class="text-zinc-500">Day 1:</span><span class="text-yellow-400">R107.14</span><span class="text-green-400">+7.14%</span></div>
+<div class="flex justify-between"><span class="text-zinc-500">Day 2:</span><span class="text-yellow-400">R114.28</span><span class="text-green-400">+14.28%</span></div>
+<div class="flex justify-between"><span class="text-zinc-500">Day 3:</span><span class="text-yellow-400">R121.42</span><span class="text-green-400">+21.42%</span></div>
+<div class="flex justify-between"><span class="text-zinc-500">Day 7:</span><span class="text-green-400 font-black">R150.00</span><span class="text-green-400 font-black">+50%</span></div>
 </div>
 </div>
-<div class="mt-3 grid grid-cols-3 gap-2 text-[10px]">
-<div class="bg-black border border-purple-900/30 rounded-xl p-2 text-center"><p class="text-zinc-500">AI Deals Analyzed</p><p class="font-black text-purple-400 text-lg" id="aiDealsCount">0</p></div>
-<div class="bg-black border border-green-900/30 rounded-xl p-2 text-center"><p class="text-zinc-500">Avg AI ROI</p><p class="font-black text-green-400 text-lg">+24.5%</p></div>
-<div class="bg-black border border-yellow-900/30 rounded-xl p-2 text-center"><p class="text-zinc-500">Total Bids</p><p class="font-black text-yellow-400 text-lg" id="aiTotalBids">0</p></div>
-</div>
-</div>
-<div id="dealsGrid" class="grid md:grid-cols-2 gap-4"></div>
+<div class="mt-4 flex gap-2"><button onclick="setQty('moc',1)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">1</button><button onclick="setQty('moc',5)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">5</button><button onclick="setQty('moc',10)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">10</button><div class="flex-1 flex bg-black border-2 border-yellow-500 rounded-full overflow-hidden"><input id="mocQty" type="number" value="1" min="1" class="flex-1 bg-black p-3 text-center font-black text-yellow-400" oninput="calcTotal('moc')"><span class="bg-zinc-800 px-3 flex items-center text-xs">Coins</span></div></div>
+<div class="mt-3 bg-black border-2 border-yellow-500/50 rounded-2xl p-4 text-center"><p class="text-[11px] text-zinc-400">PAY NOW → SEE DAILY GROWTH AFTER BUY</p><p class="text-3xl font-black text-yellow-400" id="mocPay">R100</p><p class="text-[11px] text-zinc-500">After 7 days: <span class="text-green-400 font-black" id="mocReturn">R150</span> | Daily: <span class="text-green-400" id="mocDaily">+R7.14/day</span></p></div>
+<button onclick="bidCoin('moc')" class="w-full mt-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-4 rounded-full font-black text-lg">BID AiMoc - R<span id="mocPayBtn">100</span> → SEE GROWTH</button>
 </div>
 
-<!-- PORTFOLIO VIEW -->
+<!-- AiEUT -->
+<div class="bg-zinc-900 border-2 border-purple-600 rounded-2xl p-5">
+<div class="flex justify-between"><div class="flex items-center gap-3"><div class="w-14 h-14 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-2xl font-black text-white">E</div><div><h2 class="font-black text-xl text-purple-400">AiEUT Coin</h2><p class="text-[11px] text-zinc-400">Daily Growth 9.28%</p></div></div><span class="bg-purple-900/40 border border-purple-600 text-purple-300 text-[10px] px-3 py-1 rounded-full font-black">🔥 65% in 7 Days</span></div>
+<div class="mt-4 grid grid-cols-3 gap-2 text-center">
+<div class="bg-black border border-purple-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">COST</p><p class="font-black text-purple-400">R100</p></div>
+<div class="bg-black border border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">DAILY GROWTH</p><p class="font-black text-green-400">+9.28%</p><p class="text-[9px] text-green-400">+R9.28/day</p></div>
+<div class="bg-black border border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">AFTER 7 DAYS</p><p class="font-black text-green-400">R165</p></div>
+</div>
+<div class="mt-4 bg-black rounded-xl p-3 border border-zinc-800">
+<p class="text-[11px] font-black text-purple-400">📈 AiEUT Daily Growth Breakdown (R100 coin):</p>
+<div class="mt-2 space-y-1 text-[10px] font-mono">
+<div class="flex justify-between"><span class="text-zinc-500">Day 0 (Buy):</span><span class="text-white">R100.00</span><span class="text-zinc-400">0%</span></div>
+<div class="flex justify-between"><span class="text-zinc-500">Day 1:</span><span class="text-purple-400">R109.28</span><span class="text-green-400">+9.28%</span></div>
+<div class="flex justify-between"><span class="text-zinc-500">Day 2:</span><span class="text-purple-400">R118.57</span><span class="text-green-400">+18.57%</span></div>
+<div class="flex justify-between"><span class="text-zinc-500">Day 3:</span><span class="text-purple-400">R127.85</span><span class="text-green-400">+27.85%</span></div>
+<div class="flex justify-between"><span class="text-zinc-500">Day 7:</span><span class="text-green-400 font-black">R165.00</span><span class="text-green-400 font-black">+65%</span></div>
+</div>
+</div>
+<div class="mt-4 flex gap-2"><button onclick="setQty('eut',1)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">1</button><button onclick="setQty('eut',5)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">5</button><button onclick="setQty('eut',10)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">10</button><div class="flex-1 flex bg-black border-2 border-purple-600 rounded-full overflow-hidden"><input id="eutQty" type="number" value="1" min="1" class="flex-1 bg-black p-3 text-center font-black text-purple-400" oninput="calcTotal('eut')"><span class="bg-zinc-800 px-3 flex items-center text-xs">Coins</span></div></div>
+<div class="mt-3 bg-black border-2 border-purple-600/50 rounded-2xl p-4 text-center"><p class="text-[11px] text-zinc-400">PAY NOW → SEE DAILY GROWTH AFTER BUY</p><p class="text-3xl font-black text-purple-400" id="eutPay">R100</p><p class="text-[11px] text-zinc-500">After 7 days: <span class="text-green-400 font-black" id="eutReturn">R165</span> | Daily: <span class="text-green-400" id="eutDaily">+R9.28/day</span></p></div>
+<button onclick="bidCoin('eut')" class="w-full mt-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 rounded-full font-black text-lg">BID AiEUT - R<span id="eutPayBtn">100</span> → SEE GROWTH 🔥</button>
+</div>
+
+</div>
+</div>
+
 <div id="portfolioView" class="hidden">
 <div class="bg-zinc-900 border-2 border-yellow-500/50 rounded-2xl p-5">
-<h2 class="font-black text-yellow-400 text-lg">💼 MY AI PORTFOLIO</h2>
-<div class="grid grid-cols-3 gap-3 mt-4">
-<div class="bg-black border-2 border-yellow-500/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Total Invested</p><p class="text-2xl font-black text-yellow-400" id="portInvested">R0</p></div>
-<div class="bg-black border border-green-600/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">AI Predicted Return</p><p class="text-2xl font-black text-green-400" id="portReturn">R0</p><p class="text-[10px] text-green-400">+0% AI</p></div>
-<div class="bg-black border border-zinc-700 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Active Deals</p><p class="text-2xl font-black text-white" id="portDeals">0</p></div>
+<div class="flex justify-between items-center"><h2 class="font-black text-yellow-400 text-lg">💼 MY COINS + DAILY GROWTH LIVE</h2><button onclick="showView('coins')" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black">🪙 BID MORE</button></div>
+<div class="grid grid-cols-3 gap-3 mt-5">
+<div class="bg-black border-2 border-yellow-500/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Invested</p><p class="text-2xl font-black text-yellow-400" id="portInvested">R0</p></div>
+<div class="bg-black border-2 border-green-600/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Current Value (Live Growth)</p><p class="text-2xl font-black text-green-400" id="portCurrent">R0</p><p class="text-[9px] text-green-400" id="portGrowth">+R0 growth</p></div>
+<div class="bg-black border border-zinc-700 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Wallet</p><p class="text-2xl font-black text-white" id="portWallet">R0</p></div>
 </div>
-<div id="portfolioGrid" class="mt-6 grid md:grid-cols-2 gap-3"></div>
+
+<!-- DAILY GROWTH CHART FOR EACH COIN -->
+<div id="portfolioList" class="mt-6 space-y-4"></div>
+
+<div class="mt-6 bg-black border border-zinc-800 rounded-xl p-4">
+<h4 class="font-black text-xs">💰 Matured - Ready to Claim</h4>
+<div id="maturedList" class="mt-3 space-y-2"></div>
+</div>
+</div>
 </div>
 </div>
 
-<!-- MY BIDS VIEW -->
-<div id="bidsView" class="hidden">
-<div class="bg-zinc-900 border-2 border-red-600/50 rounded-2xl p-5">
-<h2 class="font-black text-red-400">🔥 MY INVESTMENT BIDS - AI TRACKED</h2>
-<div id="myBidsGrid" class="mt-4 grid md:grid-cols-2 gap-3"></div>
-</div>
-</div>
-</div>
-
-<!-- BOTTOM NAV -->
-<div class="fixed bottom-0 left-0 right-0 bg-black border-t-2 border-purple-900/50 z-40 p-2">
-<div class="flex justify-around max-w-md mx-auto">
-<button onclick="showView('deals')" id="btn-deals" class="flex flex-col items-center px-6 py-2 rounded-xl bg-purple-600 shadow-lg"><span>🤖</span><span class="text-[9px] font-black">AI DEALS</span></button>
-<button onclick="showView('portfolio')" id="btn-portfolio" class="flex flex-col items-center px-3 py-2 rounded-xl bg-zinc-900"><span>💼</span><span class="text-[9px] font-black">PORTFOLIO</span></button>
-<button onclick="showView('bids')" id="btn-bids" class="flex flex-col items-center px-3 py-2 rounded-xl bg-zinc-900"><span>🔥</span><span class="text-[9px] font-black">MY BIDS</span></button>
-</div>
-</div>
-
-<!-- BID MODAL WITH AI INSIGHT -->
-<div id="bidModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-purple-600 rounded-2xl p-6 w-full max-w-md ai-glow"><h2 class="font-black text-purple-400 text-lg">🤖 AI INVESTMENT BID</h2><div id="bidAiInsight" class="mt-3 bg-black border border-purple-900/50 rounded-xl p-3 text-[11px]"></div><p id="bidText" class="mt-4 text-sm"></p><div class="mt-4"><label class="text-[11px] text-zinc-400">Your Bid Amount (R)</label><input id="bidAmount" type="number" class="w-full mt-1 p-3 rounded-full bg-black border-2 border-yellow-500/50 text-center font-black text-lg"><p class="text-[10px] text-zinc-500 mt-1">AI Min: <span id="aiMinBid" class="text-yellow-400 font-black"></span> | Your Wallet: <span id="walletInModal" class="text-green-400 font-black">R0</span></p></div><div class="flex gap-2 mt-6"><button onclick="confirmBid()" class="flex-1 bg-gradient-to-r from-purple-600 to-yellow-500 py-4 rounded-full font-black text-black">🤖 CONFIRM BID - AI TRACKED</button><button onclick="document.getElementById('bidModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
-
-<!-- ADMIN -->
-<div id="admin" class="hidden fixed inset-0 bg-black z-50 overflow-y-auto"><div class="max-w-7xl mx-auto p-3"><div class="bg-zinc-900 rounded-2xl p-4 flex justify-between items-center border-2 border-purple-600"><h2 class="font-black text-purple-400">🤖 AI INVEST ADMIN - DELETE USERS & DEALS</h2><button onclick="document.getElementById('admin').classList.add('hidden')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">CLOSE</button></div><div class="mt-4 grid md:grid-cols-2 gap-4"><div class="bg-black p-4 rounded-xl border-2 border-purple-600/30"><h3 class="font-black text-sm text-purple-400">🤖 ADD AI DEAL - WITH AI SCORE</h3><input id="aName" placeholder="Deal Name e.g. Solar Farm Durban" class="w-full mt-3 p-3 rounded-full bg-zinc-900 border"><input id="aDesc" placeholder="Description" class="w-full mt-2 p-3 rounded-full bg-zinc-900 border text-sm"><div class="grid grid-cols-2 gap-2 mt-2"><input id="aMin" type="number" placeholder="Min Invest R" class="p-3 rounded-full bg-zinc-900 border"><input id="aTarget" type="number" placeholder="Target R" class="p-3 rounded-full bg-zinc-900 border"></div><div class="grid grid-cols-3 gap-2 mt-2"><input id="aAiRisk" type="number" placeholder="AI Risk 1-10" class="p-2 rounded-full bg-zinc-900 border text-center"><input id="aAiRoi" type="number" placeholder="AI ROI % e.g. 25" class="p-2 rounded-full bg-zinc-900 border text-center"><input id="aDays" type="number" value="7" placeholder="Days" class="p-2 rounded-full bg-zinc-900 border text-center"></div><button onclick="saveDeal()" class="w-full bg-purple-600 py-3 rounded-full font-black mt-3">🤖 ADD AI DEAL + AI SCORE</button></div><div class="bg-black p-4 rounded-xl border border-zinc-700"><h3 class="font-black text-sm text-yellow-400">📊 AI STATS</h3><p class="text-xs text-zinc-400 mt-2">Total Deals: <span id="adminDealsCount" class="text-white font-black">0</span></p><p class="text-xs text-zinc-400">Total Bidders: <span id="adminBiddersCount" class="text-white font-black">0</span></p><p class="text-xs text-zinc-400">Total Invested: <span id="adminTotalInvested" class="text-yellow-400 font-black">R0</span></p></div></div><div class="flex gap-2 mt-4 overflow-x-auto"><button onclick="adminTab('deals')" id="at-deals" class="bg-purple-600 px-4 py-2 rounded-full text-xs font-black">🤖 DEALS 🗑️</button><button onclick="adminTab('bidders')" id="at-bidders" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">BIDDERS 🗑️</button></div><div id="admin-deals" class="mt-4"><div id="adminDealsList"></div></div><div id="admin-bidders" class="hidden mt-4"><div id="adminBiddersList"></div></div></div></div>
+<div id="admin" class="hidden fixed inset-0 bg-black z-50 overflow-y-auto"><div class="max-w-5xl mx-auto p-3"><div class="bg-zinc-900 rounded-2xl p-4 flex justify-between items-center border-2 border-yellow-500"><h2 class="font-black text-yellow-400">ADMIN - DAILY GROWTH COINS + DELETE</h2><button onclick="document.getElementById('admin').classList.add('hidden')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">CLOSE</button></div><div class="mt-4 grid grid-cols-3 gap-3"><div class="bg-black border border-yellow-500/30 rounded-xl p-3 text-center"><p class="text-[10px] text-zinc-400">AiMoc Sold</p><p class="text-xl font-black text-yellow-400" id="adminMocSold">0</p></div><div class="bg-black border border-purple-600/30 rounded-xl p-3 text-center"><p class="text-[10px] text-zinc-400">AiEUT Sold</p><p class="text-xl font-black text-purple-400" id="adminEutSold">0</p></div><div class="bg-black border border-zinc-700 rounded-xl p-3 text-center"><p class="text-[10px] text-zinc-400">Users</p><p class="text-xl font-black text-white" id="adminBidders">0</p></div></div><div class="flex gap-2 mt-4"><button onclick="adminTab('bids')" id="at-bids" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black">BIDS + GROWTH 🗑️</button><button onclick="adminTab('users')" id="at-users" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">USERS 🗑️</button></div><div id="admin-bids" class="mt-4"><div id="adminBidsList"></div></div><div id="admin-users" class="hidden mt-4"><div id="adminUsersList"></div></div></div></div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, set, onValue, update, remove, get, query, limitToLast } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 const firebaseConfig = { apiKey: "AIzaSyCxVmtWLZiVvcElpOG4gLxKylunD1_NnRA", authDomain: "kzn-store.firebaseapp.com", databaseURL: "https://kzn-store-default-rtdb.firebaseio.com", projectId: "kzn-store", storageBucket: "kzn-store.firebasestorage.app", messagingSenderId: "755959571531", appId: "1:755959571531:web:42ee597a9d0646923699ce" };
 const app = initializeApp(firebaseConfig); const db = getDatabase(app);
+let bids=[]; let users=[]; let currentUser=JSON.parse(localStorage.getItem('coin_user')||'null');
 
-let deals=[]; let bidders=[]; let currentBidder=JSON.parse(localStorage.getItem('ai_invest_user')||'null'); let currentFilter='all'; let pendingBid=null;
+onValue(ref(db, 'coin_bids'), (s)=>{ const d=s.val(); bids=d?Object.values(d):[]; renderPortfolio(); renderAdmin(); });
+onValue(ref(db, 'coin_users'), (s)=>{ const d=s.val(); users=d?Object.values(d):[]; if(currentUser){ let u=users.find(x=>x.fbId===currentUser.fbId); if(u){ currentUser=u; localStorage.setItem('coin_user', JSON.stringify(u)); } } renderPortfolio(); renderAdmin(); });
 
-// Mock AI scoring function - in real app call your AI API
-function aiScoreDeal(risk, roi, target){
-  // AI logic: lower risk + higher ROI = higher score
-  let score = Math.round(( (11-risk)*10 + roi*2 ) / 3);
-  if(score>90) return {score:score, label:'🔥 AI TOP PICK', color:'text-green-400', bg:'bg-green-900/30 border-green-600'};
-  if(score>70) return {score:score, label:'✅ AI RECOMMENDED', color:'text-yellow-400', bg:'bg-yellow-900/30 border-yellow-600'};
-  if(score>50) return {score:score, label:'⚠️ AI MODERATE', color:'text-orange-400', bg:'bg-orange-900/30 border-orange-600'};
-  return {score:score, label:'🔴 AI HIGH RISK', color:'text-red-400', bg:'bg-red-900/30 border-red-600'};
+window.showView=function(v){ document.getElementById('coinsView').classList.toggle('hidden', v!=='coins'); document.getElementById('portfolioView').classList.toggle('hidden', v!=='portfolio'); }
+window.setQty=function(c,q){ document.getElementById(c+'Qty').value=q; calcTotal(c); }
+window.calcTotal=function(c){
+  let qty=parseInt(document.getElementById(c+'Qty').value)||1; if(qty<1) qty=1;
+  document.getElementById(c+'Qty').value=qty;
+  let cost=qty*100;
+  let daily=c==='moc'? (50/7) : (65/7);
+  let dailyR=c==='moc'? 7.14 : 9.28;
+  let ret=c==='moc'?150:165;
+  let totalRet=qty*ret;
+  let totalDaily=dailyR*qty;
+  document.getElementById(c+'Pay').innerText='R'+cost;
+  document.getElementById(c+'PayBtn').innerText=cost;
+  document.getElementById(c+'Return').innerText='R'+totalRet;
+  document.getElementById(c+'Daily').innerText='+R'+totalDaily.toFixed(2)+'/day ('+daily.toFixed(2)+'%)';
 }
-function aiFraudCheck(name){
-  // Simple mock - real AI would check company registry, etc
-  let checks = ['✅ Company Verified', '✅ Bank Verified', '✅ AI Fraud Scan Passed', '✅ Docs Verified'];
-  return checks;
+
+function getDailyGrowth(bid){
+  let now=Date.now();
+  let elapsed=now-bid.buyDate;
+  let daysPassed=elapsed/(24*60*60*1000);
+  if(daysPassed>7) daysPassed=7;
+  if(daysPassed<0) daysPassed=0;
+
+  let dailyPercent=bid.coin==='moc'? (50/7) : (65/7); // 7.14% and 9.28%
+  let currentPercent=daysPassed*dailyPercent;
+  let currentValue=bid.cost + (bid.profit * (daysPassed/7));
+  let growth= currentValue - bid.cost;
+
+  return { daysPassed:daysPassed, currentPercent:currentPercent, currentValue:currentValue, growth:growth };
 }
 
-onValue(query(ref(db, 'ai_deals'), limitToLast(20)), (s)=>{
-  const d=s.val(); deals=d?Object.values(d):[];
-  if(deals.length===0){
-    let id=Date.now(); set(ref(db,'ai_deals/'+id),{
-      id:id, fbId:id.toString(), name:'Solar Farm - North Durban', desc:'20kW solar farm, 3 year lease, monthly returns', minInvest:500, target:50000, current:12500, bids:[], end:Date.now()+7*86400000,
-      aiRisk:3, aiRoi:28, aiScore:88, investors:5
-    });
+window.bidCoin=async function(coin){
+  let qty=parseInt(document.getElementById(coin+'Qty').value)||1;
+  let cost=qty*100;
+  let coinName=coin==='moc'?'AiMoc':'AiEUT';
+  let returnPercent=coin==='moc'?50:65;
+  let returnAmount=coin==='moc'?150:165;
+  let totalReturn=qty*returnAmount;
+  let dailyPercent=coin==='moc'?7.14:9.28;
+
+  if(!currentUser){
+    let name=prompt('Name to bid '+coinName+'?'); if(!name) return;
+    let phone=prompt('WhatsApp?'); if(!phone) return;
+    let id=Date.now(); let newUser={id:id, fbId:id.toString(), name:name, phone:phone, wallet:5000, totalInvested:0};
+    await set(ref(db,'coin_users/'+newUser.fbId), newUser);
+    localStorage.setItem('coin_user', JSON.stringify(newUser));
+    currentUser=newUser;
   }
-  renderDeals(); renderAdminDeals(); updateStats();
-});
-onValue(ref(db, 'ai_bidders'), (s)=>{
-  const d=s.val(); bidders=d?Object.values(d):[];
-  if(currentBidder){
-    let u=bidders.find(b=>b.fbId===currentBidder.fbId); if(u){ currentBidder=u; localStorage.setItem('ai_invest_user', JSON.stringify(u)); }
-  }
-  renderAdminBidders(); updateStats(); renderPortfolio(); renderMyBids();
-});
+  if((currentUser.wallet||0)<cost){ alert('Low wallet R'+currentUser.wallet+' - Need R'+cost); return; }
+  if(!confirm(`BID ${qty}x ${coinName}?\n\nPay: R${cost}\nDaily Growth: +${dailyPercent}%/day (R${coin==='moc'?7.14:9.28}/coin/day)\nAfter 7 days: R${totalReturn} (+${returnPercent}%)\n\nYou will see DAILY GROWTH in portfolio!`)) return;
 
-window.showView=function(v){
-  document.getElementById('dealsView').classList.toggle('hidden', v!=='deals');
-  document.getElementById('portfolioView').classList.toggle('hidden', v!=='portfolio');
-  document.getElementById('bidsView').classList.toggle('hidden', v!=='bids');
-  document.getElementById('btn-deals').className = v==='deals'? 'flex flex-col items-center px-6 py-2 rounded-xl bg-purple-600 shadow-lg' : 'flex flex-col items-center px-3 py-2 rounded-xl bg-zinc-900';
-  document.getElementById('btn-portfolio').className = v==='portfolio'? 'flex flex-col items-center px-6 py-2 rounded-xl bg-yellow-500 text-black shadow-lg' : 'flex flex-col items-center px-3 py-2 rounded-xl bg-zinc-900';
-  document.getElementById('btn-bids').className = v==='bids'? 'flex flex-col items-center px-6 py-2 rounded-xl bg-red-600 shadow-lg' : 'flex flex-col items-center px-3 py-2 rounded-xl bg-zinc-900';
-  if(v==='portfolio') renderPortfolio();
-  if(v==='bids') renderMyBids();
-}
-window.filterDeals=function(f){ currentFilter=f; document.querySelectorAll('[id^=f-]').forEach(b=>b.className='bg-zinc-800 px-4 py-1.5 rounded-full text-xs'); document.getElementById('f-'+f).className='bg-purple-600 px-4 py-1.5 rounded-full text-xs font-black'; renderDeals(); }
-
-window.renderDeals=function(){
-  let list=[...deals];
-  if(currentFilter==='lowrisk') list=list.filter(d=>d.aiRisk<=3);
-  if(currentFilter==='highroi') list=list.filter(d=>d.aiRoi>=25);
-  if(currentFilter==='ending') list=list.sort((a,b)=>a.end-b.end);
-  document.getElementById('dealsGrid').innerHTML=list.map(d=>{
-    let ai=aiScoreDeal(d.aiRisk, d.aiRoi, d.target);
-    let progress=Math.min(100, Math.round(d.current/d.target*100));
-    let cd=formatCountdown(d.end);
-    let fraud=aiFraudCheck(d.name);
-    return `<div class="bg-zinc-900 border-2 border-purple-600/30 rounded-2xl overflow-hidden hover:border-purple-600/60 transition ai-glow">
-      <div class="p-4">
-        <div class="flex justify-between items-start">
-          <div>
-            <h3 class="font-black text-sm">🤖 ${d.name}</h3>
-            <p class="text-[11px] text-zinc-400 mt-1">${d.desc}</p>
-          </div>
-          <span class="text-[9px] px-2 py-1 rounded-full border ${ai.bg} ${ai.color} font-black">${ai.label} ${ai.score}/100</span>
-        </div>
-        <div class="mt-3 grid grid-cols-3 gap-2">
-          <div class="bg-black border border-purple-900/30 rounded-xl p-2 text-center"><p class="text-[9px] text-zinc-500">AI Risk</p><p class="font-black text-sm ${d.aiRisk<=3?'text-green-400':d.aiRisk<=6?'text-yellow-400':'text-red-400'}">${d.aiRisk}/10 ${d.aiRisk<=3?'🟢':d.aiRisk<=6?'🟡':'🔴'}</p></div>
-          <div class="bg-black border border-green-900/30 rounded-xl p-2 text-center"><p class="text-[9px] text-zinc-500">AI ROI</p><p class="font-black text-sm text-green-400">+${d.aiRoi}% 📈</p></div>
-          <div class="bg-black border border-yellow-900/30 rounded-xl p-2 text-center"><p class="text-[9px] text-zinc-500">Target</p><p class="font-black text-sm text-yellow-400">R${d.target.toLocaleString()}</p></div>
-        </div>
-        <div class="mt-3 bg-black rounded-full h-2 overflow-hidden"><div class="bg-gradient-to-r from-purple-600 to-yellow-400 h-full" style="width:${progress}%"></div></div>
-        <div class="flex justify-between text-[10px] mt-1"><span class="text-zinc-400">R${d.current.toLocaleString()} raised</span><span class="text-purple-400 font-black">${progress}% - ${d.investors||0} investors</span></div>
-        <div class="mt-3 bg-black/50 rounded-xl p-2 border border-zinc-800">
-          <p class="text-[10px] font-black text-purple-400">🛡️ AI Fraud Check:</p>
-          <div class="flex flex-wrap gap-1 mt-1">${fraud.map(f=>`<span class="text-[9px] bg-zinc-900 border border-zinc-700 px-2 py-0.5 rounded-full">${f}</span>`).join('')}</div>
-        </div>
-        <div class="mt-3 flex justify-between items-center">
-          <div><p class="text-[10px] text-zinc-500">Ends in</p><p class="text-xs font-black text-red-400">${cd.txt}</p></div>
-          <button onclick="openBidModal('${d.fbId}')" class="bg-gradient-to-r from-purple-600 to-yellow-500 text-black px-6 py-3 rounded-full font-black text-xs shadow-lg">🤖 BID TO INVEST 🔥</button>
-        </div>
-        <p class="text-[9px] text-zinc-500 mt-2">Min bid: R${d.minInvest} | ${d.bids?.length||0} bids | AI Score: ${ai.score}/100</p>
-      </div>
-    </div>`;
-  }).join('') || '<p class="col-span-2 text-center py-10 text-zinc-500">No AI deals - Add in admin</p>';
-  document.getElementById('aiDealsCount').innerText=deals.length;
-  document.getElementById('aiTotalBids').innerText=deals.reduce((s,d)=>s+(d.bids?.length||0),0);
-}
-
-window.openBidModal=function(fbId){
-  let deal=deals.find(d=>d.fbId===fbId);
-  if(!deal) return;
-  if(!currentBidder){
-    // Quick create for demo - in real app require KYC
-    let name=prompt('Enter name to start AI investing:'); if(!name) return;
-    let phone=prompt('WhatsApp:'); if(!phone) return;
-    let id=Date.now(); let newUser={id:id, fbId:id.toString(), name:name, phone:phone, wallet:5000, invested:0, portfolio:[]};
-    set(ref(db,'ai_bidders/'+newUser.fbId), newUser).then(()=>{
-      localStorage.setItem('ai_invest_user', JSON.stringify(newUser)); currentBidder=newUser;
-      openBidModal(fbId);
-    });
-    return;
-  }
-  pendingBid=deal;
-  let ai=aiScoreDeal(deal.aiRisk, deal.aiRoi, deal.target);
-  document.getElementById('bidAiInsight').innerHTML=`
-    <p class="font-black text-purple-400">🤖 AI Analysis for ${deal.name}</p>
-    <p class="mt-1">Risk: <span class="font-black ${ai.color}">${deal.aiRisk}/10</span> | ROI: <span class="text-green-400 font-black">+${deal.aiRoi}%</span> | Score: <span class="text-yellow-400 font-black">${ai.score}/100 - ${ai.label}</span></p>
-    <p class="mt-1 text-zinc-400">AI Prediction: R${deal.minInvest} → R${Math.round(deal.minInvest*(1+deal.aiRoi/100))} in 12 months | Confidence: ${85+Math.floor(Math.random()*10)}%</p>
-    <p class="mt-1 text-[10px] text-zinc-500">AI Note: ${deal.aiRisk<=3?'Low risk, stable returns, good for portfolio':'Higher risk but high reward - diversify'}</p>
-  `;
-  document.getElementById('bidText').innerHTML=`Invest in <b>${deal.name}</b><br><span class="text-xs text-zinc-400">${deal.desc}</span>`;
-  document.getElementById('aiMinBid').innerText='R'+deal.minInvest;
-  document.getElementById('walletInModal').innerText='R'+(currentBidder.wallet||0);
-  document.getElementById('bidAmount').value=deal.minInvest;
-  document.getElementById('bidModal').classList.remove('hidden');
-}
-window.confirmBid=function(){
-  if(!pendingBid ||!currentBidder) return;
-  let amt=parseInt(document.getElementById('bidAmount').value);
-  if(!amt || amt < pendingBid.minInvest) return alert('Min R'+pendingBid.minInvest);
-  if(amt > (currentBidder.wallet||0)) return alert('Low wallet R'+currentBidder.wallet);
-
-  let deal=pendingBid;
-  // Deduct wallet, add to deal, add to portfolio
-  let newWallet=(currentBidder.wallet||0)-amt;
-  let newBids=deal.bids||[]; newBids.push({bidderId:currentBidder.id, bidderFbId:currentBidder.fbId, name:currentBidder.name, amount:amt, time:Date.now()});
-  let newCurrent=deal.current+amt;
-  let newInvestors=(deal.investors||0)+1;
-
-  update(ref(db,'ai_bidders/'+currentBidder.fbId),{wallet:newWallet, invested:(currentBidder.invested||0)+amt});
-  update(ref(db,'ai_deals/'+deal.fbId),{current:newCurrent, bids:newBids, investors:newInvestors});
-
-  // Add to portfolio
-  get(ref(db,'ai_bidders/'+currentBidder.fbId)).then(s=>{
-    if(s.exists()){
-      let u=s.val(); let portfolio=u.portfolio||[]; portfolio.push({dealId:deal.fbId, dealName:deal.name, amount:amt, roi:deal.aiRoi, risk:deal.aiRisk, date:Date.now()});
-      update(ref(db,'ai_bidders/'+currentBidder.fbId),{portfolio:portfolio});
-    }
-  });
-
-  document.getElementById('bidModal').classList.add('hidden');
-  alert('✅ AI Bid placed! R'+amt+' invested in '+deal.name+' - AI tracking ROI +'+deal.aiRoi+'%');
+  let bidId=Date.now(); let fbId=bidId.toString();
+  let bid={ id:bidId, fbId:fbId, userId:currentUser.id, userFbId:currentUser.fbId, userName:currentUser.name, userPhone:currentUser.phone, coin:coin, coinName:coinName, qty:qty, cost:cost, returnAmount:totalReturn, profit:totalReturn-cost, returnPercent:returnPercent, dailyPercent:dailyPercent, buyDate:Date.now(), endDate:Date.now()+7*24*60*60*1000, status:'active', claimed:false };
+  await update(ref(db,'coin_users/'+currentUser.fbId),{ wallet:(currentUser.wallet||0)-cost, totalInvested:(currentUser.totalInvested||0)+cost });
+  await set(ref(db,'coin_bids/'+fbId), bid);
+  alert(`✅ BOUGHT! ${qty}x ${coinName}\n\nGo to PORTFOLIO to see DAILY GROWTH LIVE!\nDay 1: +${dailyPercent}% | Day 7: +${returnPercent}%`);
   showView('portfolio');
 }
 
 window.renderPortfolio=function(){
-  if(!currentBidder){
-    document.getElementById('portfolioGrid').innerHTML='<div class="col-span-2 bg-black p-6 rounded-xl text-center border border-dashed border-zinc-700"><p class="text-zinc-500">No portfolio - Bid on AI deals to start</p><button onclick="showView(\'deals\')" class="mt-3 bg-purple-600 px-6 py-2 rounded-full text-xs font-black">🤖 BROWSE AI DEALS</button></div>';
+  if(!currentUser){
+    document.getElementById('portfolioList').innerHTML='<div class="bg-black p-6 rounded-xl text-center border border-dashed border-zinc-700"><p class="text-zinc-500">No coins yet - Bid to see daily growth</p></div>';
+    document.getElementById('maturedList').innerHTML='<p class="text-xs text-zinc-500">No matured coins</p>';
+    ['portInvested','portCurrent','portWallet'].forEach(id=>document.getElementById(id).innerText='R0');
+    document.getElementById('portGrowth').innerText='+R0 growth';
     return;
   }
-  let portfolio=currentBidder.portfolio||[];
-  let totalInvested=portfolio.reduce((s,p)=>s+p.amount,0);
-  let predictedReturn=portfolio.reduce((s,p)=>s+Math.round(p.amount*(1+p.roi/100)),0);
-  document.getElementById('portInvested').innerText='R'+totalInvested.toLocaleString();
-  document.getElementById('portReturn').innerText='R'+predictedReturn.toLocaleString();
-  document.getElementById('portDeals').innerText=portfolio.length;
+  let myBids=bids.filter(b=>String(b.userFbId)===String(currentUser.fbId)).sort((a,b)=>b.id-a.id);
+  let invested=myBids.filter(b=>!b.claimed).reduce((s,b)=>s+b.cost,0);
+  let wallet=currentUser.wallet||0;
 
-  document.getElementById('portfolioGrid').innerHTML=portfolio.map(p=>{
-    let predicted=Math.round(p.amount*(1+p.roi/100));
-    return `<div class="bg-black border border-purple-600/30 rounded-xl p-4">
-      <h3 class="font-black text-sm text-purple-400">🤖 ${p.dealName}</h3>
-      <p class="text-xs text-zinc-400 mt-1">Invested: R${p.amount} | AI ROI: +${p.roi}% | Risk: ${p.risk}/10</p>
-      <p class="text-sm font-black mt-2">AI Predicted: <span class="text-green-400">R${predicted}</span> <span class="text-[10px] text-zinc-500">(+R${predicted-p.amount})</span></p>
-      <p class="text-[10px] text-zinc-500 mt-1">${new Date(p.date).toLocaleDateString()} - AI Tracking</p>
+  // Calculate live current value with daily growth
+  let currentTotal=0; let totalGrowth=0;
+  myBids.forEach(b=>{ if(!b.claimed){ let g=getDailyGrowth(b); currentTotal+=g.currentValue; totalGrowth+=g.growth; } });
+
+  document.getElementById('portInvested').innerText='R'+invested.toLocaleString();
+  document.getElementById('portCurrent').innerText='R'+currentTotal.toFixed(2);
+  document.getElementById('portGrowth').innerText=`+R${totalGrowth.toFixed(2)} growth live 📈`;
+  document.getElementById('portWallet').innerText='R'+wallet.toLocaleString();
+
+  let active=myBids.filter(b=>!b.claimed);
+  document.getElementById('portfolioList').innerHTML=active.map(b=>{
+    let g=getDailyGrowth(b);
+    let isMatured=Date.now()>=b.endDate;
+    let progress=Math.min(100, (g.daysPassed/7)*100);
+    let daysLeft=7-g.daysPassed;
+
+    // Build daily breakdown table for this specific bid
+    let dailyRows='';
+    for(let d=1; d<=7; d++){
+      let dayValue=b.cost + (b.profit*(d/7));
+      let dayGrowth=dayValue-b.cost;
+      let dayPercent=(d/7)*b.returnPercent;
+      let isPast=d<=Math.floor(g.daysPassed);
+      let isToday=d===Math.ceil(g.daysPassed);
+      dailyRows+=`<div class="flex justify-between text-[10px] ${isPast?'bg-green-900/20 border border-green-600/30 rounded px-2 py-1':''} ${isToday?'bg-yellow-900/30 border border-yellow-600/50 rounded px-2 py-1 font-black':''}">
+        <span class="${isPast?'text-green-400':'text-zinc-500'}">Day ${d}:</span>
+        <span class="${isPast?'text-green-400':'text-zinc-400'}">R${dayValue.toFixed(2)}</span>
+        <span class="${isPast?'text-green-400':'text-zinc-500'}">+${dayPercent.toFixed(1)}% (+R${dayGrowth.toFixed(2)})</span>
+        <span>${isPast?'✅':isToday?'🔥 TODAY':''}</span>
+      </div>`;
+    }
+
+    return `<div class="bg-black border-2 ${isMatured?'border-green-500':'border-zinc-700'} rounded-2xl p-4">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="font-black text-sm ${b.coin==='moc'?'text-yellow-400':'text-purple-400'}">${b.qty}x ${b.coinName} - Daily Growth LIVE 📈</p>
+          <p class="text-[11px] text-zinc-400">Bought R${b.cost} → Now R${g.currentValue.toFixed(2)} | Growth +R${g.growth.toFixed(2)} (+${g.currentPercent.toFixed(1)}%)</p>
+        </div>
+        <span class="text-[10px] ${isMatured?'bg-green-600 text-white':'bg-zinc-800 text-zinc-400'} px-3 py-1 rounded-full font-black">${isMatured?'MATURED':`${g.daysPassed.toFixed(1)}d / 7d`}</span>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="mt-3">
+        <div class="flex justify-between text-[10px] mb-1"><span class="text-zinc-500">Growth Progress</span><span class="text-green-400 font-black">${progress.toFixed(1)}% - ${daysLeft.toFixed(1)} days left</span></div>
+        <div class="bg-zinc-800 rounded-full h-3 overflow-hidden"><div class="grow-bar bg-gradient-to-r from-yellow-400 to-green-500 h-full" style="width:${progress}%"></div></div>
+      </div>
+
+      <!-- Current stats -->
+      <div class="mt-3 grid grid-cols-3 gap-2 text-center">
+        <div class="bg-zinc-900 rounded-xl p-2"><p class="text-[9px] text-zinc-500">PAID</p><p class="font-black text-white">R${b.cost}</p></div>
+        <div class="bg-zinc-900 border border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">NOW (LIVE)</p><p class="font-black text-green-400">R${g.currentValue.toFixed(2)}</p><p class="text-[9px] text-green-400">+${g.currentPercent.toFixed(1)}%</p></div>
+        <div class="bg-zinc-900 border border-yellow-500/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">FINAL (Day 7)</p><p class="font-black text-yellow-400">R${b.returnAmount}</p><p class="text-[9px] text-yellow-400">+${b.returnPercent}%</p></div>
+      </div>
+
+      <!-- Daily growth table for THIS coin -->
+      <div class="mt-4 bg-zinc-900 rounded-xl p-3 border border-zinc-800">
+        <p class="text-[11px] font-black text-yellow-400">📈 Daily Growth for ${b.qty}x ${b.coinName} (Bought ${new Date(b.buyDate).toLocaleDateString()}):</p>
+        <div class="mt-2 space-y-1">${dailyRows}</div>
+        <p class="text-[9px] text-zinc-500 mt-2">Daily: +${b.dailyPercent}%/day = +R${(b.profit/7).toFixed(2)}/day for ${b.qty} coin(s) | Live update every second</p>
+      </div>
+
+      <div class="mt-3 flex justify-between items-center">
+        <p class="text-[10px] text-zinc-500">Bought: ${new Date(b.buyDate).toLocaleString()} | Matures: ${new Date(b.endDate).toLocaleString()}</p>
+        ${isMatured?`<button onclick="claimReturn('${b.fbId}')" class="bg-green-600 px-6 py-2 rounded-full text-xs font-black">💰 CLAIM R${b.returnAmount}</button>`:`<span class="text-[10px] bg-zinc-800 px-3 py-1 rounded-full">⏳ Growing +R${(b.profit/7/24).toFixed(2)}/hour</span>`}
+      </div>
     </div>`;
-  }).join('') || '<p class="col-span-2 text-center py-10 text-zinc-500">No investments yet - AI ready</p>';
-}
-window.renderMyBids=function(){
-  if(!currentBidder){
-    document.getElementById('myBidsGrid').innerHTML='<p class="col-span-2 text-center py-10 text-zinc-500">Login to see bids</p>'; return;
-  }
-  let myDeals=deals.filter(d=> (d.bids||[]).some(b=>String(b.bidderFbId)===String(currentBidder.fbId)) );
-  document.getElementById('myBidsGrid').innerHTML=myDeals.map(d=>{
-    let myBid=d.bids.filter(b=>String(b.bidderFbId)===String(currentBidder.fbId)).reduce((s,b)=>s+b.amount,0);
-    let cd=formatCountdown(d.end);
-    return `<div class="bg-black border-2 border-purple-600/30 rounded-xl p-4">
-      <h3 class="font-black text-sm text-purple-400">${d.name}</h3>
-      <p class="text-xs text-zinc-400">My total bid: R${myBid} | AI ROI +${d.aiRoi}%</p>
-      <p class="text-xs mt-1">Deal: R${d.current}/${d.target} (${Math.round(d.current/d.target*100)}%) | Ends: ${cd.txt}</p>
-    </div>`;
-  }).join('') || '<p class="col-span-2 text-center py-10 text-zinc-500">No bids yet - Start bidding on AI deals</p>';
+  }).join('') || '<p class="text-center py-6 text-zinc-500">No active coins - Bid to see daily growth</p>';
+
+  let matured=myBids.filter(b=>Date.now()>=b.endDate &&!b.claimed);
+  document.getElementById('maturedList').innerHTML=matured.map(b=>`<div class="bg-green-900/20 border border-green-600 rounded-xl p-3 flex justify-between"><div><p class="font-black text-xs text-green-400">${b.qty}x ${b.coinName} - R${b.returnAmount} READY! Grown +${b.returnPercent}%</p><p class="text-[10px] text-zinc-400">Daily growth completed: R${b.cost} → R${b.returnAmount}</p></div><button onclick="claimReturn('${b.fbId}')" class="bg-green-600 px-4 py-2 rounded-full text-xs font-black">CLAIM R${b.returnAmount}</button></div>`).join('') || '<p class="text-xs text-zinc-500">No matured - Growth in progress</p>';
 }
 
-window.saveDeal=function(){
-  let name=document.getElementById('aName').value.trim();
-  let desc=document.getElementById('aDesc').value.trim()||'AI scored investment';
-  let min=parseInt(document.getElementById('aMin').value)||500;
-  let target=parseInt(document.getElementById('aTarget').value)||50000;
-  let risk=parseInt(document.getElementById('aAiRisk').value)||5;
-  let roi=parseInt(document.getElementById('aAiRoi').value)||20;
-  let days=parseInt(document.getElementById('aDays').value)||7;
-  if(!name) return alert('Name required');
-  let id=Date.now(); let fbId=id.toString();
-  let ai=aiScoreDeal(risk, roi, target);
-  set(ref(db,'ai_deals/'+fbId),{
-    id:id, fbId:fbId, name:name, desc:desc, minInvest:min, target:target, current:0, bids:[], end:Date.now()+days*86400000,
-    aiRisk:risk, aiRoi:roi, aiScore:ai.score, investors:0
-  }).then(()=>{ document.getElementById('aName').value=''; document.getElementById('aDesc').value=''; alert('✅ AI Deal added with score '+ai.score); });
+window.claimReturn=async function(fbId){
+  let bid=bids.find(b=>b.fbId===fbId); if(!bid) return;
+  if(Date.now()<bid.endDate) return alert('Wait 7 days - Growth not finished');
+  let user=users.find(u=>u.fbId===bid.userFbId); if(!user) return;
+  if(!confirm(`Claim R${bid.returnAmount}? You invested R${bid.cost}, profit R${bid.profit} after 7 days daily growth`)) return;
+  await update(ref(db,'coin_users/'+user.fbId),{ wallet:(user.wallet||0)+bid.returnAmount });
+  await update(ref(db,'coin_bids/'+fbId),{ claimed:true, status:'claimed' });
+  alert(`✅ Claimed R${bid.returnAmount}! Profit R${bid.profit} from daily growth`);
 }
-window.openAdmin=function(){ document.getElementById('admin').classList.remove('hidden'); }
-window.adminTab=function(t){ ['deals','bidders'].forEach(x=>document.getElementById('admin-'+x).classList.toggle('hidden', x!==t)); document.querySelectorAll('[id^=at-]').forEach(b=>b.className='bg-zinc-800 px-4 py-2 rounded-full text-xs'); document.getElementById('at-'+t).className='bg-purple-600 px-4 py-2 rounded-full text-xs font-black'; }
-window.deleteDeal=function(fbId){ if(!confirm('Delete AI deal?')) return; remove(ref(db,'ai_deals/'+fbId)); }
-window.deleteBidder=function(fbId){ if(!confirm('Delete investor? Wallet + portfolio will be lost!')) return; remove(ref(db,'ai_bidders/'+fbId)); }
-window.renderAdminDeals=function(){
-  document.getElementById('adminDealsList').innerHTML=deals.map(d=>`<div class="bg-black border border-zinc-800 p-3 rounded-xl mt-2 flex justify-between items-center"><div><p class="font-black text-xs text-purple-400">${d.name} - AI Score ${d.aiScore} - R${d.current}/${d.target}</p><p class="text-[11px] text-zinc-400">Risk ${d.aiRisk}/10 | ROI +${d.aiRoi}% | ${d.bids?.length||0} bids</p></div><button onclick="deleteDeal('${d.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1.5 rounded-full text-xs text-red-400">🗑️ DELETE</button></div>`).join('')||'No deals';
+window.openAdmin=function(){ let pin=prompt('Admin PIN?'); if(pin!=='10111'){ alert('Wrong'); return; } document.getElementById('admin').classList.remove('hidden'); renderAdmin(); }
+window.adminTab=function(t){ document.getElementById('admin-bids').classList.toggle('hidden', t!=='bids'); document.getElementById('admin-users').classList.toggle('hidden', t!=='users'); document.getElementById('at-bids').className=t==='bids'?'bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black':'bg-zinc-800 px-4 py-2 rounded-full text-xs'; document.getElementById('at-users').className=t==='users'?'bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black':'bg-zinc-800 px-4 py-2 rounded-full text-xs'; }
+window.renderAdmin=function(){
+  let moc=bids.filter(b=>b.coin==='moc').reduce((s,b)=>s+b.qty,0);
+  let eut=bids.filter(b=>b.coin==='eut').reduce((s,b)=>s+b.qty,0);
+  document.getElementById('adminMocSold').innerText=moc; document.getElementById('adminEutSold').innerText=eut; document.getElementById('adminBidders').innerText=users.length;
+  document.getElementById('adminBidsList').innerHTML=bids.slice().reverse().map(b=>{
+    let g=getDailyGrowth(b); let isMatured=Date.now()>=b.endDate;
+    return `<div class="bg-black border border-zinc-800 p-3 rounded-xl mt-2 flex justify-between items-center"><div><p class="font-black text-xs ${b.coin==='moc'?'text-yellow-400':'text-purple-400'}">${b.qty}x ${b.coinName} - ${b.userName} - R${b.cost} → R${b.returnAmount} - Now R${g.currentValue.toFixed(2)} (+${g.currentPercent.toFixed(1)}%) ${b.claimed?'✅ CLAIMED':isMatured?'🟢 MATURED':'📈 GROWING'}</p><p class="text-[11px] text-zinc-400">${b.userPhone} | Bought ${new Date(b.buyDate).toLocaleString()} | Growth: +R${g.growth.toFixed(2)} today | Daily +${b.dailyPercent}%</p></div><button onclick="deleteBid('${b.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1 rounded-full text-xs text-red-400">🗑️ DELETE</button></div>`;
+  }).join('') || 'No bids';
+  document.getElementById('adminUsersList').innerHTML=users.map(u=>{
+    let ub=bids.filter(b=>b.userFbId===u.fbId); let invested=ub.reduce((s,b)=>s+b.cost,0); let current=ub.filter(b=>!b.claimed).reduce((s,b)=>{ let g=getDailyGrowth(b); return s+g.currentValue; },0);
+    return `<div class="bg-black border border-zinc-800 p-3 rounded-xl mt-2 flex justify-between"><div><p class="font-black text-xs">${u.name} - Wallet R${u.wallet||0} - Invested R${invested} - Now R${current.toFixed(2)} (+R${(current-invested).toFixed(2)} growth)</p><p class="text-[11px] text-zinc-400">${u.phone} | ${ub.length} coins | ID ${u.fbId}</p></div><div class="flex flex-col gap-1"><button onclick="addWallet('${u.fbId}')" class="bg-green-900/30 border border-green-600 px-3 py-1 rounded-full text-xs text-green-400">💰 ADD WALLET</button><button onclick="deleteUser('${u.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1 rounded-full text-xs text-red-400">🗑️ DELETE</button></div></div>`;
+  }).join('') || 'No users';
 }
-window.renderAdminBidders=function(){
-  document.getElementById('adminBiddersList').innerHTML=bidders.map(b=>`<div class="bg-black border border-zinc-800 p-3 rounded-xl mt-2 flex justify-between items-center"><div><p class="font-black text-xs">${b.name} - R${b.wallet||0} wallet - R${b.invested||0} invested</p><p class="text-[11px] text-zinc-400">${b.phone} | ${b.portfolio?.length||0} deals | ${b.fbId}</p></div><button onclick="deleteBidder('${b.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1.5 rounded-full text-xs text-red-400">🗑️ DELETE USER</button></div>`).join('')||'No investors';
-}
-function updateStats(){
-  document.getElementById('adminDealsCount').innerText=deals.length;
-  document.getElementById('adminBiddersCount').innerText=bidders.length;
-  document.getElementById('adminTotalInvested').innerText='R'+deals.reduce((s,d)=>s+d.current,0).toLocaleString();
-}
-function formatCountdown(end){ let diff=end-Date.now(); if(diff<=0) return{txt:'ENDED'}; let d=Math.floor(diff/86400000); let h=Math.floor(diff%86400000/3600000); return{txt:(d>0?d+'d ':'')+h+'h left'}; }
+window.deleteBid=function(fbId){ if(!confirm('Delete bid?')) return; remove(ref(db,'coin_bids/'+fbId)); }
+window.deleteUser=function(fbId){ if(!confirm('Delete user + all bids + growth?')) return; bids.filter(b=>b.userFbId===fbId).forEach(b=>remove(ref(db,'coin_bids/'+b.fbId))); remove(ref(db,'coin_users/'+fbId)); if(currentUser&&currentUser.fbId===fbId){ localStorage.removeItem('coin_user'); currentUser=null; } }
+window.addWallet=function(fbId){ let amt=parseInt(prompt('Add wallet amount?')); if(!amt) return; let u=users.find(x=>x.fbId===fbId); if(!u) return; update(ref(db,'coin_users/'+fbId),{ wallet:(u.wallet||0)+amt }); }
 
-renderDeals(); showView('deals');
+calcTotal('moc'); calcTotal('eut');
+setInterval(()=>{ renderPortfolio(); }, 1000); // LIVE GROWTH UPDATE EVERY SECOND
+
 </script></body></html>
