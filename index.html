@@ -1,160 +1,350 @@
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BIDKZN FLASH BIDDING - Sell → Admin → Timed Public → Bid Any Amount</title>
+<title>BIDKZN - Load Wallet with 1 Voucher Before Bidding</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<style>body{font-family:system-ui;background:#000;padding-bottom:90px}.bidkzn-gold{background:linear-gradient(90deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}.flash-pulse{animation:flash 1.5s infinite}@keyframes flash{0%{box-shadow:0 0 0 0 rgba(255,0,0,0.7)}70%{box-shadow:0 0 0 10px rgba(255,0,0,0)}100%{box-shadow:0 0 0 0 rgba(255,0,0,0)}}</style>
+<style>body{font-family:system-ui;background:#000;padding-bottom:90px}.bidkzn-gold{background:linear-gradient(90deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}</style>
 </head><body class="bg-black text-white">
-<header class="sticky top-0 z-50 bg-black border-b-2 border-red-600 p-3"><div class="flex justify-between items-center max-w-6xl mx-auto"><div class="flex items-center gap-2"><div class="w-10 h-10 bg-gradient-to-br from-red-600 to-yellow-400 rounded-full flex items-center justify-center font-black text-white">⚡</div><div><h1 class="font-black text-lg"><span class="bidkzn-gold">BID</span><span class="text-red-600">FLASH</span> <span class="text-white">COINS</span></h1><p class="text-[8px] text-zinc-400">SELL → ADMIN APPROVAL → TIMED PUBLIC → BID ANY AMOUNT</p></div><span class="bg-red-600 text-[9px] px-2 py-1 rounded-full font-black flash-pulse">⚡ FLASH LIVE</span></div><div class="flex gap-2"><button onclick="showView('flash')" class="bg-red-600 px-3 py-2 rounded-full text-xs font-black">⚡ FLASH MARKET</button><button onclick="showView('mycoins')" class="bg-zinc-800 px-3 py-2 rounded-full text-xs">💼 MY COINS</button><button onclick="showView('portfolio')" class="bg-zinc-800 px-3 py-2 rounded-full text-xs">📈 PORTFOLIO</button><button onclick="openAdmin()" class="bg-black border border-zinc-700 px-3 py-2 rounded-full text-xs">🔒 ADMIN</button></div></div></header>
+<header class="sticky top-0 z-50 bg-black border-b-2 border-yellow-500 p-3"><div class="flex justify-between items-center max-w-6xl mx-auto"><div class="flex items-center gap-2"><div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-full flex items-center justify-center font-black text-black">🎟️</div><div><h1 class="font-black text-lg"><span class="bidkzn-gold">BID</span><span class="text-white">KZN</span> <span class="text-yellow-400">VOUCHER</span></h1><p class="text-[8px] text-zinc-400">LOAD WALLET WITH 1 VOUCHER → ADMIN APPROVES → WAIT FOR FLASH → BID</p></div></div><div class="flex gap-2"><button onclick="showView('profile')" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black">👤 WALLET - Load 1 Voucher</button><button onclick="showView('flash')" class="bg-zinc-800 px-3 py-2 rounded-full text-xs">⚡ FLASH BIDDING</button><button onclick="showView('mywins')" class="bg-zinc-800 px-3 py-2 rounded-full text-xs">🏆 MY WINS</button><button onclick="openAdmin()" class="bg-black border border-zinc-700 px-3 py-2 rounded-full text-xs">🔒 ADMIN</button></div></div></header>
 
-<div class="text-center py-5 bg-gradient-to-b from-red-900/20 to-black border-b border-red-900/20">
-<h1 class="text-3xl font-black"><span class="bidkzn-gold">FLASH</span> <span class="text-red-600">BIDDING</span> <span class="text-white">SYSTEM</span></h1>
-<p class="text-[10px] text-zinc-400 mt-2">1. SELL COINS → 2. ADMIN APPROVES + SETS TIME → 3. GOES PUBLIC AT THAT TIME → 4. NEW CLIENTS BID ANY AMOUNT</p>
-<div id="nextFlashTime" class="mt-3 text-xs"></div>
+<div class="text-center py-4 bg-gradient-to-b from-yellow-900/20 to-black border-b border-yellow-900/20">
+<h1 class="text-2xl font-black"><span class="bidkzn-gold">NEW FLOW:</span> <span class="text-white">LOAD WALLET WITH 1 VOUCHER → ADMIN APPROVES → BID IN FLASH</span></h1>
+<p class="text-[11px] text-zinc-300 mt-1">Investor must load wallet with amount they wish to invest using ONE voucher code, admin approves, wallet +R, then wait for flash bidding to bid. Voucher only!</p>
 </div>
 
 <div class="max-w-6xl mx-auto p-3">
-
-<!-- FLASH MARKET - PUBLIC PAGE WHERE NEW CLIENTS BID -->
-<div id="flashView">
-<div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-4 mb-4">
-<div class="flex justify-between items-center">
-<h2 class="font-black text-red-400 text-lg">⚡ FLASH MARKET - LIVE NOW - BID ANY AMOUNT</h2>
-<span class="text-[10px] bg-black border border-red-600/30 px-3 py-1 rounded-full"><span id="liveFlashCount">0</span> LIVE FLASH DEALS</span>
+<!-- PROFILE + WALLET - LOAD WITH 1 VOUCHER BEFORE BIDDING -->
+<div id="profileView">
+<div class="bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-5">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-4"><div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-full flex items-center justify-center text-3xl font-black text-black" id="profileAvatar">U</div><div><h2 class="font-black text-2xl" id="profileName">Guest</h2><p class="text-[11px] text-zinc-400" id="profilePhone">Load wallet with 1 voucher to start bidding</p><p class="text-[10px] text-zinc-500">ID: <span id="profileId">-</span></p></div></div>
+<div class="text-right"><p class="text-[10px] text-zinc-400">WALLET BALANCE</p><p class="text-3xl font-black text-yellow-400" id="walletBalance">R0.00</p><p class="text-[9px] text-zinc-500" id="walletStatus">Load with 1 voucher to bid</p></div>
 </div>
-<p class="text-[11px] text-zinc-400 mt-2">These are coins investors are selling. Admin approved. Bidding open at scheduled time. Type how much you wish to invest!</p>
+
+<!-- LOAD WALLET WITH 1 VOUCHER CODE - BEFORE BIDDING -->
+<div class="mt-6 bg-black border-2 border-green-600 rounded-2xl p-5">
+<h3 class="font-black text-green-400 text-lg">🎟️ STEP 1: LOAD WALLET WITH AMOUNT YOU WISH TO INVEST - USING 1 VOUCHER CODE ONLY</h3>
+<p class="text-[11px] text-zinc-400 mt-2">To bid in flash market, you must first load your wallet with the amount you wish to invest, using ONE voucher code. Admin will approve, then wallet +R amount, then you can wait for flash bidding and bid.</p>
+<div class="mt-4 bg-zinc-900 rounded-xl p-4 border border-yellow-500/20">
+<p class="text-[11px] font-black text-yellow-400">📋 How to Load Wallet Before Bidding:</p>
+<p class="text-[10px] text-zinc-400 mt-1">1. Buy voucher code from admin / shop - e.g. R500, R1000, R2000 (ONE voucher code = amount you wish to invest)<br>2. Enter code below → Click LOAD WALLET WITH 1 VOUCHER<br>3. Request goes to admin for approval<br>4. Admin approves → Wallet +R amount instantly<br>5. Wait for flash bidding → Bid with loaded wallet → Wallet deducted when you bid</p>
+</div>
+<div class="mt-4 flex gap-2">
+<input id="voucherCodeInput" placeholder="Enter ONE voucher code for amount you wish to invest - e.g. BIDKZN-A1B2-C3D4 (R500, R1000, etc)" class="flex-1 p-5 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black tracking-widest uppercase text-yellow-400 text-lg" maxlength="20">
+<button onclick="loadWalletWithVoucher()" class="bg-green-600 px-8 py-5 rounded-full font-black text-sm">🎟️ LOAD WALLET WITH 1 VOUCHER</button>
+</div>
+<p class="text-[10px] text-zinc-500 mt-2 text-center">ONE voucher code only - Must be amount you wish to invest - Example: You wish to invest R1000 → Buy R1000 voucher → Enter code → Load wallet R1000 → Admin approves → Then bid R1000 in flash market</p>
+<div id="voucherLoadResult" class="mt-3 hidden"></div>
+</div>
+
+<div class="mt-6 grid md:grid-cols-3 gap-3">
+<div class="bg-black border border-green-600/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Wallet Loaded</p><p class="text-xl font-black text-green-400" id="statLoaded">R0</p><p class="text-[9px] text-zinc-500">Via 1 voucher each time</p></div>
+<div class="bg-black border border-yellow-500/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Pending Admin Approval</p><p class="text-xl font-black text-yellow-400" id="statPending">0</p><p class="text-[9px] text-zinc-500">Voucher load requests</p></div>
+<div class="bg-black border border-red-600/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Ready to Bid in Flash</p><p class="text-xl font-black text-red-400" id="statReady">R0</p><p class="text-[9px] text-zinc-500">Wallet balance</p></div>
+</div>
+
+<div class="mt-6 grid md:grid-cols-2 gap-4">
+<div class="bg-zinc-900 border border-zinc-700 rounded-2xl p-4"><h3 class="font-black text-sm">⏳ My Voucher Load Requests - Waiting Admin Approval</h3><p class="text-[10px] text-zinc-500">You loaded wallet with 1 voucher - Admin must approve before you can bid</p><div id="myLoadRequests" class="mt-3 space-y-2 max-h-64 overflow-y-auto"></div></div>
+<div class="bg-zinc-900 border border-zinc-700 rounded-2xl p-4"><h3 class="font-black text-sm">💳 Wallet History - 1 Voucher Loads</h3><div id="walletHistory" class="mt-3 space-y-2 max-h-64 overflow-y-auto"></div></div>
+</div>
+
+<div class="mt-6 bg-black border border-zinc-800 rounded-xl p-4">
+<h4 class="font-black text-xs">🎟️ My Voucher Codes - Payouts Received</h4>
+<div id="myVoucherCodes" class="mt-3"></div>
+</div>
+</div>
+</div>
+
+<!-- FLASH MARKET - BID ONLY IF WALLET LOADED WITH 1 VOUCHER -->
+<div id="flashView" class="hidden">
+<div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-4 mb-4">
+<div class="flex justify-between items-center"><h2 class="font-black text-red-400 text-lg">⚡ FLASH BIDDING - Bid Only if Wallet Loaded with 1 Voucher</h2><span class="bg-yellow-400 text-black text-[10px] px-3 py-1 rounded-full font-black">Wallet: R<span id="flashWalletBalance">0</span></span></div>
+<p class="text-[11px] text-zinc-400 mt-2">You must load wallet with amount you wish to invest using ONE voucher code, admin approves, then you can bid here. Wallet will be deducted when you bid. Type how much you wish to invest.</p>
+<div id="walletCheck" class="mt-3 hidden"></div>
 </div>
 <div id="flashGrid" class="grid md:grid-cols-2 gap-4"></div>
-<div id="upcomingFlash" class="mt-6">
-<h3 class="font-black text-sm text-yellow-400">⏰ UPCOMING FLASH - Scheduled by Admin - Not yet public</h3>
-<div id="upcomingGrid" class="grid md:grid-cols-2 gap-4 mt-3"></div>
+<div id="upcomingFlash" class="mt-6"><h3 class="font-black text-sm text-yellow-400">⏰ UPCOMING FLASH - Load wallet now to be ready</h3><div id="upcomingGrid" class="mt-3 grid md:grid-cols-2 gap-4"></div></div>
+</div>
+
+<!-- MY WINS -->
+<div id="mywinsView" class="hidden">
+<div class="bg-zinc-900 border-2 border-green-600 rounded-2xl p-5">
+<h2 class="font-black text-green-400 text-xl">🏆 MY WINS - Coins Won After Bidding with Loaded Wallet</h2>
+<p class="text-[11px] text-zinc-400 mt-2">You loaded wallet with 1 voucher, admin approved, you bid, you won - Coins transferred after finalization - No 24hr burn, you already paid before bidding via voucher</p>
+<div id="myWinsList" class="mt-6 space-y-3"></div>
 </div>
 </div>
 
-<!-- MY COINS - WHERE INVESTOR SELLS -->
-<div id="mycoinsView" class="hidden">
-<div class="bg-zinc-900 border-2 border-yellow-500/50 rounded-2xl p-5">
-<div class="flex justify-between"><h2 class="font-black text-yellow-400 text-lg">💼 MY COINS - SELL FOR FLASH MARKET</h2><button onclick="showView('flash')" class="bg-red-600 px-4 py-2 rounded-full text-xs font-black">⚡ GO TO FLASH MARKET</button></div>
-<div class="grid grid-cols-3 gap-3 mt-4">
-<div class="bg-black border border-yellow-500/30 rounded-xl p-3 text-center"><p class="text-[10px] text-zinc-400">My Coins Value</p><p class="text-xl font-black text-yellow-400" id="myCoinsValue">R0</p></div>
-<div class="bg-black border border-green-600/30 rounded-xl p-3 text-center"><p class="text-[10px] text-zinc-400">Sell Requests Pending</p><p class="text-xl font-black text-green-400" id="myPendingSell">0</p></div>
-<div class="bg-black border border-zinc-700 rounded-xl p-3 text-center"><p class="text-[10px] text-zinc-400">Wallet</p><p class="text-xl font-black text-white" id="myWallet">R0</p></div>
-</div>
-<div id="myCoinsList" class="mt-6 space-y-3"></div>
-<div class="mt-6 bg-black border border-zinc-800 rounded-xl p-4">
-<h4 class="font-black text-xs">📤 My Sell Requests - Waiting Admin Approval</h4>
-<div id="mySellRequests" class="mt-3 space-y-2"></div>
-</div>
-</div>
+<!-- MY COINS - SELL -->
+<div id="mycoinsView" class="hidden"><div class="bg-zinc-900 border-2 border-yellow-500/50 rounded-2xl p-5"><h2 class="font-black text-yellow-400">💼 MY COINS - Sell for Flash - Get Voucher Payout</h2><div id="myCoinsList" class="mt-4 space-y-3"></div></div></div>
 </div>
 
-<!-- PORTFOLIO - DAILY GROWTH STILL THERE -->
-<div id="portfolioView" class="hidden">
-<div class="bg-zinc-900 border border-zinc-700 rounded-2xl p-5">
-<h2 class="font-black text-white">📈 PORTFOLIO - DAILY GROWTH</h2>
-<div id="portfolioList" class="mt-4 space-y-3"></div>
-</div>
-</div>
-</div>
-
-<!-- ADMIN - APPROVAL PAGE WITH TIME CHOOSER -->
+<!-- ADMIN - APPROVE VOUCHER LOADS BEFORE BIDDING -->
 <div id="admin" class="hidden fixed inset-0 bg-black z-50 overflow-y-auto"><div class="max-w-6xl mx-auto p-3">
-<div class="bg-zinc-900 rounded-2xl p-4 flex justify-between items-center border-2 border-red-600"><h2 class="font-black text-red-400">🔒 ADMIN - FLASH APPROVAL - SET PUBLIC TIME</h2><button onclick="document.getElementById('admin').classList.add('hidden')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">CLOSE</button></div>
+<div class="bg-zinc-900 rounded-2xl p-4 flex justify-between items-center border-2 border-yellow-500"><h2 class="font-black text-yellow-400">🔒 ADMIN - APPROVE 1 VOUCHER WALLET LOADS → FLASH BIDDING</h2><button onclick="document.getElementById('admin').classList.add('hidden')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">CLOSE</button></div>
 
-<div class="mt-4 bg-black border-2 border-yellow-500/50 rounded-xl p-4">
-<h3 class="font-black text-sm text-yellow-400">⚡ HOW FLASH BIDDING WORKS:</h3>
-<p class="text-[11px] text-zinc-400 mt-2">1. Investors click SELL on their coins → Request comes here as PENDING<br>2. Admin clicks APPROVE + chooses TIME (e.g. 2026-05-14 18:00) → Goes to SCHEDULED<br>3. At that chosen time, system automatically sends to PUBLIC FLASH MARKET page<br>4. New registered clients see it live and can type any amount they wish to invest (bidding)</p>
+<div class="mt-4 bg-black border-2 border-green-600 rounded-xl p-4">
+<h3 class="font-black text-sm text-green-400">🎟️ NEW FLOW: Investor Loads Wallet with 1 Voucher → Admin Approves → Wait for Flash → Bid</h3>
+<p class="text-[11px] text-zinc-400 mt-2">1. Investor buys ONE voucher code for amount they wish to invest (e.g. R1000) → 2. Enters code in WALLET page → Request goes to PENDING VOUCHER LOADS → 3. Admin approves → Wallet +R1000 → 4. Investor waits for flash market → 5. Bids with loaded wallet → Wallet deducted on bid → If outbid, refunded to wallet → If wins, coins transferred after finalization</p>
+</div>
+
+<div class="mt-4 bg-black border-2 border-yellow-500 rounded-xl p-4">
+<h3 class="font-black text-sm text-yellow-400">🎟️ CREATE VOUCHER CODES - For Wallet Loading (1 Voucher = Amount to Invest)</h3>
+<div class="grid md:grid-cols-4 gap-2 mt-3">
+<input id="voucherAmount" type="number" placeholder="Amount e.g. 500, 1000" class="p-3 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black">
+<input id="voucherCount" type="number" value="5" class="p-3 rounded-full bg-zinc-900 border text-center">
+<input id="voucherPrefix" placeholder="BIDKZN" value="BIDKZN" class="p-3 rounded-full bg-zinc-900 border text-center font-black uppercase">
+<button onclick="createVouchers()" class="bg-yellow-400 text-black p-3 rounded-full font-black">🎟️ CREATE VOUCHERS</button>
+</div>
+<div class="flex gap-2 mt-3">
+<button onclick="createQuickVoucher(500)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">R500 Voucher (1 voucher to invest R500)</button>
+<button onclick="createQuickVoucher(1000)" class="bg-green-900/30 border border-green-600 px-4 py-2 rounded-full text-xs text-green-400">R1000 Voucher (1 voucher to invest R1000)</button>
+<button onclick="createQuickVoucher(2000)" class="bg-yellow-900/30 border border-yellow-600 px-4 py-2 rounded-full text-xs text-yellow-400">R2000 Voucher</button>
+</div>
 </div>
 
 <div class="flex gap-2 mt-4 overflow-x-auto">
-<button onclick="adminTab('pending')" id="at-pending" class="bg-red-600 px-4 py-2 rounded-full text-xs font-black">⏳ PENDING SELL REQUESTS</button>
-<button onclick="adminTab('scheduled')" id="at-scheduled" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">⏰ SCHEDULED - Waiting Time</button>
-<button onclick="adminTab('live')" id="at-live" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🔴 LIVE FLASH MARKET</button>
-<button onclick="adminTab('users')" id="at-users" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">USERS 🗑️</button>
+<button onclick="adminTab('loads')" id="at-loads" class="bg-green-600 px-4 py-2 rounded-full text-xs font-black">🎟️ PENDING VOUCHER LOADS - Approve Wallet</button>
+<button onclick="adminTab('vouchers')" id="at-vouchers" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🎟️ ALL VOUCHERS</button>
+<button onclick="adminTab('pending')" id="at-pending" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">⏳ FLASH PENDING</button>
+<button onclick="adminTab('live')" id="at-live" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🔴 LIVE FLASH - Bids with Loaded Wallet</button>
+<button onclick="adminTab('paid')" id="at-paid" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">✅ WINS - Paid via Wallet</button>
+<button onclick="adminTab('users')" id="at-users" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">USERS - Wallet</button>
 </div>
 
-<!-- PENDING - INVESTORS SELLING -->
-<div id="admin-pending" class="mt-4">
-<h3 class="font-black text-sm text-red-400">⏳ PENDING - Investors want to sell - Approve + Set Time</h3>
-<div id="adminPendingList" class="mt-3"></div>
-</div>
-
-<!-- SCHEDULED - APPROVED BUT WAITING FOR TIME -->
-<div id="admin-scheduled" class="hidden mt-4">
-<h3 class="font-black text-sm text-yellow-400">⏰ SCHEDULED - Approved by Admin - Will go public at chosen time</h3>
-<div id="adminScheduledList" class="mt-3"></div>
-</div>
-
-<!-- LIVE - CURRENTLY ON PUBLIC PAGE -->
-<div id="admin-live" class="hidden mt-4">
-<h3 class="font-black text-sm text-green-400">🔴 LIVE ON PUBLIC FLASH MARKET - New clients bidding now</h3>
-<div id="adminLiveList" class="mt-3"></div>
-</div>
-
+<div id="admin-loads" class="mt-4"><div id="adminLoadsList"></div></div>
+<div id="admin-vouchers" class="hidden mt-4"><div id="adminVouchersList"></div></div>
+<div id="admin-pending" class="hidden mt-4"><div id="adminPendingList"></div></div>
+<div id="admin-live" class="hidden mt-4"><div id="adminLiveList"></div></div>
+<div id="admin-paid" class="hidden mt-4"><div id="adminPaidList"></div></div>
 <div id="admin-users" class="hidden mt-4"><div id="adminUsersList"></div></div>
 </div></div>
 
-<!-- SELL MODAL -->
-<div id="sellModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-yellow-400 text-lg">📤 SELL YOUR COINS FOR FLASH MARKET</h2><p id="sellText" class="text-sm mt-3 text-zinc-300"></p><div class="mt-4 bg-black p-4 rounded-xl border border-zinc-800"><label class="text-[11px] text-zinc-400">How many coins to sell?</label><input id="sellQty" type="number" min="1" value="1" class="w-full mt-1 p-3 rounded-full bg-zinc-900 border text-center font-black text-lg"><label class="text-[11px] text-zinc-400 mt-3 block">Selling Price (You set - buyers will bid on this)</label><input id="sellPrice" type="number" class="w-full mt-1 p-3 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black text-lg" placeholder="e.g. 120"><p class="text-[10px] text-zinc-500 mt-1">Example: You bought at R100, now worth R120 with growth - You can sell at R120 or R130</p><label class="text-[11px] text-zinc-400 mt-3 block">Description for buyers</label><input id="sellDesc" placeholder="e.g. AiMoc 5 coins, bought 3 days ago, +21% growth" class="w-full mt-1 p-3 rounded-full bg-zinc-900 border text-sm"></div><div class="flex gap-2 mt-6"><button onclick="confirmSell()" class="flex-1 bg-yellow-400 text-black py-4 rounded-full font-black">📤 SEND TO ADMIN FOR APPROVAL</button><button onclick="document.getElementById('sellModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
-
-<!-- APPROVAL MODAL WITH TIME CHOOSER -->
-<div id="approvalModal" class="hidden fixed inset-0 bg-black/90 z-[60] flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-red-400 text-lg">✅ APPROVE + SET PUBLIC TIME</h2><p id="approvalText" class="text-sm mt-3"></p><div class="mt-4 bg-black p-4 rounded-xl border-2 border-red-600/30"><label class="text-[11px] font-black text-red-400">⏰ CHOOSE WHEN IT GOES PUBLIC (Stain Time):</label><input id="publicTime" type="datetime-local" class="w-full mt-2 p-3 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black"><div class="flex gap-2 mt-3"><button onclick="setTimeNow()" class="flex-1 bg-zinc-800 py-2 rounded-full text-xs">NOW (Instant Public)</button><button onclick="setTimeInHour()" class="flex-1 bg-zinc-800 py-2 rounded-full text-xs">+1 Hour</button><button onclick="setTimeTomorrow()" class="flex-1 bg-zinc-800 py-2 rounded-full text-xs">Tomorrow 6PM</button></div><p class="text-[10px] text-zinc-500 mt-2">At this time, coin will automatically appear on public FLASH MARKET page for new clients to bid any amount</p></div><div class="flex gap-2 mt-6"><button onclick="confirmApproval()" class="flex-1 bg-red-600 py-4 rounded-full font-black">✅ APPROVE & SCHEDULE</button><button onclick="document.getElementById('approvalModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
-
-<!-- FLASH BID MODAL - NEW CLIENTS BID ANY AMOUNT -->
-<div id="flashBidModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-red-400 text-lg">⚡ FLASH BID - Type How Much You Wish to Invest</h2><p id="flashBidText" class="text-sm mt-3"></p><div id="flashBidGrowth" class="mt-3 bg-black border border-zinc-800 rounded-xl p-3 text-[11px]"></div><div class="mt-4 bg-black p-4 rounded-xl border-2 border-red-600/50"><label class="text-[11px] text-zinc-400">How much you wish to invest? (Type any amount)</label><input id="flashBidAmount" type="number" placeholder="e.g. 500, 1000, 2500" class="w-full mt-2 p-4 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black text-xl text-red-400"><p class="text-[10px] text-zinc-500 mt-2">Seller wants R<span id="sellerPrice">0</span> - You can bid higher to win! Min: R<span id="flashMin">0</span></p><p class="text-[10px] text-zinc-400">Your wallet: R<span id="flashWallet">0</span> | This is flash bidding - highest bidder wins the coins</p></div><div class="flex gap-2 mt-6"><button onclick="confirmFlashBid()" class="flex-1 bg-red-600 py-4 rounded-full font-black">🔥 BID R<span id="flashBidBtn">0</span> - FLASH</button><button onclick="document.getElementById('flashBidModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
+<!-- SELL + APPROVAL + FLASH BID MODALS -->
+<div id="sellModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-yellow-400">📤 SELL - Voucher Payout</h2><p id="sellText" class="text-sm mt-3"></p><div class="mt-4 bg-black p-4 rounded-xl border"><input id="sellQty" type="number" min="1" value="1" class="w-full p-3 rounded-full bg-zinc-900 border text-center font-black"><input id="sellPrice" type="number" class="w-full mt-2 p-3 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black text-lg"><input id="sellDesc" placeholder="Description" class="w-full mt-2 p-3 rounded-full bg-zinc-900 border text-sm"></div><div class="flex gap-2 mt-6"><button onclick="confirmSell()" class="flex-1 bg-yellow-400 text-black py-4 rounded-full font-black">SEND TO ADMIN</button><button onclick="document.getElementById('sellModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
+<div id="approvalModal" class="hidden fixed inset-0 bg-black/90 z-[60] flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-red-400">✅ APPROVE FLASH + SET TIME</h2><p id="approvalText" class="text-sm mt-3"></p><input id="publicTime" type="datetime-local" class="w-full mt-3 p-3 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black"><div class="flex gap-2 mt-6"><button onclick="confirmApproval()" class="flex-1 bg-red-600 py-4 rounded-full font-black">APPROVE & SCHEDULE</button><button onclick="document.getElementById('approvalModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
+<div id="flashBidModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-red-400">⚡ FLASH BID - Wallet Must Be Loaded with 1 Voucher</h2><p id="flashBidText" class="text-sm mt-3"></p><div class="mt-4 bg-black p-4 rounded-xl border-2 border-red-600/50"><label class="text-[11px] text-zinc-400">How much you wish to invest? (Wallet must have this amount - Loaded via 1 voucher)</label><input id="flashBidAmount" type="number" class="w-full mt-2 p-4 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black text-xl text-red-400"><p class="text-[10px] text-zinc-500 mt-2">Min R<span id="flashMin">0</span> | Your loaded wallet R<span id="flashWallet">0</span> (Loaded with 1 voucher, admin approved)</p><p class="text-[10px] text-yellow-400" id="flashWalletInfo"></p></div><div class="flex gap-2 mt-6"><button onclick="confirmFlashBid()" class="flex-1 bg-red-600 py-4 rounded-full font-black">BID R<span id="flashBidBtn">0</span> - Deduct from loaded wallet</button><button onclick="document.getElementById('flashBidModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div><p class="text-[10px] text-zinc-500 text-center mt-2">You loaded wallet with 1 voucher before bidding - Wallet will be deducted now - If outbid, refunded to wallet</p></div></div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 const firebaseConfig = { apiKey: "AIzaSyCxVmtWLZiVvcElpOG4gLxKylunD1_NnRA", authDomain: "kzn-store.firebaseapp.com", databaseURL: "https://kzn-store-default-rtdb.firebaseio.com", projectId: "kzn-store", storageBucket: "kzn-store.firebasestorage.app", messagingSenderId: "755959571531", appId: "1:755959571531:web:42ee597a9d0646923699ce" };
 const app = initializeApp(firebaseConfig); const db = getDatabase(app);
+let bids=[]; let users=[]; let flashRequests=[]; let walletRequests=[]; let vouchers=[]; let voucherLoads=[]; let currentUser=JSON.parse(localStorage.getItem('coin_user')||'null'); let pendingSell=null; let pendingApproval=null; let pendingFlashBid=null;
 
-let bids=[]; let users=[]; let flashRequests=[]; let currentUser=JSON.parse(localStorage.getItem('coin_user')||'null'); let pendingSell=null; let pendingApproval=null; let pendingFlashBid=null;
+onValue(ref(db, 'coin_bids'), (s)=>{ bids=s.val()?Object.values(s.val()):[]; renderAll(); });
+onValue(ref(db, 'coin_users'), (s)=>{ users=s.val()?Object.values(s.val()):[]; if(currentUser){ let u=users.find(x=>x.fbId===currentUser.fbId); if(u){ currentUser=u; localStorage.setItem('coin_user', JSON.stringify(u)); } } renderAll(); });
+onValue(ref(db, 'flash_requests'), (s)=>{ flashRequests=s.val()?Object.values(s.val()):[]; renderAll(); });
+onValue(ref(db, 'wallet_requests'), (s)=>{ walletRequests=s.val()?Object.values(s.val()):[]; renderAll(); });
+onValue(ref(db, 'vouchers'), (s)=>{ vouchers=s.val()?Object.values(s.val()):[]; renderAll(); });
+onValue(ref(db, 'voucher_loads'), (s)=>{ voucherLoads=s.val()?Object.values(s.val()):[]; renderAll(); });
 
-onValue(ref(db, 'coin_bids'), (s)=>{ const d=s.val(); bids=d?Object.values(d):[]; renderMyCoins(); renderPortfolio(); renderFlashMarket(); renderAdmin(); });
-onValue(ref(db, 'coin_users'), (s)=>{ const d=s.val(); users=d?Object.values(d):[]; if(currentUser){ let u=users.find(x=>x.fbId===currentUser.fbId); if(u){ currentUser=u; localStorage.setItem('coin_user', JSON.stringify(u)); } } renderMyCoins(); renderAdmin(); });
-onValue(ref(db, 'flash_requests'), (s)=>{ const d=s.val(); flashRequests=d?Object.values(d):[]; renderMyCoins(); renderFlashMarket(); renderAdmin(); });
+function genVoucherCode(prefix){ let chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; let code=prefix+'-'; for(let i=0;i<4;i++) code+=chars[Math.floor(Math.random()*chars.length)]; code+='-'; for(let i=0;i<4;i++) code+=chars[Math.floor(Math.random()*chars.length)]; return code; }
+window.showView=function(v){ document.getElementById('profileView').classList.toggle('hidden', v!=='profile'); document.getElementById('flashView').classList.toggle('hidden', v!=='flash'); document.getElementById('mywinsView').classList.toggle('hidden', v!=='mywins'); document.getElementById('mycoinsView').classList.toggle('hidden', v!=='mycoins'); }
 
-function getDailyGrowth(bid){
-  let now=Date.now(); let elapsed=now-bid.buyDate; let daysPassed=elapsed/(24*60*60*1000); if(daysPassed>7) daysPassed=7; if(daysPassed<0) daysPassed=0;
-  let currentValue=bid.cost + (bid.profit * (daysPassed/7)); let growth=currentValue-bid.cost; let currentPercent=(daysPassed/7)*bid.returnPercent;
-  return { daysPassed, currentPercent, currentValue, growth };
-}
+// LOAD WALLET WITH 1 VOUCHER CODE - BEFORE BIDDING
+window.loadWalletWithVoucher=async function(){
+  let code=document.getElementById('voucherCodeInput').value.trim().toUpperCase();
+  if(!code) return alert('Enter ONE voucher code - Amount you wish to invest');
 
-window.showView=function(v){
-  document.getElementById('flashView').classList.toggle('hidden', v!=='flash');
-  document.getElementById('mycoinsView').classList.toggle('hidden', v!=='mycoins');
-  document.getElementById('portfolioView').classList.toggle('hidden', v!=='portfolio');
-  if(v==='mycoins') renderMyCoins();
-  if(v==='portfolio') renderPortfolio();
-  if(v==='flash') renderFlashMarket();
-}
-
-// MY COINS - SELL FOR FLASH
-window.renderMyCoins=function(){
   if(!currentUser){
-    document.getElementById('myCoinsList').innerHTML='<div class="bg-black p-6 rounded-xl text-center border border-dashed"><p class="text-zinc-500">No coins - Buy AiMoc or AiEUT first</p><button onclick="alert(\'For sample, admin will add coins or use old buy system - Contact admin\')" class="mt-3 bg-yellow-400 text-black px-6 py-2 rounded-full text-xs font-black">Buy Coins First</button></div>';
-    document.getElementById('mySellRequests').innerHTML='<p class="text-xs text-zinc-500">No sell requests</p>';
-    ['myCoinsValue','myWallet'].forEach(id=>document.getElementById(id).innerText='R0');
-    document.getElementById('myPendingSell').innerText='0';
+    let name=prompt('Name to create wallet? (Load wallet with 1 voucher to start)'); if(!name) return;
+    let phone=prompt('WhatsApp?'); if(!phone) return;
+    let id=Date.now(); let newUser={id:id, fbId:id.toString(), name:name, phone:phone, wallet:0, vouchersRedeemed:0};
+    await set(ref(db,'coin_users/'+newUser.fbId), newUser);
+    localStorage.setItem('coin_user', JSON.stringify(newUser));
+    currentUser=newUser;
+  }
+
+  let voucher=vouchers.find(v=>v.code===code);
+  if(!voucher){
+    document.getElementById('voucherLoadResult').classList.remove('hidden');
+    document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-red-900/30 border border-red-600 p-4 rounded-xl text-center"><p class="text-red-400 font-black">❌ Invalid voucher code ${code}</p><p class="text-[11px] text-zinc-400">Buy voucher from admin - ONE voucher code = amount you wish to invest</p></div>`;
     return;
   }
-  let myBids=bids.filter(b=>String(b.userFbId)===String(currentUser.fbId) &&!b.claimed);
-  let mySellReqs=flashRequests.filter(r=>String(r.sellerFbId)===String(currentUser.fbId));
-  let totalValue=myBids.reduce((s,b)=>{ let g=getDailyGrowth(b); return s+g.currentValue; },0);
+  if(voucher.status!=='active'){
+    document.getElementById('voucherLoadResult').classList.remove('hidden');
+    document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-red-900/30 border border-red-600 p-4 rounded-xl text-center"><p class="text-red-400 font-black">❌ Voucher already used - ${code} - Status ${voucher.status}</p><p class="text-[11px] text-zinc-400">Each voucher can only be used once - Buy new voucher</p></div>`;
+    return;
+  }
 
-  document.getElementById('myCoinsValue').innerText='R'+totalValue.toFixed(2);
-  document.getElementById('myWallet').innerText='R'+(currentUser.wallet||0);
-  document.getElementById('myPendingSell').innerText=mySellReqs.length;
+  // Check if already requested this voucher
+  if(voucherLoads.some(vl=>vl.voucherCode===code && String(vl.userFbId)===String(currentUser.fbId) && vl.status==='pending')){
+    document.getElementById('voucherLoadResult').classList.remove('hidden');
+    document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-yellow-900/30 border border-yellow-600 p-4 rounded-xl text-center"><p class="text-yellow-400 font-black">⏳ Voucher ${code} already requested - Waiting admin approval</p></div>`;
+    return;
+  }
 
-  document.getElementById('myCoinsList').innerHTML=myBids.map(b=>{
-    let g=getDailyGrowth(b);
-    return `<div class="bg-black border ${b.coin==='moc'?'border-yellow-500/30':'border-purple-600/30'} rounded-xl p-4 flex justify-between items-center">
-      <div><p class="font-black text-sm ${b.coin==='moc'?'text-yellow-400':'text-purple-400'}">${b.qty}x ${b.coinName} - Now R${g.currentValue.toFixed(2)} (+${g.currentPercent.toFixed(1)}%)</p><p class="text-[11px] text-zinc-400">Bought R${b.cost} - Growth +R${g.growth.toFixed(2)} - ${g.daysPassed.toFixed(1)}/7 days</p><p class="text-[10px] text-zinc-500">Bought ${new Date(b.buyDate).toLocaleString()}</p></div>
-      <button onclick="openSellModal('${b.fbId}')" class="bg-yellow-400 text-black px-5 py-3 rounded-full text-xs font-black">📤 SELL FOR FLASH</button>
-    </div>`;
-  }).join('') || '<p class="text-center py-4 text-zinc-500">No active coins to sell</p>';
+  // Create voucher load request - 1 voucher = amount to invest, admin approves then wallet +R
+  let id=Date.now(); let fbId=id.toString();
+  await set(ref(db,'voucher_loads/'+fbId),{
+    id:id, fbId:fbId,
+    userId:currentUser.id, userFbId:currentUser.fbId, userName:currentUser.name, userPhone:currentUser.phone,
+    voucherCode:code, voucherFbId:voucher.fbId, amount:voucher.amount,
+    status:'pending', createdAt:Date.now(),
+    reason:`Load wallet with 1 voucher - Amount investor wishes to invest R${voucher.amount} - Before flash bidding`
+  });
 
-  document.getElementById('mySellRequests').innerHTML=mySellReqs.map(r=>{
-    let statusColor=r.status==='pending'?'text-yellow-400':r.status==='scheduled'?'text-blue-400':'text-green-400';
-    let statusText=r.status==='pending'?'⏳ PENDING ADMIN':r.status==='scheduled'?`⏰ SCHEDULED for ${new Date(r.publicTime).toLocaleString()}`:'🔴 LIVE ON FLASH MARKET';
-    return `<div class="bg-zinc-900 border border-zinc-700 p-3 rounded-xl flex justify-between"><div><p class="font-black text-xs ${r.coin==='moc'?'text-yellow-400':'text-purple-400'}">${r.qty}x ${r.coinName} - Selling at R${r.sellPrice} - ${statusText}</p><p class="text-[11px] text-zinc-400">${r.desc} | Current growth: R${getDailyGrowth(bids.find(b=>b.fbId===r.originalBidFbId)||{cost:r.originalCost, profit:r.originalCost*0.5, buyDate:r.originalBuyDate}).currentValue.toFixed(2)}</p><p class="text-[10px] text-zinc-500">Request: ${new Date(r.id).toLocaleString()} | B
+  document.getElementById('voucherCodeInput').value='';
+  document.getElementById('voucherLoadResult').classList.remove('hidden');
+  document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-yellow-900/30 border-2 border-yellow-600 p-4 rounded-xl text-center"><p class="text-yellow-400 font-black text-lg">⏳ VOUCHER LOAD REQUEST SENT - Waiting Admin Approval</p><p class="text-white font-black">Voucher: ${code} - R${voucher.amount} - ONE voucher for amount you wish to invest</p><p class="text-[11px] text-zinc-400 mt-1">Admin will approve → Wallet +R${voucher.amount} → Then you can wait for flash bidding and bid with loaded wallet<br>Check MY VOUCHER LOAD REQUESTS below - Status PENDING → APPROVED</p></div>`;
+}
+
+window.renderProfile=function(){
+  if(!currentUser){
+    document.getElementById('profileName').innerText='Guest - Load wallet with 1 voucher to start';
+    document.getElementById('profilePhone').innerText='Enter ONE voucher code = amount you wish to invest';
+    document.getElementById('profileId').innerText='-'; document.getElementById('walletBalance').innerText='R0.00';
+    document.getElementById('statLoaded').innerText='R0'; document.getElementById('statPending').innerText='0'; document.getElementById('statReady').innerText='R0';
+    document.getElementById('myLoadRequests').innerHTML='<p class="text-xs text-zinc-500">No voucher load requests - Enter ONE voucher code above to load wallet with amount you wish to invest</p>';
+    document.getElementById('walletHistory').innerHTML='<p class="text-xs text-zinc-500">No history - Load wallet with 1 voucher, admin approves, then bid</p>';
+    document.getElementById('myVoucherCodes').innerHTML='<p class="text-xs text-zinc-500">No voucher payouts yet</p>';
+    return;
+  }
+  document.getElementById('profileName').innerText=currentUser.name;
+  document.getElementById('profilePhone').innerText=currentUser.phone;
+  document.getElementById('profileId').innerText=currentUser.fbId;
+  document.getElementById('profileAvatar').innerText=(currentUser.name||'U')[0].toUpperCase();
+  document.getElementById('walletBalance').innerText='R'+(currentUser.wallet||0).toFixed(2);
+  document.getElementById('walletStatus').innerText=(currentUser.wallet||0)>=100?`Ready to bid in flash - Loaded with voucher - R${currentUser.wallet} available`:`Load wallet with 1 voucher (e.g. R500, R1000) to start bidding`;
+
+  let myLoads=voucherLoads.filter(vl=>String(vl.userFbId)===String(currentUser.fbId));
+  let approvedLoads=myLoads.filter(vl=>vl.status==='approved');
+  let pendingLoads=myLoads.filter(vl=>vl.status==='pending');
+  let totalLoaded=approvedLoads.reduce((s,vl)=>s+vl.amount,0);
+
+  document.getElementById('statLoaded').innerText='R'+totalLoaded.toLocaleString();
+  document.getElementById('statPending').innerText=pendingLoads.length;
+  document.getElementById('statReady').innerText='R'+(currentUser.wallet||0).toLocaleString();
+
+  document.getElementById('myLoadRequests').innerHTML=myLoads.slice().reverse().map(vl=>`<div class="bg-black border ${vl.status==='pending'?'border-yellow-500/50':'vl.status===\'approved\'?border-green-600/50':'border-red-600/30'} p-3 rounded-xl flex justify-between"><div><p class="font-black text-xs ${vl.status==='pending'?'text-yellow-400':vl.status==='approved'?'text-green-400':'text-red-400'}">🎟️ ${vl.voucherCode} - R${vl.amount} - ${vl.status.toUpperCase()} - 1 voucher = amount to invest</p><p class="text-[11px] text-zinc-400">Requested ${new Date(vl.createdAt).toLocaleString()} ${vl.approvedAt?`| Approved ${new Date(vl.approvedAt).toLocaleString()}`:''} | Wallet ${vl.status==='approved'?`+R${vl.amount}`:'waiting approval'}</p></div><span class="text-[10px] ${vl.status==='pending'?'bg-yellow-900/30 text-yellow-400':'bg-green-900/30 text-green-400'} px-3 py-1 rounded-full font-black">${vl.status.toUpperCase()}</span></div>`).join('') || '<p class="text-xs text-zinc-500">No voucher load requests - Enter ONE voucher code to load wallet with amount you wish to invest</p>';
+
+  let history=[]; myLoads.forEach(vl=>{ history.push({ time:vl.createdAt, desc:`Load wallet with 1 voucher ${vl.voucherCode} R${vl.amount} - ${vl.status} - Amount you wish to invest`, amount:vl.status==='approved'?vl.amount:0 }); });
+  bids.filter(b=>String(b.userFbId)===String(currentUser.fbId)).forEach(b=>{ history.push({ time:b.buyDate, desc:`Bought ${b.qty}x ${b.coinName} R${b.cost} with loaded wallet`, amount:-b.cost }); });
+  flashRequests.forEach(fr=>{ (fr.flashBids||[]).filter(b=>String(b.bidderFbId)===String(currentUser.fbId)).forEach(b=>{ history.push({ time:b.time, desc:`Flash bid R${b.amount} for ${fr.qty}x ${fr.coinName} with loaded wallet - ${fr.status}`, amount:-b.amount }); }); });
+  history.sort((a,b)=>b.time-a.time);
+  document.getElementById('walletHistory').innerHTML=history.slice(0,20).map(h=>`<div class="bg-black border border-zinc-800 p-2 rounded-xl flex justify-between"><div><p class="text-[11px]">${h.desc}</p><p class="text-[9px] text-zinc-500">${new Date(h.time).toLocaleString()}</p></div><span class="font-black text-xs ${h.amount>=0?'text-green-400':'text-red-400'}">${h.amount>=0?'+':''}R${h.amount}</span></div>`).join('') || '<p class="text-xs text-zinc-500">No history</p>';
+
+  let myVoucherPayouts=vouchers.filter(v=>v.payoutToFbId===currentUser.fbId);
+  document.getElementById('myVoucherCodes').innerHTML=myVoucherPayouts.map(v=>`<div class="bg-black border ${v.status==='active'?'border-yellow-500':'border-zinc-700'} p-3 rounded-xl flex justify-between"><div><p class="font-black text-xs text-yellow-400">🎟️ ${v.code} - R${v.amount} ${v.status.toUpperCase()}</p><p class="text-[10px] text-zinc-400">${v.reason} | ${new Date(v.createdAt).toLocaleString()}</p></div><button onclick="copyVoucher('${v.code}')" class="bg-zinc-800 px-3 py-1 rounded-full text-xs">📋 COPY</button></div>`).join('') || '<p class="text-xs text-zinc-500">No voucher payouts - When you sell coins, you get voucher code payout</p>';
+}
+
+// FLASH MARKET - BID ONLY IF WALLET LOADED WITH 1 VOUCHER
+window.renderFlashMarket=function(){
+  if(!currentUser){
+    document.getElementById('flashWalletBalance').innerText='0';
+    document.getElementById('walletCheck').classList.remove('hidden');
+    document.getElementById('walletCheck').innerHTML=`<div class="bg-red-900/30 border border-red-600 p-3 rounded-xl text-center"><p class="text-red-400 font-black">❌ No wallet - Load wallet with 1 voucher first to bid</p><p class="text-[11px] text-zinc-400">Go to PROFILE → Enter ONE voucher code for amount you wish to invest → Admin approves → Then come back to bid</p></div>`;
+  } else {
+    document.getElementById('flashWalletBalance').innerText=(currentUser.wallet||0).toFixed(0);
+    if((currentUser.wallet||0)<10){
+      document.getElementById('walletCheck').classList.remove('hidden');
+      document.getElementById('walletCheck').innerHTML=`<div class="bg-yellow-900/30 border border-yellow-600 p-3 rounded-xl text-center"><p class="text-yellow-400 font-black">⚠️ Wallet R${currentUser.wallet||0} - Load wallet with 1 voucher to invest</p><p class="text-[11px] text-zinc-400">You wish to invest R500? Buy R500 voucher, load wallet with 1 voucher code, admin approves, then bid R500 here</p><button onclick="showView('profile')" class="mt-2 bg-yellow-400 text-black px-6 py-2 rounded-full text-xs font-black">👤 GO LOAD WALLET WITH 1 VOUCHER</button></div>`;
+    } else {
+      document.getElementById('walletCheck').classList.remove('hidden');
+      document.getElementById('walletCheck').innerHTML=`<div class="bg-green-900/30 border border-green-600 p-3 rounded-xl text-center"><p class="text-green-400 font-black">✅ Wallet loaded R${currentUser.wallet} - Ready to bid! (Loaded with 1 voucher, admin approved)</p><p class="text-[11px] text-zinc-400">You loaded wallet with ONE voucher for amount you wish to invest - Now bid any amount up to R${currentUser.wallet} in flash market</p></div>`;
+    }
+  }
+  let now=Date.now(); let live=flashRequests.filter(r=>r.status==='scheduled' && r.publicTime && r.publicTime<=now); let upcoming=flashRequests.filter(r=>r.status==='scheduled' && r.publicTime && r.publicTime>now);
+  document.getElementById('flashGrid').innerHTML=live.map(r=>{ let highest=r.highestBid||0; let isWinning=r.highestBidderFbId && currentUser && String(r.highestBidderFbId)===String(currentUser.fbId); return `<div class="bg-zinc-900 border-2 ${r.coin==='moc'?'border-yellow-500':'border-purple-600'} rounded-2xl p-5"><div class="flex justify-between"><h3 class="font-black text-sm ${r.coin==='moc'?'text-yellow-400':'text-purple-400'}">${r.qty}x ${r.coinName} - FLASH - Bid with loaded wallet</h3><span class="bg-red-600 text-white text-[10px] px-3 py-1 rounded-full animate-pulse">LIVE - Wallet loaded required</span></div><div class="mt-3 grid grid-cols-2 gap-2 text-center"><div class="bg-black border rounded-xl p-2"><p class="text-[9px] text-zinc-500">ASKING</p><p class="font-black">R${r.sellPrice}</p></div><div class="bg-black border-2 border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">HIGHEST BID</p><p class="font-black text-green-400 text-lg">R${highest||r.sellPrice}</p><p class="text-[9px] ${isWinning?'text-green-400 font-black':''}">${isWinning?'YOU WINNING - Wallet deducted':(highest>0?r.highestBidderName:'Be first - Load wallet with 1 voucher')}</p></div></div><p class="text-[11px] text-zinc-400 mt-2">Seller ${r.sellerName} - ${r.desc} - ${r.flashBids?.length||0} bids - Must load wallet with 1 voucher before bidding</p><button onclick="openFlashBid('${r.fbId}')" class="w-full mt-4 ${currentUser && (currentUser.wallet||0)>=r.sellPrice?'bg-red-600':'bg-zinc-700'} py-4 rounded-full font-black">⚡ BID - Wallet must be loaded with 1 voucher (R${r.sellPrice}+ needed)</button></div>`; }).join('') || '<div class="col-span-2 bg-black p-8 rounded-2xl text-center border-2 border-dashed"><p class="text-zinc-500">No live flash - Load wallet with 1 voucher now to be ready for next flash</p></div>';
+  document.getElementById('upcomingGrid').innerHTML=upcoming.sort((a,b)=>a.publicTime-b.publicTime).map(r=>{ let diff=r.publicTime-now; let h=Math.floor(diff/3600000); let m=Math.floor((diff%3600000)/60000); return `<div class="bg-zinc-900 border border-yellow-500/30 rounded-xl p-4 opacity-75"><h3 class="font-black text-xs text-yellow-400">${r.qty}x ${r.coinName} - In ${h}h ${m}m - Load wallet now</h3><p class="text-[11px] text-zinc-400">Seller ${r.sellerName} - R${r.sellPrice} - Load wallet with 1 voucher R${r.sellPrice} to be ready</p></div>`; }).join('') || '<p class="text-xs text-zinc-500">No upcoming - Load wallet with 1 voucher to be ready</p>';
+}
+window.openFlashBid=function(fbId){
+  let req=flashRequests.find(r=>r.fbId===fbId); if(!req) return;
+  if(!currentUser){ alert('Create wallet first - Load with 1 voucher'); showView('profile'); return; }
+  if((currentUser.wallet||0)<10){ alert(`Wallet R${currentUser.wallet||0} - Must load wallet with 1 voucher for amount you wish to invest first!\n\nGo to PROFILE → Enter ONE voucher code (e.g. R${req.sellPrice}) → Admin approves → Then bid`); showView('profile'); return; }
+  pendingFlashBid=req;
+  document.getElementById('flashBidText').innerHTML=`${req.qty}x ${req.coinName} - Seller ${req.sellerName} - Asking R${req.sellPrice}<br><br><span class="text-green-400 font-black">✅ Your wallet loaded R${currentUser.wallet} with 1 voucher (admin approved) - Ready to bid!</span><br>Wallet will be deducted when you bid - If outbid, refunded to wallet`;
+  document.getElementById('flashMin').innerText=req.highestBid?req.highestBid+10:req.sellPrice;
+  document.getElementById('flashWallet').innerText=currentUser.wallet||0;
+  document.getElementById('flashWalletInfo').innerText=`Wallet loaded with 1 voucher - Amount you wished to invest R${currentUser.wallet} - You can bid up to this`;
+  document.getElementById('flashBidAmount').value=req.highestBid?req.highestBid+10:req.sellPrice;
+  document.getElementById('flashBidBtn').innerText=req.highestBid?req.highestBid+10:req.sellPrice;
+  document.getElementById('flashBidAmount').oninput=function(){ document.getElementById('flashBidBtn').innerText=this.value||0; };
+  document.getElementById('flashBidModal').classList.remove('hidden');
+}
+window.confirmFlashBid=async function(){
+  if(!pendingFlashBid||!currentUser) return;
+  let amt=parseInt(document.getElementById('flashBidAmount').value)||0;
+  let min=(pendingFlashBid.highestBid||0)>0?pendingFlashBid.highestBid+10:pendingFlashBid.sellPrice;
+  if(amt<min) return alert('Min R'+min);
+  if(amt>(currentUser.wallet||0)) return alert(`Low wallet R${currentUser.wallet} - You loaded wallet with 1 voucher for R${currentUser.wallet}, but you want to bid R${amt}\n\nLoad more with another 1 voucher for amount you wish to invest, admin approves, then bid again`);
+
+  // Deduct wallet now (loaded via 1 voucher before)
+  let newFlashBids=pendingFlashBid.flashBids||[];
+  newFlashBids.push({ bidderId:currentUser.id, bidderFbId:currentUser.fbId, bidderName:currentUser.name, bidderPhone:currentUser.phone, amount:amt, time:Date.now() });
+
+  // Refund previous highest bidder (since wallet was deducted during bidding)
+  if(pendingFlashBid.highestBidderFbId && pendingFlashBid.highestBid>0){
+    let prev=users.find(u=>u.fbId===pendingFlashBid.highestBidderFbId);
+    if(prev) await update(ref(db,'coin_users/'+prev.fbId),{ wallet:(prev.wallet||0)+pendingFlashBid.highestBid });
+  }
+
+  await update(ref(db,'coin_users/'+currentUser.fbId),{ wallet:(currentUser.wallet||0)-amt });
+  await update(ref(db,'flash_requests/'+pendingFlashBid.fbId),{ flashBids:newFlashBids, highestBid:amt, highestBidderFbId:currentUser.fbId, highestBidderName:currentUser.name });
+  document.getElementById('flashBidModal').classList.add('hidden');
+  alert(`✅ FLASH BID R${amt} placed with loaded wallet!\n\nYou loaded wallet with 1 voucher before bidding (admin approved), wallet deducted R${amt} now\nIf someone bids higher, R${amt} refunded to wallet\nIf you win after admin finalizes, coins transferred - No extra payment, you already paid via voucher before bidding`);
+}
+
+// ADMIN
+window.openAdmin=function(){ let pin=prompt('Admin PIN?'); if(pin!=='10111') return alert('Wrong'); document.getElementById('admin').classList.remove('hidden'); }
+window.adminTab=function(t){ ['loads','vouchers','pending','live','paid','users'].forEach(x=>document.getElementById('admin-'+x).classList.toggle('hidden', x!==t)); document.querySelectorAll('[id^=at-]').forEach(b=>b.className='bg-zinc-800 px-4 py-2 rounded-full text-xs'); document.getElementById('at-'+t).className='bg-green-600 px-4 py-2 rounded-full text-xs font-black'; }
+window.createVouchers=async function(){ let amount=parseInt(document.getElementById('voucherAmount').value)||0; let count=parseInt(document.getElementById('voucherCount').value)||1; let prefix=(document.getElementById('voucherPrefix').value.trim()||'BIDKZN').toUpperCase(); if(amount<10) return alert('Min R10'); if(!confirm(`Create ${count} vouchers R${amount} each - ONE voucher = amount investor wishes to invest?`)) return; for(let i=0;i<count;i++){ let code=genVoucherCode(prefix); while(vouchers.some(v=>v.code===code)) code=genVoucherCode(prefix); let id=Date.now()+i; let fbId=id.toString(); await set(ref(db,'vouchers/'+fbId),{ id:id, fbId:fbId, code:code, amount:amount, status:'active', createdAt:Date.now(), createdBy:'admin', reason:'Voucher for wallet loading - 1 voucher = amount to invest R'+amount }); } alert(`Created ${count} vouchers R${amount} - Each ONE voucher = amount investor wishes to invest`); }
+window.createQuickVoucher=function(amt){ document.getElementById('voucherAmount').value=amt; document.getElementById('voucherCount').value=1; createVouchers(); }
+window.copyVoucher=function(code){ navigator.clipboard.writeText(code).then(()=>alert('Copied '+code+' - ONE voucher for amount to invest')); }
+window.deleteVoucher=function(fbId){ if(!confirm('Delete voucher?')) return; remove(ref(db,'vouchers/'+fbId)); }
+
+window.renderAdmin=function(){
+  let pendingLoads=voucherLoads.filter(vl=>vl.status==='pending');
+  document.getElementById('adminLoadsList').innerHTML=pendingLoads.slice().reverse().map(vl=>`<div class="bg-black border-2 border-yellow-500 rounded-xl p-4 mt-3 flex justify-between items-center"><div><p class="font-black text-sm text-yellow-400">🎟️ PENDING VOUCHER LOAD - ${vl.userName} (${vl.userPhone}) - ${vl.voucherCode} - R${vl.amount} - ONE voucher for amount to invest</p><p class="text-[11px] text-zinc-400">User wants to load wallet with R${vl.amount} using ONE voucher code ${vl.voucherCode} - This is amount they wish to invest - Requested ${new Date(vl.createdAt).toLocaleString()}</p><p class="text-[10px] text-zinc-500">Voucher ${vl.voucherCode} status: ${vouchers.find(v=>v.fbId===vl.voucherFbId)?.status||'unknown'} - Amount R${vl.amount}</p></div><div class="flex gap-2 ml-2"><button onclick="approveVoucherLoad('${vl.fbId}')" class="bg-green-600 px-6 py-3 rounded-full text-xs font-black">✅ APPROVE - Load Wallet R${vl.amount} (1 Voucher)</button><button onclick="rejectVoucherLoad('${vl.fbId}')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">❌ REJECT</button><button onclick="deleteVoucherLoad('${vl.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1 rounded-full text-xs text-red-400">🗑️</button></div></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No pending voucher loads - Investors must load wallet with 1 voucher for amount they wish to invest, then admin approves here</p>';
+
+  document.getElementById('adminVouchersList').innerHTML=`<p class="text-[11px] text-zinc-400 mb-2">Total ${vouchers.length} | Active ${vouchers.filter(v=>v.status==='active').length} | Redeemed ${vouchers.filter(v=>v.status==='redeemed').length} | One voucher = amount to invest</p>` + vouchers.slice().reverse().map(v=>`<div class="bg-black border ${v.status==='active'?'border-yellow-500/50':'border-zinc-700'} p-3 rounded-xl mt-2 flex justify-between"><div><p class="font-black text-sm ${v.status==='active'?'text-yellow-400':'text-zinc-500'}">🎟️ ${v.code} - R${v.amount} - ${v.status.toUpperCase()} - ONE voucher = R${v.amount} to invest</p><p class="text-[10px] text-zinc-500">${new Date(v.createdAt).toLocaleString()} | ${v.reason} ${v.redeemedByName?`| Redeemed by ${v.redeemedByName}`:''} ${v.payoutToName?`| Payout to ${v.payoutToName}`:''}</p></div><div class="flex gap-1"><button onclick="copyVoucher('${v.code}')" class="bg-zinc-800 px-3 py-1 rounded-full text-xs">COPY</button><button onclick="deleteVoucher('${v.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1 rounded-full text-xs text-red-400">🗑️</button></div></div>`).join('') || 'No vouchers - Create vouchers for wallet loading';
+
+  let pendingFlash=flashRequests.filter(r=>r.status==='pending');
+  document.getElementById('adminPendingList').innerHTML=pendingFlash.map(r=>`<div class="bg-black border-2 border-red-600/30 rounded-xl p-4 mt-3 flex justify-between"><div><p class="font-black text-sm text-red-400">📤 ${r.qty}x ${r.coinName} - ${r.sellerName} - R${r.sellPrice} - Voucher payout to seller</p><p class="text-[11px] text-zinc-400">${r.desc}</p></div><button onclick="openApproval('${r.fbId}')" class="bg-red-600 px-4 py-2 rounded-full text-xs font-black">✅ APPROVE + SET TIME</button></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No pending flash</p>';
+
+  let now=Date.now(); let live=flashRequests.filter(r=>r.status==='scheduled' && r.publicTime && r.publicTime<=now);
+  document.getElementById('adminLiveList').innerHTML=live.map(r=>`<div class="bg-black border-2 border-green-600 rounded-xl p-4 mt-3"><p class="font-black text-sm text-green-400">🔴 LIVE - ${r.qty}x ${r.coinName} - Highest R${r.highestBid} by ${r.highestBidderName} - Wallet loaded with 1 voucher before bidding - Wallet deducted</p><p class="text-[11px] text-zinc-400">${r.flashBids?.length||0} bids - All bidders loaded wallet with 1 voucher before bidding, admin approved, wallet deducted</p><div class="flex gap-2 mt-2"><button onclick="finalizeFlash('${r.fbId}')" class="flex-1 bg-green-600 py-2 rounded-full text-xs font-black">✅ FINALIZE - Coins to winner (already paid via voucher wallet load)</button></div></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No live</p>';
+
+  let paid=flashRequests.filter(r=>r.status==='finalized_paid' || r.status==='finalized');
+  document.getElementById('adminPaidList').innerHTML=paid.map(r=>`<div class="bg-black border-2 border-green-600 rounded-xl p-4 mt-3"><p class="font-black text-sm text-green-400">✅ WIN - ${r.qty}x ${r.coinName} - Winner ${r.highestBidderName} R${r.highestBid} - Paid via wallet loaded with 1 voucher before bidding</p><p class="text-[11px] text-zinc-400">Winner loaded wallet with 1 voucher R${r.highestBid} (admin approved) before bidding, wallet deducted on bid, won, coins transferred - No 24hr burn, already paid before</p></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No wins paid yet</p>';
+
+  document.getElementById('adminUsersList').innerHTML=users.map(u=>`<div class="bg-black border border-zinc-800 p-3 rounded-xl mt-2 flex justify-between"><div><p class="font-black text-xs">${u.name} - Wallet R${u.wallet||0} - ${u.phone} - Vouchers redeemed ${u.vouchersRedeemed||0}</p><p class="text-[11px] text-zinc-400">${bids.filter(b=>b.userFbId===u.fbId).length} coins | Voucher loads ${voucherLoads.filter(vl=>vl.userFbId===u.fbId && vl.status==='approved').length} approved - Total loaded R${voucherLoads.filter(vl=>vl.userFbId===u.fbId && vl.status==='approved').reduce((s,vl)=>s+vl.amount,0)}</p></div><div class="flex flex-col gap-1"><button onclick="addWallet('${u.fbId}')" class="bg-green-900/30 border border-green-600 px-3 py-1 rounded-full text-xs text-green-400">💰 ADD WALLET</button><button onclick="deleteUser('${u.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1 rounded-full text-xs text-red-400">🗑️ DELETE</button></div></div>`).join('') || 'No users';
+}
+
+window.approveVoucherLoad=async function(fbId){
+  let load=voucherLoads.find(vl=>vl.fbId===fbId); if(!load) return;
+  let voucher=vouchers.find(v=>v.fbId===load.voucherFbId);
+  if(!voucher) return alert('Voucher not found');
+  if(voucher.status!=='active') return alert('Voucher not active - Already used');
+
+  let user=users.find(u=>u.fbId===load.userFbId); if(!user) return alert('User not found');
+
+  if(!confirm(`Approve voucher load?\n\nUser: ${load.userName} (${load.userPhone})\nVoucher: ${load.voucherCode} - R${load.amount}\nONE voucher = amount they wish to invest R${load.amount}\n\nApprove → Wallet +R${load.amount} → Voucher redeemed → User can then wait for flash bidding and bid with loaded wallet`)) return;
+
+  // Approve: Wallet +amount, voucher redeemed, load approved
+  await update(ref(db,'coin_users/'+user.fbId),{ wallet:(user.wallet||0)+load.amount, vouchersRedeemed:(user.vouchersRedeemed||0)+1, vouchersValue:(user.vouchersValue||0)+load.amount });
+  await update(ref(db,'vouchers/'+voucher.fbId),{ status:'redeemed', redeemedByFbId:user.fbId, redeemedByName:user.name, redeemedAt:Date.now(), usedForWalletLoad:load.fbId });
+  await update(ref(db,'voucher_loads/'+fbId),{ status:'approved', approvedAt:Date.now() });
+
+  // Log wallet request for history
+  let wId=Date.now(); let wFbId=wId.toString();
+  await set(ref(db,'wallet_requests/'+wFbId),{ id:wId, fbId:wFbId, userId:user.id, userFbId:user.fbId, userName:user.name, userPhone:user.phone, type:'deposit', method:'VOUCHER LOAD - 1 VOUCHER R'+load.amount+' - Amount to invest', amount:load.amount, ref:load.voucherCode, status:'approved', createdAt:Date.now(), approvedAt:Date.now(), isVoucher:true, isVoucherLoad:true, voucherLoadFbId:fbId });
+
+  alert(`✅ Approved! Wallet loaded R${load.amount} for ${user.name} with ONE voucher ${load.voucherCode}\n\nUser can now wait for flash bidding and bid with loaded wallet - Amount they wished to invest R${load.amount} now in wallet`);
+}
+window.rejectVoucherLoad=async function(fbId){ let load=voucherLoads.find(vl=>vl.fbId===fbId); if(!load) return; if(!confirm(`Reject voucher load ${load.voucherCode} R${load.amount} for ${load.userName}? Voucher will remain active`)) return; await update(ref(db,'voucher_loads/'+fbId),{ status:'rejected', rejectedAt:Date.now() }); }
+window.deleteVoucherLoad=function(fbId){ if(!confirm('Delete voucher load request?')) return; remove(ref(db,'voucher_loads/'+fbId)); }
+window.openApproval=function(fbId){ let req=flashRequests.find(r=>r.fbId===fbId); if(!req) return; pendingApproval=req; document.getElementById('approvalText').innerHTML=`Approve ${req.qty}x ${req.coinName} - ${req.sellerName} - R${req.sellPrice}`; let def=new Date(Date.now()+3600000); def.setMinutes(def.getMinutes()-def.getTimezoneOffset()); document.getElementById('publicTime').value=def.toISOString().slice(0,16); document.getElementById('approvalModal').classList.remove('hidden'); }
+window.confirmApproval=async function(){ if(!pendingApproval) return; let timeStr=document.getElementById('publicTime').value; if(!timeStr) return alert('Choose time'); let publicTime=new Date(timeStr).getTime(); await update(ref(db,'flash_requests/'+pendingApproval.fbId),{ status:'scheduled', publicTime:publicTime, approvedAt:Date.now() }); document.getElementById('approvalModal').classList.add('hidden'); }
+window.finalizeFlash=async function(fbId){ let req=flashRequests.find(r=>r.fbId===fbId); if(!req||!req.highestBidderFbId) return alert('No bids'); if(!confirm(`Finalize flash ${req.qty}x ${req.coinName} to ${req.highestBidderName} for R${req.highestBid}?\n\nWinner already loaded wallet with 1 voucher before bidding (admin approved), wallet deducted on bid - No extra payment needed - Coins transferred, seller gets voucher payout`)) return; let seller=users.find(u=>u.fbId===req.sellerFbId); let buyer=users.find(u=>u.fbId===req.highestBidderFbId); if(!seller||!buyer) return; let code=genVoucherCode('BIDKZN'); let vid=Date.now(); let vfbId=vid.toString(); await set(ref(db,'vouchers/'+vfbId),{ id:vid, fbId:vfbId, code:code, amount:req.highestBid, status:'active', createdAt:Date.now(), reason:`Flash payout ${req.qty}x ${req.coinName} to ${seller.name}`, payoutToFbId:seller.fbId, payoutToName:seller.name }); let origBid=bids.find(b=>b.fbId===req.originalBidFbId); let newBidId=Date.now()+1; let newFbId=newBidId.toString(); let newBid={ id:newBidId, fbId:newFbId, userId:buyer.id, userFbId:buyer.fbId, userName:buyer.name, coin:req.coin, coinName:req.coinName, qty:req.qty, cost:req.highestBid, returnAmount:req.qty*150, profit:req.qty*50, returnPercent:50, buyDate:Date.now(), endDate:Date.now()+7*24*60*60*1000, status:'active', claimed:false }; await set(ref(db,'coin_bids/'+newFbId), newBid); if(origBid) await remove(ref(db,'coin_bids/'+origBid.fbId)); await update(ref(db,'flash_requests/'+fbId),{ status:'finalized_paid', paid:true, finalizedAt:Date.now(), payoutVoucherCode:code }); alert(`Finalized! Seller ${seller.name} got voucher ${code} R${req.highestBid} - Buyer ${buyer.name} got coins - Already paid via wallet loaded with 1 voucher before bidding`); }
+window.addWallet=function(fbId){ let amt=parseInt(prompt('Add wallet amount?')); if(!amt) return; let u=users.find(x=>x.fbId===fbId); if(!u) return; update(ref(db,'coin_users/'+fbId),{ wallet:(u.wallet||0)+amt }); }
+window.deleteUser=function(fbId){ if(!confirm('Delete user?')) return; bids.filter(b=>b.userFbId===fbId).forEach(b=>remove(ref(db,'coin_bids/'+b.fbId))); remove(ref(db,'coin_users/'+fbId)); if(currentUser&&currentUser.fbId===fbId){ localStorage.removeItem('coin_user'); currentUser=null; } }
+window.renderMyWins=function(){ if(!currentUser){ document.getElementById('myWinsList').innerHTML='<p class="text-center py-6 text-zinc-500">No wins - Load wallet with 1 voucher, bid in flash</p>'; return; } let myWins=flashRequests.filter(r=> String(r.highestBidderFbId)===String(currentUser.fbId) && (r.status==='finalized_paid' || r.status==='finalized')); document.getElementById('myWinsList').innerHTML=myWins.map(r=>`<div class="bg-black border-2 border-green-600 rounded-xl p-4"><p class="font-black text-green-400">✅ WON - ${r.qty}x ${r.coinName} - R${r.highestBid} - Paid via wallet loaded with 1 voucher before bidding</p><p class="text-[11px] text-zinc-400">Seller ${r.sellerName} got voucher payout ${r.payoutVoucherCode||''} R${r.highestBid} - You loaded wallet with 1 voucher R${r.highestBid} (admin approved) before bidding, wallet deducted on bid</p></div>`).join('') || '<p class="text-center py-6 text-zinc-500">No wins yet - Load wallet with 1 voucher for amount you wish to invest, admin approves, wait for flash, bid</p>'; }
+window.renderMyCoins=function(){ if(!currentUser){ document.getElementById('myCoinsList').innerHTML='<p class="text-center py-4 text-zinc-500">No coins</p>'; return; } let myBids=bids.filter(b=>String(b.userFbId)===String(currentUser.fbId) &&!b.claimed); document.getElementById('myCoinsList').innerHTML=myBids.map(b=>`<div class="bg-black border rounded-xl p-4 flex justify-between"><div><p class="font-black text-sm">${b.qty}x ${b.coinName} - Bought with wallet loaded via 1 voucher</p></div><button onclick="openSellModal('${b.fbId}')" class="bg-yellow-400 text-black px-5 py-3 rounded-full text-xs font-black">SELL - Voucher Payout</button></div>`).join('') || '<p class="text-center py-4 text-zinc-500">No coins - Load wallet with 1 voucher, bid in flash to win</p>'; }
+window.openSellModal=function(bidFbId){ let bid=bids.find(b=>b.fbId===bidFbId); if(!bid) return; pendingSell=bid; document.getElementById('sellText').innerHTML=`Sell ${bid.qty}x ${bid.coinName}`; document.getElementById('sellQty').value=bid.qty; document.getElementById('sellPrice').value=bid.cost; document.getElementById('sellDesc').value=`${bid.qty}x ${bid.coinName}`; document.getElementById('sellModal').classList.remove('hidden'); }
+window.confirmSell=async function(){ if(!pendingSell||!currentUser) return; let qty=parseInt(document.getElementById('sellQty').value)||1; let sellPrice=parseInt(document.getElementById('sellPrice').value)||0; let desc=document.getElementById('sellDesc').value.trim(); let id=Date.now(); let fbId=id.toString(); await set(ref(db,'flash_requests/'+fbId),{ id:id, fbId:fbId, sellerId:currentUser.id, sellerFbId:currentUser.fbId, sellerName:currentUser.name, sellerPhone:currentUser.phone, originalBidFbId:pendingSell.fbId, originalCost:pendingSell.cost, originalBuyDate:pendingSell.buyDate, coin:pendingSell.coin, coinName:pendingSell.coinName, qty:qty, sellPrice:sellPrice, desc:desc, status:'pending', publicTime:null, createdAt:Date.now(), flashBids:[], highestBid:0 }); document.getElementById('sellModal').classList.add('hidden'); }
+
+function renderAll(){ renderProfile(); renderFlashMarket(); renderMyWins(); renderMyCoins(); renderAdmin(); }
+setInterval(()=>{ renderAll(); }, 2000);
+renderAll(); showView('profile');
+</script></body></html>
