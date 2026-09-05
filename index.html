@@ -1,274 +1,160 @@
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BIDKZN COINS - Daily Growth Display 📈</title>
+<title>BIDKZN FLASH BIDDING - Sell → Admin → Timed Public → Bid Any Amount</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<style>body{font-family:system-ui;background:#000;padding-bottom:90px}.bidkzn-gold{background:linear-gradient(90deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}.grow-bar{transition:width 0.5s ease}</style>
+<style>body{font-family:system-ui;background:#000;padding-bottom:90px}.bidkzn-gold{background:linear-gradient(90deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}.flash-pulse{animation:flash 1.5s infinite}@keyframes flash{0%{box-shadow:0 0 0 0 rgba(255,0,0,0.7)}70%{box-shadow:0 0 0 10px rgba(255,0,0,0)}100%{box-shadow:0 0 0 0 rgba(255,0,0,0)}}</style>
 </head><body class="bg-black text-white">
-<header class="sticky top-0 z-50 bg-black border-b-2 border-yellow-500 p-3"><div class="flex justify-between items-center max-w-5xl mx-auto"><div class="flex items-center gap-2"><div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-full flex items-center justify-center font-black text-black">₿</div><div><h1 class="font-black text-lg"><span class="bidkzn-gold">BID</span><span class="text-white">KZN</span> <span class="text-yellow-400">COINS</span></h1><p class="text-[8px] text-zinc-400">DAILY GROWTH DISPLAY</p></div></div><div class="flex gap-2"><button onclick="showView('coins')" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black">🪙 COINS</button><button onclick="showView('portfolio')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">💼 PORTFOLIO + GROWTH</button><button onclick="openAdmin()" class="bg-black border border-zinc-700 px-3 py-2 rounded-full text-xs">🔒</button></div></div></header>
+<header class="sticky top-0 z-50 bg-black border-b-2 border-red-600 p-3"><div class="flex justify-between items-center max-w-6xl mx-auto"><div class="flex items-center gap-2"><div class="w-10 h-10 bg-gradient-to-br from-red-600 to-yellow-400 rounded-full flex items-center justify-center font-black text-white">⚡</div><div><h1 class="font-black text-lg"><span class="bidkzn-gold">BID</span><span class="text-red-600">FLASH</span> <span class="text-white">COINS</span></h1><p class="text-[8px] text-zinc-400">SELL → ADMIN APPROVAL → TIMED PUBLIC → BID ANY AMOUNT</p></div><span class="bg-red-600 text-[9px] px-2 py-1 rounded-full font-black flash-pulse">⚡ FLASH LIVE</span></div><div class="flex gap-2"><button onclick="showView('flash')" class="bg-red-600 px-3 py-2 rounded-full text-xs font-black">⚡ FLASH MARKET</button><button onclick="showView('mycoins')" class="bg-zinc-800 px-3 py-2 rounded-full text-xs">💼 MY COINS</button><button onclick="showView('portfolio')" class="bg-zinc-800 px-3 py-2 rounded-full text-xs">📈 PORTFOLIO</button><button onclick="openAdmin()" class="bg-black border border-zinc-700 px-3 py-2 rounded-full text-xs">🔒 ADMIN</button></div></div></header>
 
-<div class="text-center py-6 bg-gradient-to-b from-yellow-900/20 to-black border-b border-yellow-900/20">
-<h1 class="text-4xl font-black"><span class="bidkzn-gold">DAILY</span> <span class="text-white">GROWTH COINS</span></h1>
-<p class="text-[11px] text-zinc-400 mt-2">BID → BUY → SEE DAILY GROWTH - AiMoc 7.14%/day - AiEUT 9.28%/day</p>
-</div>
-
-<div class="max-w-5xl mx-auto p-3">
-<div id="coinsView">
-<div class="grid md:grid-cols-2 gap-4">
-
-<!-- AiMoc -->
-<div class="bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-5">
-<div class="flex justify-between"><div class="flex items-center gap-3"><div class="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-2xl font-black text-black">M</div><div><h2 class="font-black text-xl text-yellow-400">AiMoc Coin</h2><p class="text-[11px] text-zinc-400">Daily Growth 7.14%</p></div></div><span class="bg-green-900/30 border border-green-600 text-green-400 text-[10px] px-3 py-1 rounded-full font-black">📈 50% in 7 Days</span></div>
-<div class="mt-4 grid grid-cols-3 gap-2 text-center">
-<div class="bg-black border border-yellow-500/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">COST</p><p class="font-black text-yellow-400">R100</p></div>
-<div class="bg-black border border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">DAILY GROWTH</p><p class="font-black text-green-400">+7.14%</p><p class="text-[9px] text-green-400">+R7.14/day</p></div>
-<div class="bg-black border border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">AFTER 7 DAYS</p><p class="font-black text-green-400">R150</p></div>
-</div>
-<div class="mt-4 bg-black rounded-xl p-3 border border-zinc-800">
-<p class="text-[11px] font-black text-yellow-400">📈 AiMoc Daily Growth Breakdown (R100 coin):</p>
-<div class="mt-2 space-y-1 text-[10px] font-mono">
-<div class="flex justify-between"><span class="text-zinc-500">Day 0 (Buy):</span><span class="text-white">R100.00</span><span class="text-zinc-400">0%</span></div>
-<div class="flex justify-between"><span class="text-zinc-500">Day 1:</span><span class="text-yellow-400">R107.14</span><span class="text-green-400">+7.14%</span></div>
-<div class="flex justify-between"><span class="text-zinc-500">Day 2:</span><span class="text-yellow-400">R114.28</span><span class="text-green-400">+14.28%</span></div>
-<div class="flex justify-between"><span class="text-zinc-500">Day 3:</span><span class="text-yellow-400">R121.42</span><span class="text-green-400">+21.42%</span></div>
-<div class="flex justify-between"><span class="text-zinc-500">Day 7:</span><span class="text-green-400 font-black">R150.00</span><span class="text-green-400 font-black">+50%</span></div>
-</div>
-</div>
-<div class="mt-4 flex gap-2"><button onclick="setQty('moc',1)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">1</button><button onclick="setQty('moc',5)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">5</button><button onclick="setQty('moc',10)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">10</button><div class="flex-1 flex bg-black border-2 border-yellow-500 rounded-full overflow-hidden"><input id="mocQty" type="number" value="1" min="1" class="flex-1 bg-black p-3 text-center font-black text-yellow-400" oninput="calcTotal('moc')"><span class="bg-zinc-800 px-3 flex items-center text-xs">Coins</span></div></div>
-<div class="mt-3 bg-black border-2 border-yellow-500/50 rounded-2xl p-4 text-center"><p class="text-[11px] text-zinc-400">PAY NOW → SEE DAILY GROWTH AFTER BUY</p><p class="text-3xl font-black text-yellow-400" id="mocPay">R100</p><p class="text-[11px] text-zinc-500">After 7 days: <span class="text-green-400 font-black" id="mocReturn">R150</span> | Daily: <span class="text-green-400" id="mocDaily">+R7.14/day</span></p></div>
-<button onclick="bidCoin('moc')" class="w-full mt-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-4 rounded-full font-black text-lg">BID AiMoc - R<span id="mocPayBtn">100</span> → SEE GROWTH</button>
+<div class="text-center py-5 bg-gradient-to-b from-red-900/20 to-black border-b border-red-900/20">
+<h1 class="text-3xl font-black"><span class="bidkzn-gold">FLASH</span> <span class="text-red-600">BIDDING</span> <span class="text-white">SYSTEM</span></h1>
+<p class="text-[10px] text-zinc-400 mt-2">1. SELL COINS → 2. ADMIN APPROVES + SETS TIME → 3. GOES PUBLIC AT THAT TIME → 4. NEW CLIENTS BID ANY AMOUNT</p>
+<div id="nextFlashTime" class="mt-3 text-xs"></div>
 </div>
 
-<!-- AiEUT -->
-<div class="bg-zinc-900 border-2 border-purple-600 rounded-2xl p-5">
-<div class="flex justify-between"><div class="flex items-center gap-3"><div class="w-14 h-14 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-2xl font-black text-white">E</div><div><h2 class="font-black text-xl text-purple-400">AiEUT Coin</h2><p class="text-[11px] text-zinc-400">Daily Growth 9.28%</p></div></div><span class="bg-purple-900/40 border border-purple-600 text-purple-300 text-[10px] px-3 py-1 rounded-full font-black">🔥 65% in 7 Days</span></div>
-<div class="mt-4 grid grid-cols-3 gap-2 text-center">
-<div class="bg-black border border-purple-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">COST</p><p class="font-black text-purple-400">R100</p></div>
-<div class="bg-black border border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">DAILY GROWTH</p><p class="font-black text-green-400">+9.28%</p><p class="text-[9px] text-green-400">+R9.28/day</p></div>
-<div class="bg-black border border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">AFTER 7 DAYS</p><p class="font-black text-green-400">R165</p></div>
-</div>
-<div class="mt-4 bg-black rounded-xl p-3 border border-zinc-800">
-<p class="text-[11px] font-black text-purple-400">📈 AiEUT Daily Growth Breakdown (R100 coin):</p>
-<div class="mt-2 space-y-1 text-[10px] font-mono">
-<div class="flex justify-between"><span class="text-zinc-500">Day 0 (Buy):</span><span class="text-white">R100.00</span><span class="text-zinc-400">0%</span></div>
-<div class="flex justify-between"><span class="text-zinc-500">Day 1:</span><span class="text-purple-400">R109.28</span><span class="text-green-400">+9.28%</span></div>
-<div class="flex justify-between"><span class="text-zinc-500">Day 2:</span><span class="text-purple-400">R118.57</span><span class="text-green-400">+18.57%</span></div>
-<div class="flex justify-between"><span class="text-zinc-500">Day 3:</span><span class="text-purple-400">R127.85</span><span class="text-green-400">+27.85%</span></div>
-<div class="flex justify-between"><span class="text-zinc-500">Day 7:</span><span class="text-green-400 font-black">R165.00</span><span class="text-green-400 font-black">+65%</span></div>
-</div>
-</div>
-<div class="mt-4 flex gap-2"><button onclick="setQty('eut',1)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">1</button><button onclick="setQty('eut',5)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">5</button><button onclick="setQty('eut',10)" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">10</button><div class="flex-1 flex bg-black border-2 border-purple-600 rounded-full overflow-hidden"><input id="eutQty" type="number" value="1" min="1" class="flex-1 bg-black p-3 text-center font-black text-purple-400" oninput="calcTotal('eut')"><span class="bg-zinc-800 px-3 flex items-center text-xs">Coins</span></div></div>
-<div class="mt-3 bg-black border-2 border-purple-600/50 rounded-2xl p-4 text-center"><p class="text-[11px] text-zinc-400">PAY NOW → SEE DAILY GROWTH AFTER BUY</p><p class="text-3xl font-black text-purple-400" id="eutPay">R100</p><p class="text-[11px] text-zinc-500">After 7 days: <span class="text-green-400 font-black" id="eutReturn">R165</span> | Daily: <span class="text-green-400" id="eutDaily">+R9.28/day</span></p></div>
-<button onclick="bidCoin('eut')" class="w-full mt-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 rounded-full font-black text-lg">BID AiEUT - R<span id="eutPayBtn">100</span> → SEE GROWTH 🔥</button>
-</div>
+<div class="max-w-6xl mx-auto p-3">
 
+<!-- FLASH MARKET - PUBLIC PAGE WHERE NEW CLIENTS BID -->
+<div id="flashView">
+<div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-4 mb-4">
+<div class="flex justify-between items-center">
+<h2 class="font-black text-red-400 text-lg">⚡ FLASH MARKET - LIVE NOW - BID ANY AMOUNT</h2>
+<span class="text-[10px] bg-black border border-red-600/30 px-3 py-1 rounded-full"><span id="liveFlashCount">0</span> LIVE FLASH DEALS</span>
+</div>
+<p class="text-[11px] text-zinc-400 mt-2">These are coins investors are selling. Admin approved. Bidding open at scheduled time. Type how much you wish to invest!</p>
+</div>
+<div id="flashGrid" class="grid md:grid-cols-2 gap-4"></div>
+<div id="upcomingFlash" class="mt-6">
+<h3 class="font-black text-sm text-yellow-400">⏰ UPCOMING FLASH - Scheduled by Admin - Not yet public</h3>
+<div id="upcomingGrid" class="grid md:grid-cols-2 gap-4 mt-3"></div>
 </div>
 </div>
 
-<div id="portfolioView" class="hidden">
+<!-- MY COINS - WHERE INVESTOR SELLS -->
+<div id="mycoinsView" class="hidden">
 <div class="bg-zinc-900 border-2 border-yellow-500/50 rounded-2xl p-5">
-<div class="flex justify-between items-center"><h2 class="font-black text-yellow-400 text-lg">💼 MY COINS + DAILY GROWTH LIVE</h2><button onclick="showView('coins')" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black">🪙 BID MORE</button></div>
-<div class="grid grid-cols-3 gap-3 mt-5">
-<div class="bg-black border-2 border-yellow-500/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Invested</p><p class="text-2xl font-black text-yellow-400" id="portInvested">R0</p></div>
-<div class="bg-black border-2 border-green-600/30 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Current Value (Live Growth)</p><p class="text-2xl font-black text-green-400" id="portCurrent">R0</p><p class="text-[9px] text-green-400" id="portGrowth">+R0 growth</p></div>
-<div class="bg-black border border-zinc-700 rounded-xl p-4 text-center"><p class="text-[10px] text-zinc-400">Wallet</p><p class="text-2xl font-black text-white" id="portWallet">R0</p></div>
+<div class="flex justify-between"><h2 class="font-black text-yellow-400 text-lg">💼 MY COINS - SELL FOR FLASH MARKET</h2><button onclick="showView('flash')" class="bg-red-600 px-4 py-2 rounded-full text-xs font-black">⚡ GO TO FLASH MARKET</button></div>
+<div class="grid grid-cols-3 gap-3 mt-4">
+<div class="bg-black border border-yellow-500/30 rounded-xl p-3 text-center"><p class="text-[10px] text-zinc-400">My Coins Value</p><p class="text-xl font-black text-yellow-400" id="myCoinsValue">R0</p></div>
+<div class="bg-black border border-green-600/30 rounded-xl p-3 text-center"><p class="text-[10px] text-zinc-400">Sell Requests Pending</p><p class="text-xl font-black text-green-400" id="myPendingSell">0</p></div>
+<div class="bg-black border border-zinc-700 rounded-xl p-3 text-center"><p class="text-[10px] text-zinc-400">Wallet</p><p class="text-xl font-black text-white" id="myWallet">R0</p></div>
 </div>
-
-<!-- DAILY GROWTH CHART FOR EACH COIN -->
-<div id="portfolioList" class="mt-6 space-y-4"></div>
-
+<div id="myCoinsList" class="mt-6 space-y-3"></div>
 <div class="mt-6 bg-black border border-zinc-800 rounded-xl p-4">
-<h4 class="font-black text-xs">💰 Matured - Ready to Claim</h4>
-<div id="maturedList" class="mt-3 space-y-2"></div>
-</div>
+<h4 class="font-black text-xs">📤 My Sell Requests - Waiting Admin Approval</h4>
+<div id="mySellRequests" class="mt-3 space-y-2"></div>
 </div>
 </div>
 </div>
 
-<div id="admin" class="hidden fixed inset-0 bg-black z-50 overflow-y-auto"><div class="max-w-5xl mx-auto p-3"><div class="bg-zinc-900 rounded-2xl p-4 flex justify-between items-center border-2 border-yellow-500"><h2 class="font-black text-yellow-400">ADMIN - DAILY GROWTH COINS + DELETE</h2><button onclick="document.getElementById('admin').classList.add('hidden')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">CLOSE</button></div><div class="mt-4 grid grid-cols-3 gap-3"><div class="bg-black border border-yellow-500/30 rounded-xl p-3 text-center"><p class="text-[10px] text-zinc-400">AiMoc Sold</p><p class="text-xl font-black text-yellow-400" id="adminMocSold">0</p></div><div class="bg-black border border-purple-600/30 rounded-xl p-3 text-center"><p class="text-[10px] text-zinc-400">AiEUT Sold</p><p class="text-xl font-black text-purple-400" id="adminEutSold">0</p></div><div class="bg-black border border-zinc-700 rounded-xl p-3 text-center"><p class="text-[10px] text-zinc-400">Users</p><p class="text-xl font-black text-white" id="adminBidders">0</p></div></div><div class="flex gap-2 mt-4"><button onclick="adminTab('bids')" id="at-bids" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black">BIDS + GROWTH 🗑️</button><button onclick="adminTab('users')" id="at-users" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">USERS 🗑️</button></div><div id="admin-bids" class="mt-4"><div id="adminBidsList"></div></div><div id="admin-users" class="hidden mt-4"><div id="adminUsersList"></div></div></div></div>
+<!-- PORTFOLIO - DAILY GROWTH STILL THERE -->
+<div id="portfolioView" class="hidden">
+<div class="bg-zinc-900 border border-zinc-700 rounded-2xl p-5">
+<h2 class="font-black text-white">📈 PORTFOLIO - DAILY GROWTH</h2>
+<div id="portfolioList" class="mt-4 space-y-3"></div>
+</div>
+</div>
+</div>
+
+<!-- ADMIN - APPROVAL PAGE WITH TIME CHOOSER -->
+<div id="admin" class="hidden fixed inset-0 bg-black z-50 overflow-y-auto"><div class="max-w-6xl mx-auto p-3">
+<div class="bg-zinc-900 rounded-2xl p-4 flex justify-between items-center border-2 border-red-600"><h2 class="font-black text-red-400">🔒 ADMIN - FLASH APPROVAL - SET PUBLIC TIME</h2><button onclick="document.getElementById('admin').classList.add('hidden')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">CLOSE</button></div>
+
+<div class="mt-4 bg-black border-2 border-yellow-500/50 rounded-xl p-4">
+<h3 class="font-black text-sm text-yellow-400">⚡ HOW FLASH BIDDING WORKS:</h3>
+<p class="text-[11px] text-zinc-400 mt-2">1. Investors click SELL on their coins → Request comes here as PENDING<br>2. Admin clicks APPROVE + chooses TIME (e.g. 2026-05-14 18:00) → Goes to SCHEDULED<br>3. At that chosen time, system automatically sends to PUBLIC FLASH MARKET page<br>4. New registered clients see it live and can type any amount they wish to invest (bidding)</p>
+</div>
+
+<div class="flex gap-2 mt-4 overflow-x-auto">
+<button onclick="adminTab('pending')" id="at-pending" class="bg-red-600 px-4 py-2 rounded-full text-xs font-black">⏳ PENDING SELL REQUESTS</button>
+<button onclick="adminTab('scheduled')" id="at-scheduled" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">⏰ SCHEDULED - Waiting Time</button>
+<button onclick="adminTab('live')" id="at-live" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🔴 LIVE FLASH MARKET</button>
+<button onclick="adminTab('users')" id="at-users" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">USERS 🗑️</button>
+</div>
+
+<!-- PENDING - INVESTORS SELLING -->
+<div id="admin-pending" class="mt-4">
+<h3 class="font-black text-sm text-red-400">⏳ PENDING - Investors want to sell - Approve + Set Time</h3>
+<div id="adminPendingList" class="mt-3"></div>
+</div>
+
+<!-- SCHEDULED - APPROVED BUT WAITING FOR TIME -->
+<div id="admin-scheduled" class="hidden mt-4">
+<h3 class="font-black text-sm text-yellow-400">⏰ SCHEDULED - Approved by Admin - Will go public at chosen time</h3>
+<div id="adminScheduledList" class="mt-3"></div>
+</div>
+
+<!-- LIVE - CURRENTLY ON PUBLIC PAGE -->
+<div id="admin-live" class="hidden mt-4">
+<h3 class="font-black text-sm text-green-400">🔴 LIVE ON PUBLIC FLASH MARKET - New clients bidding now</h3>
+<div id="adminLiveList" class="mt-3"></div>
+</div>
+
+<div id="admin-users" class="hidden mt-4"><div id="adminUsersList"></div></div>
+</div></div>
+
+<!-- SELL MODAL -->
+<div id="sellModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-yellow-400 text-lg">📤 SELL YOUR COINS FOR FLASH MARKET</h2><p id="sellText" class="text-sm mt-3 text-zinc-300"></p><div class="mt-4 bg-black p-4 rounded-xl border border-zinc-800"><label class="text-[11px] text-zinc-400">How many coins to sell?</label><input id="sellQty" type="number" min="1" value="1" class="w-full mt-1 p-3 rounded-full bg-zinc-900 border text-center font-black text-lg"><label class="text-[11px] text-zinc-400 mt-3 block">Selling Price (You set - buyers will bid on this)</label><input id="sellPrice" type="number" class="w-full mt-1 p-3 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black text-lg" placeholder="e.g. 120"><p class="text-[10px] text-zinc-500 mt-1">Example: You bought at R100, now worth R120 with growth - You can sell at R120 or R130</p><label class="text-[11px] text-zinc-400 mt-3 block">Description for buyers</label><input id="sellDesc" placeholder="e.g. AiMoc 5 coins, bought 3 days ago, +21% growth" class="w-full mt-1 p-3 rounded-full bg-zinc-900 border text-sm"></div><div class="flex gap-2 mt-6"><button onclick="confirmSell()" class="flex-1 bg-yellow-400 text-black py-4 rounded-full font-black">📤 SEND TO ADMIN FOR APPROVAL</button><button onclick="document.getElementById('sellModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
+
+<!-- APPROVAL MODAL WITH TIME CHOOSER -->
+<div id="approvalModal" class="hidden fixed inset-0 bg-black/90 z-[60] flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-red-400 text-lg">✅ APPROVE + SET PUBLIC TIME</h2><p id="approvalText" class="text-sm mt-3"></p><div class="mt-4 bg-black p-4 rounded-xl border-2 border-red-600/30"><label class="text-[11px] font-black text-red-400">⏰ CHOOSE WHEN IT GOES PUBLIC (Stain Time):</label><input id="publicTime" type="datetime-local" class="w-full mt-2 p-3 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black"><div class="flex gap-2 mt-3"><button onclick="setTimeNow()" class="flex-1 bg-zinc-800 py-2 rounded-full text-xs">NOW (Instant Public)</button><button onclick="setTimeInHour()" class="flex-1 bg-zinc-800 py-2 rounded-full text-xs">+1 Hour</button><button onclick="setTimeTomorrow()" class="flex-1 bg-zinc-800 py-2 rounded-full text-xs">Tomorrow 6PM</button></div><p class="text-[10px] text-zinc-500 mt-2">At this time, coin will automatically appear on public FLASH MARKET page for new clients to bid any amount</p></div><div class="flex gap-2 mt-6"><button onclick="confirmApproval()" class="flex-1 bg-red-600 py-4 rounded-full font-black">✅ APPROVE & SCHEDULE</button><button onclick="document.getElementById('approvalModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
+
+<!-- FLASH BID MODAL - NEW CLIENTS BID ANY AMOUNT -->
+<div id="flashBidModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-red-400 text-lg">⚡ FLASH BID - Type How Much You Wish to Invest</h2><p id="flashBidText" class="text-sm mt-3"></p><div id="flashBidGrowth" class="mt-3 bg-black border border-zinc-800 rounded-xl p-3 text-[11px]"></div><div class="mt-4 bg-black p-4 rounded-xl border-2 border-red-600/50"><label class="text-[11px] text-zinc-400">How much you wish to invest? (Type any amount)</label><input id="flashBidAmount" type="number" placeholder="e.g. 500, 1000, 2500" class="w-full mt-2 p-4 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black text-xl text-red-400"><p class="text-[10px] text-zinc-500 mt-2">Seller wants R<span id="sellerPrice">0</span> - You can bid higher to win! Min: R<span id="flashMin">0</span></p><p class="text-[10px] text-zinc-400">Your wallet: R<span id="flashWallet">0</span> | This is flash bidding - highest bidder wins the coins</p></div><div class="flex gap-2 mt-6"><button onclick="confirmFlashBid()" class="flex-1 bg-red-600 py-4 rounded-full font-black">🔥 BID R<span id="flashBidBtn">0</span> - FLASH</button><button onclick="document.getElementById('flashBidModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 const firebaseConfig = { apiKey: "AIzaSyCxVmtWLZiVvcElpOG4gLxKylunD1_NnRA", authDomain: "kzn-store.firebaseapp.com", databaseURL: "https://kzn-store-default-rtdb.firebaseio.com", projectId: "kzn-store", storageBucket: "kzn-store.firebasestorage.app", messagingSenderId: "755959571531", appId: "1:755959571531:web:42ee597a9d0646923699ce" };
 const app = initializeApp(firebaseConfig); const db = getDatabase(app);
-let bids=[]; let users=[]; let currentUser=JSON.parse(localStorage.getItem('coin_user')||'null');
 
-onValue(ref(db, 'coin_bids'), (s)=>{ const d=s.val(); bids=d?Object.values(d):[]; renderPortfolio(); renderAdmin(); });
-onValue(ref(db, 'coin_users'), (s)=>{ const d=s.val(); users=d?Object.values(d):[]; if(currentUser){ let u=users.find(x=>x.fbId===currentUser.fbId); if(u){ currentUser=u; localStorage.setItem('coin_user', JSON.stringify(u)); } } renderPortfolio(); renderAdmin(); });
+let bids=[]; let users=[]; let flashRequests=[]; let currentUser=JSON.parse(localStorage.getItem('coin_user')||'null'); let pendingSell=null; let pendingApproval=null; let pendingFlashBid=null;
 
-window.showView=function(v){ document.getElementById('coinsView').classList.toggle('hidden', v!=='coins'); document.getElementById('portfolioView').classList.toggle('hidden', v!=='portfolio'); }
-window.setQty=function(c,q){ document.getElementById(c+'Qty').value=q; calcTotal(c); }
-window.calcTotal=function(c){
-  let qty=parseInt(document.getElementById(c+'Qty').value)||1; if(qty<1) qty=1;
-  document.getElementById(c+'Qty').value=qty;
-  let cost=qty*100;
-  let daily=c==='moc'? (50/7) : (65/7);
-  let dailyR=c==='moc'? 7.14 : 9.28;
-  let ret=c==='moc'?150:165;
-  let totalRet=qty*ret;
-  let totalDaily=dailyR*qty;
-  document.getElementById(c+'Pay').innerText='R'+cost;
-  document.getElementById(c+'PayBtn').innerText=cost;
-  document.getElementById(c+'Return').innerText='R'+totalRet;
-  document.getElementById(c+'Daily').innerText='+R'+totalDaily.toFixed(2)+'/day ('+daily.toFixed(2)+'%)';
-}
+onValue(ref(db, 'coin_bids'), (s)=>{ const d=s.val(); bids=d?Object.values(d):[]; renderMyCoins(); renderPortfolio(); renderFlashMarket(); renderAdmin(); });
+onValue(ref(db, 'coin_users'), (s)=>{ const d=s.val(); users=d?Object.values(d):[]; if(currentUser){ let u=users.find(x=>x.fbId===currentUser.fbId); if(u){ currentUser=u; localStorage.setItem('coin_user', JSON.stringify(u)); } } renderMyCoins(); renderAdmin(); });
+onValue(ref(db, 'flash_requests'), (s)=>{ const d=s.val(); flashRequests=d?Object.values(d):[]; renderMyCoins(); renderFlashMarket(); renderAdmin(); });
 
 function getDailyGrowth(bid){
-  let now=Date.now();
-  let elapsed=now-bid.buyDate;
-  let daysPassed=elapsed/(24*60*60*1000);
-  if(daysPassed>7) daysPassed=7;
-  if(daysPassed<0) daysPassed=0;
-
-  let dailyPercent=bid.coin==='moc'? (50/7) : (65/7); // 7.14% and 9.28%
-  let currentPercent=daysPassed*dailyPercent;
-  let currentValue=bid.cost + (bid.profit * (daysPassed/7));
-  let growth= currentValue - bid.cost;
-
-  return { daysPassed:daysPassed, currentPercent:currentPercent, currentValue:currentValue, growth:growth };
+  let now=Date.now(); let elapsed=now-bid.buyDate; let daysPassed=elapsed/(24*60*60*1000); if(daysPassed>7) daysPassed=7; if(daysPassed<0) daysPassed=0;
+  let currentValue=bid.cost + (bid.profit * (daysPassed/7)); let growth=currentValue-bid.cost; let currentPercent=(daysPassed/7)*bid.returnPercent;
+  return { daysPassed, currentPercent, currentValue, growth };
 }
 
-window.bidCoin=async function(coin){
-  let qty=parseInt(document.getElementById(coin+'Qty').value)||1;
-  let cost=qty*100;
-  let coinName=coin==='moc'?'AiMoc':'AiEUT';
-  let returnPercent=coin==='moc'?50:65;
-  let returnAmount=coin==='moc'?150:165;
-  let totalReturn=qty*returnAmount;
-  let dailyPercent=coin==='moc'?7.14:9.28;
-
-  if(!currentUser){
-    let name=prompt('Name to bid '+coinName+'?'); if(!name) return;
-    let phone=prompt('WhatsApp?'); if(!phone) return;
-    let id=Date.now(); let newUser={id:id, fbId:id.toString(), name:name, phone:phone, wallet:5000, totalInvested:0};
-    await set(ref(db,'coin_users/'+newUser.fbId), newUser);
-    localStorage.setItem('coin_user', JSON.stringify(newUser));
-    currentUser=newUser;
-  }
-  if((currentUser.wallet||0)<cost){ alert('Low wallet R'+currentUser.wallet+' - Need R'+cost); return; }
-  if(!confirm(`BID ${qty}x ${coinName}?\n\nPay: R${cost}\nDaily Growth: +${dailyPercent}%/day (R${coin==='moc'?7.14:9.28}/coin/day)\nAfter 7 days: R${totalReturn} (+${returnPercent}%)\n\nYou will see DAILY GROWTH in portfolio!`)) return;
-
-  let bidId=Date.now(); let fbId=bidId.toString();
-  let bid={ id:bidId, fbId:fbId, userId:currentUser.id, userFbId:currentUser.fbId, userName:currentUser.name, userPhone:currentUser.phone, coin:coin, coinName:coinName, qty:qty, cost:cost, returnAmount:totalReturn, profit:totalReturn-cost, returnPercent:returnPercent, dailyPercent:dailyPercent, buyDate:Date.now(), endDate:Date.now()+7*24*60*60*1000, status:'active', claimed:false };
-  await update(ref(db,'coin_users/'+currentUser.fbId),{ wallet:(currentUser.wallet||0)-cost, totalInvested:(currentUser.totalInvested||0)+cost });
-  await set(ref(db,'coin_bids/'+fbId), bid);
-  alert(`✅ BOUGHT! ${qty}x ${coinName}\n\nGo to PORTFOLIO to see DAILY GROWTH LIVE!\nDay 1: +${dailyPercent}% | Day 7: +${returnPercent}%`);
-  showView('portfolio');
+window.showView=function(v){
+  document.getElementById('flashView').classList.toggle('hidden', v!=='flash');
+  document.getElementById('mycoinsView').classList.toggle('hidden', v!=='mycoins');
+  document.getElementById('portfolioView').classList.toggle('hidden', v!=='portfolio');
+  if(v==='mycoins') renderMyCoins();
+  if(v==='portfolio') renderPortfolio();
+  if(v==='flash') renderFlashMarket();
 }
 
-window.renderPortfolio=function(){
+// MY COINS - SELL FOR FLASH
+window.renderMyCoins=function(){
   if(!currentUser){
-    document.getElementById('portfolioList').innerHTML='<div class="bg-black p-6 rounded-xl text-center border border-dashed border-zinc-700"><p class="text-zinc-500">No coins yet - Bid to see daily growth</p></div>';
-    document.getElementById('maturedList').innerHTML='<p class="text-xs text-zinc-500">No matured coins</p>';
-    ['portInvested','portCurrent','portWallet'].forEach(id=>document.getElementById(id).innerText='R0');
-    document.getElementById('portGrowth').innerText='+R0 growth';
+    document.getElementById('myCoinsList').innerHTML='<div class="bg-black p-6 rounded-xl text-center border border-dashed"><p class="text-zinc-500">No coins - Buy AiMoc or AiEUT first</p><button onclick="alert(\'For sample, admin will add coins or use old buy system - Contact admin\')" class="mt-3 bg-yellow-400 text-black px-6 py-2 rounded-full text-xs font-black">Buy Coins First</button></div>';
+    document.getElementById('mySellRequests').innerHTML='<p class="text-xs text-zinc-500">No sell requests</p>';
+    ['myCoinsValue','myWallet'].forEach(id=>document.getElementById(id).innerText='R0');
+    document.getElementById('myPendingSell').innerText='0';
     return;
   }
-  let myBids=bids.filter(b=>String(b.userFbId)===String(currentUser.fbId)).sort((a,b)=>b.id-a.id);
-  let invested=myBids.filter(b=>!b.claimed).reduce((s,b)=>s+b.cost,0);
-  let wallet=currentUser.wallet||0;
+  let myBids=bids.filter(b=>String(b.userFbId)===String(currentUser.fbId) &&!b.claimed);
+  let mySellReqs=flashRequests.filter(r=>String(r.sellerFbId)===String(currentUser.fbId));
+  let totalValue=myBids.reduce((s,b)=>{ let g=getDailyGrowth(b); return s+g.currentValue; },0);
 
-  // Calculate live current value with daily growth
-  let currentTotal=0; let totalGrowth=0;
-  myBids.forEach(b=>{ if(!b.claimed){ let g=getDailyGrowth(b); currentTotal+=g.currentValue; totalGrowth+=g.growth; } });
+  document.getElementById('myCoinsValue').innerText='R'+totalValue.toFixed(2);
+  document.getElementById('myWallet').innerText='R'+(currentUser.wallet||0);
+  document.getElementById('myPendingSell').innerText=mySellReqs.length;
 
-  document.getElementById('portInvested').innerText='R'+invested.toLocaleString();
-  document.getElementById('portCurrent').innerText='R'+currentTotal.toFixed(2);
-  document.getElementById('portGrowth').innerText=`+R${totalGrowth.toFixed(2)} growth live 📈`;
-  document.getElementById('portWallet').innerText='R'+wallet.toLocaleString();
-
-  let active=myBids.filter(b=>!b.claimed);
-  document.getElementById('portfolioList').innerHTML=active.map(b=>{
+  document.getElementById('myCoinsList').innerHTML=myBids.map(b=>{
     let g=getDailyGrowth(b);
-    let isMatured=Date.now()>=b.endDate;
-    let progress=Math.min(100, (g.daysPassed/7)*100);
-    let daysLeft=7-g.daysPassed;
-
-    // Build daily breakdown table for this specific bid
-    let dailyRows='';
-    for(let d=1; d<=7; d++){
-      let dayValue=b.cost + (b.profit*(d/7));
-      let dayGrowth=dayValue-b.cost;
-      let dayPercent=(d/7)*b.returnPercent;
-      let isPast=d<=Math.floor(g.daysPassed);
-      let isToday=d===Math.ceil(g.daysPassed);
-      dailyRows+=`<div class="flex justify-between text-[10px] ${isPast?'bg-green-900/20 border border-green-600/30 rounded px-2 py-1':''} ${isToday?'bg-yellow-900/30 border border-yellow-600/50 rounded px-2 py-1 font-black':''}">
-        <span class="${isPast?'text-green-400':'text-zinc-500'}">Day ${d}:</span>
-        <span class="${isPast?'text-green-400':'text-zinc-400'}">R${dayValue.toFixed(2)}</span>
-        <span class="${isPast?'text-green-400':'text-zinc-500'}">+${dayPercent.toFixed(1)}% (+R${dayGrowth.toFixed(2)})</span>
-        <span>${isPast?'✅':isToday?'🔥 TODAY':''}</span>
-      </div>`;
-    }
-
-    return `<div class="bg-black border-2 ${isMatured?'border-green-500':'border-zinc-700'} rounded-2xl p-4">
-      <div class="flex justify-between items-start">
-        <div>
-          <p class="font-black text-sm ${b.coin==='moc'?'text-yellow-400':'text-purple-400'}">${b.qty}x ${b.coinName} - Daily Growth LIVE 📈</p>
-          <p class="text-[11px] text-zinc-400">Bought R${b.cost} → Now R${g.currentValue.toFixed(2)} | Growth +R${g.growth.toFixed(2)} (+${g.currentPercent.toFixed(1)}%)</p>
-        </div>
-        <span class="text-[10px] ${isMatured?'bg-green-600 text-white':'bg-zinc-800 text-zinc-400'} px-3 py-1 rounded-full font-black">${isMatured?'MATURED':`${g.daysPassed.toFixed(1)}d / 7d`}</span>
-      </div>
-
-      <!-- Progress bar -->
-      <div class="mt-3">
-        <div class="flex justify-between text-[10px] mb-1"><span class="text-zinc-500">Growth Progress</span><span class="text-green-400 font-black">${progress.toFixed(1)}% - ${daysLeft.toFixed(1)} days left</span></div>
-        <div class="bg-zinc-800 rounded-full h-3 overflow-hidden"><div class="grow-bar bg-gradient-to-r from-yellow-400 to-green-500 h-full" style="width:${progress}%"></div></div>
-      </div>
-
-      <!-- Current stats -->
-      <div class="mt-3 grid grid-cols-3 gap-2 text-center">
-        <div class="bg-zinc-900 rounded-xl p-2"><p class="text-[9px] text-zinc-500">PAID</p><p class="font-black text-white">R${b.cost}</p></div>
-        <div class="bg-zinc-900 border border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">NOW (LIVE)</p><p class="font-black text-green-400">R${g.currentValue.toFixed(2)}</p><p class="text-[9px] text-green-400">+${g.currentPercent.toFixed(1)}%</p></div>
-        <div class="bg-zinc-900 border border-yellow-500/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">FINAL (Day 7)</p><p class="font-black text-yellow-400">R${b.returnAmount}</p><p class="text-[9px] text-yellow-400">+${b.returnPercent}%</p></div>
-      </div>
-
-      <!-- Daily growth table for THIS coin -->
-      <div class="mt-4 bg-zinc-900 rounded-xl p-3 border border-zinc-800">
-        <p class="text-[11px] font-black text-yellow-400">📈 Daily Growth for ${b.qty}x ${b.coinName} (Bought ${new Date(b.buyDate).toLocaleDateString()}):</p>
-        <div class="mt-2 space-y-1">${dailyRows}</div>
-        <p class="text-[9px] text-zinc-500 mt-2">Daily: +${b.dailyPercent}%/day = +R${(b.profit/7).toFixed(2)}/day for ${b.qty} coin(s) | Live update every second</p>
-      </div>
-
-      <div class="mt-3 flex justify-between items-center">
-        <p class="text-[10px] text-zinc-500">Bought: ${new Date(b.buyDate).toLocaleString()} | Matures: ${new Date(b.endDate).toLocaleString()}</p>
-        ${isMatured?`<button onclick="claimReturn('${b.fbId}')" class="bg-green-600 px-6 py-2 rounded-full text-xs font-black">💰 CLAIM R${b.returnAmount}</button>`:`<span class="text-[10px] bg-zinc-800 px-3 py-1 rounded-full">⏳ Growing +R${(b.profit/7/24).toFixed(2)}/hour</span>`}
-      </div>
+    return `<div class="bg-black border ${b.coin==='moc'?'border-yellow-500/30':'border-purple-600/30'} rounded-xl p-4 flex justify-between items-center">
+      <div><p class="font-black text-sm ${b.coin==='moc'?'text-yellow-400':'text-purple-400'}">${b.qty}x ${b.coinName} - Now R${g.currentValue.toFixed(2)} (+${g.currentPercent.toFixed(1)}%)</p><p class="text-[11px] text-zinc-400">Bought R${b.cost} - Growth +R${g.growth.toFixed(2)} - ${g.daysPassed.toFixed(1)}/7 days</p><p class="text-[10px] text-zinc-500">Bought ${new Date(b.buyDate).toLocaleString()}</p></div>
+      <button onclick="openSellModal('${b.fbId}')" class="bg-yellow-400 text-black px-5 py-3 rounded-full text-xs font-black">📤 SELL FOR FLASH</button>
     </div>`;
-  }).join('') || '<p class="text-center py-6 text-zinc-500">No active coins - Bid to see daily growth</p>';
+  }).join('') || '<p class="text-center py-4 text-zinc-500">No active coins to sell</p>';
 
-  let matured=myBids.filter(b=>Date.now()>=b.endDate &&!b.claimed);
-  document.getElementById('maturedList').innerHTML=matured.map(b=>`<div class="bg-green-900/20 border border-green-600 rounded-xl p-3 flex justify-between"><div><p class="font-black text-xs text-green-400">${b.qty}x ${b.coinName} - R${b.returnAmount} READY! Grown +${b.returnPercent}%</p><p class="text-[10px] text-zinc-400">Daily growth completed: R${b.cost} → R${b.returnAmount}</p></div><button onclick="claimReturn('${b.fbId}')" class="bg-green-600 px-4 py-2 rounded-full text-xs font-black">CLAIM R${b.returnAmount}</button></div>`).join('') || '<p class="text-xs text-zinc-500">No matured - Growth in progress</p>';
-}
-
-window.claimReturn=async function(fbId){
-  let bid=bids.find(b=>b.fbId===fbId); if(!bid) return;
-  if(Date.now()<bid.endDate) return alert('Wait 7 days - Growth not finished');
-  let user=users.find(u=>u.fbId===bid.userFbId); if(!user) return;
-  if(!confirm(`Claim R${bid.returnAmount}? You invested R${bid.cost}, profit R${bid.profit} after 7 days daily growth`)) return;
-  await update(ref(db,'coin_users/'+user.fbId),{ wallet:(user.wallet||0)+bid.returnAmount });
-  await update(ref(db,'coin_bids/'+fbId),{ claimed:true, status:'claimed' });
-  alert(`✅ Claimed R${bid.returnAmount}! Profit R${bid.profit} from daily growth`);
-}
-window.openAdmin=function(){ let pin=prompt('Admin PIN?'); if(pin!=='10111'){ alert('Wrong'); return; } document.getElementById('admin').classList.remove('hidden'); renderAdmin(); }
-window.adminTab=function(t){ document.getElementById('admin-bids').classList.toggle('hidden', t!=='bids'); document.getElementById('admin-users').classList.toggle('hidden', t!=='users'); document.getElementById('at-bids').className=t==='bids'?'bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black':'bg-zinc-800 px-4 py-2 rounded-full text-xs'; document.getElementById('at-users').className=t==='users'?'bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black':'bg-zinc-800 px-4 py-2 rounded-full text-xs'; }
-window.renderAdmin=function(){
-  let moc=bids.filter(b=>b.coin==='moc').reduce((s,b)=>s+b.qty,0);
-  let eut=bids.filter(b=>b.coin==='eut').reduce((s,b)=>s+b.qty,0);
-  document.getElementById('adminMocSold').innerText=moc; document.getElementById('adminEutSold').innerText=eut; document.getElementById('adminBidders').innerText=users.length;
-  document.getElementById('adminBidsList').innerHTML=bids.slice().reverse().map(b=>{
-    let g=getDailyGrowth(b); let isMatured=Date.now()>=b.endDate;
-    return `<div class="bg-black border border-zinc-800 p-3 rounded-xl mt-2 flex justify-between items-center"><div><p class="font-black text-xs ${b.coin==='moc'?'text-yellow-400':'text-purple-400'}">${b.qty}x ${b.coinName} - ${b.userName} - R${b.cost} → R${b.returnAmount} - Now R${g.currentValue.toFixed(2)} (+${g.currentPercent.toFixed(1)}%) ${b.claimed?'✅ CLAIMED':isMatured?'🟢 MATURED':'📈 GROWING'}</p><p class="text-[11px] text-zinc-400">${b.userPhone} | Bought ${new Date(b.buyDate).toLocaleString()} | Growth: +R${g.growth.toFixed(2)} today | Daily +${b.dailyPercent}%</p></div><button onclick="deleteBid('${b.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1 rounded-full text-xs text-red-400">🗑️ DELETE</button></div>`;
-  }).join('') || 'No bids';
-  document.getElementById('adminUsersList').innerHTML=users.map(u=>{
-    let ub=bids.filter(b=>b.userFbId===u.fbId); let invested=ub.reduce((s,b)=>s+b.cost,0); let current=ub.filter(b=>!b.claimed).reduce((s,b)=>{ let g=getDailyGrowth(b); return s+g.currentValue; },0);
-    return `<div class="bg-black border border-zinc-800 p-3 rounded-xl mt-2 flex justify-between"><div><p class="font-black text-xs">${u.name} - Wallet R${u.wallet||0} - Invested R${invested} - Now R${current.toFixed(2)} (+R${(current-invested).toFixed(2)} growth)</p><p class="text-[11px] text-zinc-400">${u.phone} | ${ub.length} coins | ID ${u.fbId}</p></div><div class="flex flex-col gap-1"><button onclick="addWallet('${u.fbId}')" class="bg-green-900/30 border border-green-600 px-3 py-1 rounded-full text-xs text-green-400">💰 ADD WALLET</button><button onclick="deleteUser('${u.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1 rounded-full text-xs text-red-400">🗑️ DELETE</button></div></div>`;
-  }).join('') || 'No users';
-}
-window.deleteBid=function(fbId){ if(!confirm('Delete bid?')) return; remove(ref(db,'coin_bids/'+fbId)); }
-window.deleteUser=function(fbId){ if(!confirm('Delete user + all bids + growth?')) return; bids.filter(b=>b.userFbId===fbId).forEach(b=>remove(ref(db,'coin_bids/'+b.fbId))); remove(ref(db,'coin_users/'+fbId)); if(currentUser&&currentUser.fbId===fbId){ localStorage.removeItem('coin_user'); currentUser=null; } }
-window.addWallet=function(fbId){ let amt=parseInt(prompt('Add wallet amount?')); if(!amt) return; let u=users.find(x=>x.fbId===fbId); if(!u) return; update(ref(db,'coin_users/'+fbId),{ wallet:(u.wallet||0)+amt }); }
-
-calcTotal('moc'); calcTotal('eut');
-setInterval(()=>{ renderPortfolio(); }, 1000); // LIVE GROWTH UPDATE EVERY SECOND
-
-</script></body></html>
+  document.getElementById('mySellRequests').innerHTML=mySellReqs.map(r=>{
+    let statusColor=r.status==='pending'?'text-yellow-400':r.status==='scheduled'?'text-blue-400':'text-green-400';
+    let statusText=r.status==='pending'?'⏳ PENDING ADMIN':r.status==='scheduled'?`⏰ SCHEDULED for ${new Date(r.publicTime).toLocaleString()}`:'🔴 LIVE ON FLASH MARKET';
+    return `<div class="bg-zinc-900 border border-zinc-700 p-3 rounded-xl flex justify-between"><div><p class="font-black text-xs ${r.coin==='moc'?'text-yellow-400':'text-purple-400'}">${r.qty}x ${r.coinName} - Selling at R${r.sellPrice} - ${statusText}</p><p class="text-[11px] text-zinc-400">${r.desc} | Current growth: R${getDailyGrowth(bids.find(b=>b.fbId===r.originalBidFbId)||{cost:r.originalCost, profit:r.originalCost*0.5, buyDate:r.originalBuyDate}).currentValue.toFixed(2)}</p><p class="text-[10px] text-zinc-500">Request: ${new Date(r.id).toLocaleString()} | B
