@@ -1,92 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Music Social</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Music Social - Full</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,system-ui,sans-serif;background:#0a0a0a;color:#fff;line-height:1.6}
-header{position:sticky;top:0;z-index:50;background:rgba(10,10,10,0.8);backdrop-filter:blur(12px);border-bottom:1px solid #222;padding:14px 0}
-nav{max-width:1200px;margin:auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:900;font-size:1.4rem;letter-spacing:-1px}
-.logo span{background:linear-gradient(90deg,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-nav ul{list-style:none;display:flex;gap:24px}
-nav a{color:#aaa;text-decoration:none;font-size:14px;transition:.2s}
-nav a:hover{color:#fff}
-.btn{background:#fff;color:#000;padding:10px 18px;border-radius:999px;font-weight:700;font-size:13px;text-decoration:none;transition:.2s}
-.btn:hover{transform:scale(1.05)}
-.hero{max-width:1200px;margin:auto;padding:80px 20px 40px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
-.hero h2{font-size:56px;line-height:0.95;letter-spacing:-2px;font-weight:900}
-.hero h2 span{background:linear-gradient(90deg,#a855f7,#ec4899,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:#888;margin:16px 0 24px;max-width:480px}
-.feed{max-width:1200px;margin:20px auto;padding:0 20px;display:grid;grid-template-columns:2fr 1fr;gap:24px}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,system-ui,sans-serif;background:#0a0a0a;color:#fff;line-height:1.5}
+header{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.85);backdrop-filter:blur(12px);border-bottom:1px solid #222;padding:14px 0}
+nav{max-width:1250px;margin:auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;font-size:1.4rem;letter-spacing:-1px}.logo span{background:linear-gradient(90deg,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.btn{background:#fff;color:#000;padding:10px 18px;border-radius:999px;font-weight:700;font-size:13px;border:none;cursor:pointer;transition:.2s}.btn:hover{transform:scale(1.05)}.btn-dark{background:#222;color:#fff}.btn-ghost{background:transparent;border:1px solid #333;color:#aaa}
+.container{max-width:1250px;margin:auto;padding:24px 20px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
 .card{background:#151515;border:1px solid #222;border-radius:20px;padding:18px}
-.track{display:flex;gap:14px;align-items:center;padding:14px;border-radius:14px;transition:.2s;cursor:pointer}
-.track:hover{background:#1e1e1e}
-.cover{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#a855f7,#ec4899);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.track-info{flex:1}
-.track-info h4{font-size:14px;font-weight:700}
-.track-info p{font-size:12px;color:#666}
-.play{width:36px;height:36px;border-radius:50%;background:#fff;color:#000;display:flex;align-items:center;justify-content:center}
-section{max-width:1200px;margin:60px auto;padding:0 20px}
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
-.feature{background:#151515;border:1px solid #222;border-radius:20px;padding:24px}
-.feature i{font-size:20px;margin-bottom:12px;color:#a855f7}
-footer{background:#111;border-top:1px solid #222;text-align:center;padding:24px;color:#555;font-size:13px;margin-top:60px}
-@media(max-width:900px){.hero,.feed{grid-template-columns:1fr}.hero h2{font-size:38px}.features{grid-template-columns:1fr}}
+.upload-zone{border:2px dashed #333;border-radius:20px;padding:24px;text-align:center;cursor:pointer;transition:.2s}.upload-zone.dragover{border-color:#a855f7;background:#1a1226}
+label.small{font-size:11px;color:#666;display:block;margin:12px 0 6px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+input,textarea,select{width:100%;background:#0a0a0a;border:1px solid #222;border-radius:12px;padding:12px 14px;color:#fff;font-size:13px}
+textarea{resize:vertical;min-height:60px}
+.track{background:#111;border:1px solid #222;border-radius:16px;padding:14px;margin-bottom:16px;transition:.2s}.track.active{border-color:#a855f7;background:#1a1226}
+.track-top{display:flex;gap:12px;align-items:center}
+.cover{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#a855f7,#ec4899);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.badge{font-size:10px;padding:4px 8px;border-radius:999px;background:#222;color:#aaa;border:1px solid #333;margin-right:6px}
+.badge-ai{background:linear-gradient(90deg,#a855f7,#ec4899);color:#fff;border:none}
+.waveform-wrap{margin-top:12px;position:relative;height:64px;background:#0a0a0a;border-radius:10px;overflow:hidden;cursor:pointer}
+.waveform-wrap canvas{width:100%;height:100%;display:block}.progress{position:absolute;top:0;left:0;bottom:0;background:rgba(168,85,247,.2);width:0%;pointer-events:none;border-right:2px solid #a855f7}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.actions{display:flex;gap:8px;margin-top:10px;align-items:center}
+.action-btn{background:#1e1e1e;border:1px solid #2a2a2a;color:#aaa;padding:6px 12px;border-radius:999px;font-size:12px;cursor:pointer;transition:.2s;display:flex;gap:6px;align-items:center}
+.action-btn.liked{background:#fff;color:#000;border-color:#fff}.action-btn:hover{border-color:#555;color:#fff}
+.comments{margin-top:12px;border-top:1px solid #1e1e1e;padding-top:12px}.comment{font-size:12px;margin:8px 0;display:flex;gap:8px}.comment b{color:#fff}.comment span{color:#666}.comment-input{display:flex;gap:8px;margin-top:10px}
+.prompt-box{background:#0a0a0a;border:1px dashed #2a2a2a;border-radius:12px;padding:10px 12px;margin-top:10px;font-size:12px;color:#888}
+.prompt-box b{color:#aaa;font-size:10px;letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:4px}
+@media(max-width:900px){.container{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header>
-<nav>
+<header><nav>
 <div class="logo"><span>AI</span> Music Social</div>
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#features">Features</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-<a href="#" class="btn"><i class="fas fa-upload"></i> Upload Track</a>
-</nav>
-</header>
+<div style="display:flex;gap:8px"><span id="firebaseStatus" style="font-size:11px;color:#666;padding:8px">Local mode — add Firebase keys to go public</span><button class="btn btn-dark" onclick="document.getElementById('uploadZone').scrollIntoView({behavior:'smooth'})"><i class="fas fa-plus"></i> New Track</button></div>
+</nav></header>
 
-<main>
-<div class="hero" id="home">
+<div class="container">
 <div>
-<h2>Share and discover <span>AI-generated music.</span></h2>
-<p>Your platform to upload, listen, and connect with other AI music creators. The future of sound is here.</p>
-<div style="display:flex;gap:12px">
-<a href="#features" class="btn" style="background:linear-gradient(90deg,#a855f7,#ec4899);color:#fff"><i class="fas fa-play"></i> Explore Feed</a>
-<a href="#about" class="btn" style="background:#222;color:#fff">How it works</a>
+<div class="card" id="uploadZone">
+<h4><i class="fas fa-wand-magic-sparkles" style="color:#a855f7"></i> Upload AI Track</h4>
+<label class="small">Audio file</label>
+<div class="upload-zone" id="dropZone"><i class="fas fa-cloud-arrow-up" style="font-size:24px;color:#555"></i><p style="font-size:13px;margin-top:8px">Drop MP3/WAV here or click</p><input id="fileInput" type="file" accept="audio/*" hidden></div>
+
+<label class="small">Track Title</label><input id="titleInput" placeholder="e.g. Neon Dreams - AI Mix">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div><label class="small">AI Model</label><select id="modelInput"><option>Suno v3.5</option><option>Udio</option><option>Stable Audio 2</option><option>Riffusion</option><option>MusicGen</option><option>Other</option></select></div>
+<div><label class="small">Genre / Mood</label><input id="genreInput" placeholder="Lo-Fi, Cyberpunk..."></div>
 </div>
+<label class="small">Prompt Used</label><textarea id="promptInput" placeholder="e.g. melancholic lo-fi beat, rainy night in Tokyo, 80bpm..."></textarea>
+<button id="publishBtn" class="btn" style="width:100%;margin-top:14px;background:linear-gradient(90deg,#a855f7,#ec4899);color:#fff"><i class="fas fa-rocket"></i> Publish to Feed</button>
+<p style="font-size:11px;color:#555;margin-top:8px">Tip: Files play instantly. If Firebase is configured below, they become public for everyone.</p>
 </div>
+
+<div style="margin-top:20px" id="feed"></div>
+</div>
+
+<div>
 <div class="card">
-<h4 style="margin-bottom:12px"><i class="fas fa-fire"></i> Trending Now</h4>
-<div class="track"><div class="cover"><i class="fas fa-music"></i></div><div class="track-info"><h4>Neon Dreams - AI Mix</h4><p>@soulai • 2.3k plays</p></div><div class="play"><i class="fas fa-play" style="font-size:12px"></i></div></div>
-<div class="track"><div class="cover" style="background:linear-gradient(135deg,#22d3ee,#3b82f6)"><i class="fas fa-robot"></i></div><div class="track-info"><h4>Synthwave 2099</h4><p>@futurebeats • 1.8k plays</p></div><div class="play"><i class="fas fa-play" style="font-size:12px"></i></div></div>
-<div class="track"><div class="cover" style="background:linear-gradient(135deg,#f59e0b,#ef4444)"><i class="fas fa-waveform"></i></div><div class="track-info"><h4>Lo-Fi Consciousness</h4><p>@auralab • 1.2k plays</p></div><div class="play"><i class="fas fa-play" style="font-size:12px"></i></div></div>
+<h4>How to make it public (30 sec)</h4>
+<ol style="color:#666;font-size:12px;margin:10px 0 0 18px;line-height:1.8">
+<li>Create Firebase project at console.firebase.google.com</li>
+<li>Enable Firestore + Storage (in test mode)</li>
+<li>Copy config into <code>firebaseConfig</code> below</li>
+<li>Refresh — feed becomes shared for all users</li>
+</ol>
+<div class="prompt-box" style="margin-top:14px"><b>Current status</b><span id="statusText">Using localStorage (only you see tracks). Add Firebase keys to share.</span></div>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h4><i class="fas fa-fire"></i> Popular Models</h4>
+<div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px"><span class="badge badge-ai">Suno v3.5</span><span class="badge">Udio</span><span class="badge">Stable Audio</span><span class="badge">MusicGen</span><span class="badge">Riffusion</span></div>
+</div>
 </div>
 </div>
 
-<section id="features">
-<h2 style="font-size:28px;font-weight:900;letter-spacing:-1px">Features</h2>
-<div class="features">
-<div class="feature"><i class="fas fa-cloud-arrow-up"></i><h4>Upload Tracks</h4><p style="color:#666;font-size:13px;margin-top:6px">Upload your AI-generated tracks with artwork, prompts, and model info.</p></div>
-<div class="feature"><i class="fas fa-compass"></i><h4>Discover</h4><p style="color:#666;font-size:13px;margin-top:6px">Algorithmic feed based on style, mood, and AI models you like.</p></div>
-<div class="feature"><i class="fas fa-users"></i><h4>Connect</h4><p style="color:#666;font-size:13px;margin-top:6px">Follow creators, comment, remix and collaborate on tracks.</p></div>
-</div>
-</section>
+<script>
+// 1. PUT YOUR FIREBASE CONFIG HERE TO GO PUBLIC
+const firebaseConfig = {
+  // apiKey: "YOUR_KEY",
+  // authDomain: "YOUR_DOMAIN",
+  // projectId: "YOUR_PROJECT",
+  // storageBucket: "YOUR_BUCKET",
+  // appId: "YOUR_APP"
+};
+let useFirebase = false;
+let db, storage;
+if(firebaseConfig.apiKey){
+  firebase.initializeApp(firebaseConfig);
+  db = firebase.firestore(); storage = firebase.storage();
+  useFirebase = true;
+  document.getElementById('firebaseStatus').textContent = '🔴 Live — Firebase connected';
+  document.getElementById('firebaseStatus').style.color = '#22c55e';
+  document.getElementById('statusText').textContent = 'Firebase connected — uploads are public!';
+}
 
-<section id="about" style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-<div><h2 style="font-size:28px;font-weight:900;letter-spacing:-1px">About Us</h2><p style="color:#888;margin-top:12px">We are passionate about music and the possibilities of AI. AI Music Social was built to give AI artists a real home — not just a SoundCloud tag. Share your prompts, your models, your process.</p></div>
-<div class="card" id="contact"><h2 style="font-size:18px">Contact Us</h2><p style="color:#666;font-size:13px;margin:8px 0">Email us at <a href="mailto:info@aimusicsocial.com" style="color:#a855f7">info@aimusicsocial.com</a></p><input placeholder="Your email" style="width:100%;background:#0a0a0a;border:1px solid #222;border-radius:999px;padding:12px 16px;color:#fff;margin-top:10px"><button class="btn" style="width:100%;margin-top:10px;background:#fff;color:#000">Join Waitlist</button></div>
-</section>
-</main>
+// Local fallback
+const LS_KEY = 'aimusic_tracks_v2';
+function getLocalTracks(){ try{return JSON.parse(localStorage.getItem(LS_KEY)||'[]')}catch{return []} }
+function saveLocalTracks(t){ localStorage.setItem(LS_KEY, JSON.stringify(t)); }
 
-<footer>
-<p>&copy; 2026 AI Music Social — Built for AI creators</p>
-</footer>
+const demo = [
+  {id:'demo1', title:"Neon Dreams - AI Mix", artist:"@soulai", model:"Suno v3.5", genre:"Synthwave", prompt:"neon city at night, 80s drums, dreamy pad, 90bpm", likes:23, comments:[{user:"@futurebeats", text:"This pad is insane!"}], url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", color:"linear-gradient(135deg,#a855f7,#ec4899)"},
+  {id:'demo2', title:"Synthwave 2099", artist:"@futurebeats", model:"Udio", genre:"Cyberpunk", prompt:"cyberpunk chase scene, dark synth, aggressive bass", likes:12, comments:[], url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", color:"linear-gradient(135deg,#22d3ee,#3b82f6)"},
+];
+
+const feed = document.getElementById('feed');
+let currentAudio = null, currentEl = null;
+
+function formatTime(s){ if(isNaN(s)) return '0:00'; const m=Math.floor(s/60), sec=Math.floor(s%60).toString().padStart(2,'0'); return `${m}:${sec}`; }
+
+function createTrackEl(data){
+  const div = document.createElement('div'); div.className='track'; div.dataset.id=data.id;
+  div.innerHTML=`
+    <div class="track-top">
+      <div class="cover" style="background:${data.color||'linear-gradient(135deg,#a855f7,#ec4899)'}"><i class="fas fa-music"></i></div>
+      <div style="flex:1"><h4 style="font-size:14px">${data.title}</h4><p style="font-size:11px;color:#666">${data.artist||'@you'} • ${data.model||'AI'} • ${data.genre||''}</p></div>
+      <button class="play" style="width:40px;height:40px;border-radius:50%;border:none;background:#fff;color:#000;display:flex;align-items:center;justify-content:center;cursor:pointer"><i class="fas fa-play" style="font-size:12px"></i></button>
+    </div>
+    <div class="meta"><span class="badge badge-ai"><i class="fas fa-robot"></i> ${data.model||'AI'}</span><span class="badge">${data.genre||'AI Music'}</span></div>
+    <div class="waveform-wrap"><canvas></canvas><div class="progress"></div></div>
+    <div style="display:flex;justify-content:space-between;font-size:11px;color:#666;margin-top:6px"><span class="cur">0:00</span><span class="dur">0:00</span></div>
+    <div class="prompt-box"><b>Prompt</b>${data.prompt||'No prompt provided'}</div>
+    <div class="actions">
+      <button class="action-btn like-btn"><i class="fas fa-heart"></i> <span>${data.likes||0}</span></button>
+      <button class="action-btn comment-toggle"><i class="fas fa-message"></i> ${data.comments?.length||0}</button>
+      <button class="action-btn btn-ghost" onclick="navigator.clipboard.writeText('${data.url||''}')"><i class="fas fa-share"></i> Share</button>
+      ${data.isUser?'<button class="action-btn btn-ghost delete-btn" style="margin-left:auto"><i class="fas fa-trash"></i></button>':''}
+    </div>
+    <div class="comments" style="display:none"><div class="comments-list"></div><div class="comment-input"><input placeholder="Add a comment..." style="flex:1;padding:8px 12px;border-radius:999px;font-size:12px"><button class="btn" style="padding:8px 14px">Post</button></div></div>
+    <audio src="${data.url}" preload="metadata" crossorigin="anonymous"></audio>
+  `;
+  const audio = div.querySelector('audio'), playBtn = div.querySelector('.play'), canvas = div.querySelector('canvas'), progress = div.querySelector('.progress'), cur=div.querySelector('.cur'), dur=div.querySelector('.dur'), wrap=div.querySelector('.waveform-wrap');
+  const ctx = canvas.getContext('2d');
+  function resize(){ canvas.width=canvas.offsetWidth*2; canvas.height=canvas.offsetHeight*2; } resize();
+  function draw(data){ const w=canvas.width,h=canvas.height; ctx.clearRect(0,0,w,h); const n=120, step=Math.floor(data.length/n)||1, bw=w/n; for(let i=0;i<n;i++){ let v=data[i*step]||Math.random()*0.5+0.2; let bh=v*h*0.8; ctx.fillStyle=div.classList.contains('active')?'#a855f7':'#333'; ctx.fillRect(i*bw+1,(h-bh)/2,bw-2,bh); } }
+  draw(new Array(120).fill(0).map(()=>Math.random()));
+  // real waveform try
+  fetch(data.url).then(r=>r.arrayBuffer()).then(b=>{ const ac=new (window.AudioContext||window.webkitAudioContext)(); return ac.decodeAudioData(b); }).then(dec=>{ const raw=dec.getChannelData(0), samp=[], block=Math.floor(raw.length/120); for(let i=0;i<120;i++){ let s=0; for(let j=0;j<block;j++) s+=Math.abs(raw[i*block+j]); samp.push(s/block*3); } draw(samp); }).catch(()=>{});
+
+  audio.addEventListener('loadedmetadata',()=>dur.textContent=formatTime(audio.duration));
+  audio.addEventListener('timeupdate',()=>{ progress.style.width=(audio.currentTime/audio.duration*100||0)+'%'; cur.textContent=formatTime(audio.currentTime); });
+  audio.addEventListener('ended',()=>{ playBtn.innerHTML='<i class="fas fa-play" style="font-size:12px"></i>'; div.classList.remove('active'); });
+
+  function togglePlay(){
+    if(currentAudio && currentAudio!==audio){ currentAudio.pause(); if(currentEl){ currentEl.classList.remove('active'); currentEl.querySelector('.play').innerHTML='<i class="fas fa-play" style="font-size:12px"></i>'; } }
+    if(audio.paused){ audio.play(); playBtn.innerHTML='<i class="fas fa-pause" style="font-size:12px"></i>'; div.classList.add('active'); currentAudio=audio; currentEl=div; } else { audio.pause(); playBtn.innerHTML='<i class="fas fa-play" style="font-size:12px"></i>'; div.classList.remove('active'); }
+  }
+  playBtn.onclick=togglePlay; div.querySelector('.track-top').onclick=togglePlay;
+  wrap.onclick=e=>{ const r=wrap.getBoundingClientRect(); audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration; };
+
+  // Likes
+  const likeBtn = div.querySelector('.like-btn');
+  likeBtn.onclick=async()=>{
+    const liked = likeBtn.classList.toggle('liked');
+    let count = parseInt(likeBtn.querySelector('span').textContent)||0;
+    count = liked?count+1:count-1; likeBtn.querySelector('span').textContent=count;
+    if(useFirebase){ await db.collection('tracks').doc(data.id).update({likes:count}); }
+    else{ const all=getLocalTracks(); const t=all.find(x=>x.id===data.id); if(t){t.likes=count; saveLocalTracks(all);} }
+  };
+
+  // Comments
+  const list = div.querySelector('.comments-list'), toggle = div.querySelector('.comment-toggle'), commentsBox = div.querySelector('.comments');
+  function renderComments(){ list.innerHTML=(data.comments||[]).map(c=>`<div class="comment"><b>${c.user}</b><span>${c.text}</span></div>`).join('')||'<p style="font-size:11px;color:#444">No comments yet — be first!</p>'; }
+  renderComments();
+  toggle.onclick=()=>{ commentsBox.style.display=commentsBox.style.display==='none'?'block':'none'; };
+  const cInput = div.querySelector('.comment-input input'), cBtn = div.querySelector('.comment-input button');
+  cBtn.onclick=async()=>{
+    const txt=cInput.value.trim(); if(!txt) return;
+    const newC={user:"@you", text:txt}; data.comments=data.comments||[]; data.comments.push(newC); renderComments(); cInput.value=''; toggle.textContent=` ${data.comments.length}`; div.querySelector('.comment-toggle').innerHTML=`<i class="fas fa-message"></i> ${data.comments.length}`;
+    if(useFirebase){ await db.collection('tracks').doc(data.id).update({comments:data.comments}); }
+    else{ const all=getLocalTracks(); const t=all.find(x=>x.id===data.id); if(t){t.comments=data.comments; saveLocalTracks(all);} }
+  };
+
+  // Delete
+  const del = div.querySelector('.delete-btn');
+  if(del) del.onclick=async()=>{ if(!confirm('Delete track?')) return; div.remove(); if(useFirebase) await db.collection('tracks').doc(data.id).delete(); else{ let all=getLocalTracks().filter(x=>x.id!==data.id); saveLocalTracks(all); } };
+
+  return div;
+}
+
+async function loadFeed(){
+  feed.innerHTML='';
+  let tracks=[];
+  if(useFirebase){
+    const snap = await db.collection('tracks').orderBy('createdAt','desc').get();
+    tracks = snap.docs.map(d=>d.data());
+  }else{
+    tracks = [...getLocalTracks(), ...demo];
+  }
+  tracks.forEach(t=>feed.appendChild(createTrackEl(t)));
+}
+
+// Upload logic
+const fileInput=document.getElementById('fileInput'), dropZone=document.getElementById('dropZone'), publishBtn=document.getElementById('publishBtn');
+let selectedFile=null, selectedUrl=null;
+fileInput.onchange=e=>{ if(e.target.files[0]){ selectedFile=e.target.files[0]; selectedUrl=URL.createObjectURL(selectedFile); dropZone.innerHTML=`<p style="font-size:13px;color:#22c55e"><i class="fas fa-check"></i> ${selectedFile.name}</p><audio controls src="${selectedUrl}" style="width:100%;margin-top:10px"></audio>`; } };
+dropZone.onclick=()=>fileInput.click();
+dropZone.ondragover=e=>{e.preventDefault(); dropZone.classList.add('dragover')};
+dropZone.ondragleave=()=>dropZone.classList.remove('dragover');
+dropZone.ondrop=e=>{e.preventDefault(); dropZone.classList.remove('dragover'); if(e.dataTransfer.files[0]){fileInput.files=e.dataTransfer.files; fileInput.dispatchEvent(new Event('change'));}};
+
+publishBtn.onclick=async()=>{
+  const title=document.getElementById('titleInput').value.trim()||selectedFile?.name?.replace(/\.[^/.]+$/,"")||"Untitled AI Track";
+  const model=document.getElementById('modelInput').value, genre=document.getElementById('genreInput').value, prompt=document.getElementById('promptInput').value;
+  if(!selectedUrl && !selectedFile){ alert('Pick an audio file first'); return; }
+  publishBtn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Publishing...'; publishBtn.disabled=true;
+  let publicUrl = selectedUrl;
+  let id = 'track_'+Date.now();
+  try{
+    if(useFirebase && selectedFile){
+      const ref = storage.ref('tracks/'+id+'_'+selectedFile.name);
+      await ref.put(selectedFile);
+      publicUrl = await ref.getDownloadURL();
+    }
+    const newTrack = {id, title, model, genre, prompt, artist:"@you", likes:0, comments:[], url:publicUrl, color:"linear-gradient(135deg,#10b981,#06b6d4)", createdAt:Date.now(), isUser:true};
+    if(useFirebase){ await db.collection('tracks').doc(id).set(newTrack); }
+    else{ const all=getLocalTracks(); all.unshift(newTrack); saveLocalTracks(all); }
+    feed.prepend(createTrackEl(newTrack));
+    // reset
+    document.getElementById('titleInput').value=''; document.getElementById('genreInput').value=''; document.getElementById('promptInput').value=''; selectedFile=null; selectedUrl=null; dropZone.innerHTML='<i class="fas fa-cloud-arrow-up" style="font-size:24px;color:#555"></i><p style="font-size:13px;margin-top:8px">Drop MP3/WAV here or click</p>';
+    alert('Published! '+ (useFirebase?'Everyone can hear it.':'Local only — add Firebase keys to make it public.'));
+  }catch(e){ alert('Error: '+e.message); }
+  publishBtn.innerHTML='<i class="fas fa-rocket"></i> Publish to Feed'; publishBtn.disabled=false;
+};
+
+loadFeed();
+</script>
 </body>
 </html>
