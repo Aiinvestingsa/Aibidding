@@ -2,19 +2,54 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Music Social - Dj BIGSAM RSA</title>
+<title>AI Music Social - Dj BIGSAM RSA - 7 TRACKS LIVE</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<style>body{font-family:Inter;background:#050507;color:#fff}h1{font-family:Syne}.glass{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(24px)}</style>
+<style>
+body{font-family:Inter;background:#050507;color:#fff}h1{font-family:Syne}
+.glass{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(24px)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes wave{0%,100%{height:8px}50%{height:32px}}
+.loader-ring{width:64px;height:64px;border:4px solid rgba(255,255,255,0.1);border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite}
+.bar{width:4px;background:#fff;border-radius:10px;animation:wave 0.8s ease-in-out infinite}
+.bar:nth-child(2){animation-delay:0.1s}.bar:nth-child(3){animation-delay:0.2s}.bar:nth-child(4){animation-delay:0.3s}.bar:nth-child(5){animation-delay:0.4s}
+</style>
 </head>
 <body>
 <div class="max-w-[1200px] mx-auto p-4">
-<header class="flex justify-between items-center glass rounded-[24px] px-6 py-4 mb-6"><div class="flex items-center gap-3"><div class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center font-black">M</div><div><h1 class="font-extrabold">AI MUSIC SOCIAL</h1><p class="text-[10px] tracking-widest text-zinc-500">AUTO-COMPRESS • LIVE</p></div></div><button onclick="document.getElementById('modal').classList.remove('hidden')" class="bg-white text-black px-6 py-3 rounded-full font-bold text-sm">+ Upload</button></header>
+<header class="flex justify-between items-center glass rounded-[24px] px-6 py-4 mb-6"><div class="flex items-center gap-3"><div class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center font-black">M</div><div><h1 class="font-extrabold">AI MUSIC SOCIAL</h1><p class="text-[10px] tracking-widest text-zinc-500">7 TRACKS • DURBAN LIVE</p></div></div><button onclick="document.getElementById('modal').classList.remove('hidden')" class="bg-white text-black px-6 py-3 rounded-full font-bold text-sm">+ Upload</button></header>
 <div id="grid" class="grid md:grid-cols-3 gap-6"></div>
 </div>
+
 <div id="player" class="hidden fixed bottom-4 left-3 right-3 md:left-1/2 md:-translate-x-1/2 md:w-[580px] bg-[#18181b]/95 border border-white/10 rounded-[20px] p-3 flex items-center gap-3 z-50"><div id="pArt" class="w-12 h-12 rounded-xl"></div><div class="flex-1 min-w-0"><p id="pTitle" class="font-bold text-sm truncate"></p><p id="pArtist" class="text-xs text-zinc-400"></p></div><audio id="audio" controls class="w-[220px] h-8"></audio></div>
-<div id="modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-xl z-[60] flex items-center justify-center p-4"><div class="bg-[#141417] border border-white/10 rounded-[28px] w-full max-w-[500px] p-7"><h2 class="text-xl font-bold mb-1">Upload Track</h2><p class="text-[11px] text-zinc-500 mb-4">If file >4MB, it auto-compresses to 96kbps for MTN fast upload</p><input id="title" placeholder="Title: Abe" class="w-full bg-[#1e1e21] rounded-2xl px-5 py-4 text-sm mb-3 outline-none"><input id="artist" value="Dj BIGSAM RSA" class="w-full bg-[#1e1e21] rounded-2xl px-5 py-4 text-sm mb-3 outline-none"><input type="file" id="file" accept="audio/*" class="w-full bg-[#1e1e21] rounded-2xl px-5 py-4 text-sm mb-3"><p id="status" class="text-xs min-h-[20px] mb-3 text-emerald-400"></p><button id="upBtn" onclick="upload()" class="w-full bg-white text-black py-4 rounded-full font-bold text-sm">Upload & Auto-Compress</button><button onclick="document.getElementById('modal').classList.add('hidden')" class="w-full mt-3 bg-white/10 py-3 rounded-full text-sm">Close</button></div></div>
+
+<!-- MODAL WITH LOADING ANIMATION -->
+<div id="modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-xl z-[60] flex items-center justify-center p-4">
+<div class="bg-[#141417] border border-white/10 rounded-[28px] w-full max-w-[500px] p-7 relative overflow-hidden">
+<!-- NORMAL FORM -->
+<div id="formBox">
+<h2 class="text-xl font-bold mb-1">Upload Track</h2><p class="text-[11px] text-zinc-500 mb-4">Auto-compress for MTN fast upload</p>
+<input id="title" placeholder="Track title" class="w-full bg-[#1e1e21] rounded-2xl px-5 py-4 text-sm mb-3 outline-none">
+<input id="artist" value="Dj BIGSAM RSA" class="w-full bg-[#1e1e21] rounded-2xl px-5 py-4 text-sm mb-3 outline-none">
+<input type="file" id="file" accept="audio/*" class="w-full bg-[#1e1e21] rounded-2xl px-5 py-4 text-sm mb-3">
+<p id="status" class="text-xs min-h-[20px] mb-3 text-emerald-400"></p>
+<button id="upBtn" onclick="upload()" class="w-full bg-white text-black py-4 rounded-full font-bold text-sm">Upload & Auto-Compress</button>
+<button onclick="document.getElementById('modal').classList.add('hidden')" class="w-full mt-3 bg-white/10 py-3 rounded-full text-sm">Close</button>
+</div>
+<!-- LOADING BOX (hidden at start) -->
+<div id="loadingBox" class="hidden text-center py-8">
+<div class="flex justify-center mb-6"><div class="loader-ring"></div></div>
+<div class="flex justify-center gap-[6px] h-8 items-center mb-6"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+<h3 id="loadTitle" class="text-lg font-bold animate-[pulse_1.5s_infinite]">Compressing...</h3>
+<p id="loadSub" class="text-xs text-zinc-400 mt-2">8MB → ~3MB for fast MTN upload<br>Keep screen on, don't close</p>
+<div class="mt-6 w-full bg-white/10 rounded-full h-2 overflow-hidden"><div id="progress" class="h-full bg-white w-0 transition-all duration-500"></div></div>
+<p id="loadPercent" class="text-[11px] text-zinc-500 mt-2">0%</p>
+</div>
+</div>
+</div>
+
 <script>
 const supabaseClient = supabase.createClient("https://ogndqvdzuuufdygkhzae.supabase.co", "sb_publishable_eg-ZsTalOsWQtIDJmDQugA_Sf2iKrkD");
 let allTracks=[];
@@ -22,70 +57,58 @@ async function fetchTracks(){const {data}=await supabaseClient.from('tracks').se
 function render(){document.getElementById('grid').innerHTML=allTracks.map(t=>`<div class="glass rounded-[26px] p-3"><div class="h-[200px] rounded-[20px] relative" style="background:${t.color}"><button onclick="playTrack('${t.id}')" class="absolute inset-0 grid place-items-center"><div class="w-16 h-16 bg-white rounded-full grid place-items-center text-black">▶</div></button></div><div class="p-2"><h3 class="font-bold">${t.title}</h3><p class="text-xs text-zinc-400">${t.artist}</p><div class="flex justify-between mt-3"><button onclick="likeTrack('${t.id}',${t.likes||0})" class="text-xs bg-white/10 px-3 py-1 rounded-full">❤️ ${t.likes||0}</button><button onclick="playTrack('${t.id}')" class="text-xs bg-white text-black px-5 py-1.5 rounded-full font-bold">Play</button></div></div></div>`).join('');}
 function playTrack(id){const t=allTracks.find(x=>x.id==id);document.getElementById('pArt').style.background=t.color;document.getElementById('pTitle').innerText=t.title;document.getElementById('pArtist').innerText=t.artist;const a=document.getElementById('audio');a.src=t.url;document.getElementById('player').classList.remove('hidden');a.play();}
 async function likeTrack(id,l){await supabaseClient.from('tracks').update({likes:l+1}).eq('id',id);fetchTracks();}
-
-// --- AUTO COMPRESS FUNCTION FOR MTN SA ---
 async function compressAudioFile(file){
-  const status=document.getElementById('status');
-  // If small, don't compress
   if(file.size < 4*1024*1024) return file;
-  status.innerText = `Compressing ${Math.round(file.size/1024/1024)}MB → ~3MB for fast MTN upload... please wait 10sec...`;
+  document.getElementById('loadTitle').innerText='Compressing audio...';document.getElementById('loadSub').innerText=`${Math.round(file.size/1024/1024)}MB → ~3MB\nMaking it MTN-friendly`;document.getElementById('progress').style.width='30%';document.getElementById('loadPercent').innerText='30% - decoding...';
   try{
     const arrayBuffer = await file.arrayBuffer();
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
-    // Downsample to 22k mono to save size
     const offlineCtx = new OfflineAudioContext(1, audioBuffer.duration * 22050, 22050);
-    const source = offlineCtx.createBufferSource();
-    source.buffer = audioBuffer;
-    source.connect(offlineCtx.destination);
-    source.start(0);
+    const source = offlineCtx.createBufferSource();source.buffer=audioBuffer;source.connect(offlineCtx.destination);source.start(0);
     const rendered = await offlineCtx.startRendering();
-    // Encode as WAV then it will be stored as smaller file (Supabase will serve it)
-    // Create low-bitrate blob via MediaRecorder approach
+    document.getElementById('progress').style.width='60%';document.getElementById('loadPercent').innerText='60% - encoding...';
     const dest = audioCtx.createMediaStreamDestination();
-    const source2 = audioCtx.createBufferSource();
-    source2.buffer = rendered;
-    source2.connect(dest);
+    const source2 = audioCtx.createBufferSource();source2.buffer=rendered;source2.connect(dest);
     const recorder = new MediaRecorder(dest.stream, {mimeType: 'audio/webm;codecs=opus', bitsPerSecond: 96000});
     const chunks=[];
     return new Promise(resolve=>{
       recorder.ondataavailable=e=>chunks.push(e.data);
       recorder.onstop=()=>{
         const compressedBlob = new Blob(chunks, {type: 'audio/webm'});
-        status.innerText = `Compressed! ${Math.round(file.size/1024/1024)}MB → ${Math.round(compressedBlob.size/1024/1024*10)/10}MB`;
+        document.getElementById('progress').style.width='80%';
         resolve(new File([compressedBlob], file.name.replace('.mp3','.webm'), {type:'audio/webm'}));
       };
-      recorder.start();
-      source2.start(0);
-      setTimeout(()=>recorder.stop(), (rendered.duration*1000)+500);
+      recorder.start();source2.start(0);setTimeout(()=>recorder.stop(), (rendered.duration*1000)+500);
     });
-  }catch(e){
-    console.log('Compress failed, using original', e);
-    return file; // fallback to original if compression fails
-  }
+  }catch(e){return file;}
 }
-
 async function upload(){
-  const fileInput=document.getElementById('file');const file=fileInput.files[0];const title=document.getElementById('title').value.trim();
-  const status=document.getElementById('status');const btn=document.getElementById('upBtn');
+  const file=document.getElementById('file').files[0];const title=document.getElementById('title').value.trim();
   if(!title||!file){alert('Add title + file');return;}
-  btn.disabled=true;btn.innerText='Compressing...';
+  // SHOW LOADING ANIMATION
+  document.getElementById('formBox').classList.add('hidden');
+  document.getElementById('loadingBox').classList.remove('hidden');
+  document.getElementById('loadTitle').innerText='Starting...';document.getElementById('progress').style.width='10%';document.getElementById('loadPercent').innerText='10%';
   try{
     const finalFile = await compressAudioFile(file);
-    btn.innerText='Uploading '+Math.round(finalFile.size/1024/1024*10)/10+'MB...';
-    status.innerText='Uploading compressed file to Supabase... keep screen on';
+    document.getElementById('loadTitle').innerText='Uploading to Supabase...';document.getElementById('loadSub').innerText=`Uploading ${Math.round(finalFile.size/1024/1024*10)/10}MB — keep screen on`;document.getElementById('progress').style.width='85%';document.getElementById('loadPercent').innerText='85% - uploading...';
     const safeName=Date.now()+'_'+Math.random().toString(36).slice(2,7)+'_'+finalFile.name.replace(/[^a-zA-Z0-9.-]/g,'_');
     const {error:upErr}=await supabaseClient.storage.from('tracks').upload(safeName,finalFile,{upsert:true});
     if(upErr) throw upErr;
     const {data}=supabaseClient.storage.from('tracks').getPublicUrl(safeName);
     const colors=['linear-gradient(135deg,#ff4ecd,#8b5cf6)','linear-gradient(135deg,#10b981,#06b6d4)','linear-gradient(135deg,#f59e0b,#ef4444)'];
+    document.getElementById('progress').style.width='95%';document.getElementById('loadPercent').innerText='95% - saving...';
     const {error:dbErr}=await supabaseClient.from('tracks').insert({id:'track_'+Date.now(),title,artist:document.getElementById('artist').value,color:colors[Math.floor(Math.random()*3)],model:'Suno v3.5',url:data.publicUrl,likes:0,created_at:Date.now()});
     if(dbErr) throw dbErr;
-    status.innerText='✅ LIVE! '+title;
-    setTimeout(()=>{document.getElementById('modal').classList.add('hidden');status.innerText='';},1200);
-    document.getElementById('title').value='';fileInput.value='';
+    document.getElementById('progress').style.width='100%';document.getElementById('loadPercent').innerText='100%';document.getElementById('loadTitle').innerText='✅ '+title+' LIVE!';document.getElementById('loadSub').innerText='7 tracks → now '+(allTracks.length+1)+' tracks!';
+    setTimeout(()=>{document.getElementById('modal').classList.add('hidden');document.getElementById('formBox').classList.remove('hidden');document.getElementById('loadingBox').classList.add('hidden');document.getElementById('title').value='';document.getElementById('file').value='';document.getElementById('progress').style.width='0%';},1500);
     fetchTracks();
-  }catch(e){status.innerText='❌ '+e.message;alert(e.message);}finally{btn.disabled=false;btn.innerText='Upload & Auto-Compress';}
+  }catch(e){
+    document.getElementById('loadTitle').innerText='❌ Failed';document.getElementById('loadSub').innerText=e.message;document.getElementById('progress').style.width='0%';
+    setTimeout(()=>{document.getElementById('formBox').classList.remove('hidden');document.getElementById('loadingBox').classList.add('hidden');},2000);
+    alert(e.message);
+  }
 }
 fetchTracks();
 </script>
