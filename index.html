@@ -1,610 +1,92 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BIDKZN - Security Question Only When Registering - WhatsApp 0789313670</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Music Social</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-body{font-family:system-ui;background:#000;padding-bottom:90px}
-.bidkzn-gold{background:linear-gradient(90deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}
-.whatsapp-float{position:fixed;bottom:20px;right:20px;z-index:100;background:#25D366;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.4);animation:pulseWhatsapp 2s infinite}
-@keyframes pulseWhatsapp{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
-.profile-pic-preview{width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid #FFD700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,sans-serif;background:#0a0a0a;color:#fff;line-height:1.6}
+header{position:sticky;top:0;z-index:50;background:rgba(10,10,10,0.8);backdrop-filter:blur(12px);border-bottom:1px solid #222;padding:14px 0}
+nav{max-width:1200px;margin:auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;font-size:1.4rem;letter-spacing:-1px}
+.logo span{background:linear-gradient(90deg,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav ul{list-style:none;display:flex;gap:24px}
+nav a{color:#aaa;text-decoration:none;font-size:14px;transition:.2s}
+nav a:hover{color:#fff}
+.btn{background:#fff;color:#000;padding:10px 18px;border-radius:999px;font-weight:700;font-size:13px;text-decoration:none;transition:.2s}
+.btn:hover{transform:scale(1.05)}
+.hero{max-width:1200px;margin:auto;padding:80px 20px 40px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.hero h2{font-size:56px;line-height:0.95;letter-spacing:-2px;font-weight:900}
+.hero h2 span{background:linear-gradient(90deg,#a855f7,#ec4899,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:#888;margin:16px 0 24px;max-width:480px}
+.feed{max-width:1200px;margin:20px auto;padding:0 20px;display:grid;grid-template-columns:2fr 1fr;gap:24px}
+.card{background:#151515;border:1px solid #222;border-radius:20px;padding:18px}
+.track{display:flex;gap:14px;align-items:center;padding:14px;border-radius:14px;transition:.2s;cursor:pointer}
+.track:hover{background:#1e1e1e}
+.cover{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#a855f7,#ec4899);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.track-info{flex:1}
+.track-info h4{font-size:14px;font-weight:700}
+.track-info p{font-size:12px;color:#666}
+.play{width:36px;height:36px;border-radius:50%;background:#fff;color:#000;display:flex;align-items:center;justify-content:center}
+section{max-width:1200px;margin:60px auto;padding:0 20px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.feature{background:#151515;border:1px solid #222;border-radius:20px;padding:24px}
+.feature i{font-size:20px;margin-bottom:12px;color:#a855f7}
+footer{background:#111;border-top:1px solid #222;text-align:center;padding:24px;color:#555;font-size:13px;margin-top:60px}
+@media(max-width:900px){.hero,.feed{grid-template-columns:1fr}.hero h2{font-size:38px}.features{grid-template-columns:1fr}}
 </style>
-</head><body class="bg-black text-white">
-
-<a id="whatsappFloat" href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20I%20want%20to%20buy%20voucher%20code" target="_blank" class="whatsapp-float">
-<i class="fab fa-whatsapp text-white text-2xl"></i>
-</a>
-
-<header class="sticky top-0 z-50 bg-black border-b-2 border-yellow-500 p-3">
-<div class="flex justify-between items-center max-w-6xl mx-auto flex-wrap gap-2">
-<div class="flex items-center gap-2">
-<div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-full flex items-center justify-center font-black text-black">B</div>
-<div>
-<h1 class="font-black text-lg"><span class="bidkzn-gold">BID</span><span class="text-white">KZN</span></h1>
-<p class="text-[8px] text-zinc-400">SECURITY QUESTION ONLY WHEN REGISTERING - BIDKZN - 0789313670</p>
-</div>
-</div>
-<div class="flex gap-2 items-center flex-wrap" id="headerButtons"></div>
-</div>
+</head>
+<body>
+<header>
+<nav>
+<div class="logo"><span>AI</span> Music Social</div>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<a href="#" class="btn"><i class="fas fa-upload"></i> Upload Track</a>
+</nav>
 </header>
 
-<div class="text-center py-3 bg-gradient-to-b from-yellow-900/20 to-black border-b border-yellow-900/20">
-<p class="text-[11px] text-zinc-300">BIDKZN - Security Question Only When Bidder Registering - WhatsApp Admin: <a id="whatsappNumberDisplay" href="https://wa.me/27789313670" target="_blank" class="text-[#25D366] font-black underline"><i class="fab fa-whatsapp"></i> <span id="adminPhoneDisplay">+27 78 931 3670</span></a> - Only When Registering</p>
-</div>
-
-<div id="bidderAuthView" class="max-w-6xl mx-auto p-3">
-<div class="grid md:grid-cols-2 gap-6 mt-6">
-
-<div class="bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-6">
-<h2 class="font-black text-xl text-yellow-400"><i class="fas fa-sign-in-alt"></i> BIDKZN - BIDDER LOGIN</h2>
-<p class="text-[11px] text-zinc-400 mt-2">Login with Phone + Password - Security Question was set only when you registered</p>
-<div class="mt-6 space-y-3">
-<label class="text-[11px] text-zinc-400">📱 WhatsApp Phone - Login ID</label>
-<input id="loginPhone" type="tel" placeholder="0789313670 - BIDKZN Login ID" class="w-full p-4 rounded-full bg-black border-2 border-yellow-500 text-center font-black text-lg">
-<label class="text-[11px] text-zinc-400">🔒 Password</label>
-<input id="loginPassword" type="password" placeholder="Enter password - BIDKZN" class="w-full p-4 rounded-full bg-black border-2 border-zinc-700 text-center font-black text-lg">
-<button onclick="bidderLogin()" class="w-full bg-yellow-400 text-black py-4 rounded-full font-black text-lg mt-4">
-<i class="fas fa-sign-in-alt"></i> LOGIN AS BIDDER - BIDKZN
-</button>
-<div class="grid grid-cols-1 gap-2 mt-3">
-<button onclick="openForgotPassword()" class="w-full bg-red-900/30 border-2 border-red-600 py-3 rounded-full text-sm font-black text-red-400">
-<i class="fas fa-key"></i> FORGOT PASSWORD? - Answer Security Question (Set Only When Registering)
-</button>
-</div>
-</div>
-<div id="loggedBidderInfo" class="mt-6 hidden bg-black border border-green-600 rounded-xl p-4">
-<div class="flex items-center gap-3">
-<img id="loggedProfilePic" src="" class="profile-pic-preview hidden">
+<main>
+<div class="hero" id="home">
 <div>
-<p class="font-black text-green-400 text-sm">✅ Logged in - BIDKZN:</p>
-<p class="text-white font-black" id="loggedName">-</p>
-<p class="text-[11px] text-zinc-400" id="loggedPhone">-</p>
-<p class="text-[10px] text-zinc-500" id="loggedID">ID: - | Security Question Set Only When Registering</p>
-<p class="text-[11px] text-yellow-400">Wallet: R<span id="loggedWallet">0</span></p>
+<h2>Share and discover <span>AI-generated music.</span></h2>
+<p>Your platform to upload, listen, and connect with other AI music creators. The future of sound is here.</p>
+<div style="display:flex;gap:12px">
+<a href="#features" class="btn" style="background:linear-gradient(90deg,#a855f7,#ec4899);color:#fff"><i class="fas fa-play"></i> Explore Feed</a>
+<a href="#about" class="btn" style="background:#222;color:#fff">How it works</a>
 </div>
 </div>
-<div class="flex gap-2 mt-3 flex-wrap">
-<button onclick="showView('profile')" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black">👤 WALLET AREA</button>
-<button onclick="showView('flash')" class="bg-red-600 px-4 py-2 rounded-full text-xs font-black">⚡ FLASH AREA</button>
-<button onclick="bidderLogout()" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">LOGOUT</button>
-</div>
-</div>
-</div>
-
-<div class="bg-black border-2 border-green-600 rounded-2xl p-6">
-<h2 class="font-black text-xl text-green-400"><i class="fas fa-user-plus"></i> BIDKZN - BIDDER ACCOUNT CREATING - Security Question ONLY When Registering</h2>
-<p class="text-[11px] text-zinc-400 mt-2">Create bidder account - ID Number + First Name + Surname + DOB + Profile Picture + Security Question ONLY When Registering - BIDKZN - WhatsApp 0789313670</p>
-
-<div class="mt-6 space-y-3">
-
-<div class="bg-zinc-900 border border-yellow-500/30 rounded-xl p-4">
-<p class="font-black text-xs text-yellow-400"><i class="fas fa-camera"></i> Profile Picture - BIDKZN - Only When Registering has Security Question</p>
-<div class="flex items-center gap-4 mt-3">
-<img id="regProfilePreview" src="https://via.placeholder.com/100x100/000000/FFD700?text=BIDKZN" class="profile-pic-preview">
-<div class="flex-1">
-<input id="regProfilePic" type="file" accept="image/*" onchange="previewProfilePic(this)" class="w-full p-2 rounded-full bg-black border border-zinc-700 text-xs">
-<button onclick="document.getElementById('regProfilePic').click()" class="mt-2 bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black"><i class="fas fa-camera"></i> Choose Picture - BIDKZN</button>
-</div>
+<div class="card">
+<h4 style="margin-bottom:12px"><i class="fas fa-fire"></i> Trending Now</h4>
+<div class="track"><div class="cover"><i class="fas fa-music"></i></div><div class="track-info"><h4>Neon Dreams - AI Mix</h4><p>@soulai • 2.3k plays</p></div><div class="play"><i class="fas fa-play" style="font-size:12px"></i></div></div>
+<div class="track"><div class="cover" style="background:linear-gradient(135deg,#22d3ee,#3b82f6)"><i class="fas fa-robot"></i></div><div class="track-info"><h4>Synthwave 2099</h4><p>@futurebeats • 1.8k plays</p></div><div class="play"><i class="fas fa-play" style="font-size:12px"></i></div></div>
+<div class="track"><div class="cover" style="background:linear-gradient(135deg,#f59e0b,#ef4444)"><i class="fas fa-waveform"></i></div><div class="track-info"><h4>Lo-Fi Consciousness</h4><p>@auralab • 1.2k plays</p></div><div class="play"><i class="fas fa-play" style="font-size:12px"></i></div></div>
 </div>
 </div>
 
-<label class="text-[11px] text-zinc-400">🪪 ID Number - 13 digits - BIDKZN - Only When Registering</label>
-<input id="regIDNumber" type="text" maxlength="13" placeholder="e.g. 9001015009087 - ID Number - Only When Registering" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black tracking-widest">
-
-<div class="grid grid-cols-2 gap-2">
-<div>
-<label class="text-[11px] text-zinc-400">👤 First Name - Only When Registering</label>
-<input id="regFirstName" type="text" placeholder="First Name e.g. John - Only When Registering" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-zinc-700 text-center font-black">
+<section id="features">
+<h2 style="font-size:28px;font-weight:900;letter-spacing:-1px">Features</h2>
+<div class="features">
+<div class="feature"><i class="fas fa-cloud-arrow-up"></i><h4>Upload Tracks</h4><p style="color:#666;font-size:13px;margin-top:6px">Upload your AI-generated tracks with artwork, prompts, and model info.</p></div>
+<div class="feature"><i class="fas fa-compass"></i><h4>Discover</h4><p style="color:#666;font-size:13px;margin-top:6px">Algorithmic feed based on style, mood, and AI models you like.</p></div>
+<div class="feature"><i class="fas fa-users"></i><h4>Connect</h4><p style="color:#666;font-size:13px;margin-top:6px">Follow creators, comment, remix and collaborate on tracks.</p></div>
 </div>
-<div>
-<label class="text-[11px] text-zinc-400">👤 Surname - Only When Registering</label>
-<input id="regSurname" type="text" placeholder="Surname e.g. Doe - Only When Registering" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-zinc-700 text-center font-black">
-</div>
-</div>
+</section>
 
-<label class="text-[11px] text-zinc-400">📅 Date of Birth - Only When Registering</label>
-<input id="regDOB" type="date" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-zinc-700 text-center font-black">
+<section id="about" style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+<div><h2 style="font-size:28px;font-weight:900;letter-spacing:-1px">About Us</h2><p style="color:#888;margin-top:12px">We are passionate about music and the possibilities of AI. AI Music Social was built to give AI artists a real home — not just a SoundCloud tag. Share your prompts, your models, your process.</p></div>
+<div class="card" id="contact"><h2 style="font-size:18px">Contact Us</h2><p style="color:#666;font-size:13px;margin:8px 0">Email us at <a href="mailto:info@aimusicsocial.com" style="color:#a855f7">info@aimusicsocial.com</a></p><input placeholder="Your email" style="width:100%;background:#0a0a0a;border:1px solid #222;border-radius:999px;padding:12px 16px;color:#fff;margin-top:10px"><button class="btn" style="width:100%;margin-top:10px;background:#fff;color:#000">Join Waitlist</button></div>
+</section>
+</main>
 
-<label class="text-[11px] text-zinc-400">📱 WhatsApp Phone - Login ID - Only When Registering</label>
-<input id="regPhone" type="tel" placeholder="0789313670 - Login ID - Only When Registering" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-green-600 text-center font-black text-lg">
-
-<!-- SECURITY QUESTION ONLY WHEN BIDDER REGISTERING -->
-<div class="bg-red-900/20 border-2 border-red-600 rounded-xl p-4">
-<p class="font-black text-sm text-red-400"><i class="fas fa-shield-alt"></i> SECURITY QUESTION - ONLY WHEN BIDDER REGISTERING - For Forgot Password</p>
-<p class="text-[10px] text-zinc-400 mt-1">This security question appears ONLY WHEN BIDDER REGISTERING - Not anywhere else - Used when client forgets password - BIDKZN - Only When Registering</p>
-
-<label class="text-[11px] text-zinc-300 mt-3 block">❓ Select Security Question - ONLY WHEN BIDDER REGISTERING</label>
-<select id="regSecurityQuestion" class="w-full p-4 rounded-full bg-black border-2 border-red-600 text-center font-black text-sm text-white">
-<option value="">-- Choose Security Question - ONLY WHEN REGISTERING --</option>
-<option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
-<option value="What was your first pet's name?">What was your first pet's name?</option>
-<option value="What is your favourite food?">What is your favourite food?</option>
-<option value="What city were you born in?">What city were you born in?</option>
-<option value="What is your father's middle name?">What is your father's middle name?</option>
-<option value="What was your first school name?">What was your first school name?</option>
-<option value="What is your ID number last 4 digits?">What is your ID number last 4 digits?</option>
-<option value="What is your favourite colour?">What is your favourite colour?</option>
-<option value="What is your grandmother's name?">What is your grandmother's name?</option>
-<option value="What is your childhood nickname?">What is your childhood nickname?</option>
-</select>
-
-<label class="text-[11px] text-zinc-300 mt-3 block">🔑 Security Answer - ONLY WHEN BIDDER REGISTERING - Remember for forgot password</label>
-<input id="regSecurityAnswer" type="text" placeholder="Enter security answer - ONLY WHEN REGISTERING - Remember for forgot password" class="w-full p-4 rounded-full bg-black border-2 border-red-600 text-center font-black">
-
-<p class="text-[10px] text-yellow-400 mt-2">⚠️ ONLY WHEN BIDDER REGISTERING - Remember security question + answer - You will need it when you forget password - Security question only when bidder registering - BIDKZN - Only When Registering</p>
-</div>
-
-<label class="text-[11px] text-zinc-400">🔒 Create Password - Only When Registering</label>
-<input id="regPassword" type="password" placeholder="Create password min 4 digits - Only When Registering" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-zinc-700 text-center font-black text-lg">
-
-<label class="text-[11px] text-zinc-400">🔒 Confirm Password - Only When Registering</label>
-<input id="regPassword2" type="password" placeholder="Confirm password - Only When Registering" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-zinc-700 text-center font-black text-lg">
-
-<button onclick="bidderRegister()" class="w-full bg-green-600 py-4 rounded-full font-black text-lg mt-4">
-<i class="fas fa-user-plus"></i> CREATE BIDDER ACCOUNT - Security Question ONLY When Registering - BIDKZN
-</button>
-</div>
-</div>
-</div>
-</div>
-
-<div id="mainApp" class="hidden max-w-6xl mx-auto p-3">
-<div class="bg-black border-2 border-green-600 rounded-xl p-4 mb-4">
-<div class="flex justify-between items-start flex-wrap gap-4">
-<div class="flex items-center gap-4">
-<img id="profileAvatarImg" src="https://via.placeholder.com/100x100/000000/FFD700?text=BIDKZN" class="profile-pic-preview">
-<div>
-<p class="font-black text-lg">BIDKZN Bidder: <span id="profileName">-</span></p>
-<p class="text-[11px] text-zinc-300">First Name: <span id="profileFirstName" class="text-white font-black">-</span> | Surname: <span id="profileSurname" class="text-white font-black">-</span></p>
-<p class="text-[11px] text-zinc-300">ID: <span id="profileIDNumber" class="text-yellow-400 font-black">-</span> | DOB: <span id="profileDOB" class="text-white">-</span></p>
-<p class="text-[11px] text-zinc-400">Phone: <span id="profilePhone">-</span> | WhatsApp: <a href="https://wa.me/27789313670" target="_blank" class="text-[#25D366] font-black">0789313670</a> - BIDKZN</p>
-</div>
-</div>
-<div class="text-right">
-<p class="text-[10px] text-zinc-400">BIDKZN WALLET - Security Question Set Only When Registering</p>
-<p class="text-3xl font-black text-yellow-400" id="walletBalance">R0.00</p>
-<p class="text-[9px] text-zinc-500" id="profileExtra">ID Verified - BIDKZN - Security Question Only When Registering</p>
-<button onclick="editBidderProfile()" class="mt-2 bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black"><i class="fas fa-edit"></i> EDIT PROFILE - No Security Question - Only When Registering</button>
-<button onclick="bidderLogout()" class="mt-2 ml-2 bg-red-900/30 border border-red-600 px-4 py-2 rounded-full text-xs text-red-400">LOGOUT</button>
-</div>
-</div>
-</div>
-
-<div class="flex gap-2 mb-4 overflow-x-auto">
-<button onclick="showView('profile')" id="nav-profile" class="bg-yellow-400 text-black px-5 py-3 rounded-full text-xs font-black"><i class="fas fa-wallet"></i> WALLET AREA - BIDKZN</button>
-<button onclick="showView('flash')" id="nav-flash" class="bg-zinc-800 px-5 py-3 rounded-full text-xs font-black"><i class="fas fa-bolt"></i> FLASH AREA - BIDKZN</button>
-<button onclick="showView('mywins')" id="nav-mywins" class="bg-zinc-800 px-5 py-3 rounded-full text-xs font-black"><i class="fas fa-trophy"></i> MY WINS - BIDKZN</button>
-<button onclick="showView('mycoins')" id="nav-mycoins" class="bg-zinc-800 px-5 py-3 rounded-full text-xs"><i class="fas fa-coins"></i> MY COINS - BIDKZN</button>
-<a href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20Security%20Question%20Only%20When%20Registering%20I%20need%20voucher" target="_blank" class="bg-[#25D366] px-5 py-3 rounded-full text-xs font-black"><i class="fab fa-whatsapp"></i> WhatsApp 0789313670 - BIDKZN</a>
-</div>
-
-<div id="profileView" class="hidden">
-<div class="bg-black border-2 border-green-600 rounded-2xl p-5">
-<h3 class="font-black text-green-400 text-lg"><i class="fas fa-wallet"></i> BIDKZN - WALLET AREA - Security Question Only When Registering</h3>
-<div class="mt-4 flex gap-2 flex-col md:flex-row">
-<input id="voucherCodeInput" placeholder="Enter voucher code - BIDKZN-A1B2-C3D4 - Security Question Only When Registering" class="flex-1 p-5 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black tracking-widest uppercase text-yellow-400 text-lg">
-<button onclick="loadWalletWithVoucher()" class="bg-green-600 px-8 py-5 rounded-full font-black text-sm">🎟️ LOAD WALLET - BIDKZN</button>
-</div>
-<div id="voucherLoadResult" class="mt-3 hidden"></div>
-</div>
-</div>
-
-<div id="flashView" class="hidden">
-<div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-4 mb-4">
-<div class="flex justify-between items-center"><h2 class="font-black text-red-400"><i class="fas fa-bolt"></i> BIDKZN - FLASH BIDDING - Security Question Only When Registering</h2><span class="bg-yellow-400 text-black text-[10px] px-3 py-1 rounded-full font-black">Wallet: R<span id="flashWalletBalance">0</span></span></div>
-<div id="walletCheck" class="mt-3 hidden"></div>
-</div>
-<div id="flashGrid" class="grid md:grid-cols-2 gap-4"></div>
-<div id="upcomingFlash" class="mt-6"><h3 class="font-black text-sm text-yellow-400">⏰ UPCOMING FLASH - Security Question Only When Registering</h3><div id="upcomingGrid" class="mt-3 grid md:grid-cols-2 gap-4"></div></div>
-</div>
-
-<div id="mywinsView" class="hidden"><div class="bg-zinc-900 border-2 border-green-600 rounded-2xl p-5"><h2 class="font-black text-green-400 text-xl"><i class="fas fa-trophy"></i> BIDKZN - MY WINS - Security Question Only When Registering</h2><div id="myWinsList" class="mt-6 space-y-3"></div></div></div>
-<div id="mycoinsView" class="hidden"><div class="bg-zinc-900 border-2 border-yellow-500/50 rounded-2xl p-5"><h2 class="font-black text-yellow-400"><i class="fas fa-coins"></i> BIDKZN - MY COINS - Security Question Only When Registering</h2><div id="myCoinsList" class="mt-4 space-y-3"></div></div></div>
-</div>
-
-<div id="admin" class="hidden fixed inset-0 bg-black z-50 overflow-y-auto"><div class="max-w-6xl mx-auto p-3">
-<div class="bg-zinc-900 rounded-2xl p-4 flex justify-between items-center border-2 border-yellow-500"><h2 class="font-black text-yellow-400">🔒 ADMIN - Security Question Only When Registering - 0789313670</h2><button onclick="document.getElementById('admin').classList.add('hidden')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">CLOSE</button></div>
-
-<div class="mt-4 bg-black border-2 border-yellow-500 rounded-xl p-4">
-<h3 class="font-black text-sm text-yellow-400">🎟️ BIDKZN - CREATE VOUCHERS - Security Question Only When Registering - WhatsApp 0789313670</h3>
-<div class="grid md:grid-cols-4 gap-2 mt-3">
-<input id="voucherAmount" type="number" placeholder="Amount e.g. 1000 - Only When Registering" class="p-3 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black">
-<input id="voucherCount" type="number" value="5" class="p-3 rounded-full bg-zinc-900 border text-center">
-<input id="voucherPrefix" placeholder="BIDKZN" value="BIDKZN" class="p-3 rounded-full bg-zinc-900 border text-center font-black uppercase">
-<button onclick="createVouchers()" class="bg-yellow-400 text-black p-3 rounded-full font-black">🎟️ CREATE VOUCHERS - Only When Registering</button>
-</div>
-</div>
-
-<div class="flex gap-2 mt-4 overflow-x-auto">
-<button onclick="adminTab('bidders')" id="at-bidders" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black"><i class="fas fa-users"></i> BIDDERS - Security Q Only When Registering</button>
-<button onclick="adminTab('loads')" id="at-loads" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🎟️ PENDING LOADS</button>
-<button onclick="adminTab('vouchers')" id="at-vouchers" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🎟️ VOUCHERS</button>
-<button onclick="adminTab('pending')" id="at-pending" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">⏳ FLASH PENDING</button>
-<button onclick="adminTab('live')" id="at-live" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">🔴 LIVE FLASH</button>
-</div>
-
-<div id="admin-bidders" class="mt-4"><div id="adminBiddersList"></div></div>
-<div id="admin-loads" class="hidden mt-4"><div id="adminLoadsList"></div></div>
-<div id="admin-vouchers" class="hidden mt-4"><div id="adminVouchersList"></div></div>
-<div id="admin-pending" class="hidden mt-4"><div id="adminPendingList"></div></div>
-<div id="admin-live" class="hidden mt-4"><div id="adminLiveList"></div></div>
-</div></div>
-
-<div id="forgotPasswordModal" class="hidden fixed inset-0 bg-black/90 z-[70] flex items-center justify-center p-4 overflow-y-auto"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto"><h2 class="font-black text-red-400 text-xl"><i class="fas fa-key"></i> FORGOT PASSWORD - Security Question Set Only When Registering</h2>
-<p class="text-[11px] text-zinc-400 mt-2">Security question was set ONLY WHEN BIDDER REGISTERING - Now answer to reset password - BIDKZN - Only When Registering</p>
-
-<div id="forgotStep1" class="mt-4">
-<label class="text-[11px] text-zinc-400">📱 Enter Phone - Only When Registering had Security Question</label>
-<input id="forgotPhone" type="tel" placeholder="0789313670 - Only When Registering" class="w-full p-4 rounded-full bg-black border-2 border-yellow-500 text-center font-black text-lg">
-<button onclick="forgotCheckPhone()" class="w-full bg-yellow-400 text-black py-4 rounded-full font-black mt-4"><i class="fas fa-search"></i> CHECK PHONE - Only When Registering Security Q</button>
-</div>
-
-<div id="forgotStep2" class="hidden mt-4 bg-black border-2 border-red-600 rounded-xl p-4">
-<p class="font-black text-sm text-yellow-400">Bidder Found - Security Question Set Only When Registering:</p>
-<p class="text-[11px] text-zinc-400 mt-1">Name: <span id="forgotName" class="text-white font-black">-</span> | ID: <span id="forgotIDNumber" class="text-yellow-400">-</span></p>
-<div class="mt-4 bg-red-900/20 border border-red-600 rounded-xl p-3">
-<p class="text-[11px] text-zinc-300">❓ Security Question - ONLY WHEN REGISTERING - Answer to reset password:</p>
-<p id="forgotSecurityQuestion" class="font-black text-red-400 text-sm mt-2 p-3 bg-black rounded-xl border border-red-600/30">-</p>
-<label class="text-[11px] text-zinc-400 mt-3 block">🔑 Your Security Answer - Set Only When Registering</label>
-<input id="forgotSecurityAnswer" type="text" placeholder="Enter security answer set only when registering" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black">
-</div>
-<button onclick="forgotVerifyAnswer()" class="w-full bg-red-600 py-4 rounded-full font-black mt-4"><i class="fas fa-check"></i> VERIFY ANSWER - Only When Registering Security Q</button>
-</div>
-
-<div id="forgotStep3" class="hidden mt-4 bg-black border-2 border-green-600 rounded-xl p-4">
-<p class="font-black text-sm text-green-400">✅ Security Answer Correct - Only When Registering - Reset Password:</p>
-<p class="text-[11px] text-zinc-400 mt-1">Bidder: <span id="forgotName2" class="text-white font-black">-</span> ID <span id="forgotIDNumber2" class="text-yellow-400">-</span> - Security Question was Only When Registering</p>
-<label class="text-[11px] text-zinc-400 mt-3 block">🔒 New Password - Only When Registering Security Q Verified</label>
-<input id="forgotNewPassword" type="password" placeholder="Enter new password min 4 digits - Only When Registering" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-green-600 text-center font-black text-lg">
-<label class="text-[11px] text-zinc-400 mt-2 block">🔒 Confirm New Password - Only When Registering</label>
-<input id="forgotNewPassword2" type="password" placeholder="Confirm new password - Only When Registering" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-green-600 text-center font-black text-lg">
-<button onclick="forgotResetPassword()" class="w-full bg-green-600 py-4 rounded-full font-black mt-4"><i class="fas fa-key"></i> RESET PASSWORD - Only When Registering Security Q</button>
-</div>
-
-<div class="flex gap-2 mt-6">
-<button onclick="document.getElementById('forgotPasswordModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full text-xs">CLOSE - Only When Registering</button>
-<a href="https://wa.me/27789313670?text=Hi%20Admin%20BIDKZN%20Security%20Question%20Only%20When%20Registering%20I%20forgot%20password" target="_blank" class="flex-1 bg-[#25D366] py-3 rounded-full text-xs font-black text-center"><i class="fab fa-whatsapp"></i> WhatsApp 0789313670</a>
-</div>
-</div></div>
-
-<div id="editProfileModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 overflow-y-auto"><div class="bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto"><h2 class="font-black text-yellow-400"><i class="fas fa-edit"></i> EDIT PROFILE - BIDKZN - Security Question Only When Registering (Not Here)</h2>
-<p class="text-[10px] text-zinc-500">Security Question ONLY WHEN BIDDER REGISTERING - Not editable here - Only set when registering - BIDKZN - Only When Registering</p>
-<div class="mt-4 space-y-3">
-<div class="flex items-center gap-4">
-<img id="editProfilePreview" src="" class="profile-pic-preview">
-<div>
-<input id="editProfilePic" type="file" accept="image/*" onchange="previewEditProfilePic(this)" class="w-full p-2 rounded-full bg-black border border-zinc-700 text-xs">
-<button onclick="document.getElementById('editProfilePic').click()" class="mt-2 bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black"><i class="fas fa-camera"></i> Change Picture - BIDKZN</button>
-</div>
-</div>
-<label class="text-[11px] text-zinc-400">🪪 ID Number - Only When Registering had Security Question</label>
-<input id="editIDNumber" type="text" maxlength="13" class="w-full p-3 rounded-full bg-black border-2 border-yellow-500 text-center font-black">
-<div class="grid grid-cols-2 gap-2">
-<div><label class="text-[11px] text-zinc-400">👤 First Name</label><input id="editFirstName" type="text" class="w-full p-3 rounded-full bg-black border text-center font-black"></div>
-<div><label class="text-[11px] text-zinc-400">👤 Surname</label><input id="editSurname" type="text" class="w-full p-3 rounded-full bg-black border text-center font-black"></div>
-</div>
-<label class="text-[11px] text-zinc-400">📅 DOB - Only When Registering</label>
-<input id="editDOB" type="date" class="w-full p-3 rounded-full bg-black border text-center font-black">
-<label class="text-[11px] text-zinc-400">📱 Phone - Only When Registering had Security Question</label>
-<input id="editPhone" type="tel" class="w-full p-3 rounded-full bg-black border text-center font-black">
-<div class="bg-zinc-800 border border-zinc-700 rounded-xl p-3">
-<p class="text-[11px] text-zinc-400">Security Question - ONLY WHEN BIDDER REGISTERING - Not editable here - Set only when registering - BIDKZN</p>
-<p class="text-[10px] text-zinc-500 mt-1">Current Security Question: <span id="editSecurityQuestionDisplay" class="text-yellow-400">-</span> - Set Only When Registering</p>
-<p class="text-[10px] text-zinc-500">If you need to change security question, contact Admin WhatsApp 0789313670 - Only When Registering</p>
-</div>
-</div>
-<div class="flex gap-2 mt-6"><button onclick="saveBidderProfile()" class="flex-1 bg-yellow-400 text-black py-4 rounded-full font-black">SAVE PROFILE - Only When Registering Security Q</button><button onclick="document.getElementById('editProfileModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div>
-</div></div>
-
-<div id="sellModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-yellow-400">📤 SELL - BIDKZN - Only When Registering Security Q</h2><p id="sellText" class="text-sm mt-3"></p><div class="mt-4 bg-black p-4 rounded-xl border"><input id="sellQty" type="number" min="1" value="1" class="w-full p-3 rounded-full bg-zinc-900 border text-center font-black"><input id="sellPrice" type="number" class="w-full mt-2 p-3 rounded-full bg-zinc-900 border-2 border-yellow-500 text-center font-black text-lg"><input id="sellDesc" placeholder="Description - Only When Registering" class="w-full mt-2 p-3 rounded-full bg-zinc-900 border text-sm"></div><div class="flex gap-2 mt-6"><button onclick="confirmSell()" class="flex-1 bg-yellow-400 text-black py-4 rounded-full font-black">SEND TO ADMIN - Only When Registering</button><button onclick="document.getElementById('sellModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
-<div id="approvalModal" class="hidden fixed inset-0 bg-black/90 z-[60] flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-red-400">✅ APPROVE FLASH - Only When Registering Security Q</h2><p id="approvalText" class="text-sm mt-3"></p><input id="publicTime" type="datetime-local" class="w-full mt-3 p-3 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black"><div class="flex gap-2 mt-6"><button onclick="confirmApproval()" class="flex-1 bg-red-600 py-4 rounded-full font-black">APPROVE - Only When Registering</button><button onclick="document.getElementById('approvalModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
-<div id="flashBidModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-6 w-full max-w-md"><h2 class="font-black text-red-400"><i class="fas fa-bolt"></i> BIDKZN - FLASH BID - Only When Registering Security Q</h2><p id="flashBidText" class="text-sm mt-3"></p><div class="mt-4 bg-black p-4 rounded-xl border-2 border-red-600/50"><input id="flashBidAmount" type="number" class="w-full p-4 rounded-full bg-zinc-900 border-2 border-red-600 text-center font-black text-xl text-red-400"><p class="text-[10px] text-zinc-500 mt-2">Min R<span id="flashMin">0</span> | Wallet R<span id="flashWallet">0</span> - Only When Registering Security Q - 0789313670</p></div><div class="flex gap-2 mt-6"><button onclick="confirmFlashBid()" class="flex-1 bg-red-600 py-4 rounded-full font-black">BID R<span id="flashBidBtn">0</span> - Only When Registering</button><button onclick="document.getElementById('flashBidModal').classList.add('hidden')" class="flex-1 bg-zinc-800 py-3 rounded-full">CANCEL</button></div></div></div>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-const firebaseConfig = { apiKey: "AIzaSyCxVmtWLZiVvcElpOG4gLxKylunD1_NnRA", authDomain: "kzn-store.firebaseapp.com", databaseURL: "https://kzn-store-default-rtdb.firebaseio.com", projectId: "kzn-store", storageBucket: "kzn-store.firebasestorage.app", messagingSenderId: "755959571531", appId: "1:755959571531:web:42ee597a9d0646923699ce" };
-const app = initializeApp(firebaseConfig); const db = getDatabase(app);
-let bids=[]; let users=[]; let flashRequests=[]; let vouchers=[]; let voucherLoads=[]; let currentUser=JSON.parse(localStorage.getItem('coin_user')||'null'); let pendingSell=null; let pendingApproval=null; let pendingFlashBid=null; let adminPhone="27789313670"; let adminDisplay="+27 78 931 3670"; let tempProfilePic=""; let tempEditProfilePic=""; let forgotUser=null;
-
-onValue(ref(db, 'admin_config/whatsapp'), (s)=>{ if(s.exists()){ let cfg=s.val(); adminPhone=cfg.phone||adminPhone; adminDisplay=cfg.display||adminDisplay; updateWhatsAppLinks(); } });
-onValue(ref(db, 'coin_bids'), (s)=>{ bids=s.val()?Object.values(s.val()):[]; renderAll(); });
-onValue(ref(db, 'coin_users'), (s)=>{ users=s.val()?Object.values(s.val()):[]; if(currentUser){ let u=users.find(x=>x.fbId===currentUser.fbId); if(u){ currentUser=u; localStorage.setItem('coin_user', JSON.stringify(u)); } else { currentUser=null; localStorage.removeItem('coin_user'); showBidderAuth(); } } renderAll(); });
-onValue(ref(db, 'flash_requests'), (s)=>{ flashRequests=s.val()?Object.values(s.val()):[]; renderAll(); });
-onValue(ref(db, 'vouchers'), (s)=>{ vouchers=s.val()?Object.values(s.val()):[]; renderAll(); });
-onValue(ref(db, 'voucher_loads'), (s)=>{ voucherLoads=s.val()?Object.values(s.val()):[]; renderAll(); });
-
-function genVoucherCode(prefix){ let chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; let code=prefix+'-'; for(let i=0;i<4;i++) code+=chars[Math.floor(Math.random()*chars.length)]; code+='-'; for(let i=0;i<4;i++) code+=chars[Math.floor(Math.random()*chars.length)]; return code; }
-function normalizePhone(p){ return (p||'').replace(/[^0-9]/g,''); }
-function normalizeAnswer(a){ return (a||'').toString().toLowerCase().trim().replace(/\s+/g,' '); }
-function updateWhatsAppLinks(){
-  let ids=['whatsappFloat','whatsappNumberDisplay','whatsappBuyVoucher'];
-  ids.forEach(id=>{ let el=document.getElementById(id); if(el){ el.href=`https://wa.me/${adminPhone}?text=Hi%20Admin%20BIDKZN%20Security%20Question%20Only%20When%20Registering%20I%20want%20voucher%20code`; } });
-  let disp=document.getElementById('adminPhoneDisplay'); if(disp) disp.innerText=adminDisplay;
-}
-function showBidderAuth(){ document.getElementById('bidderAuthView').classList.remove('hidden'); document.getElementById('mainApp').classList.add('hidden'); renderHeaderButtons(); }
-function showMainApp(){ document.getElementById('bidderAuthView').classList.add('hidden'); document.getElementById('mainApp').classList.remove('hidden'); renderHeaderButtons(); }
-function renderHeaderButtons(){
-  let header=document.getElementById('headerButtons');
-  if(currentUser){
-    let pic=currentUser.profilePic?`<img src="${currentUser.profilePic}" class="w-8 h-8 rounded-full border-2 border-yellow-400 object-cover">`:'';
-    header.innerHTML=`
-      <div class="flex items-center gap-2 bg-green-900/30 border border-green-600 text-green-400 text-[10px] px-3 py-1 rounded-full">${pic} BIDKZN: ${currentUser.firstName||currentUser.name} ${currentUser.surname||''} ID ${currentUser.idNumber||'-'} - Only When Registering Security Q R${currentUser.wallet||0}</div>
-      <a href="https://wa.me/${adminPhone}?text=Hi%20Admin%20BIDKZN%20Only%20When%20Registering%20Security%20Q%20I%20need%20voucher" target="_blank" class="bg-[#25D366] w-10 h-10 rounded-full flex items-center justify-center"><i class="fab fa-whatsapp text-white text-xl"></i></a>
-      <button onclick="showView('profile')" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black">👤 WALLET - Only When Registering</button>
-      <button onclick="bidderLogout()" class="bg-red-900/30 border border-red-600 px-3 py-2 rounded-full text-xs text-red-400">LOGOUT - Only When Registering</button>
-      <button onclick="openAdmin()" class="bg-black border border-zinc-700 px-3 py-2 rounded-full text-xs">🔒 ADMIN</button>
-    `;
-  } else {
-    header.innerHTML=`
-      <a href="https://wa.me/${adminPhone}?text=Hi%20Admin%20BIDKZN%20Only%20When%20Registering%20Security%20Q%20I%20need%20voucher" target="_blank" class="bg-[#25D366] w-10 h-10 rounded-full flex items-center justify-center"><i class="fab fa-whatsapp text-white text-xl"></i></a>
-      <button onclick="document.getElementById('bidderAuthView').scrollIntoView({behavior:'smooth'})" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black"><i class="fas fa-sign-in-alt"></i> BIDDER LOGIN - Only When Registering Security Q</button>
-      <button onclick="openAdmin()" class="bg-black border border-zinc-700 px-3 py-2 rounded-full text-xs">🔒 ADMIN</button>
-    `;
-  }
-}
-
-window.previewProfilePic=function(input){ if(input.files && input.files[0]){ let reader=new FileReader(); reader.onload=function(e){ tempProfilePic=e.target.result; document.getElementById('regProfilePreview').src=tempProfilePic; }; reader.readAsDataURL(input.files[0]); } }
-window.previewEditProfilePic=function(input){ if(input.files && input.files[0]){ let reader=new FileReader(); reader.onload=function(e){ tempEditProfilePic=e.target.result; document.getElementById('editProfilePreview').src=tempEditProfilePic; }; reader.readAsDataURL(input.files[0]); } }
-
-window.bidderRegister=async function(){
-  let idNumber=document.getElementById('regIDNumber').value.trim();
-  let firstName=document.getElementById('regFirstName').value.trim();
-  let surname=document.getElementById('regSurname').value.trim();
-  let dob=document.getElementById('regDOB').value;
-  let phone=document.getElementById('regPhone').value.trim();
-  let secQ=document.getElementById('regSecurityQuestion').value.trim();
-  let secA=document.getElementById('regSecurityAnswer').value.trim();
-  let pass=document.getElementById('regPassword').value.trim();
-  let pass2=document.getElementById('regPassword2').value.trim();
-
-  if(!idNumber||!firstName||!surname||!dob||!phone||!secQ||!secA||!pass) return alert('ONLY WHEN BIDDER REGISTERING - Fill all - ID Number + First Name + Surname + DOB + Phone + Security Question + Security Answer + Password + Profile Picture - ONLY WHEN BIDDER REGISTERING - Security Question Only When Bidder Registering - BIDKZN');
-  if(idNumber.length!==13 ||!/^\d+$/.test(idNumber)) return alert('ID Number must be 13 digits - ONLY WHEN BIDDER REGISTERING - BIDKZN');
-  if(secA.length<2) return alert('Security Answer too short - ONLY WHEN BIDDER REGISTERING - Min 2 chars - Security Question Only When Bidder Registering');
-  if(pass.length<4) return alert('Password min 4 - ONLY WHEN BIDDER REGISTERING - BIDKZN');
-  if(pass!==pass2) return alert('Passwords not matching - ONLY WHEN BIDDER REGISTERING - BIDKZN');
-  let normPhone=normalizePhone(phone);
-  if(users.some(u=>normalizePhone(u.phone)===normPhone)) return alert('Phone already registered - ONLY WHEN BIDDER REGISTERING - Go to BIDDER LOGIN and login with phone '+phone+' - Or use FORGOT PASSWORD - Security Question Only When Registering - WhatsApp Admin '+adminDisplay+' 0789313670');
-  if(users.some(u=>u.idNumber===idNumber)) return alert('ID Number already registered - ONLY WHEN BIDDER REGISTERING - ID '+idNumber+' already exists');
-
-  let fullName=firstName+' '+surname;
-  let id=Date.now(); let fbId=id.toString();
-  let profilePic=tempProfilePic||'https://via.placeholder.com/100x100/000000/FFD700?text='+encodeURIComponent(firstName[0]+surname[0]);
-
-  let newUser={
-    id:id,
-    fbId:fbId,
-    idNumber:idNumber,
-    firstName:firstName,
-    surname:surname,
-    name:fullName,
-    fullName:fullName,
-    dob:dob,
-    dateOfBirth:dob,
-    phone:phone,
-    normPhone:normPhone,
-    securityQuestion:secQ,
-    securityAnswer:normalizeAnswer(secA),
-    securityAnswerOriginal:secA,
-    securityQuestionSet:true,
-    securityQuestionOnlyWhenRegistering:true,
-    password:pass,
-    profilePic:profilePic,
-    wallet:0,
-    vouchersRedeemed:0,
-    createdAt:Date.now(),
-    role:'bidder',
-    website:'BIDKZN - Security Question Only When Registering',
-    accountType:'Bidder Account with ID + First Name + Surname + DOB + Profile Picture + Security Question ONLY WHEN BIDDER REGISTERING'
-  };
-
-  await set(ref(db,'coin_users/'+fbId), newUser);
-  localStorage.setItem('coin_user', JSON.stringify(newUser));
-  currentUser=newUser;
-  alert(`✅ BIDDER ACCOUNT CREATED - ONLY WHEN REGISTERING - BIDKZN!\n\nBIDKZN Bidder Account Created - Security Question ONLY WHEN BIDDER REGISTERING!\n\nID: ${idNumber}\nFirst Name: ${firstName}\nSurname: ${surname}\nDOB: ${dob}\nPhone: ${phone}\nSecurity Question (ONLY WHEN REGISTERING): ${secQ}\nSecurity Answer (ONLY WHEN REGISTERING): ${secA}\nPassword: ${pass}\n\n⚠️ Security Question ONLY WHEN BIDDER REGISTERING - Remember Q&A for forgot password\n\nYou are now logged in - ONLY WHEN REGISTERING - BIDKZN Security Question Only When Bidder Registering`);
-  showMainApp(); showView('profile');
-}
-
-window.bidderLogin=async function(){
-  let phone=document.getElementById('loginPhone').value.trim();
-  let pass=document.getElementById('loginPassword').value.trim();
-  if(!phone||!pass) return alert('Enter phone and password - ONLY WHEN BIDDER REGISTERING - BIDKZN');
-  let normPhone=normalizePhone(phone);
-  let user=users.find(u=>normalizePhone(u.phone)===normPhone);
-  if(!user){
-    alert(`Bidder not found - ONLY WHEN BIDDER REGISTERING - BIDKZN with phone ${phone}\n\nGo to BIDDER ACCOUNT CREATING - ONLY WHEN REGISTERING - Register with ID + First Name + Surname + DOB + Profile Picture + Security Question ONLY WHEN REGISTERING`);
-    return;
-  }
-  if(user.password && user.password!==pass){
-    alert(`Wrong password - ONLY WHEN BIDDER REGISTERING - BIDKZN bidder ${user.firstName||user.name} ${user.surname||''} ID ${user.idNumber||''}\n\nTry again - If forgot password, click FORGOT PASSWORD? - Answer Security Question Set ONLY WHEN REGISTERING\n\nYour Security Question (Set Only When Registering): ${user.securityQuestion||'Not set - Old account'}\n\nSecurity Question ONLY WHEN BIDDER REGISTERING`);
-    return;
-  }
-  if(!user.password){ await update(ref(db,'coin_users/'+user.fbId),{ password:pass, normPhone:normPhone }); user.password=pass; }
-  localStorage.setItem('coin_user', JSON.stringify(user));
-  currentUser=user;
-  let infoEl=document.getElementById('loggedBidderInfo'); if(infoEl){ infoEl.classList.remove('hidden'); let picEl=document.getElementById('loggedProfilePic'); if(picEl && user.profilePic){ picEl.src=user.profilePic; picEl.classList.remove('hidden'); } document.getElementById('loggedName').innerText=(user.firstName||user.name)+' '+(user.surname||'')+' - Only When Registering Security Q'; document.getElementById('loggedPhone').innerText=user.phone+' - Only When Registering - ID '+ (user.idNumber||'-'); let idEl=document.getElementById('loggedID'); if(idEl) idEl.innerText=`ID: ${user.idNumber||'-'} | DOB: ${user.dob||user.dateOfBirth||'-'} | Security Q Set Only When Registering: ${user.securityQuestion?'✅':'❌'}`; document.getElementById('loggedWallet').innerText=user.wallet||0; }
-  alert(`✅ LOGGED IN - ONLY WHEN REGISTERING - BIDKZN!\n\nWelcome ${user.firstName||user.name} ${user.surname||''} - Security Question was set ONLY WHEN REGISTERING\nID: ${user.idNumber||'-'}\nSecurity Question (Only When Registering): ${user.securityQuestion||'-'}\nPhone: ${user.phone}\nWallet: R${user.wallet||0}\n\nONLY WHEN BIDDER REGISTERING - Security Question Only When Bidder Registering`);
-  showMainApp(); showView('profile');
-}
-
-window.openForgotPassword=function(){
-  document.getElementById('forgotPasswordModal').classList.remove('hidden');
-  document.getElementById('forgotStep1').classList.remove('hidden');
-  document.getElementById('forgotStep2').classList.add('hidden');
-  document.getElementById('forgotStep3').classList.add('hidden');
-  document.getElementById('forgotPhone').value=document.getElementById('loginPhone').value.trim()||'';
-  document.getElementById('forgotSecurityAnswer').value='';
-  document.getElementById('forgotNewPassword').value='';
-  document.getElementById('forgotNewPassword2').value='';
-  forgotUser=null;
-}
-
-window.forgotCheckPhone=function(){
-  let phone=document.getElementById('forgotPhone').value.trim();
-  if(!phone) return alert('Enter phone - ONLY WHEN REGISTERING - Forgot password - BIDKZN');
-  let normPhone=normalizePhone(phone);
-  let user=users.find(u=>normalizePhone(u.phone)===normPhone);
-  if(!user){ alert(`Bidder not found - ONLY WHEN REGISTERING - BIDKZN with phone ${phone} - Forgot password - Phone not found`); return; }
-  if(!user.securityQuestion ||!user.securityAnswer){ alert(`Bidder ${user.firstName||user.name} ${user.surname||''} ID ${user.idNumber||''} has NO security question - Set only when registering - Old account - WhatsApp Admin ${adminDisplay} 0789313670`); return; }
-  forgotUser=user;
-  document.getElementById('forgotStep1').classList.add('hidden');
-  document.getElementById('forgotStep2').classList.remove('hidden');
-  document.getElementById('forgotName').innerText=(user.firstName||user.name)+' '+(user.surname||'');
-  document.getElementById('forgotIDNumber').innerText=user.idNumber||'-';
-  document.getElementById('forgotSecurityQuestion').innerText=user.securityQuestion + ' (Set Only When Registering)';
-}
-
-window.forgotVerifyAnswer=function(){
-  if(!forgotUser){ alert('No bidder found - ONLY WHEN REGISTERING - Enter phone first'); return; }
-  let answer=document.getElementById('forgotSecurityAnswer').value.trim();
-  if(!answer){ alert('Enter security answer - ONLY WHEN REGISTERING - BIDKZN - Forgot password'); return; }
-  let normalizedInput=normalizeAnswer(answer);
-  let correctAnswer=normalizeAnswer(forgotUser.securityAnswer);
-  if(normalizedInput!==correctAnswer){ alert(`❌ Wrong security answer - ONLY WHEN REGISTERING - Bidder ${forgotUser.firstName||forgotUser.name} ${forgotUser.surname||''} ID ${forgotUser.idNumber||''}\n\nYou entered: "${answer}" -> "${normalizedInput}"\nCorrect: "${correctAnswer}"\n\nTry again - Security Question Set Only When Registering: ${forgotUser.securityQuestion}`); return; }
-  document.getElementById('forgotStep2').classList.add('hidden');
-  document.getElementById('forgotStep3').classList.remove('hidden');
-  document.getElementById('forgotName2').innerText=(forgotUser.firstName||forgotUser.name)+' '+(forgotUser.surname||'');
-  document.getElementById('forgotIDNumber2').innerText=forgotUser.idNumber||'-';
-  alert(`✅ Security Answer Correct - ONLY WHEN REGISTERING - BIDKZN!\n\nBidder: ${forgotUser.firstName||''} ${forgotUser.surname||''} ID ${forgotUser.idNumber||''}\nSecurity Question (Only When Registering): ${forgotUser.securityQuestion}\nAnswer: "${answer}" - Correct ✅\n\nYou can now reset password - ONLY WHEN REGISTERING`);
-}
-
-window.forgotResetPassword=async function(){
-  if(!forgotUser){ alert('No bidder - ONLY WHEN REGISTERING - BIDKZN'); return; }
-  let newPass=document.getElementById('forgotNewPassword').value.trim();
-  let newPass2=document.getElementById('forgotNewPassword2').value.trim();
-  if(!newPass||!newPass2){ alert('Enter new password and confirm - ONLY WHEN REGISTERING'); return; }
-  if(newPass.length<4){ alert('Password min 4 - ONLY WHEN REGISTERING'); return; }
-  if(newPass!==newPass2){ alert('Passwords not matching - ONLY WHEN REGISTERING'); return; }
-  await update(ref(db,'coin_users/'+forgotUser.fbId),{ password:newPass });
-  document.getElementById('forgotPasswordModal').classList.add('hidden');
-  alert(`✅ PASSWORD RESET SUCCESSFUL - ONLY WHEN REGISTERING - BIDKZN!\n\nBidder: ${forgotUser.firstName||''} ${forgotUser.surname||''} ID ${forgotUser.idNumber||''} Phone ${forgotUser.phone}\nNew Password: ${newPass}\n\nYou can now login in BIDDER LOGIN AREA - ONLY WHEN REGISTERING with Phone: ${forgotUser.phone} + New Password: ${newPass}\n\nSecurity Question was set Only When Registering: ${forgotUser.securityQuestion}`);
-  document.getElementById('loginPhone').value=forgotUser.phone;
-  document.getElementById('loginPassword').value=newPass;
-}
-
-window.bidderLogout=function(){
-  if(!confirm('Logout - ONLY WHEN REGISTERING - BIDKZN? Bidder: '+(currentUser?.firstName||currentUser?.name||'')+' '+(currentUser?.surname||'')+' ID '+(currentUser?.idNumber||'') )) return;
-  localStorage.removeItem('coin_user');
-  currentUser=null;
-  showBidderAuth();
-  let infoEl=document.getElementById('loggedBidderInfo'); if(infoEl) infoEl.classList.add('hidden');
-  document.getElementById('loginPhone').value=''; document.getElementById('loginPassword').value='';
-  alert('✅ Logged out - ONLY WHEN REGISTERING - BIDKZN');
-}
-
-window.editBidderProfile=function(){
-  if(!currentUser) return;
-  document.getElementById('editIDNumber').value=currentUser.idNumber||'';
-  document.getElementById('editFirstName').value=currentUser.firstName||'';
-  document.getElementById('editSurname').value=currentUser.surname||'';
-  document.getElementById('editDOB').value=currentUser.dob||currentUser.dateOfBirth||'';
-  document.getElementById('editPhone').value=currentUser.phone||'';
-  document.getElementById('editSecurityQuestionDisplay').innerText=currentUser.securityQuestion||'Not set - Only When Registering';
-  document.getElementById('editProfilePreview').src=currentUser.profilePic||'https://via.placeholder.com/100x100/000000/FFD700?text=BIDKZN';
-  tempEditProfilePic=currentUser.profilePic||'';
-  document.getElementById('editProfileModal').classList.remove('hidden');
-}
-
-window.saveBidderProfile=async function(){
-  if(!currentUser) return;
-  let idNumber=document.getElementById('editIDNumber').value.trim();
-  let firstName=document.getElementById('editFirstName').value.trim();
-  let surname=document.getElementById('editSurname').value.trim();
-  let dob=document.getElementById('editDOB').value;
-  let phone=document.getElementById('editPhone').value.trim();
-
-  if(!idNumber||!firstName||!surname||!dob||!phone) return alert('Fill all - ONLY WHEN REGISTERING - ID Number + First Name + Surname + DOB + Phone - Security Question Only When Registering');
-  if(idNumber.length!==13) return alert('ID Number must be 13 digits - ONLY WHEN REGISTERING');
-
-  let fullName=firstName+' '+surname;
-  let updates={
-    idNumber:idNumber,
-    firstName:firstName,
-    surname:surname,
-    name:fullName,
-    fullName:fullName,
-    dob:dob,
-    dateOfBirth:dob,
-    phone:phone,
-    normPhone:normalizePhone(phone),
-  };
-  if(tempEditProfilePic) updates.profilePic=tempEditProfilePic;
-
-  await update(ref(db,'coin_users/'+currentUser.fbId), updates);
-  document.getElementById('editProfileModal').classList.add('hidden');
-  alert(`✅ Profile updated - ONLY WHEN REGISTERING - BIDKZN!\n\nID: ${idNumber}\nFirst Name: ${firstName}\nSurname: ${surname}\nDOB: ${dob}\nPhone: ${phone}\nSecurity Question remains as set Only When Registering: ${currentUser.securityQuestion||'-'}\nProfile Picture: ${tempEditProfilePic?'Updated ✅':'Kept'}\n\nONLY WHEN BIDDER REGISTERING - Security Question Only When Bidder Registering`);
-}
-
-window.requireLogin=function(view){ if(!currentUser){ alert('Please login - ONLY WHEN REGISTERING - BIDKZN first - Or use FORGOT PASSWORD - Security Question Only When Registering'); document.getElementById('bidderAuthView').scrollIntoView({behavior:'smooth'}); return; } showMainApp(); showView(view); }
-window.showView=function(v){ if(!currentUser && v!=='bidderAuth'){ showBidderAuth(); return; } document.getElementById('profileView').classList.toggle('hidden', v!=='profile'); document.getElementById('flashView').classList.toggle('hidden', v!=='flash'); document.getElementById('mywinsView').classList.toggle('hidden', v!=='mywins'); document.getElementById('mycoinsView').classList.toggle('hidden', v!=='mycoins'); ['profile','flash','mywins','mycoins'].forEach(nav=>{ let btn=document.getElementById('nav-'+nav); if(btn){ if(nav===v) btn.className='bg-yellow-400 text-black px-5 py-3 rounded-full text-xs font-black'; else btn.className='bg-zinc-800 px-5 py-3 rounded-full text-xs'; } }); }
-window.loadWalletWithVoucher=async function(){ if(!currentUser){ showBidderAuth(); return; } let code=document.getElementById('voucherCodeInput').value.trim().toUpperCase(); if(!code) return alert('Enter voucher code - ONLY WHEN REGISTERING - BIDKZN'); let voucher=vouchers.find(v=>v.code===code); if(!voucher){ document.getElementById('voucherLoadResult').classList.remove('hidden'); document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-red-900/30 border border-red-600 p-4 rounded-xl text-center"><p class="text-red-400 font-black">❌ Invalid voucher ${code} - ONLY WHEN REGISTERING - BIDKZN</p></div>`; return; } if(voucher.status!=='active'){ document.getElementById('voucherLoadResult').classList.remove('hidden'); document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-red-900/30 border border-red-600 p-4 rounded-xl text-center"><p class="text-red-400 font-black">❌ Voucher already used ${code} - ONLY WHEN REGISTERING</p></div>`; return; } if(voucherLoads.some(vl=>vl.voucherCode===code && String(vl.userFbId)===String(currentUser.fbId) && vl.status==='pending')){ document.getElementById('voucherLoadResult').classList.remove('hidden'); document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-yellow-900/30 border border-yellow-600 p-4 rounded-xl text-center"><p class="text-yellow-400 font-black">⏳ Already requested ${code} - ONLY WHEN REGISTERING - Waiting admin ${adminDisplay} 0789313670</p></div>`; return; } let id=Date.now(); let fbId=id.toString(); await set(ref(db,'voucher_loads/'+fbId),{ id:id, fbId:fbId, userId:currentUser.id, userFbId:currentUser.fbId, userName:currentUser.firstName+' '+currentUser.surname, userFirstName:currentUser.firstName, userSurname:currentUser.surname, userIDNumber:currentUser.idNumber, userPhone:currentUser.phone, voucherCode:code, voucherFbId:voucher.fbId, amount:voucher.amount, status:'pending', createdAt:Date.now(), website:'BIDKZN - Only When Registering Security Q' }); document.getElementById('voucherCodeInput').value=''; document.getElementById('voucherLoadResult').classList.remove('hidden'); document.getElementById('voucherLoadResult').innerHTML=`<div class="bg-yellow-900/30 border-2 border-yellow-600 p-4 rounded-xl text-center"><p class="text-yellow-400 font-black">⏳ VOUCHER LOAD SENT - ONLY WHEN REGISTERING - BIDKZN - Waiting Admin ${adminDisplay} 0789313670 Approval</p><p class="text-white">Bidder: ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber} - Only When Registering Security Q - Voucher ${code} R${voucher.amount}</p></div>`; }
-
-window.renderProfile=function(){
-  if(!currentUser){ return; }
-  let fullName=(currentUser.firstName||'')+' '+(currentUser.surname||'');
-  document.getElementById('profileName').innerText=fullName.trim()||currentUser.name;
-  document.getElementById('profileFirstName').innerText=currentUser.firstName||'-';
-  document.getElementById('profileSurname').innerText=currentUser.surname||'-';
-  document.getElementById('profileIDNumber').innerText=currentUser.idNumber||'-';
-  document.getElementById('profileDOB').innerText=currentUser.dob||currentUser.dateOfBirth||'-';
-  document.getElementById('profilePhone').innerText=currentUser.phone;
-  document.getElementById('profileId').innerText=currentUser.fbId;
-  let avatarImg=document.getElementById('profileAvatarImg');
-  if(avatarImg) avatarImg.src=currentUser.profilePic||'https://via.placeholder.com/100x100/000000/FFD700?text='+(currentUser.firstName?.[0]||'B');
-  document.getElementById('walletBalance').innerText='R'+(currentUser.wallet||0).toFixed(2);
-  document.getElementById('profileExtra').innerText=`ID: ${currentUser.idNumber||'-'} | DOB: ${currentUser.dob||currentUser.dateOfBirth||'-'} | Security Question Only When Registering: ${currentUser.securityQuestion?'✅ Set':'❌'} | BIDKZN Only When Registering Security Question`;
-}
-
-window.renderFlashMarket=function(){ if(!currentUser){ return; } let flashBalEl=document.getElementById('flashWalletBalance'); if(flashBalEl) flashBalEl.innerText=(currentUser.wallet||0).toFixed(0)+' - Only When Registering'; let walletCheckEl=document.getElementById('walletCheck'); if(walletCheckEl){ if((currentUser.wallet||0)<10){ walletCheckEl.classList.remove('hidden'); walletCheckEl.innerHTML=`<div class="bg-yellow-900/30 border border-yellow-600 p-3 rounded-xl text-center"><p class="text-yellow-400 font-black">⚠️ Wallet R${currentUser.wallet||0} - ONLY WHEN REGISTERING - BIDKZN ${currentUser.firstName||''} ${currentUser.surname||''} ID ${currentUser.idNumber||''} - Load with 1 voucher via WhatsApp Admin ${adminDisplay} 0789313670</p></div>`; } else { walletCheckEl.classList.remove('hidden'); walletCheckEl.innerHTML=`<div class="bg-green-900/30 border border-green-600 p-3 rounded-xl text-center"><p class="text-green-400 font-black">✅ Wallet R${currentUser.wallet} loaded - ONLY WHEN REGISTERING - BIDKZN ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber} - Ready to bid!</p></div>`; } } let now=Date.now(); let live=flashRequests.filter(r=>r.status==='scheduled' && r.publicTime && r.publicTime<=now); let upcoming=flashRequests.filter(r=>r.status==='scheduled' && r.publicTime && r.publicTime>now); let flashGridEl=document.getElementById('flashGrid'); if(flashGridEl) flashGridEl.innerHTML=live.map(r=>{ let highest=r.highestBid||0; let isWinning=r.highestBidderFbId && String(r.highestBidderFbId)===String(currentUser.fbId); return `<div class="bg-zinc-900 border-2 ${r.coin==='moc'?'border-yellow-500':'border-purple-600'} rounded-2xl p-5"><div class="flex justify-between"><h3 class="font-black text-sm ${r.coin==='moc'?'text-yellow-400':'text-purple-400'}">${r.qty}x ${r.coinName} - FLASH - Only When Registering</h3><span class="bg-red-600 text-white text-[10px] px-3 py-1 rounded-full animate-pulse">LIVE - Only When Registering</span></div><div class="mt-3 grid grid-cols-2 gap-2 text-center"><div class="bg-black border rounded-xl p-2"><p class="text-[9px] text-zinc-500">ASKING - Only When Registering</p><p class="font-black">R${r.sellPrice}</p></div><div class="bg-black border-2 border-green-600/30 rounded-xl p-2"><p class="text-[9px] text-zinc-500">HIGHEST BID - Only When Registering</p><p class="font-black text-green-400 text-lg">R${highest||r.sellPrice}</p><p class="text-[9px] ${isWinning?'text-green-400 font-black':''}">${isWinning?'YOU WINNING - Only When Registering '+ (currentUser.firstName||''): (highest>0?r.highestBidderName:'Be first - Only When Registering')}</p></div></div><button onclick="openFlashBid('${r.fbId}')" class="w-full mt-4 bg-red-600 py-4 rounded-full font-black"><i class="fas fa-bolt"></i> BID - Only When Registering - ${currentUser.firstName} ${currentUser.surname}</button></div>`; }).join('') || `<div class="col-span-2 bg-black p-8 rounded-2xl text-center border-2 border-dashed"><p class="text-zinc-500">No live flash - ONLY WHEN REGISTERING - BIDKZN ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber} - Load wallet via WhatsApp Admin ${adminDisplay} 0789313670</p></div>`; let upcomingEl=document.getElementById('upcomingGrid'); if(upcomingEl) upcomingEl.innerHTML=upcoming.sort((a,b)=>a.publicTime-b.publicTime).map(r=>{ let diff=r.publicTime-now; let h=Math.floor(diff/3600000); let m=Math.floor((diff%3600000)/60000); return `<div class="bg-zinc-900 border border-yellow-500/30 rounded-xl p-4 opacity-75"><h3 class="font-black text-xs text-yellow-400">${r.qty}x ${r.coinName} - In ${h}h ${m}m - Only When Registering</h3></div>`; }).join('') || '<p class="text-xs text-zinc-500">No upcoming - Only When Registering</p>'; }
-
-window.openFlashBid=function(fbId){ if(!currentUser){ showBidderAuth(); return; } let req=flashRequests.find(r=>r.fbId===fbId); if(!req) return; if((currentUser.wallet||0)<10){ alert('Wallet R'+(currentUser.wallet||0)+' - ONLY WHEN REGISTERING - BIDKZN '+ (currentUser.firstName||'')+' '+(currentUser.surname||'')+' ID '+(currentUser.idNumber||'')+' - Load with 1 voucher via WhatsApp Admin '+adminDisplay+' 0789313670'); showView('profile'); return; } pendingFlashBid=req; document.getElementById('flashBidText').innerHTML=`${req.qty}x ${req.coinName} - Seller ${req.sellerName} - Asking R${req.sellPrice}<br><br><span class="text-green-400 font-black">✅ ONLY WHEN REGISTERING - BIDKZN - Bidder: ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber} - Wallet R${currentUser.wallet} loaded - Ready! - Security Question Only When Registering</span>`; document.getElementById('flashMin').innerText=req.highestBid?req.highestBid+10:req.sellPrice; document.getElementById('flashWallet').innerText=currentUser.wallet||0; document.getElementById('flashBidAmount').value=req.highestBid?req.highestBid+10:req.sellPrice; document.getElementById('flashBidBtn').innerText=req.highestBid?req.highestBid+10:req.sellPrice; document.getElementById('flashBidAmount').oninput=function(){ document.getElementById('flashBidBtn').innerText=this.value||0; }; document.getElementById('flashBidModal').classList.remove('hidden'); }
-window.confirmFlashBid=async function(){ if(!pendingFlashBid||!currentUser) return; let amt=parseInt(document.getElementById('flashBidAmount').value)||0; let min=(pendingFlashBid.highestBid||0)>0?pendingFlashBid.highestBid+10:pendingFlashBid.sellPrice; if(amt<min) return alert('Min R'+min+' - ONLY WHEN REGISTERING - BIDKZN'); if(amt>(currentUser.wallet||0)) return alert('Low wallet R'+currentUser.wallet+' - ONLY WHEN REGISTERING - BIDKZN '+ (currentUser.firstName||'')+' ID '+ (currentUser.idNumber||'')+' - WhatsApp Admin '+adminDisplay+' 0789313670'); let newFlashBids=pendingFlashBid.flashBids||[]; newFlashBids.push({ bidderId:currentUser.id, bidderFbId:currentUser.fbId, bidderName:currentUser.firstName+' '+currentUser.surname, bidderFirstName:currentUser.firstName, bidderSurname:currentUser.surname, bidderIDNumber:currentUser.idNumber, bidderPhone:currentUser.phone, amount:amt, time:Date.now() }); if(pendingFlashBid.highestBidderFbId && pendingFlashBid.highestBid>0){ let prev=users.find(u=>u.fbId===pendingFlashBid.highestBidderFbId); if(prev) await update(ref(db,'coin_users/'+prev.fbId),{ wallet:(prev.wallet||0)+pendingFlashBid.highestBid }); } await update(ref(db,'coin_users/'+currentUser.fbId),{ wallet:(currentUser.wallet||0)-amt }); await update(ref(db,'flash_requests/'+pendingFlashBid.fbId),{ flashBids:newFlashBids, highestBid:amt, highestBidderFbId:currentUser.fbId, highestBidderName:currentUser.firstName+' '+currentUser.surname, highestBidderIDNumber:currentUser.idNumber }); document.getElementById('flashBidModal').classList.add('hidden'); alert(`✅ BID R${amt} placed! ONLY WHEN REGISTERING - BIDKZN - Bidder: ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber} - Wallet deducted R${amt} - Security Question Only When Registering`); }
-
-window.openAdmin=function(){ let pin=prompt('Admin PIN for BIDKZN - Only When Registering?'); if(pin!=='10111') return alert('Wrong - ONLY WHEN REGISTERING - BIDKZN'); document.getElementById('admin').classList.remove('hidden'); }
-window.adminTab=function(t){ ['bidders','loads','vouchers','pending','live'].forEach(x=>{ let el=document.getElementById('admin-'+x); if(el) el.classList.toggle('hidden', x!==t); }); document.querySelectorAll('[id^=at-]').forEach(b=>b.className='bg-zinc-800 px-4 py-2 rounded-full text-xs'); let atEl=document.getElementById('at-'+t); if(atEl) atEl.className='bg-yellow-400 text-black px-4 py-2 rounded-full text-xs font-black'; }
-window.createVouchers=async function(){ let amount=parseInt(document.getElementById('voucherAmount').value)||0; let count=parseInt(document.getElementById('voucherCount').value)||1; let prefix=(document.getElementById('voucherPrefix').value.trim()||'BIDKZN').toUpperCase(); if(amount<10) return alert('Min R10 - ONLY WHEN REGISTERING - BIDKZN'); if(!confirm(`Create ${count} vouchers R${amount} each - ONLY WHEN REGISTERING - BIDKZN?`)) return; for(let i=0;i<count;i++){ let code=genVoucherCode(prefix); while(vouchers.some(v=>v.code===code)) code=genVoucherCode(prefix); let id=Date.now()+i; let fbId=id.toString(); await set(ref(db,'vouchers/'+fbId),{ id:id, fbId:fbId, code:code, amount:amount, status:'active', createdAt:Date.now(), createdBy:'admin', reason:'Voucher for BIDKZN Only When Registering Security Question - 1 voucher = R'+amount }); } alert(`Created ${count} vouchers R${amount} - ONLY WHEN REGISTERING - BIDKZN`); }
-window.createQuickVoucher=function(amt){ document.getElementById('voucherAmount').value=amt; document.getElementById('voucherCount').value=1; createVouchers(); }
-window.copyVoucher=function(code){ navigator.clipboard.writeText(code).then(()=>alert('Copied '+code+' - ONLY WHEN REGISTERING - BIDKZN')); }
-window.deleteVoucher=function(fbId){ if(!confirm('Delete voucher? ONLY WHEN REGISTERING - BIDKZN')) return; remove(ref(db,'vouchers/'+fbId)); }
-window.saveAdminPhone=async function(){ let phone=document.getElementById('adminPhoneInput').value.trim().replace(/[^0-9]/g,''); let display=document.getElementById('adminPhoneDisplayInput').value.trim()||'+'+phone; if(phone.length<10) return alert('Enter valid WhatsApp number - ONLY WHEN REGISTERING - BIDKZN'); adminPhone=phone; adminDisplay=display; await set(ref(db,'admin_config/whatsapp'),{ phone:phone, display:display, updatedAt:Date.now(), website:'BIDKZN Only When Registering' }); updateWhatsAppLinks(); renderHeaderButtons(); alert(`✅ WhatsApp admin ${phone} ${display} saved - ONLY WHEN REGISTERING - BIDKZN`); }
-
-window.renderAdmin=function(){
-  let biddersListEl=document.getElementById('adminBiddersList'); if(biddersListEl) biddersListEl.innerHTML=`<div class="flex justify-between items-center mb-3"><h3 class="font-black text-sm text-yellow-400"><i class="fas fa-users"></i> BIDKZN - BIDDERS - Security Question Only When Registering - Total ${users.length} bidders</h3></div>` + users.slice().reverse().map(u=>`<div class="bg-black border border-zinc-800 p-3 rounded-xl mt-2 flex justify-between flex-wrap gap-2"><div class="flex gap-3"><img src="${u.profilePic||'https://via.placeholder.com/60x60/000000/FFD700?text='+(u.firstName?.[0]||'B')}" class="w-16 h-16 rounded-full border-2 border-yellow-400 object-cover"><div><p class="font-black text-xs"><i class="fas fa-user"></i> ${u.firstName||''} ${u.surname||''} - Wallet R${u.wallet||0} - ID ${u.idNumber||'-'} - Phone ${u.phone} - Security Q Only When Registering: ${u.securityQuestion?'✅ '+u.securityQuestion:'❌ Not set'} - Answer: ${u.securityAnswerOriginal||u.securityAnswer||'-'} - ONLY WHEN REGISTERING</p><p class="text-[11px] text-zinc-400">ID: ${u.idNumber||'-'} | First Name: ${u.firstName||'-'} | Surname: ${u.surname||'-'} | Security Q Only When Registering: ${u.securityQuestion||'-'} | Answer: ${u.securityAnswerOriginal||u.securityAnswer||'-'} | ID ${u.fbId} | Login: ${u.phone} | Created ${u.createdAt?new Date(u.createdAt).toLocaleString():''} | Security Question Only When Registering - BIDKZN</p></div></div><div class="flex flex-col gap-1"><div class="flex gap-1"><button onclick="resetBidderPassword('${u.fbId}')" class="bg-yellow-900/30 border border-yellow-600 px-3 py-1 rounded-full text-xs text-yellow-400"><i class="fas fa-key"></i> Reset Password - Only When Registering</button><button onclick="editBidderAdmin('${u.fbId}')" class="bg-zinc-800 px-3 py-1 rounded-full text-xs">EDIT - Only When Registering</button></div><div class="flex gap-1"><a href="https://wa.me/${u.phone?.replace(/[^0-9]/g,'')}?text=Hi%20${u.firstName||u.name}%20${u.surname||''}%20ID%20${u.idNumber||''}%20Security%20Q%20Only%20When%20Registering%20Your%20wallet%20is%20R${u.wallet||0}%20WhatsApp%20Admin%20${adminDisplay}%200789313670" target="_blank" class="bg-[#25D366] px-3 py-1 rounded-full text-xs font-black"><i class="fab fa-whatsapp"></i> WhatsApp Bidder - Only When Registering</a><button onclick="deleteUser('${u.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1 rounded-full text-xs text-red-400">🗑️ DELETE - Only When Registering</button></div></div></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No bidders - ONLY WHEN REGISTERING - BIDKZN - Bidders register with Security Question Only When Registering</p>';
-
-  let pendingLoads=voucherLoads.filter(vl=>vl.status==='pending');
-  let adminLoadsEl=document.getElementById('adminLoadsList'); if(adminLoadsEl) adminLoadsEl.innerHTML=pendingLoads.slice().reverse().map(vl=>`<div class="bg-black border-2 border-yellow-500 rounded-xl p-4 mt-3 flex justify-between items-center flex-wrap gap-2"><div><p class="font-black text-sm text-yellow-400">🎟️ PENDING - ONLY WHEN REGISTERING - Bidder ${vl.userFirstName||''} ${vl.userSurname||''} ID ${vl.userIDNumber||''} - ${vl.userName} (${vl.userPhone}) - ${vl.voucherCode} - R${vl.amount}</p></div><div class="flex gap-2 ml-2 flex-wrap"><button onclick="approveVoucherLoad('${vl.fbId}')" class="bg-green-600 px-6 py-3 rounded-full text-xs font-black">✅ APPROVE R${vl.amount} - Only When Registering</button><button onclick="rejectVoucherLoad('${vl.fbId}')" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">❌ REJECT - Only When Registering</button></div></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No pending loads - ONLY WHEN REGISTERING</p>';
-
-  let adminVouchersEl=document.getElementById('adminVouchersList'); if(adminVouchersEl) adminVouchersEl.innerHTML=`<p class="text-[11px] text-zinc-400 mb-2">ONLY WHEN REGISTERING - Total ${vouchers.length} | Active ${vouchers.filter(v=>v.status==='active').length}</p>` + vouchers.slice().reverse().map(v=>`<div class="bg-black border ${v.status==='active'?'border-yellow-500/50':'border-zinc-700'} p-3 rounded-xl mt-2 flex justify-between flex-wrap gap-2"><div><p class="font-black text-sm ${v.status==='active'?'text-yellow-400':'text-zinc-500'}">🎟️ ${v.code} - R${v.amount} - ${v.status.toUpperCase()} - Only When Registering</p></div><div class="flex gap-1 flex-wrap"><button onclick="copyVoucher('${v.code}')" class="bg-zinc-800 px-3 py-1 rounded-full text-xs">COPY - Only When Registering</button><button onclick="deleteVoucher('${v.fbId}')" class="bg-red-900/30 border border-red-600 px-3 py-1 rounded-full text-xs text-red-400">🗑️ Only When Registering</button></div></div>`).join('') || 'No vouchers - ONLY WHEN REGISTERING';
-
-  let pendingFlash=flashRequests.filter(r=>r.status==='pending');
-  let adminPendingEl=document.getElementById('adminPendingList'); if(adminPendingEl) adminPendingEl.innerHTML=pendingFlash.map(r=>`<div class="bg-black border-2 border-red-600/30 rounded-xl p-4 mt-3 flex justify-between"><div><p class="font-black text-sm text-red-400">📤 ${r.qty}x ${r.coinName} - ${r.sellerName} - R${r.sellPrice} - Only When Registering</p></div><button onclick="openApproval('${r.fbId}')" class="bg-red-600 px-4 py-2 rounded-full text-xs font-black">✅ APPROVE - Only When Registering</button></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No pending - Only When Registering</p>';
-
-  let now=Date.now(); let live=flashRequests.filter(r=>r.status==='scheduled' && r.publicTime && r.publicTime<=now);
-  let adminLiveEl=document.getElementById('adminLiveList'); if(adminLiveEl) adminLiveEl.innerHTML=live.map(r=>`<div class="bg-black border-2 border-green-600 rounded-xl p-4 mt-3"><p class="font-black text-sm text-green-400">🔴 LIVE - ONLY WHEN REGISTERING - ${r.qty}x ${r.coinName} - Highest R${r.highestBid} by ${r.highestBidderName} - Only When Registering</p><div class="flex gap-2 mt-2 flex-wrap"><button onclick="finalizeFlash('${r.fbId}')" class="flex-1 bg-green-600 py-2 rounded-full text-xs font-black">✅ FINALIZE - Only When Registering</button></div></div>`).join('') || '<p class="text-xs text-center py-6 text-zinc-500">No live - Only When Registering</p>';
-}
-
-window.approveVoucherLoad=async function(fbId){ let load=voucherLoads.find(vl=>vl.fbId===fbId); if(!load) return; let voucher=vouchers.find(v=>v.fbId===load.voucherFbId); if(!voucher||voucher.status!=='active') return alert('Voucher not active - ONLY WHEN REGISTERING'); let user=users.find(u=>u.fbId===load.userFbId); if(!user) return; if(!confirm(`Approve bidder voucher load - ONLY WHEN REGISTERING - ${load.voucherCode} R${load.amount} for bidder ${load.userFirstName||load.userName} ID ${load.userIDNumber||''}?`)) return; await update(ref(db,'coin_users/'+user.fbId),{ wallet:(user.wallet||0)+load.amount }); await update(ref(db,'vouchers/'+voucher.fbId),{ status:'redeemed', redeemedByFbId:user.fbId, redeemedByName:(user.firstName||user.name)+' '+(user.surname||''), redeemedByIDNumber:user.idNumber, redeemedAt:Date.now() }); await update(ref(db,'voucher_loads/'+fbId),{ status:'approved', approvedAt:Date.now() }); alert(`✅ Approved - ONLY WHEN REGISTERING - R${load.amount} for bidder ${user.firstName} ${user.surname} ID ${user.idNumber}`); }
-window.rejectVoucherLoad=async function(fbId){ if(!confirm('Reject - ONLY WHEN REGISTERING')) return; await update(ref(db,'voucher_loads/'+fbId),{ status:'rejected', rejectedAt:Date.now() }); }
-window.resetBidderPassword=function(fbId){ let u=users.find(x=>x.fbId===fbId); if(!u) return; let newPass=prompt(`Reset password - ONLY WHEN REGISTERING - BIDKZN bidder ${u.firstName||u.name} ${u.surname||''} ID ${u.idNumber||''} (${u.phone})\n\nSecurity Question (Only When Registering): ${u.securityQuestion||'-'}\nSecurity Answer (Only When Registering): ${u.securityAnswerOriginal||u.securityAnswer||'-'}\n\nEnter new password - ONLY WHEN REGISTERING:`, '1234'); if(!newPass) return; update(ref(db,'coin_users/'+fbId),{ password:newPass }); alert(`✅ Password reset - ONLY WHEN REGISTERING - bidder ${u.firstName} ${u.surname} ID ${u.idNumber}\nNew password: ${newPass}\nLogin ID: ${u.phone}\nSecurity Q Only When Registering: ${u.securityQuestion}`); }
-window.editBidderAdmin=function(fbId){ let u=users.find(x=>x.fbId===fbId); if(!u) return; currentUser=u; editBidderProfile(); document.getElementById('admin').classList.add('hidden'); }
-window.openApproval=function(fbId){ let req=flashRequests.find(r=>r.fbId===fbId); if(!req) return; pendingApproval=req; document.getElementById('approvalText').innerHTML=`Approve - ONLY WHEN REGISTERING - ${req.qty}x ${req.coinName} - ${req.sellerName} - R${req.sellPrice}`; let def=new Date(Date.now()+3600000); def.setMinutes(def.getMinutes()-def.getTimezoneOffset()); document.getElementById('publicTime').value=def.toISOString().slice(0,16); document.getElementById('approvalModal').classList.remove('hidden'); }
-window.confirmApproval=async function(){ if(!pendingApproval) return; let timeStr=document.getElementById('publicTime').value; if(!timeStr) return alert('Choose time - ONLY WHEN REGISTERING'); let publicTime=new Date(timeStr).getTime(); await update(ref(db,'flash_requests/'+pendingApproval.fbId),{ status:'scheduled', publicTime:publicTime, approvedAt:Date.now() }); document.getElementById('approvalModal').classList.add('hidden'); }
-window.finalizeFlash=async function(fbId){ let req=flashRequests.find(r=>r.fbId===fbId); if(!req||!req.highestBidderFbId) return alert('No bids - ONLY WHEN REGISTERING'); if(!confirm(`Finalize flash - ONLY WHEN REGISTERING - ${req.qty}x ${req.coinName} to bidder ID ${req.highestBidderIDNumber||''} ${req.highestBidderName} R${req.highestBid}?`)) return; let seller=users.find(u=>u.fbId===req.sellerFbId); let buyer=users.find(u=>u.fbId===req.highestBidderFbId); if(!seller||!buyer) return; let code=genVoucherCode('BIDKZN'); let vid=Date.now(); let vfbId=vid.toString(); await set(ref(db,'vouchers/'+vfbId),{ id:vid, fbId:vfbId, code:code, amount:req.highestBid, status:'active', createdAt:Date.now(), reason:`Flash payout - ONLY WHEN REGISTERING - ${req.qty}x ${req.coinName} to bidder ${seller.firstName||seller.name} ${seller.surname||''} ID ${seller.idNumber||''}` }); let origBid=bids.find(b=>b.fbId===req.originalBidFbId); let newBidId=Date.now()+1; let newFbId=newBidId.toString(); let newBid={ id:newBidId, fbId:newFbId, userId:buyer.id, userFbId:buyer.fbId, userName:buyer.firstName+' '+buyer.surname, userFirstName:buyer.firstName, userSurname:buyer.surname, userIDNumber:buyer.idNumber, coin:req.coin, coinName:req.coinName, qty:req.qty, cost:req.highestBid, returnAmount:req.qty*150, profit:req.qty*50, returnPercent:50, buyDate:Date.now(), endDate:Date.now()+7*24*60*60*1000, status:'active', claimed:false }; await set(ref(db,'coin_bids/'+newFbId), newBid); if(origBid) await remove(ref(db,'coin_bids/'+origBid.fbId)); await update(ref(db,'flash_requests/'+fbId),{ status:'finalized_paid', paid:true, finalizedAt:Date.now(), payoutVoucherCode:code }); alert(`Finalized - ONLY WHEN REGISTERING - Seller ${seller.firstName} ${seller.surname} ID ${seller.idNumber} got voucher ${code} R${req.highestBid}`); }
-window.deleteUser=function(fbId){ if(!confirm('Delete bidder - ONLY WHEN REGISTERING - BIDKZN? Delete bidder account with ID + First Name + Surname + DOB + Profile Picture + Security Question Only When Registering + wallet + coins?')) return; bids.filter(b=>b.userFbId===fbId).forEach(b=>remove(ref(db,'coin_bids/'+b.fbId))); remove(ref(db,'coin_users/'+fbId)); if(currentUser&&currentUser.fbId===fbId){ localStorage.removeItem('coin_user'); currentUser=null; showBidderAuth(); } }
-window.renderMyWins=function(){ if(!currentUser){ return; } let myWins=flashRequests.filter(r=> String(r.highestBidderFbId)===String(currentUser.fbId) && (r.status==='finalized_paid' || r.status==='finalized')); let el=document.getElementById('myWinsList'); if(el) el.innerHTML=myWins.map(r=>`<div class="bg-black border-2 border-green-600 rounded-xl p-4"><p class="font-black text-green-400"><i class="fas fa-trophy"></i> WON - ONLY WHEN REGISTERING - ${r.qty}x ${r.coinName} - R${r.highestBid} - Bidder: ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber}</p></div>`).join('') || '<p class="text-center py-6 text-zinc-500">No wins - ONLY WHEN REGISTERING</p>'; }
-window.renderMyCoins=function(){ if(!currentUser){ return; } let myBids=bids.filter(b=>String(b.userFbId)===String(currentUser.fbId) &&!b.claimed); let el=document.getElementById('myCoinsList'); if(el) el.innerHTML=myBids.map(b=>`<div class="bg-black border rounded-xl p-4 flex justify-between"><div><p class="font-black text-sm"><i class="fas fa-coins"></i> ${b.qty}x ${b.coinName} - ONLY WHEN REGISTERING - ${b.userFirstName||''} ${b.userSurname||''} ID ${b.userIDNumber||''}</p></div><button onclick="openSellModal('${b.fbId}')" class="bg-yellow-400 text-black px-5 py-3 rounded-full text-xs font-black">SELL - Only When Registering</button></div>`).join('') || '<p class="text-center py-4 text-zinc-500">No coins - ONLY WHEN REGISTERING</p>'; }
-window.openSellModal=function(bidFbId){ if(!currentUser){ showBidderAuth(); return; } let bid=bids.find(b=>b.fbId===bidFbId); if(!bid) return; pendingSell=bid; document.getElementById('sellText').innerHTML=`Sell ${bid.qty}x ${bid.coinName} - ONLY WHEN REGISTERING - ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber}`; document.getElementById('sellQty').value=bid.qty; document.getElementById('sellPrice').value=bid.cost; document.getElementById('sellDesc').value=`${bid.qty}x ${bid.coinName} - ONLY WHEN REGISTERING ${currentUser.firstName} ${currentUser.surname} ID ${currentUser.idNumber}`; document.getElementById('sellModal').classList.remove('hidden'); }
-window.confirmSell=async function(){ if(!pendingSell||!currentUser) return; let qty=parseInt(document.getElementById('sellQty').value)||1; let sellPrice=parseInt(document.getElementById('sellPrice').value)||0; let desc=document.getElementById('sellDesc').value.trim(); let id=Date.now(); let fbId=id.toString(); await set(ref(db,'flash_requests/'+fbId),{ id:id, fbId:fbId, sellerId:currentUser.id, sellerFbId:currentUser.fbId, sellerName:currentUser.firstName+' '+currentUser.surname, sellerFirstName:currentUser.firstName, sellerSurname:currentUser.surname, sellerIDNumber:currentUser.idNumber, sellerPhone:currentUser.phone, originalBidFbId:pendingSell.fbId, originalCost:pendingSell.cost, originalBuyDate:pendingSell.buyDate, coin:pendingSell.coin, coinName:pendingSell.coinName, qty:qty, sellPrice:sellPrice, desc:desc, status:'pending', publicTime:null, createdAt:Date.now(), flashBids:[], highestBid:0 }); document.getElementById('sellModal').classList.add('hidden'); alert('Sell request sent - ONLY WHEN REGISTERING - BIDKZN'); }
-
-function renderAll(){
-  if(currentUser){ showMainApp(); renderProfile(); renderFlashMarket(); renderMyWins(); renderMyCoins(); } else { showBidderAuth(); }
-  renderAdmin(); updateWhatsAppLinks(); renderHeaderButtons();
-  if(currentUser){ let infoEl=document.getElementById('loggedBidderInfo'); if(infoEl){ infoEl.classList.remove('hidden'); let picEl=document.getElementById('loggedProfilePic'); if(picEl && currentUser.profilePic){ picEl.src=currentUser.profilePic; picEl.classList.remove('hidden'); } document.getElementById('loggedName').innerText=(currentUser.firstName||currentUser.name)+' '+(currentUser.surname||'')+' - Only When Registering'; document.getElementById('loggedPhone').innerText=currentUser.phone+' - Only When Registering - ID '+ (currentUser.idNumber||'-'); let idEl=document.getElementById('loggedID'); if(idEl) idEl.innerText=`ID: ${currentUser.idNumber||'-'} | DOB: ${currentUser.dob||currentUser.dateOfBirth||'-'} | Security Q Only When Registering: ${currentUser.securityQuestion?'✅ Set - Only When Registering':'❌'}`; document.getElementById('loggedWallet').innerText=currentUser.wallet||0; } }
-}
-
-setInterval(()=>{ renderAll(); }, 3000);
-renderAll();
-if(currentUser){ showMainApp(); showView('profile'); } else { showBidderAuth(); }
-updateWhatsAppLinks();
-</script></body></html>
+<footer>
+<p>&copy; 2026 AI Music Social — Built for AI creators</p>
+</footer>
+</body>
+</html>
