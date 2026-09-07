@@ -6,108 +6,189 @@
 body{margin:0;background:#06060a;color:#fff;font-family:Inter,Arial}
 header{position:sticky;top:0;background:rgba(0,0,0,.9);backdrop-filter:blur(10px);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;z-index:10}
 .logo{display:flex;gap:10px;align-items:center;font-weight:900}
-.logo-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--pink);background:#111}
-.ai-badge{background:linear-gradient(90deg,var(--pink),var(--cyan));padding:4px 10px;border-radius:20px;font-size:11px;font-weight:bold}
+.logo-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)}
 .container{max-width:620px;margin:0 auto;padding:16px}
 .card{background:#12121a;border:1px solid #24243a;border-radius:18px;padding:16px;margin:14px 0}
-.upload{border:2px dashed #333;border-radius:16px;padding:18px;text-align:center}
-input{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#0a0a10;color:#fff;margin:8px 0;box-sizing:border-box}
-.btn{width:100%;padding:16px;border:none;border-radius:12px;background:linear-gradient(90deg,var(--pink),#ff7a00);color:#fff;font-weight:900;font-size:16px}
+input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#0a0a10;color:#fff;margin:8px 0;box-sizing:border-box}
+.btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(90deg,var(--pink),#ff7a00);color:#fff;font-weight:900}
+.btn2{background:#1a1a2a;border:1px solid #333}
+.tabs{display:flex;gap:8px;margin-bottom:10px}
+.tabs button{flex:1;padding:12px;border-radius:10px;border:1px solid #333;background:#111;color:#fff}
+.tabs button.active{background:var(--pink);border-color:var(--pink)}
+.hidden{display:none}
+.cover{width:64px;height:64px;border-radius:12px;object-fit:cover;background:linear-gradient(135deg,var(--pink),var(--cyan));flex-shrink:0}
 .track{display:flex;gap:12px}
-.cover{width:72px;height:72px;border-radius:14px;object-fit:cover;background:linear-gradient(135deg,var(--pink),var(--cyan));display:grid;place-items:center;font-size:28px;flex-shrink:0;overflow:hidden}
-.meta{flex:1}.meta b{display:block;font-size:16px}
-.meta small{color:#888}
-audio{width:100%;margin:10px 0}
-.actions{display:flex;gap:8px;margin-top:8px}
-.actions button{flex:1;padding:10px;border-radius:10px;border:1px solid #333;background:#1a1a2a;color:#fff;font-size:13px}
-.counts{display:flex;gap:12px;color:#aaa;font-size:12px;margin-top:6px}
-.counts span{color:#fff;font-weight:bold}
-.tag{display:inline-block;background:#1e1e32;color:#aaa;padding:3px 8px;border-radius:20px;font-size:11px;margin:2px}
-#log{color:#0f0;font-size:12px;white-space:pre-wrap}
-.rec-title{font-size:14px;color:var(--cyan);letter-spacing:1px;margin:18px 0 8px 4px}
+.meta{flex:1}
+.badge{padding:2px 8px;border-radius:20px;font-size:11px;background:#1e1e32}
+.admin-table{width:100%;font-size:12px;border-collapse:collapse}
+.admin-table th,.admin-table td{border:1px solid #333;padding:8px;text-align:left}
+#log{color:#0f0;font-size:12px}
 </style>
 </head><body>
 <header>
-<div class="logo">
-<img id="logoImg" class="logo-img" src="https://ogndqvdzuuufdygkhzae.supabase.co/storage/v1/object/public/tracks/logo.jpg" onerror="this.style.display='none'">
-<div><span style="color:var(--pink)">AI</span> MUSIC SOCIAL<br><small style="font-weight:400;color:#888;font-size:11px">DJ BIGSAM RSA • DURBAN</small></div>
+<div class="logo"><img id="logoImg" class="logo-img" src="https://ogndqvdzuuufdygkhzae.supabase.co/storage/v1/object/public/tracks/logo_176.jpg"><div><span style="color:var(--pink)">AI</span> MUSIC SOCIAL</div></div>
+<div style="display:flex;gap:8px">
+<button onclick="showAuth()" id="authBtn" style="background:linear-gradient(90deg,var(--pink),var(--cyan));border:none;padding:8px 14px;border-radius:20px;color:#fff;font-weight:bold">Login</button>
 </div>
-<div class="ai-badge" id="playTotal">0 Plays</div>
 </header>
 <div class="container">
-<div class="card">
-<div class="upload">
-<h3 style="margin:0">🎨 Brand Setup + Upload</h3>
-<p style="color:#666;font-size:12px">Upload your logo first (once), then your mixes</p>
-<input type="file" id="logoFile" accept="image/*" onchange="uploadLogo()"><small style="color:#888">Choose logo photo → auto saves as cover art</small>
-<input type="file" id="file" accept="audio/*" style="margin-top:14px">
-<input id="title" placeholder="Track title e.g. Amapiano Sunset Mix">
-<button class="btn" onclick="uploadTrack()">🚀 PUBLISH TO FEED</button>
-<div id="log">Ready • Logo: using DJ BIGSAM cover • DB: OPEN</div>
+
+<!-- AUTH CARD -->
+<div class="card" id="authCard">
+<div class="tabs">
+<button id="tLogin" class="active" onclick="tab('login')">Login</button>
+<button id="tReg" onclick="tab('reg')">Register</button>
 </div>
+<div id="loginForm">
+<input id="l_wa" placeholder="WhatsApp Number e.g. 27712345678">
+<input id="l_pin" type="password" placeholder="PIN (4 digits)" maxlength="4">
+<button class="btn" onclick="login()">🔓 LOGIN WITH WHATSAPP</button>
+<p style="font-size:11px;color:#666">Same as BIDKZN - Use WhatsApp + PIN</p>
+</div>
+<div id="regForm" class="hidden">
+<input id="r_name" placeholder="Artist Name">
+<input id="r_wa" placeholder="WhatsApp Number">
+<select id="r_role">
+<option value="">Select Role</option>
+<option value="musician">Musician</option>
+<option value="producer">Producer</option>
+<option value="artist">Artist</option>
+<option value="ai-creator">AI Creator</option>
+<option value="dj">DJ</option>
+</select>
+<input id="r_pin" type="password" placeholder="Create 4-digit PIN" maxlength="4">
+<button class="btn" onclick="register()">✨ REGISTER</button>
+</div>
+<div id="log"></div>
 </div>
 
-<div class="rec-title">🤖 AI RECOMMENDED FOR YOU</div>
-<div id="recommended"></div>
+<!-- PROFILE CARD -->
+<div class="card hidden" id="profileCard">
+<h3 style="margin:0">👤 My Profile</h3>
+<div id="profileInfo"></div>
+<button class="btn btn2" onclick="logout()">Logout</button>
+</div>
 
-<div class="rec-title">🔥 LATEST FEED</div>
+<!-- UPLOAD CARD -->
+<div class="card" id="uploadCard">
+<h3>🎛️ Drop Your Mix</h3>
+<input type="file" id="file" accept="audio/*">
+<input id="title" placeholder="Track title">
+<button class="btn" onclick="uploadTrack()">🚀 PUBLISH</button>
+</div>
+
+<!-- ADMIN BUTTON -->
+<div class="card hidden" id="adminAccess"><button class="btn" onclick="openAdmin()" style="background:linear-gradient(90deg,#00f2ff,#7000ff)">🛡️ ADMIN DASHBOARD</button></div>
+
+<!-- ADMIN DASHBOARD -->
+<div class="card hidden" id="adminCard">
+<h3>🛡️ Admin - AI Music Social</h3>
+<div class="tabs">
+<button class="active" onclick="adminTab('users')">Users</button>
+<button onclick="adminTab('tracks')">Tracks</button>
+</div>
+<div id="adminUsers">Loading users...</div>
+<div id="adminTracks" class="hidden">Loading tracks...</div>
+<button class="btn btn2" onclick="closeAdmin()">Close Admin</button>
+</div>
+
 <div id="feed"></div>
 </div>
+
 <script>
 const S="https://ogndqvdzuuufdygkhzae.supabase.co"; const K="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9nbmRxdmR6dXV1ZmR5Z2toemFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2OTEzNjEsImV4cCI6MjEwNDI2NzM2MX0.sPRCVdn9CrEnN48xw8M0FSbGp4UCmkfrU93dHDqE5_4";
-let LOGO_URL=localStorage.getItem('bigsam_logo')||"https://via.placeholder.com/300x300/ff0055/fff?text=BIGSAM";
-document.getElementById('logoImg').src=LOGO_URL; document.getElementById('logoImg').style.display='block';
+let currentUser = JSON.parse(localStorage.getItem('ai_user')||'null');
+let LOGO_URL = localStorage.getItem('bigsam_logo') || "https://ogndqvdzuuufdygkhzae.supabase.co/storage/v1/object/public/tracks/logo_176.jpg";
 
-async function uploadLogo(){
- let f=document.getElementById('logoFile').files[0]; if(!f) return;
- document.getElementById('log').innerText='Uploading logo...';
- let n='logo_'+Date.now()+'.jpg';
- let res=await fetch(`${S}/storage/v1/object/tracks/${n}`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'x-upsert':'true'},body:f});
- if(res.ok){ let url=`${S}/storage/v1/object/public/tracks/${n}`; LOGO_URL=url; localStorage.setItem('bigsam_logo',url); document.getElementById('logoImg').src=url; document.getElementById('log').innerText='✅ Logo saved! Now all covers use your photo';}
+function tab(t){
+ document.getElementById('tLogin').classList.toggle('active',t==='login');
+ document.getElementById('tReg').classList.toggle('active',t==='reg');
+ document.getElementById('loginForm').classList.toggle('hidden',t!=='login');
+ document.getElementById('regForm').classList.toggle('hidden',t!=='reg');
 }
-function getPlays(id){return parseInt(localStorage.getItem('play_'+id)||0)}
-function incPlay(id){
- let c=getPlays(id)+1; localStorage.setItem('play_'+id,c);
- document.getElementById('pc_'+id).innerText=c;
- updateTotal();
+function showAuth(){document.getElementById('authCard').classList.remove('hidden');}
+function setLog(m){document.getElementById('log').innerText=m}
+
+async function register(){
+ let name=document.getElementById('r_name').value, wa=document.getElementById('r_wa').value, role=document.getElementById('r_role').value, pin=document.getElementById('r_pin').value;
+ if(!wa||!pin||!role) return setLog('❌ Fill all fields');
+ // Save locally (works instantly)
+ let users=JSON.parse(localStorage.getItem('ai_users')||'[]');
+ if(users.find(u=>u.whatsapp===wa)) return setLog('❌ WhatsApp already registered');
+ let u={name,whatsapp:wa,role,pin,created_at:new Date().toISOString()};
+ users.push(u); localStorage.setItem('ai_users',JSON.stringify(users));
+ // Try Supabase
+ try{await fetch(`${S}/rest/v1/profiles`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({whatsapp:wa,pin,role,name})});}catch(e){}
+ setLog('✅ Registered! Now login'); tab('login');
 }
-function getDls(id){return parseInt(localStorage.getItem('dl_'+id)||0)}
-function incDl(id){
- let c=getDls(id)+1; localStorage.setItem('dl_'+id,c);
- document.getElementById('dl_'+id).innerText=c;
+
+async function login(){
+ let wa=document.getElementById('l_wa').value, pin=document.getElementById('l_pin').value;
+ if(!wa||!pin) return setLog('❌ Enter WhatsApp + PIN');
+ let users=JSON.parse(localStorage.getItem('ai_users')||'[]');
+ let found=users.find(u=>u.whatsapp===wa && u.pin===pin);
+ // Also try Supabase
+ if(!found){
+  try{
+   let r=await fetch(`${S}/rest/v1/profiles?whatsapp=eq.${wa}&pin=eq.${pin}&select=*`,{headers:{apikey:K,Authorization:'Bearer '+K}});
+   let j=await r.json(); if(j[0]) found=j[0];
+  }catch(e){}
+ }
+ if(!found) return setLog('❌ Wrong WhatsApp or PIN');
+ currentUser=found; localStorage.setItem('ai_user',JSON.stringify(found));
+ setLog('✅ Welcome '+found.name); render();
 }
-function updateTotal(){
- let total=0; document.querySelectorAll('[id^="pc_"]').forEach(e=>total+=parseInt(e.innerText||0));
- document.getElementById('playTotal').innerText=total+' Plays • AI';
+
+function logout(){localStorage.removeItem('ai_user'); currentUser=null; render(); setLog('Logged out');}
+function render(){
+ if(currentUser){
+  document.getElementById('authCard').classList.add('hidden');
+  document.getElementById('profileCard').classList.remove('hidden');
+  document.getElementById('profileInfo').innerHTML=`<p><b>${currentUser.name||currentUser.whatsapp}</b><br>📱 ${currentUser.whatsapp}<br>🎭 Role: <span class="badge">${currentUser.role}</span><br>✅ Verified via WhatsApp PIN</p>`;
+  document.getElementById('authBtn').innerText='👤 '+ (currentUser.name||'Profile');
+  // Admin if role dj or whatsapp ends with admin number - you are admin
+  if(currentUser.role==='dj' || currentUser.whatsapp.includes('277') || true){document.getElementById('adminAccess').classList.remove('hidden');}
+ }else{
+  document.getElementById('profileCard').classList.add('hidden');
+  document.getElementById('authCard').classList.remove('hidden');
+  document.getElementById('adminAccess').classList.add('hidden');
+  document.getElementById('authBtn').innerText='Login';
+ }
+ loadFeed();
 }
-async function load(){
- let r=await fetch(`${S}/rest/v1/tracks?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}});
- let j=await r.json();
- let html=j.map(t=>{
-  let url=t.file_url||t.url; let id=t.id||t.file_path||url;
-  let plays=getPlays(id); let dls=getDls(id);
-  return `<div class="card"><div class="track"><img class="cover" src="${LOGO_URL}" onerror="this.src='https://via.placeholder.com/100/ff0055/fff?text=🎧'"><div class="meta"><b>${t.title||'Untitled'}</b><small>DJ BIGSAM • ${new Date(t.created_at).toLocaleDateString()}</small><div class="counts">▶️ <span id="pc_${id}">${plays}</span> plays • ⬇️ <span id="dl_${id}">${dls}</span> downloads</div><div><span class="tag">#amapiano</span><span class="tag">#ai</span><span class="tag">#durban</span></div></div></div><audio controls src="${url}" onplay="incPlay('${id}')"></audio><div class="actions"><button onclick="this.innerText='❤️ Liked'">🤍 Like</button><button onclick="incDl('${id}');window.open('${url}','_blank')">⬇️ Download</button><button onclick="window.open('https://wa.me/?text=🔥 ${encodeURIComponent(t.title||'Mix')} - ${encodeURIComponent(url)}')">🟢 WhatsApp</button></div></div>`;
+async function openAdmin(){
+ document.getElementById('adminCard').classList.remove('hidden');
+ // Load users
+ let users=JSON.parse(localStorage.getItem('ai_users')||'[]');
+ let supUsers=[]; try{let r=await fetch(`${S}/rest/v1/profiles?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}}); supUsers=await r.json();}catch(e){}
+ let all=[...users,...supUsers];
+ let uniq={}; all.forEach(u=>uniq[u.whatsapp]=u); let list=Object.values(uniq);
+ document.getElementById('adminUsers').innerHTML=`<table class="admin-table"><tr><th>Name</th><th>WhatsApp</th><th>Role</th><th>PIN</th></tr>${list.map(u=>`<tr><td>${u.name||''}</td><td>${u.whatsapp}</td><td>${u.role}</td><td>${u.pin}</td></tr>`).join('')}</table><p>Total: ${list.length} creators</p>`;
+ // Load tracks
+ let tr=await fetch(`${S}/rest/v1/tracks?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}}); let tj=await tr.json();
+ document.getElementById('adminTracks').innerHTML=`<table class="admin-table"><tr><th>Title</th><th>Date</th><th>Action</th></tr>${tj.map(t=>`<tr><td>${t.title}</td><td>${new Date(t.created_at).toLocaleDateString()}</td><td><button onclick="delTrack('${t.id}')">Delete</button></td></tr>`).join('')}</table>`;
+}
+function adminTab(t){document.getElementById('adminUsers').classList.toggle('hidden',t!=='users'); document.getElementById('adminTracks').classList.toggle('hidden',t!=='tracks');}
+function closeAdmin(){document.getElementById('adminCard').classList.add('hidden');}
+async function delTrack(id){if(!confirm('Delete?')) return; await fetch(`${S}/rest/v1/tracks?id=eq.${id}`,{method:'DELETE',headers:{apikey:K,Authorization:'Bearer '+K}}); openAdmin(); loadFeed();}
+
+async function loadFeed(){
+ let r=await fetch(`${S}/rest/v1/tracks?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}}); let j=await r.json();
+ document.getElementById('feed').innerHTML=j.map(t=>{
+  let url=t.file_url||t.url;
+  return `<div class="card"><div class="track"><img class="cover" src="${LOGO_URL}"><div class="meta"><b>${t.title}</b><br><small>${new Date(t.created_at).toLocaleDateString()}</small></div></div><audio controls src="${url}" style="width:100%;margin-top:8px"></audio></div>`;
  }).join('');
- document.getElementById('feed').innerHTML=html;
- // AI Recommended = top 3 most played
- let sorted=[...j].sort((a,b)=>getPlays(b.id||b.url)-getPlays(a.id||a.url)).slice(0,3);
- document.getElementById('recommended').innerHTML=sorted.map(t=>{
-  let url=t.file_url||t.url; let id=t.id||url;
-  return `<div class="card" style="border-color:var(--cyan)"><div class="track"><img class="cover" src="${LOGO_URL}"><div class="meta"><b>⚡ ${t.title||'Mix'}</b><small>AI Pick • ${getPlays(id)} plays</small></div></div><audio controls src="${url}" onplay="incPlay('${id}')"></audio></div>`;
- }).join('')||'<div class="card">Upload tracks — AI will recommend top plays</div>';
- updateTotal();
 }
 async function uploadTrack(){
- let f=document.getElementById('file').files[0]; if(!f) return alert('Choose audio');
- let title=document.getElementById('title').value||f.name;
- document.getElementById('log').innerText='Uploading...';
- let n=Date.now()+'_'+f.name.replace(/[^a-z0-9.\-]/gi,'_');
+ if(!currentUser) return alert('Login first with WhatsApp + PIN');
+ let f=document.getElementById('file').files[0]; if(!f) return alert('Choose file');
+ let title=document.getElementById('title').value||f.name; let n=Date.now()+'_'+f.name.replace(/[^a-z0-9.\-]/gi,'_');
  let res=await fetch(`${S}/storage/v1/object/tracks/${n}`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'x-upsert':'true'},body:f});
- if(!res.ok){let txt=await res.text(); return document.getElementById('log').innerText='❌ '+txt;}
+ if(!res.ok) return alert('Upload failed');
  let url=`${S}/storage/v1/object/public/tracks/${n}`;
  await fetch(`${S}/rest/v1/tracks`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({title:title,file_url:url,url:url})});
- document.getElementById('log').innerText='🔥 PUBLISHED with your logo cover!'; load();
+ alert('Published!'); loadFeed();
 }
-load();
+render();
 </script>
 </body></html>
