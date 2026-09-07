@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI MUSIC SOCIAL - VOUCHER MODE - DJ BIGSAM RSA</title>
+<title>AI MUSIC SOCIAL - 27789313670 - DJ BIGSAM</title>
 <style>
-:root{--pink:#ff0055;--cyan:#00f2ff;--green:#00ff88;--gold:#ffcc00}
+:root{--pink:#ff0055;--cyan:#00f2ff;--green:#00ff88;--gold:#ffcc00;--wa:#25D366}
 body{margin:0;background:#06060a;color:#fff;font-family:Inter,Arial}
 header{position:sticky;top:0;background:rgba(0,0,0,.92);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;z-index:10}
 .logo{display:flex;gap:10px;align-items:center;font-weight:900}
@@ -11,118 +11,98 @@ header{position:sticky;top:0;background:rgba(0,0,0,.92);padding:12px 16px;displa
 .card{background:#12121a;border:1px solid #24243a;border-radius:18px;padding:16px;margin:14px 0}
 input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#0a0a10;color:#fff;margin:8px 0;box-sizing:border-box}
 .btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(90deg,var(--pink),#ff7a00);color:#fff;font-weight:900;cursor:pointer}
+.btn-wa{background:linear-gradient(90deg,#25D366,#128C7E);color:#fff;animation:pulse 2s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
 .btn-gold{background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000}
-.btn-green{background:var(--green);color:#000}
-.btn-red{background:#ff3344;color:#fff}
-.btn2{background:#1a1a2a;border:1px solid #333;color:#fff}
-.tabs{display:flex;gap:8px;margin-bottom:10px}
-.tabs button{flex:1;padding:12px;border-radius:10px;border:1px solid #333;background:#111;color:#fff}
-.tabs button.active{background:var(--pink)}
-.hidden{display:none}
-.badge{padding:4px 10px;border-radius:20px;font-size:11px;border:1px solid #333;display:inline-block}
-.badge-verified{background:rgba(0,255,136,.15);border-color:var(--green);color:var(--green);font-weight:800}
-.badge-premium{background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000;font-weight:900}
+.btn-green{background:var(--green);color:#000}.btn-red{background:#ff3344;color:#fff}.btn2{background:#1a1a2a;border:1px solid #333;color:#fff}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.tabs button{flex:1;padding:12px;border-radius:10px;border:1px solid #333;background:#111;color:#fff;min-width:70px}.tabs button.active{background:var(--pink)}
+.hidden{display:none}.badge{padding:4px 10px;border-radius:20px;font-size:11px;border:1px solid #333;display:inline-block}.badge-verified{background:rgba(0,255,136,.15);border-color:var(--green);color:var(--green);font-weight:800}
 .voucher-box{background:linear-gradient(135deg,#1a1a00,#2a2a00);border:2px dashed var(--gold);border-radius:12px;padding:12px;margin:10px 0;text-align:center}
-.voucher-code{font-size:22px;font-weight:900;letter-spacing:3px;color:var(--gold);background:#000;padding:10px;border-radius:8px;margin:8px 0;border:1px solid var(--gold)}
+.voucher-code{font-size:13px;font-weight:900;color:var(--gold);background:#000;padding:8px;border-radius:8px;border:1px solid var(--gold);font-family:monospace}
 .small-btn{padding:6px 10px;border-radius:8px;border:none;font-size:11px;font-weight:bold;margin:2px;cursor:pointer}
-#log{color:#0f0;font-size:12px}
-label.small{font-size:11px;color:#ffb86a;display:block;margin-top:10px;font-weight:bold}
-.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.id-box{border:1px solid #333;border-radius:10px;padding:6px;background:#0a0a10;position:relative;overflow:hidden}
+#log{color:#0f0;font-size:12px}label.small{font-size:11px;color:#ffb86a;display:block;margin-top:10px;font-weight:bold}
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.id-box{border:1px solid #333;border-radius:10px;padding:6px;background:#0a0a10;position:relative;overflow:hidden}
 .blurred{filter:blur(14px)}.blur-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.85);color:#fff;padding:6px 10px;border-radius:20px;font-size:10px;border:1px solid var(--pink);z-index:2}
 .watermark-text{position:absolute;bottom:4px;right:4px;background:rgba(255,0,85,.9);color:#fff;font-size:7px;padding:2px 6px;border-radius:10px;font-weight:900;z-index:3}
-.id-number-blur{filter:blur(6px);user-select:none;cursor:pointer}
-canvas{display:none}
+.id-number-blur{filter:blur(6px);user-select:none;cursor:pointer}canvas{display:none}
 </style>
 </head><body>
 <header>
 <div class="logo"><img id="logoImg" class="logo-img" src="./dj_bigsam_neon_logo.jpg"><div><span style="color:var(--pink)">AI</span> MUSIC SOCIAL</div></div>
-<div style="display:flex;gap:6px">
-<button onclick="playWelcomeVoice()" style="background:#111;border:1px solid var(--pink);padding:7px 10px;border-radius:20px">🔊</button>
 <button id="authBtn" onclick="showAuth()" style="background:linear-gradient(90deg,var(--pink),var(--cyan));border:none;padding:8px 14px;border-radius:20px;color:#fff;font-weight:bold">Login</button>
-</div>
 </header>
 
 <div class="container">
-<div id="voiceBanner" class="card" style="background:linear-gradient(90deg,#ff0055,#7000ff,#00f2ff);text-align:center;border:2px solid #fff">
-<div style="font-size:17px;font-weight:900">🇿🇦 1ST SA AI MUSIC - VOUCHER ONLY 🇿🇦</div>
-<audio id="welcomeAudio" controls style="width:100%;margin:8px 0;height:32px"><source src="./welcome.mp3" type="audio/mpeg"></audio>
-<button onclick="playWelcomeVoice()" style="background:#fff;color:#ff0055;border:none;padding:10px 20px;border-radius:20px;font-weight:900">🔊 PLAY WELCOME VOICE</button>
+<div class="card" style="background:linear-gradient(90deg,#ff0055,#7000ff,#00f2ff);text-align:center;border:2px solid #fff">
+<div style="font-size:17px;font-weight:900">🇿🇦 ADMIN 27789313670 🇿🇦</div>
 </div>
 
-<div class="card" style="border-color:var(--gold);background:linear-gradient(135deg,#1a1a0a,#2a1a00)">
-<h3 style="margin:0;color:var(--gold);text-align:center">🎫 VOUCHER SYSTEM - ONLY ADMIN 0789313670</h3>
-<div style="font-size:12px;text-align:center;margin-top:8px">
-✅ Only 1 voucher per person<br>
-✅ Buy voucher via WhatsApp: <b style="color:var(--green)">078 931 3670</b><br>
-✅ R50 KYC Voucher | R99 Premium Voucher | R150 Boost Voucher<br>
-✅ Admin creates voucher → User enters code → Auto approved
-</div>
-<div style="display:flex;gap:8px;margin-top:10px">
-<a href="https://wa.me/27789313670?text=Hi%20DJ%20BIGSAM%20I%20want%20to%20buy%20R50%20KYC%20voucher%20for%20AI%20Music%20Social" target="_blank" style="flex:1;text-decoration:none"><button class="btn btn-gold" style="width:100%">💬 BUY VOUCHER VIA WHATSAPP</button></a>
-</div>
+<div class="card" style="border-color:var(--wa);background:linear-gradient(135deg,#0a1a0a,#0a2a0a);border:2px solid var(--wa)">
+<h3 style="margin:0;color:var(--wa);text-align:center">💬 CLIENT WHATSAPP VIA WEBSITE TO 27789313670</h3>
+<div style="text-align:center;font-size:11px;margin-top:6px">Format: 27789313670 • Only 1 voucher per user • Connected to admin</div>
 </div>
 
 <div class="card" id="authCard">
-<div class="tabs"><button id="tLogin" class="active" onclick="tab('login')">Login</button><button id="tReg" onclick="tab('reg')">Register with Voucher</button></div>
-<div id="loginForm"><input id="l_wa" placeholder="WhatsApp"><input id="l_pin" type="password" placeholder="PIN"><button class="btn" onclick="login()">🔓 LOGIN</button></div>
+<div class="tabs"><button id="tLogin" class="active" onclick="tab('login')">Login</button><button id="tReg" onclick="tab('reg')">Register 27789313670</button></div>
+<div id="loginForm"><input id="l_wa" placeholder="WhatsApp 2778..."><input id="l_pin" type="password" placeholder="PIN"><button class="btn" onclick="login()">🔓 LOGIN</button></div>
 <div id="regForm" class="hidden">
 <div style="display:flex;gap:8px"><input id="r_fname" placeholder="First Name"><input id="r_sname" placeholder="Surname"></div>
-<input id="r_id" placeholder="ID Number" maxlength="13"><input id="r_wa" placeholder="WhatsApp"><select id="r_role"><option value="">Role</option><option value="musician">Musician</option><option value="producer">Producer</option><option value="artist">Artist</option><option value="ai-creator">AI Creator</option><option value="dj">DJ</option></select>
+<input id="r_id" placeholder="ID Number" maxlength="13"><input id="r_wa" placeholder="WhatsApp 2778..."><select id="r_role"><option value="">Role</option><option value="musician">Musician</option><option value="producer">Producer</option><option value="artist">Artist</option><option value="ai-creator">AI Creator</option><option value="dj">DJ</option></select>
 <label class="small">📸 Profile</label><input type="file" id="r_pic" accept="image/*">
 <label class="small">🪪 ID FRONT</label><input type="file" id="r_front" accept="image/*">
 <label class="small">🪪 ID BACK</label><input type="file" id="r_back" accept="image/*">
-<input id="r_pin" type="password" placeholder="Create PIN" maxlength="4">
+<input id="r_pin" type="password" placeholder="PIN" maxlength="4">
+
+<div class="voucher-box" style="border:2px solid var(--wa);background:linear-gradient(135deg,#0a1a0a,#1a2a1a)">
+<div style="font-weight:900;color:var(--wa)">💬 WHATSAPP ADMIN 27789313670 VIA WEBSITE TO PAY</div>
+<button class="btn btn-wa" onclick="whatsappPay(50)">💬 WHATSAPP 27789313670 TO PAY R50 - VIA WEBSITE</button>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+<button class="btn" style="background:linear-gradient(90deg,#25D366,#128C7E)" onclick="whatsappPay(99)">💬 R99 PREMIUM 27789313670</button>
+<button class="btn" style="background:linear-gradient(90deg,#25D366,#128C7E)" onclick="whatsappPay(150)">💬 R150 BOOST 27789313670</button>
+</div>
+</div>
 
 <div class="voucher-box">
-<div style="font-weight:900;color:var(--gold)">🎫 ENTER VOUCHER CODE (FROM ADMIN WHATSAPP)</div>
-<div style="font-size:10px;color:#aaa">Only 1 voucher can be used - bought from 0789313670</div>
-<input id="r_voucher" placeholder="Enter voucher e.g. BIGSAM-50-A1B2C3" style="text-align:center;font-weight:900;letter-spacing:2px;text-transform:uppercase;border:2px solid var(--gold);font-size:16px">
-<div style="font-size:9px;color:#888;margin-top:4px">Voucher format: BIGSAM-50-XXXXXX or BIGSAM-99-XXXXXX or BIGSAM-150-XXXXXX</div>
-<button class="btn btn-gold" onclick="register()" style="margin-top:10px">🎫 REDEEM VOUCHER & REGISTER</button>
-<a href="https://wa.me/27789313670?text=Hi%20I%20need%20voucher%20for%20AI%20Music%20Social" target="_blank" style="text-decoration:none"><button class="btn2 btn" style="margin-top:8px">💬 DON'T HAVE VOUCHER? BUY ON WHATSAPP 0789313670 - R50</button></a>
+<div style="font-weight:900;color:var(--gold)">🎫 ENTER VOUCHER FROM 27789313670</div>
+<input id="r_voucher" placeholder="BIGSAM-50-XXXXXX" style="text-align:center;font-weight:900;letter-spacing:2px;text-transform:uppercase;border:2px solid var(--gold);font-size:16px">
+<button class="btn btn-gold" onclick="register()" style="margin-top:10px">🎫 REDEEM VOUCHER & REGISTER - 1 ONLY</button>
+<a href="https://wa.me/27789313670?text=Hi%2027789313670%20I%20need%20R50%20voucher" target="_blank" style="text-decoration:none"><button class="btn2 btn" style="margin-top:8px">💬 BUY VOUCHER WHATSAPP 27789313670</button></a>
 </div>
 <canvas id="wmCanvas"></canvas>
 </div>
-<div id="log">🎫 Voucher Mode: Only 1 voucher per user • Admin: 27789313670</div>
+<div id="log">Format: 27789313670 • Only 1 voucher per user • Admin: 27789313670</div>
 </div>
 
 <div class="card hidden" id="profileCard">
-<div style="display:flex;gap:12px"><img id="myPic" class="user-pic" style="width:56px;height:56px;border-radius:50%;border:2px solid var(--pink);object-fit:cover" src=""><div id="profileInfo"></div></div>
+<div style="display:flex;gap:12px"><img id="myPic" style="width:56px;height:56px;border-radius:50%;border:2px solid var(--pink);object-fit:cover" src=""><div id="profileInfo"></div></div>
 <div id="verifyBadge" style="margin-top:8px"></div>
-<div id="premiumBadge" style="margin-top:8px"></div>
 <div id="myIdPhotos"></div>
-<div class="voucher-box" id="upgradeCard">
-<div style="font-weight:900">⭐ PREMIUM VOUCHER R99</div>
-<input id="premium_voucher" placeholder="Enter PREMIUM voucher BIGSAM-99-XXXXXX" style="text-align:center;font-weight:900;letter-spacing:2px;text-transform:uppercase;border:2px solid var(--gold);margin-top:8px">
-<button class="btn btn-gold" onclick="redeemPremium()" style="margin-top:8px">🎫 REDEEM PREMIUM VOUCHER R99</button>
-<a href="https://wa.me/27789313670?text=Hi%20I%20want%20Premium%20voucher%20R99" target="_blank" style="text-decoration:none"><button class="btn btn2" style="margin-top:6px;width:100%">💬 BUY PREMIUM VOUCHER ON WHATSAPP</button></a>
-</div>
 <button class="btn btn2" onclick="logout()" style="margin-top:10px">Logout</button>
 </div>
 
-<div class="card" id="uploadCard"><h3>🎛️ Drop Mix</h3><input type="file" id="file" accept="audio/*"><input id="title" placeholder="Title"><button class="btn" onclick="uploadTrack()">🚀 PUBLISH</button>
-<div class="voucher-box"><div style="font-weight:900">🔥 BOOST VOUCHER R150</div><input id="boost_voucher" placeholder="BIGSAM-150-XXXXXX" style="text-align:center;font-weight:900;text-transform:uppercase;border:2px solid var(--gold);margin-top:6px"><button class="btn btn-gold" onclick="redeemBoost()" style="margin-top:6px">🎫 REDEEM BOOST VOUCHER</button></div>
-</div>
-
-<div class="card hidden" id="adminAccess"><button class="btn" onclick="openAdmin()" style="background:linear-gradient(90deg,#00f2ff,#7000ff)">🛡️ ADMIN - CREATE VOUCHERS - ONLY 27789313670</button></div>
+<div class="card hidden" id="adminAccess"><button class="btn" onclick="openAdmin()" style="background:linear-gradient(90deg,#00f2ff,#7000ff)">🛡️ ADMIN 27789313670 - DASHBOARD</button></div>
 
 <div class="card hidden" id="adminCard">
-<h3>🛡️ ADMIN VOUCHER GENERATOR - ONLY YOU CAN CREATE</h3>
+<h3>🛡️ ADMIN 27789313670 - VOUCHER CONNECTED</h3>
+<div style="background:#111;padding:12px;border-radius:12px;border:2px solid var(--gold);margin-bottom:10px">
+<div style="font-weight:900;color:var(--gold);text-align:center">🎫 CREATE VOUCHER - ADMIN 27789313670 ONLY</div>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
-<button class="btn btn-gold" onclick="createVoucher(50)">🎫 CREATE R50 KYC VOUCHER</button>
-<button class="btn" style="background:linear-gradient(90deg,#ff0055,#ff7a00)" onclick="createVoucher(99)">⭐ CREATE R99 PREMIUM VOUCHER</button>
-<button class="btn" style="background:linear-gradient(90deg,#00f2ff,#7000ff)" onclick="createVoucher(150)">🔥 CREATE R150 BOOST VOUCHER</button>
+<button class="btn btn-gold" onclick="createVoucher(50)">🎫 R50 KYC</button>
+<button class="btn" style="background:linear-gradient(90deg,#ff0055,#ff7a00)" onclick="createVoucher(99)">⭐ R99 PREMIUM</button>
+<button class="btn" style="background:linear-gradient(90deg,#00f2ff,#7000ff)" onclick="createVoucher(150)">🔥 R150 BOOST</button>
 </div>
-<div id="moneyStats" style="background:#111;padding:10px;border-radius:10px;border:1px solid var(--gold);margin:10px 0"></div>
-<div id="voucherList" style="background:#000;padding:10px;border-radius:10px;border:1px solid #333;max-height:300px;overflow-y:auto"></div>
-<div class="tabs" style="margin-top:10px"><button id="au" class="active" onclick="adminTab('users')">Users</button><button onclick="adminTab('pending')">Pending</button><button id="at" onclick="adminTab('tracks')">Tracks</button></div>
-<div id="adminUsers"></div>
+</div>
+<div id="moneyStats" style="background:#111;padding:10px;border-radius:10px;border:1px solid var(--gold);margin-bottom:10px"></div>
+<div id="voucherList" style="background:#000;padding:10px;border-radius:10px;border:1px solid #333;max-height:350px;overflow-y:auto"></div>
+<div class="tabs" style="margin-top:12px"><button id="tabV" class="active" onclick="adminTab('vouchers')">🎫 Vouchers</button><button id="au" onclick="adminTab('users')">👥 Users</button><button onclick="adminTab('pending')">⏳ Pending</button><button id="at" onclick="adminTab('tracks')">🎵 Tracks</button></div>
+<div id="adminVouchers"></div>
+<div id="adminUsers" class="hidden"></div>
 <div id="adminPending" class="hidden"></div>
 <div id="adminTracks" class="hidden"></div>
-<button class="btn btn2" onclick="closeAdmin()">Close</button>
+<button class="btn btn2" onclick="closeAdmin()" style="margin-top:10px">Close Admin</button>
 </div>
 
+<div class="card" id="uploadCard"><h3>🎛️ Drop Mix</h3><input type="file" id="file" accept="audio/*"><input id="title" placeholder="Title"><button class="btn" onclick="uploadTrack()">🚀 PUBLISH</button></div>
 <div id="feed"></div>
 </div>
 
@@ -134,52 +114,63 @@ let DEFAULT_NEON="./dj_bigsam_neon_logo.jpg";
 let LOGO_URL=localStorage.getItem('bigsam_logo')||DEFAULT_NEON;
 let currentUser=JSON.parse(localStorage.getItem('ai_user')||'null');
 
-// VOUCHER SYSTEM - ONLY ADMIN CAN CREATE
+const PRELOADED_VOUCHERS=[
+{code:'BIGSAM-50-K9X2M1',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},
+{code:'BIGSAM-50-A7B4C9',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},
+{code:'BIGSAM-50-P3Q8R2',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},
+{code:'BIGSAM-50-L6N5T0',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},
+{code:'BIGSAM-50-Z1Y4W7',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},
+{code:'BIGSAM-99-G8H2J5',amount:99,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},
+{code:'BIGSAM-99-F6K9D3',amount:99,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},
+{code:'BIGSAM-99-V4B7N1',amount:99,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},
+{code:'BIGSAM-150-M2C5X8',amount:150,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},
+{code:'BIGSAM-150-Q9W1E6',amount:150,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA}
+];
+function initVouchers(){ let e=JSON.parse(localStorage.getItem('vouchers')||'[]'); if(e.length===0) localStorage.setItem('vouchers',JSON.stringify(PRELOADED_VOUCHERS)); }
+initVouchers();
 function getVouchers(){return JSON.parse(localStorage.getItem('vouchers')||'[]');}
 function saveVouchers(v){localStorage.setItem('vouchers',JSON.stringify(v));}
+
+function formatWA(num){ let n=num.replace(/[^0-9]/g,''); if(n.startsWith('0')) n='27'+n.substring(1); if(!n.startsWith('27')) n='27'+n; return n; }
+
+function whatsappPay(amount){
+  let fname=document.getElementById('r_fname').value.trim();
+  let sname=document.getElementById('r_sname').value.trim();
+  let idnum=document.getElementById('r_id').value.trim();
+  let wa=document.getElementById('r_wa').value.trim();
+  let role=document.getElementById('r_role').value;
+  if(!fname||!sname||!wa){ alert('Fill First Name, Surname and WhatsApp 2778... then tap WhatsApp 27789313670'); return; }
+  let waClean = formatWA(wa);
+  let type = amount==50?'KYC R50':amount==99?'PREMIUM R99':'BOOST R150';
+  let msg = `Hi Admin 27789313670 👋\n\nI am registering on AI MUSIC SOCIAL 🇿🇦\nClient WhatsApp via website when registering to pay\n\n📝 Details:\n👤 Name: ${fname} ${sname}\n🪪 ID: ${idnum||'Will send'}\n📱 My WhatsApp: ${waClean}\n🎭 Role: ${role||'Musician'}\n💰 Want: ${type}\n\nI clicked WhatsApp Pay via website to 27789313670\nPlease send me voucher code\nOnly 1 voucher per person\n\nThanks! 🙏`;
+  window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(msg)}`,'_blank');
+  setLog(`💬 WhatsApp via website to 27789313670 opened - Details sent!`);
+}
+
 function createVoucher(amount){
-  if(!currentUser||currentUser.whatsapp!==ADMIN_WA) return alert('Only admin 27789313670 can create vouchers');
+  if(!currentUser||currentUser.whatsapp!==ADMIN_WA) return alert(`Only admin ${ADMIN_WA} can create vouchers!`);
   let code='BIGSAM-'+amount+'-'+Math.random().toString(36).substring(2,8).toUpperCase();
   let vouchers=getVouchers();
   vouchers.push({code,amount,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA});
   saveVouchers(vouchers);
-  // Also save to Supabase if possible
-  try{fetch(`${S}/rest/v1/profiles`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({whatsapp:'VOUCHER_'+code,pin:code,role:'voucher',name:code,verified:false})});}catch(e){}
   renderVouchers();
-  alert(`✅ VOUCHER CREATED: ${code}\nAmount: R${amount}\n\nSend this to buyer via WhatsApp!\nUser enters this code to register.`);
-  // Auto open WhatsApp to send voucher
-  let waLink=`https://wa.me/?text=Your%20AI%20Music%20Social%20Voucher:%20${code}%20-%20R${amount}%20-%20Redeem%20at%20website`;
-  window.open(waLink,'_blank');
+  alert(`✅ VOUCHER CREATED - ADMIN ${ADMIN_WA}!\n\nCode: ${code}\nAmount: R${amount}\nFormat: ${ADMIN_WA}\nOnly 1 voucher per user!`);
+  navigator.clipboard.writeText(`${code} - R${amount} - From ${ADMIN_WA}`);
 }
+function createCustomVoucher(){ let amt=parseInt(document.getElementById('customVoucherAmount').value); if(!amt||amt<10) return alert('Enter amount'); createVoucher(amt); }
 function renderVouchers(){
-  let vouchers=getVouchers().reverse();
+  let vouchers=getVouchers().slice().reverse();
   let stats={total:vouchers.length,used:vouchers.filter(v=>v.used).length,available:vouchers.filter(v=>!v.used).length,totalMoney:vouchers.filter(v=>v.used).reduce((s,v)=>s+v.amount,0)};
-  document.getElementById('moneyStats').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;text-align:center"><div><div style="font-size:16px;font-weight:900;color:var(--gold)">${vouchers.length}</div><div style="font-size:9px">Total Vouchers</div></div><div><div style="font-size:16px;font-weight:900;color:var(--green)">${stats.available}</div><div style="font-size:9px">Available</div></div><div><div style="font-size:16px;font-weight:900;color:#ff3344">${stats.used}</div><div style="font-size:9px">Used</div></div><div><div style="font-size:16px;font-weight:900;color:var(--gold)">R${stats.totalMoney}</div><div style="font-size:9px">Made</div></div></div>`;
-  document.getElementById('voucherList').innerHTML=vouchers.length===0?'<div style="text-align:center;color:#888">No vouchers yet - Click CREATE above</div>':vouchers.map(v=>`<div style="display:flex;justify-content:space-between;align-items:center;background:${v.used?'#1a0000':'#111'};padding:8px;border-radius:8px;margin:4px 0;border:1px solid ${v.used?'#ff3344':v.amount===50?'#ffcc00':v.amount===99?'#ff0055':'#00f2ff'}"><div><div class="voucher-code" style="font-size:12px;margin:0;padding:4px 8px">${v.code}</div><div style="font-size:9px;color:#888">R${v.amount} • ${v.used?'USED by '+v.usedBy:'AVAILABLE'} • ${new Date(v.created).toLocaleDateString()}</div></div><div><button class="small-btn" style="background:${v.used?'#333':'var(--green)'};color:${v.used?'#888':'#000'}" onclick="copyVoucher('${v.code}')">📋</button><button class="small-btn btn-red" onclick="deleteVoucher('${v.code}')">🗑️</button></div></div>`).join('');
+  document.getElementById('moneyStats').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;text-align:center"><div><div style="font-size:18px;font-weight:900;color:var(--gold)">${vouchers.length}</div><div style="font-size:9px">Total</div></div><div><div style="font-size:18px;font-weight:900;color:var(--green)">${stats.available}</div><div style="font-size:9px">Available</div></div><div><div style="font-size:18px;font-weight:900;color:#ff3344">${stats.used}</div><div style="font-size:9px">Used</div></div><div><div style="font-size:18px;font-weight:900;color:var(--gold)">R${stats.totalMoney}</div><div style="font-size:9px">Revenue</div></div></div><div style="font-size:10px;color:#aaa;margin-top:8px;text-align:center">Format: ${ADMIN_WA} • Only 1 voucher per WhatsApp • Connected to admin ${ADMIN_WA}</div>`;
+  document.getElementById('voucherList').innerHTML=vouchers.map(v=>`<div style="display:flex;justify-content:space-between;align-items:center;background:${v.used?'#1a0000':'#111'};padding:8px;border-radius:8px;margin:4px 0;border:1px solid ${v.used?'#ff3344':'#ffcc00'}"><div><div class="voucher-code">${v.code}</div><div style="font-size:9px;color:${v.used?'#ff8888':'#88ff88'}">${v.used?'🔴 USED by '+v.usedBy+' - 1 only':'🟢 AVAILABLE - 27789313670'} | R${v.amount}</div></div><div style="display:flex;flex-direction:column;gap:2px"><button class="small-btn" style="background:var(--gold);color:#000" onclick="copyVoucher('${v.code}')">📋 Copy</button><button class="small-btn" style="background:#222;color:#fff" onclick="shareVoucher('${v.code}',${v.amount})">💬 27789313670</button><button class="small-btn btn-red" onclick="deleteVoucher('${v.code}')">🗑️</button></div></div>`).join('');
+  document.getElementById('adminVouchers').innerHTML=document.getElementById('voucherList').innerHTML;
 }
-function copyVoucher(code){navigator.clipboard.writeText(code); alert('Copied: '+code+' - Send via WhatsApp!');}
-function deleteVoucher(code){if(!confirm('Delete voucher '+code+'?'))return; let v=getVouchers().filter(v=>v.code!==code); saveVouchers(v); renderVouchers();}
-function validateVoucher(code,expectedAmount){
-  let vouchers=getVouchers();
-  let found=vouchers.find(v=>v.code.toUpperCase()===code.toUpperCase());
-  if(!found) return {valid:false,msg:'❌ Invalid voucher code'};
-  if(found.used) return {valid:false,msg:'❌ Voucher already used by '+found.usedBy};
-  if(expectedAmount && found.amount!==expectedAmount) return {valid:false,msg:`❌ This voucher is R${found.amount} not R${expectedAmount}`};
-  return {valid:true,voucher:found};
-}
-function useVoucher(code,usedBy){
-  let vouchers=getVouchers();
-  let idx=vouchers.findIndex(v=>v.code.toUpperCase()===code.toUpperCase());
-  if(idx>=0){vouchers[idx].used=true; vouchers[idx].usedBy=usedBy; vouchers[idx].usedAt=Date.now(); saveVouchers(vouchers);}
-}
+function copyVoucher(code){navigator.clipboard.writeText(code); alert('✅ Copied '+code+' - Admin '+ADMIN_WA);}
+function shareVoucher(code,amount){let text=`🎫 Voucher from ${ADMIN_WA}!\n\nCode: ${code}\nAmount: R${amount}\nOnly 1 per person!\nFrom: ${ADMIN_WA}`; window.open(`https://wa.me/?text=${encodeURIComponent(text)}`,'_blank');}
+function deleteVoucher(code){if(!confirm('Delete '+code+'? Admin '+ADMIN_WA))return; saveVouchers(getVouchers().filter(x=>x.code!==code)); renderVouchers();}
+function validateVoucher(code,expectedAmount){ let vouchers=getVouchers(); let found=vouchers.find(v=>v.code.toUpperCase()===code.toUpperCase()); if(!found) return {valid:false,msg:`❌ Invalid voucher - Not from ${ADMIN_WA}`}; if(found.used) return {valid:false,msg:`❌ Already used by ${found.usedBy} - Only 1 voucher per person!`}; if(expectedAmount && found.amount!==expectedAmount) return {valid:false,msg:`❌ This voucher is R${found.amount} not R${expectedAmount}`}; return {valid:true,voucher:found}; }
+function useVoucher(code,usedBy){ let vouchers=getVouchers(); let idx=vouchers.findIndex(v=>v.code.toUpperCase()===code.toUpperCase()); if(idx>=0){vouchers[idx].used=true; vouchers[idx].usedBy=formatWA(usedBy); vouchers[idx].usedAt=Date.now(); saveVouchers(vouchers); renderVouchers();} }
 
-// VOICE
-const WELCOME_TEXT="Welcome to the First South African AI Music Social Media! Powered by DJ Big Sam! Buy your voucher via WhatsApp 0789313670!";
-function playWelcomeVoice(){let a=document.getElementById('welcomeAudio');a.volume=0.8;a.play().catch(()=>{if('speechSynthesis' in window){let m=new SpeechSynthesisUtterance(WELCOME_TEXT);m.rate=0.88;speechSynthesis.speak(m);}});}
-function stopVoice(){document.getElementById('welcomeAudio').pause();if('speechSynthesis' in window)speechSynthesis.cancel();}
-window.addEventListener('load',()=>{setTimeout(()=>{if(!sessionStorage.getItem('welcomed')){playWelcomeVoice();sessionStorage.setItem('welcomed','1');}},1800);});
-
-// CORE
 function tab(t){document.getElementById('tLogin').classList.toggle('active',t==='login');document.getElementById('tReg').classList.toggle('active',t==='reg');document.getElementById('loginForm').classList.toggle('hidden',t!=='login');document.getElementById('regForm').classList.toggle('hidden',t!=='reg');}
 function showAuth(){document.getElementById('authCard').classList.remove('hidden');}
 function setLog(m){document.getElementById('log').innerText=m}
@@ -188,53 +179,42 @@ function toggleBlur(el){el.classList.toggle('blurred'); let ov=el.parentElement.
 function toggleIdBlur(el,realId){if(el.dataset.revealed==='1'){el.innerText=maskId(realId);el.dataset.revealed='0';el.classList.add('id-number-blur');}else{el.innerText=realId;el.dataset.revealed='1';el.classList.remove('id-number-blur');}}
 function watermarkImage(file,nameText){return new Promise((resolve)=>{let img=new Image(); img.onload=()=>{let canvas=document.getElementById('wmCanvas');canvas.width=img.width;canvas.height=img.height;let ctx=canvas.getContext('2d');ctx.drawImage(img,0,0);ctx.fillStyle='rgba(255,0,85,0.85)';ctx.fillRect(0,canvas.height-60,canvas.width,60);ctx.fillStyle='#fff';ctx.font=`bold ${Math.max(16,canvas.width*0.03)}px Arial`;ctx.fillText('AI MUSIC SOCIAL - VERIFIED COPY',20,canvas.height-30);ctx.font=`${Math.max(12,canvas.width*0.022)}px Arial`;ctx.fillText(`${nameText} • ${new Date().toLocaleDateString()} • ${maskId(document.getElementById('r_id').value)} • DO NOT COPY`,20,canvas.height-10);ctx.save();ctx.translate(canvas.width/2,canvas.height/2);ctx.rotate(-0.5);ctx.globalAlpha=0.15;ctx.font=`bold ${canvas.width*0.08}px Arial`;ctx.fillStyle='#ff0055';ctx.fillText('AI MUSIC SOCIAL RSA',-canvas.width*0.35,0);ctx.restore();canvas.toBlob(b=>resolve(b),'image/jpeg',0.8);};img.src=URL.createObjectURL(file);});}
 async function uploadImage(file){let n='kyc_'+Date.now()+'_'+Math.random().toString(36).slice(2)+'.jpg';let res=await fetch(`${S}/storage/v1/object/tracks/${n}`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'x-upsert':'true'},body:file});if(!res.ok) throw new Error();return `${S}/storage/v1/object/public/tracks/${n}`;}
-
 async function register(){
  let fname=document.getElementById('r_fname').value.trim(), sname=document.getElementById('r_sname').value.trim(), idnum=document.getElementById('r_id').value.trim(), wa=document.getElementById('r_wa').value.trim(), role=document.getElementById('r_role').value, pin=document.getElementById('r_pin').value.trim(), picFile=document.getElementById('r_pic').files[0], frontFile=document.getElementById('r_front').files[0], backFile=document.getElementById('r_back').files[0], voucherCode=document.getElementById('r_voucher').value.trim().toUpperCase();
  if(!fname||!sname||!idnum||!wa||!role||!pin) return setLog('❌ Fill all');
  if(!picFile||!frontFile||!backFile) return setLog('❌ 3 photos required');
- if(!voucherCode) return setLog('❌ Enter voucher code from admin WhatsApp 0789313670');
- // Validate voucher - ONLY 1 VOUCHER ACCEPTED
+ if(!voucherCode) return setLog(`❌ Enter voucher from ${ADMIN_WA} - WhatsApp ${ADMIN_WA} via website first`);
  let check=validateVoucher(voucherCode,50);
  if(!check.valid) return setLog(check.msg);
- // Check if this WhatsApp already used a voucher (only 1 voucher per person)
  let users=JSON.parse(localStorage.getItem('ai_users')||'[]');
- if(users.find(u=>u.whatsapp===wa)) return setLog('❌ This WhatsApp already registered - Only 1 voucher per person');
- setLog('⏳ Validating voucher '+voucherCode+'...');
+ let waClean = formatWA(wa);
+ if(users.find(u=>formatWA(u.whatsapp)===waClean)) return setLog(`❌ This ${waClean} already used 1 voucher - Only 1 per person!`);
+ setLog('⏳ Validating voucher from '+ADMIN_WA+' '+voucherCode+'...');
  try{
   let wf=await watermarkImage(frontFile,fname+' '+sname);
   let wb=await watermarkImage(backFile,fname+' '+sname);
   let picUrl=await uploadImage(picFile);
   let frontUrl=await uploadImage(wf);
   let backUrl=await uploadImage(wb);
-  let u={name:fname+' '+sname,first_name:fname,surname:sname,id_number:idnum,whatsapp:wa,role,pin,profile_pic:picUrl,id_front:frontUrl,id_back:backUrl,verified:'pending',premium:false,voucher:voucherCode,created_at:new Date().toISOString()};
+  let u={name:fname+' '+sname,first_name:fname,surname:sname,id_number:idnum,whatsapp:waClean,role,pin,profile_pic:picUrl,id_front:frontUrl,id_back:backUrl,verified:'pending',premium:false,voucher:voucherCode,created_at:new Date().toISOString()};
   users.push(u); localStorage.setItem('ai_users',JSON.stringify(users));
-  useVoucher(voucherCode,wa);
-  try{await fetch(`${S}/rest/v1/profiles`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({whatsapp:wa,pin,role,name:u.name,first_name:fname,surname:sname,id_number:idnum,profile_pic:picUrl,id_front:frontUrl,id_back:backUrl,verified:false})});}catch(e){}
-  setLog('✅ VOUCHER ACCEPTED! Registered with '+voucherCode+' - 1 voucher used!'); tab('login');
+  useVoucher(voucherCode,waClean);
+  try{await fetch(`${S}/rest/v1/profiles`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({whatsapp:waClean,pin,role,name:u.name,first_name:fname,surname:sname,id_number:idnum,profile_pic:picUrl,id_front:frontUrl,id_back:backUrl,verified:false})});}catch(e){}
+  setLog(`✅ VOUCHER ACCEPTED! Format ${ADMIN_WA} - ${voucherCode} - Only 1 per user!`); tab('login');
  }catch(e){setLog('❌ Fail '+e.message);}
 }
 function redeemPremium(){
   if(!currentUser) return alert('Login first');
   let code=document.getElementById('premium_voucher').value.trim().toUpperCase();
-  if(!code) return alert('Enter premium voucher');
+  if(!code) return alert('Enter premium voucher - Only 1 allowed');
   let check=validateVoucher(code,99);
   if(!check.valid) return alert(check.msg);
+  if(currentUser.premium) return alert('❌ You already used 1 premium voucher - Only 1 per person!');
   useVoucher(code,currentUser.whatsapp);
-  let users=JSON.parse(localStorage.getItem('ai_users')||'[]'); let idx=users.findIndex(u=>u.whatsapp===currentUser.whatsapp); if(idx>=0){users[idx].premium=true; localStorage.setItem('ai_users',JSON.stringify(users)); currentUser.premium=true; localStorage.setItem('ai_user',JSON.stringify(currentUser));}
-  alert('✅ PREMIUM VOUCHER ACCEPTED: '+code+' - Blue tick ON!'); render();
+  let users=JSON.parse(localStorage.getItem('ai_users')||'[]'); let idx=users.findIndex(u=>formatWA(u.whatsapp)===formatWA(currentUser.whatsapp)); if(idx>=0){users[idx].premium=true; localStorage.setItem('ai_users',JSON.stringify(users)); currentUser.premium=true; localStorage.setItem('ai_user',JSON.stringify(currentUser));}
+  alert(`✅ PREMIUM VOUCHER - ADMIN ${ADMIN_WA}: ${code} - Only 1 used!`); render();
 }
-function redeemBoost(){
-  if(!currentUser) return alert('Login first');
-  let code=document.getElementById('boost_voucher').value.trim().toUpperCase();
-  if(!code) return alert('Enter boost voucher');
-  let check=validateVoucher(code,150);
-  if(!check.valid) return alert(check.msg);
-  useVoucher(code,currentUser.whatsapp);
-  alert('✅ BOOST VOUCHER ACCEPTED: '+code+' - Track boosted for 7 days!');
-}
-
-async function login(){let wa=document.getElementById('l_wa').value, pin=document.getElementById('l_pin').value; if(!wa||!pin) return setLog('❌ Enter'); let users=JSON.parse(localStorage.getItem('ai_users')||'[]'); let found=users.find(u=>u.whatsapp===wa&&u.pin===pin); if(!found){try{let r=await fetch(`${S}/rest/v1/profiles?whatsapp=eq.${wa}&pin=eq.${pin}&select=*`,{headers:{apikey:K,Authorization:'Bearer '+K}});let j=await r.json();if(j[0])found=j[0];}catch(e){}} if(!found) return setLog('❌ Wrong'); currentUser=found; localStorage.setItem('ai_user',JSON.stringify(found)); render();}
+async function login(){let wa=document.getElementById('l_wa').value, pin=document.getElementById('l_pin').value; if(!wa||!pin) return setLog('❌ Enter'); let users=JSON.parse(localStorage.getItem('ai_users')||'[]'); let waClean=formatWA(wa); let found=users.find(u=>formatWA(u.whatsapp)===waClean&&u.pin===pin); if(!found){try{let r=await fetch(`${S}/rest/v1/profiles?whatsapp=eq.${waClean}&pin=eq.${pin}&select=*`,{headers:{apikey:K,Authorization:'Bearer '+K}});let j=await r.json();if(j[0])found=j[0];}catch(e){}} if(!found) return setLog('❌ Wrong'); currentUser=found; localStorage.setItem('ai_user',JSON.stringify(found)); render();}
 function logout(){localStorage.removeItem('ai_user');currentUser=null;render();}
 function render(){
  document.getElementById('logoImg').src=LOGO_URL;
@@ -243,39 +223,38 @@ function render(){
   document.getElementById('profileCard').classList.remove('hidden');
   document.getElementById('myPic').src=currentUser.profile_pic||DEFAULT_NEON;
   let st=currentUser.verified; let badge=st===true||st==='approved'?'<span class="badge badge-verified">✅ APPROVED</span>':st==='rejected'?'<span class="badge" style="background:rgba(255,51,68,.15);color:#ff3344">❌ REJECTED</span>':'<span class="badge" style="background:rgba(255,200,0,.15);color:#ffcc00">⏳ PENDING</span>';
-  document.getElementById('profileInfo').innerHTML=`<b>${currentUser.first_name||''} ${currentUser.surname||''}</b> ${currentUser.premium?'<span class="badge badge-premium">⭐ PREMIUM</span>':''}<br><small>ID: <span class="id-number-blur" data-revealed="0" onclick="toggleIdBlur(this,'${currentUser.id_number||''}')">${maskId(currentUser.id_number||'')}</span><br>📱 ${currentUser.whatsapp}<br>🎭 ${currentUser.role}<br>🎫 Voucher: ${currentUser.voucher||'N/A'} (1 voucher only)</small>`;
+  document.getElementById('profileInfo').innerHTML=`<b>${currentUser.first_name||''} ${currentUser.surname||''}</b><br><small>ID: <span class="id-number-blur" data-revealed="0" onclick="toggleIdBlur(this,'${currentUser.id_number||''}')">${maskId(currentUser.id_number||'')}</span><br>📱 ${formatWA(currentUser.whatsapp)}<br>🎫 Voucher: <b style="color:var(--gold)">${currentUser.voucher||'N/A'}</b> (1 only, ${ADMIN_WA})</small>`;
   document.getElementById('verifyBadge').innerHTML=badge;
-  document.getElementById('premiumBadge').innerHTML=currentUser.premium?'<span class="badge badge-premium">⭐ PREMIUM ACTIVE - Voucher used</span>':'<span class="badge" style="background:#111">FREE - Only 1 premium voucher allowed</span>';
   document.getElementById('myIdPhotos').innerHTML=`<div class="id-grid" style="margin-top:10px"><div class="id-box"><label class="small">FRONT</label><div style="position:relative"><img src="${currentUser.id_front}" class="blurred" style="width:100%;height:110px;object-fit:cover;border-radius:8px" onclick="toggleBlur(this)"><div class="blur-overlay" onclick="toggleBlur(this.previousElementSibling)">🔓 REVEAL</div><div class="watermark-text">VERIFIED COPY</div></div></div><div class="id-box"><label class="small">BACK</label><div style="position:relative"><img src="${currentUser.id_back}" class="blurred" style="width:100%;height:110px;object-fit:cover;border-radius:8px" onclick="toggleBlur(this)"><div class="blur-overlay" onclick="toggleBlur(this.previousElementSibling)">🔓 REVEAL</div><div class="watermark-text">VERIFIED COPY</div></div></div></div>`;
-  document.getElementById('upgradeCard').style.display=currentUser.premium?'none':'block';
   document.getElementById('authBtn').innerText='👤 '+(currentUser.first_name||'Me');
-  if(currentUser.whatsapp===ADMIN_WA) document.getElementById('adminAccess').classList.remove('hidden');
+  if(formatWA(currentUser.whatsapp)===ADMIN_WA) document.getElementById('adminAccess').classList.remove('hidden');
  }else{
   document.getElementById('profileCard').classList.add('hidden');
   document.getElementById('authCard').classList.remove('hidden');
   document.getElementById('adminAccess').classList.add('hidden');
   document.getElementById('authBtn').innerText='Login';
  }
- loadFeed();
+ loadFeed(); if(currentUser&&formatWA(currentUser.whatsapp)===ADMIN_WA) renderVouchers();
 }
 function getAllUsers(){return JSON.parse(localStorage.getItem('ai_users')||'[]');}
-function setVerification(wa,status){let users=getAllUsers(); let idx=users.findIndex(u=>u.whatsapp===wa); if(idx>=0){users[idx].verified=status; localStorage.setItem('ai_users',JSON.stringify(users));} if(currentUser&&currentUser.whatsapp===wa){currentUser.verified=status; localStorage.setItem('ai_user',JSON.stringify(currentUser));} openAdmin(); render(); try{fetch(`${S}/rest/v1/profiles?whatsapp=eq.${wa}`,{method:'PATCH',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({verified:status==='approved'})});}catch(e){}}
+function setVerification(wa,status){let users=getAllUsers(); let idx=users.findIndex(u=>formatWA(u.whatsapp)===formatWA(wa)); if(idx>=0){users[idx].verified=status; localStorage.setItem('ai_users',JSON.stringify(users));} if(currentUser&&formatWA(currentUser.whatsapp)===formatWA(wa)){currentUser.verified=status; localStorage.setItem('ai_user',JSON.stringify(currentUser));} openAdmin(); render();}
 async function openAdmin(){
- if(!currentUser||currentUser.whatsapp!==ADMIN_WA) return alert('Only admin 27789313670 can create vouchers');
+ if(!currentUser||formatWA(currentUser.whatsapp)!==ADMIN_WA) return alert(`Only admin ${ADMIN_WA}!`);
  document.getElementById('adminCard').classList.remove('hidden');
  renderVouchers();
+ adminTab('vouchers');
  let list=getAllUsers();
- try{let r=await fetch(`${S}/rest/v1/profiles?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}});let sup=await r.json(); let uniq={}; [...list,...sup].forEach(u=>uniq[u.whatsapp]=u); list=Object.values(uniq);}catch(e){}
- document.getElementById('adminUsers').innerHTML=`<div style="overflow-x:auto"><table style="width:100%;font-size:10px;border-collapse:collapse"><tr><th>Pic</th><th>Name</th><th>Voucher (1 only)</th><th>Status</th><th>Action</th></tr>${list.map(u=>{let st=u.verified; let b=st===true||st==='approved'?'<span class="badge badge-verified">✅</span>':'<span class="badge" style="background:rgba(255,200,0,.15);color:#ffcc00">⏳</span>'; return `<tr><td><img src="${u.profile_pic||DEFAULT_NEON}" style="width:32px;height:32px;border-radius:50%"></td><td><b>${u.first_name||''} ${u.surname||''}</b><br>${u.whatsapp}</td><td style="font-size:9px;color:var(--gold)">${u.voucher||'No voucher'}<br>${u.premium?'⭐ PREMIUM':''}</td><td>${b}</td><td><button class="small-btn btn-green" onclick="setVerification('${u.whatsapp}','approved')">✅</button><button class="small-btn btn-red" onclick="setVerification('${u.whatsapp}','rejected')">❌</button></td></tr>`;}).join('')}</table></div>`;
+ try{let r=await fetch(`${S}/rest/v1/profiles?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}});let sup=await r.json(); let uniq={}; [...list,...sup].forEach(u=>uniq[formatWA(u.whatsapp)]=u); list=Object.values(uniq);}catch(e){}
+ document.getElementById('adminUsers').innerHTML=`<div style="overflow-x:auto"><table style="width:100%;font-size:10px;border-collapse:collapse"><tr><th>Pic</th><th>Name</th><th>WhatsApp 2778...</th><th>Voucher</th><th>Status</th><th>Action</th></tr>${list.map(u=>{let st=u.verified; let b=st===true||st==='approved'?'<span class="badge badge-verified">✅</span>':'<span class="badge" style="background:rgba(255,200,0,.15);color:#ffcc00">⏳</span>'; return `<tr><td><img src="${u.profile_pic||DEFAULT_NEON}" style="width:32px;height:32px;border-radius:50%"></td><td><b>${u.first_name||''} ${u.surname||''}</b></td><td>${formatWA(u.whatsapp)}</td><td style="font-size:9px;color:var(--gold)">${u.voucher||''}</td><td>${b}</td><td><button class="small-btn btn-green" onclick="setVerification('${u.whatsapp}','approved')">✅</button><button class="small-btn btn-red" onclick="setVerification('${u.whatsapp}','rejected')">❌</button></td></tr>`;}).join('')}</table></div>`;
  let pending=list.filter(u=>u.verified!=='approved'&&u.verified!==true);
- document.getElementById('adminPending').innerHTML=`<h4>⏳ Pending - Voucher Validated (${pending.length})</h4>${pending.map(u=>`<div class="card"><div style="display:flex;gap:10px"><img src="${u.profile_pic||DEFAULT_NEON}" style="width:50px;height:50px;border-radius:50%"><div><b>${u.first_name} ${u.surname}</b><br>Voucher: <b style="color:var(--gold)">${u.voucher||''}</b> - 1 voucher only<br>WA: ${u.whatsapp} ${u.premium?'⭐ PREMIUM':''}</div></div><div class="id-grid" style="margin-top:10px"><div class="id-box"><label class="small">FRONT</label><div style="position:relative"><img src="${u.id_front}" class="blurred" style="width:100%;height:160px;object-fit:cover;border-radius:8px" onclick="toggleBlur(this)"><div class="blur-overlay" onclick="toggleBlur(this.previousElementSibling)">🔓 REVEAL FRONT</div><div class="watermark-text">VERIFIED COPY - ${u.first_name}</div></div></div><div class="id-box"><label class="small">BACK</label><div style="position:relative"><img src="${u.id_back}" class="blurred" style="width:100%;height:160px;object-fit:cover;border-radius:8px" onclick="toggleBlur(this)"><div class="blur-overlay" onclick="toggleBlur(this.previousElementSibling)">🔓 REVEAL BACK</div><div class="watermark-text">VERIFIED COPY</div></div></div></div><div style="margin-top:10px;display:flex;gap:8px"><button class="btn btn-green" onclick="setVerification('${u.whatsapp}','approved')" style="flex:1">✅ APPROVE (Voucher OK)</button><button class="btn btn-red" onclick="setVerification('${u.whatsapp}','rejected')" style="flex:1">❌ REJECT</button></div></div>`).join('')}`;
+ document.getElementById('adminPending').innerHTML=`<h4>⏳ Pending - Client WhatsApped via website to ${ADMIN_WA} (${pending.length})</h4>${pending.map(u=>`<div class="card"><div style="display:flex;gap:10px"><img src="${u.profile_pic||DEFAULT_NEON}" style="width:50px;height:50px;border-radius:50%"><div><b>${u.first_name} ${u.surname}</b><br>Voucher: <b style="color:var(--gold)">${u.voucher||''}</b> - 1 only - ${ADMIN_WA}<br>WA: ${formatWA(u.whatsapp)}</div></div><div style="margin-top:10px;display:flex;gap:8px"><button class="btn btn-green" onclick="setVerification('${u.whatsapp}','approved')" style="flex:1">✅ APPROVE (${ADMIN_WA})</button><button class="btn btn-red" onclick="setVerification('${u.whatsapp}','rejected')" style="flex:1">❌ REJECT</button></div></div>`).join('')}`;
  let tr=await fetch(`${S}/rest/v1/tracks?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}}); let tj=await tr.json();
  document.getElementById('adminTracks').innerHTML=`<table style="width:100%;font-size:10px"><tr><th>Title</th><th>Action</th></tr>${tj.map(t=>`<tr><td>${t.title}</td><td><button onclick="delTrack('${t.id}')">Delete</button></td></tr>`).join('')}</table>`;
 }
-function adminTab(t){document.getElementById('adminUsers').classList.toggle('hidden',t!=='users');document.getElementById('adminPending').classList.toggle('hidden',t!=='pending');document.getElementById('adminTracks').classList.toggle('hidden',t!=='tracks');}
+function adminTab(t){ document.getElementById('tabV').classList.toggle('active',t==='vouchers'); document.getElementById('au').classList.toggle('active',t==='users'); document.getElementById('adminVouchers').classList.toggle('hidden',t!=='vouchers'); document.getElementById('adminUsers').classList.toggle('hidden',t!=='users'); document.getElementById('adminPending').classList.toggle('hidden',t!=='pending'); document.getElementById('adminTracks').classList.toggle('hidden',t!=='tracks'); document.getElementById('voucherList').classList.toggle('hidden',t!=='vouchers'); document.getElementById('moneyStats').classList.toggle('hidden',t!=='vouchers'); if(t==='vouchers') renderVouchers(); }
 function closeAdmin(){document.getElementById('adminCard').classList.add('hidden');}
 async function delTrack(id){if(!confirm('Delete?'))return;await fetch(`${S}/rest/v1/tracks?id=eq.${id}`,{method:'DELETE',headers:{apikey:K,Authorization:'Bearer '+K}});openAdmin();loadFeed();}
-async function loadFeed(){let r=await fetch(`${S}/rest/v1/tracks?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}});let j=await r.json();document.getElementById('feed').innerHTML=j.map(t=>{let url=t.file_url||t.url;return `<div class="card"><div style="display:flex;gap:10px"><img src="${LOGO_URL}" style="width:60px;height:60px;border-radius:12px"><div><b>${t.title}</b><br><small style="color:#888">Voucher user - 1st SA AI Music</small></div></div><audio controls src="${url}" style="width:100%;margin-top:8px"></audio></div>`}).join('');}
+async function loadFeed(){let r=await fetch(`${S}/rest/v1/tracks?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}});let j=await r.json();document.getElementById('feed').innerHTML=j.map(t=>{let url=t.file_url||t.url;return `<div class="card"><div style="display:flex;gap:10px"><img src="${LOGO_URL}" style="width:60px;height:60px;border-radius:12px"><div><b>${t.title}</b><br><small style="color:#888">Format ${ADMIN_WA} - Connected to admin</small></div></div><audio controls src="${url}" style="width:100%;margin-top:8px"></audio></div>`}).join('');}
 async function uploadTrack(){if(!currentUser)return alert('Login');let f=document.getElementById('file').files[0];if(!f)return alert('Choose');let title=document.getElementById('title').value||f.name;let n=Date.now()+'_'+f.name.replace(/[^a-z0-9.\-]/gi,'_');let res=await fetch(`${S}/storage/v1/object/tracks/${n}`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'x-upsert':'true'},body:f});if(!res.ok)return alert('Fail');let url=`${S}/storage/v1/object/public/tracks/${n}`;await fetch(`${S}/rest/v1/tracks`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({title,file_url:url,url})});alert('Published!');loadFeed();}
 render();
 </script>
