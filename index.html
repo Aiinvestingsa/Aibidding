@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BIGSAM TEST UPLOAD</title>
-<style>body{background:#000;color:#fff;font-family:Arial;padding:20px}button{background:#ff0055;color:#fff;padding:20px;width:100%;border:none;border-radius:12px;font-size:20px;font-weight:bold;margin-top:15px}input{width:100%;padding:15px;border-radius:10px;margin:10px 0}#log{background:#222;padding:10px;border-radius:10px;white-space:pre-wrap;margin-top:15px;color:#0f0}</style>
+<title>DJ BIGSAM RSA - Official</title>
+<style>
+body{background:#000;color:#fff;font-family:Arial;padding:15px;text-align:center}
+h1{color:#ff0055}.card{background:#111;border:1px solid #333;border-radius:15px;padding:15px;margin:12px 0;text-align:left}
+input,button{width:100%;padding:16px;border-radius:10px;border:none;margin:8px 0;font-size:16px;box-sizing:border-box}
+button{background:#ff0055;color:#fff;font-weight:bold;font-size:18px}
+#log{color:#0f0;white-space:pre-wrap} audio{width:100%}.track{background:#222;padding:12px;border-radius:10px;margin:10px 0}
+</style>
 </head><body>
-<h2>TEST - Storage Only</h2>
-<input type="file" id="f">
-<button onclick="go()">UPLOAD NOW</button>
-<div id="log">Ready...</div>
+<h1>🎧 DJ BIGSAM RSA</h1><p>Durban Official Mixes</p>
+<div class="card">
+<input type="file" id="file" accept="audio/*">
+<input id="title" placeholder="Track title">
+<button onclick="upload()">🔥 UPLOAD</button>
+<div id="log">Ready to upload</div>
+</div>
+<div class="card"><h3>Latest Tracks</h3><div id="list">Loading...</div></div>
 <script>
-const URL="https://ogndqvdzuuufdygkhzae.supabase.co";
-const KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9nbmRxdmR6dXV1ZmR5Z2toemFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2OTEzNjEsImV4cCI6MjEwNDI2NzM2MX0.sPRCVdn9CrEnN48xw8M0FSbGp4UCmkfrU93dHDqE5_4";
-async function go(){
-  const file=document.getElementById('f').files[0];
-  if(!file){document.getElementById('log').innerText="Choose file first";return;}
-  document.getElementById('log').innerText="Starting upload: "+file.name+" ("+Math.round(file.size/1024)+" KB)\n";
-  const name=Date.now()+"_"+file.name.replace(/[^a-z0-9.\-]/gi,"_");
-  try{
-    const res=await fetch(`${URL}/storage/v1/object/tracks/${name}`,{
-      method:"POST",
-      headers:{apikey:KEY,Authorization:"Bearer "+KEY,"x-upsert":"true"},
-      body:file
-    });
-    const txt=await res.text();
-    document.getElementById('log').innerText+="Status: "+res.status+"\nResponse: "+txt+"\n";
-    if(!res.ok) throw new Error(txt);
-    const publicUrl=`${URL}/storage/v1/object/public/tracks/${name}`;
-    document.getElementById('log').innerText+="\n✅ SUCCESS!\nURL: "+publicUrl+"\n\n<audio controls src='"+publicUrl+"'></audio>";
-    document.getElementById('log').innerHTML+="<br><br><b>File uploaded! Copy URL:</b><br>"+publicUrl+"<br><br><audio controls src='"+publicUrl+"'></audio>";
-  }catch(e){
-    document.getElementById('log').innerText+="\n❌ FAILED: "+e.message;
-  }
-}
+const S="https://ogndqvdzuuufdygkhzae.supabase.co";const K="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9nbmRxdmR6dXV1ZmR5Z2toemFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2OTEzNjEsImV4cCI6MjEwNDI2NzM2MX0.sPRCVdn9CrEnN48xw8M0FSbGp4UCmkfrU93dHDqE5_4";
+async function load(){
+let r=await fetch(`${S}/rest/v1/tracks?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:"Bearer "+K}});
+let j=await r.json();document.getElementById('list').innerHTML=j.map(t=>`<div class="track"><b>${t.title||'Untitled'}</b><br><audio controls src="${t.file_url||t.url}"></audio><br><a href="${t.file_url||t.url}" style="color:#ff0055" target="_blank">Download</a></div>`).join('')||'Upload your first track!';}
+async function upload(){
+let f=document.getElementById('file').files[0];if(!f)return alert('Choose file');
+document.getElementById('log').innerText='Uploading...';let n=Date.now()+'_'+f.name.replace(/[^a-z0-9.\-]/gi,'_');
+let res=await fetch(`${S}/storage/v1/object/tracks/${n}`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'x-upsert':'true'},body:f});
+if(!res.ok){let t=await res.text();return document.getElementById('log').innerText='Failed: '+t;}
+let url=`${S}/storage/v1/object/public/tracks/${n}`;
+await fetch(`${S}/rest/v1/tracks`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({title:document.getElementById('title').value||f.name,file_url:url,url:url})});
+document.getElementById('log').innerText='✅ SUCCESS! Uploaded!';load();}
+load();
 </script>
 </body></html>
