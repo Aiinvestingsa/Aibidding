@@ -1,87 +1,35 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DJ BIGSAM - Simple Upload</title>
-<style>
-body{background:#111;color:#fff;font-family:Arial;padding:15px}
-.card{background:#222;border-radius:15px;padding:15px;margin:10px 0}
-input,button{width:100%;padding:15px;border-radius:10px;border:none;margin:8px 0;font-size:18px}
-button{background:#ff0055;color:#fff;font-weight:bold}
-#status{color:#0f0;margin-top:10px}
-audio{width:100%}
-</style>
-</head>
-<body>
-<h2>🎧 DJ BIGSAM RSA - SIMPLE UPLOAD</h2>
-<div class="card">
-<input type="file" id="file" accept="audio/*,.mp3">
-<input id="title" placeholder="Song title">
-<button id="btn" onclick="upload()">TAP TO UPLOAD</button>
-<div id="status">Ready - choose file</div>
-</div>
-<div class="card" id="list">Loading tracks...</div>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BIGSAM TEST UPLOAD</title>
+<style>body{background:#000;color:#fff;font-family:Arial;padding:20px}button{background:#ff0055;color:#fff;padding:20px;width:100%;border:none;border-radius:12px;font-size:20px;font-weight:bold;margin-top:15px}input{width:100%;padding:15px;border-radius:10px;margin:10px 0}#log{background:#222;padding:10px;border-radius:10px;white-space:pre-wrap;margin-top:15px;color:#0f0}</style>
+</head><body>
+<h2>TEST - Storage Only</h2>
+<input type="file" id="f">
+<button onclick="go()">UPLOAD NOW</button>
+<div id="log">Ready...</div>
 <script>
-const URL = "https://ogndqvdzuuufdygkhzae.supabase.co";
-const KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9nbmRxdmR6dXV1ZmR5Z2toemFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2OTEzNjEsImV4cCI6MjEwNDI2NzM2MX0.sPRCVdn9CrEnN48xw8M0FSbGp4UCmkfrU93dHDqE5_4";
-async function load(){
+const URL="https://ogndqvdzuuufdygkhzae.supabase.co";
+const KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9nbmRxdmR6dXV1ZmR5Z2toemFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2OTEzNjEsImV4cCI6MjEwNDI2NzM2MX0.sPRCVdn9CrEnN48xw8M0FSbGp4UCmkfrU93dHDqE5_4";
+async function go(){
+  const file=document.getElementById('f').files[0];
+  if(!file){document.getElementById('log').innerText="Choose file first";return;}
+  document.getElementById('log').innerText="Starting upload: "+file.name+" ("+Math.round(file.size/1024)+" KB)\n";
+  const name=Date.now()+"_"+file.name.replace(/[^a-z0-9.\-]/gi,"_");
   try{
-    let r = await fetch(`${URL}/rest/v1/tracks?select=*&order=created_at.desc&limit=20`, {headers:{apikey:KEY, Authorization:"Bearer "+KEY}});
-    let j = await r.json();
-    let h="";
-    j.forEach(t=>{ let u=t.file_url||t.url||""; h+=`<div style="background:#333;margin:8px 0;padding:10px;border-radius:10px"><b>${t.title||'Untitled'}</b>${u?`<br><audio controls src="${u}"></audio><br><a href="${u}" style="color:#ff0055">Download</a>`:''}</div>` });
-    document.getElementById('list').innerHTML=h||"No tracks yet";
-  }catch(e){ document.getElementById('list').innerHTML="Error loading: "+e.message }
-}
-async function upload(){
-  const f = document.getElementById('file').files[0];
-  if(!f){ alert("Choose file first!"); return; }
-  const btn=document.getElementById('btn');
-  btn.disabled=true; btn.innerText="UPLOADING...";
-  document.getElementById('status').innerText="Uploading "+f.name+" ...";
-  const name = Date.now()+"_"+f.name.replace(/[^a-z0-9.\-_]/gi,"_");
-  try{
-    // 1. Upload to storage directly
-    let res = await fetch(`${URL}/storage/v1/object/tracks/${name}`, {
+    const res=await fetch(`${URL}/storage/v1/object/tracks/${name}`,{
       method:"POST",
-      headers:{apikey:KEY, Authorization:"Bearer "+KEY, "x-upsert":"true"},
-      body:f
+      headers:{apikey:KEY,Authorization:"Bearer "+KEY,"x-upsert":"true"},
+      body:file
     });
-    if(!res.ok){ let txt=await res.text(); throw new Error("Storage failed: "+txt); }
-    const publicUrl = `${URL}/storage/v1/object/public/tracks/${name}`;
-    document.getElementById('status').innerText="File uploaded, saving to database...";
-    // 2. Save to tracks table - try simple insert
-    let insertRes = await fetch(`${URL}/rest/v1/tracks`, {
-      method:"POST",
-      headers:{apikey:KEY, Authorization:"Bearer "+KEY, "Content-Type":"application/json", Prefer:"return=minimal"},
-      body: JSON.stringify({title: document.getElementById('title').value || f.name, file_url: publicUrl, url: publicUrl})
-    });
-    if(!insertRes.ok){
-      // try even simpler - only title and file_url
-      let txt = await insertRes.text();
-      // try with file_path
-      if(txt.includes("column")){
-        insertRes = await fetch(`${URL}/rest/v1/tracks`, {
-          method:"POST",
-          headers:{apikey:KEY, Authorization:"Bearer "+KEY, "Content-Type":"application/json", Prefer:"return=minimal"},
-          body: JSON.stringify({title: document.getElementById('title').value || f.name})
-        });
-      } else {
-        throw new Error(txt);
-      }
-    }
-    document.getElementById('status').innerText="SUCCESS! "+publicUrl;
-    alert("SUCCESS! Uploaded: "+name);
-    load();
+    const txt=await res.text();
+    document.getElementById('log').innerText+="Status: "+res.status+"\nResponse: "+txt+"\n";
+    if(!res.ok) throw new Error(txt);
+    const publicUrl=`${URL}/storage/v1/object/public/tracks/${name}`;
+    document.getElementById('log').innerText+="\n✅ SUCCESS!\nURL: "+publicUrl+"\n\n<audio controls src='"+publicUrl+"'></audio>";
+    document.getElementById('log').innerHTML+="<br><br><b>File uploaded! Copy URL:</b><br>"+publicUrl+"<br><br><audio controls src='"+publicUrl+"'></audio>";
   }catch(e){
-    document.getElementById('status').innerText="FAILED: "+e.message;
-    alert("FAILED: "+e.message);
-  }finally{
-    btn.disabled=false; btn.innerText="TAP TO UPLOAD";
+    document.getElementById('log').innerText+="\n❌ FAILED: "+e.message;
   }
 }
-load();
 </script>
-</body>
-</html>
+</body></html>
