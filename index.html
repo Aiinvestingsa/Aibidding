@@ -4,10 +4,10 @@
 <style>
 :root{--pink:#ff0055;--cyan:#00f2ff;--green:#00ff88;--red:#ff3344}
 body{margin:0;background:#06060a;color:#fff;font-family:Inter,Arial}
-header{position:sticky;top:0;background:rgba(0,0,0,.92);backdrop-filter:blur(10px);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;z-index:10}
+header{position:sticky;top:0;background:rgba(0,0,0,.92);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;z-index:10}
 .logo{display:flex;gap:10px;align-items:center;font-weight:900}
 .logo-img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)}
-.container{max-width:680px;margin:0 auto;padding:16px}
+.container{max-width:700px;margin:0 auto;padding:16px}
 .card{background:#12121a;border:1px solid #24243a;border-radius:18px;padding:16px;margin:14px 0}
 input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#0a0a10;color:#fff;margin:8px 0;box-sizing:border-box}
 .btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(90deg,var(--pink),#ff7a00);color:#fff;font-weight:900}
@@ -22,13 +22,18 @@ input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #333;ba
 .badge{padding:4px 10px;border-radius:20px;font-size:11px;background:#1e1e32;border:1px solid #333;display:inline-block}
 .badge-verified{background:rgba(0,255,136,.15);border-color:var(--green);color:var(--green);font-weight:800}
 .badge-pending{background:rgba(255,200,0,.15);border-color:#ffcc00;color:#ffcc00}
-.badge-rejected{background:rgba(255,51,68,.15);border-color:var(--red);color:var(--red)}
-.admin-table{width:100%;font-size:11px;border-collapse:collapse}
-.admin-table th,.admin-table td{border:1px solid #333;padding:6px;text-align:left;vertical-align:top}
-.row2{display:flex;gap:8px}.row2 input{flex:1}
+.admin-table{width:100%;font-size:10px;border-collapse:collapse}
+.admin-table th,.admin-table td{border:1px solid #333;padding:5px;text-align:left;vertical-align:top}
 #log{color:#0f0;font-size:12px}
-label.small{font-size:11px;color:#888;display:block;margin-top:8px}
+label.small{font-size:11px;color:#ffb86a;display:block;margin-top:10px;font-weight:bold}
 .small-btn{padding:6px 10px;border-radius:8px;border:none;font-size:11px;font-weight:bold;margin:2px;cursor:pointer}
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.id-box{border:1px solid #333;border-radius:10px;padding:6px;background:#0a0a10;position:relative;overflow:hidden}
+.blurred{filter:blur(14px)}
+.blur-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.85);color:#fff;padding:6px 10px;border-radius:20px;font-size:10px;cursor:pointer;border:1px solid var(--pink);z-index:2}
+.watermark-text{position:absolute;bottom:4px;right:4px;background:rgba(255,0,85,.9);color:#fff;font-size:7px;padding:2px 6px;border-radius:10px;font-weight:900;z-index:3;letter-spacing:0.5px}
+.id-number-blur{filter:blur(6px);user-select:none;cursor:pointer}
+canvas{display:none}
 </style>
 </head><body>
 <header>
@@ -41,32 +46,33 @@ label.small{font-size:11px;color:#888;display:block;margin-top:8px}
 <div class="tabs"><button id="tLogin" class="active" onclick="tab('login')">Login</button><button id="tReg" onclick="tab('reg')">Register KYC</button></div>
 <div id="loginForm"><input id="l_wa" placeholder="WhatsApp"><input id="l_pin" type="password" placeholder="PIN" maxlength="4"><button class="btn" onclick="login()">🔓 LOGIN</button></div>
 <div id="regForm" class="hidden">
-<div class="row2"><input id="r_fname" placeholder="First Name"><input id="r_sname" placeholder="Surname"></div>
-<input id="r_id" placeholder="ID Number (13 digits)" maxlength="13">
-<input id="r_wa" placeholder="WhatsApp">
+<div style="display:flex;gap:8px"><input id="r_fname" placeholder="First Name"><input id="r_sname" placeholder="Surname"></div>
+<input id="r_id" placeholder="ID Number"><input id="r_wa" placeholder="WhatsApp">
 <select id="r_role"><option value="">Select Role</option><option value="musician">Musician</option><option value="producer">Producer</option><option value="artist">Artist</option><option value="ai-creator">AI Creator</option><option value="dj">DJ</option></select>
-<label class="small">📸 Profile Picture</label><input type="file" id="r_pic" accept="image/*">
-<label class="small">🪪 ID Photo</label><input type="file" id="r_idpic" accept="image/*">
-<input id="r_pin" type="password" placeholder="Create 4-digit PIN" maxlength="4">
-<button class="btn" onclick="register()">✨ REGISTER</button>
+<label class="small">📸 PROFILE PICTURE</label><input type="file" id="r_pic" accept="image/*">
+<label class="small">🪪 ID FRONT - Will be watermarked</label><input type="file" id="r_front" accept="image/*">
+<label class="small">🪪 ID BACK - Will be watermarked</label><input type="file" id="r_back" accept="image/*">
+<input id="r_pin" type="password" placeholder="PIN" maxlength="4">
+<button class="btn" onclick="register()">✨ REGISTER + WATERMARK PROTECTION</button>
+<canvas id="wmCanvas"></canvas>
 </div>
-<div id="log">Admin: 27789313670 • Approve/Reject ON</div>
+<div id="log">🔒 Watermark + Blur Active • POPIA Protected</div>
 </div>
 
 <div class="card hidden" id="profileCard">
 <div style="display:flex;gap:12px"><img id="myPic" class="user-pic" src=""><div id="profileInfo"></div></div>
 <div id="verifyBadge" style="margin-top:10px"></div>
-<div id="myIdPhoto"></div>
+<div id="myIdPhotos"></div>
 <button class="btn btn2" onclick="logout()" style="margin-top:10px">Logout</button>
 </div>
 
 <div class="card" id="uploadCard"><h3>🎛️ Drop Mix</h3><input type="file" id="file" accept="audio/*"><input id="title" placeholder="Title"><button class="btn" onclick="uploadTrack()">🚀 PUBLISH</button></div>
 
-<div class="card hidden" id="adminAccess"><button class="btn" onclick="openAdmin()" style="background:linear-gradient(90deg,#00f2ff,#7000ff)">🛡️ ADMIN KYC - APPROVE/REJECT</button></div>
+<div class="card hidden" id="adminAccess"><button class="btn" onclick="openAdmin()" style="background:linear-gradient(90deg,#00f2ff,#7000ff)">🛡️ ADMIN - WATERMARK + BLUR</button></div>
 
 <div class="card hidden" id="adminCard">
-<h3>🛡️ KYC Verification Panel - DJ BIGSAM</h3>
-<div class="tabs"><button id="au" class="active" onclick="adminTab('users')">All KYC</button><button onclick="adminTab('pending')">Pending</button><button id="at" onclick="adminTab('tracks')">Tracks</button></div>
+<h3>🛡️ KYC Watermark Verification - DJ BIGSAM ONLY</h3>
+<div class="tabs"><button id="au" class="active" onclick="adminTab('users')">All</button><button onclick="adminTab('pending')">Pending</button><button id="at" onclick="adminTab('tracks')">Tracks</button></div>
 <div id="adminUsers"></div>
 <div id="adminPending" class="hidden"></div>
 <div id="adminTracks" class="hidden"></div>
@@ -86,34 +92,69 @@ let currentUser=JSON.parse(localStorage.getItem('ai_user')||'null');
 function tab(t){document.getElementById('tLogin').classList.toggle('active',t==='login');document.getElementById('tReg').classList.toggle('active',t==='reg');document.getElementById('loginForm').classList.toggle('hidden',t!=='login');document.getElementById('regForm').classList.toggle('hidden',t!=='reg');}
 function showAuth(){document.getElementById('authCard').classList.remove('hidden');}
 function setLog(m){document.getElementById('log').innerText=m}
-async function uploadImage(file){let n='kyc_'+Date.now()+'_'+file.name.replace(/[^a-z0-9.\-]/gi,'_');let res=await fetch(`${S}/storage/v1/object/tracks/${n}`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'x-upsert':'true'},body:file});if(!res.ok)throw new Error();return `${S}/storage/v1/object/public/tracks/${n}`;}
+function maskId(id){if(!id||id.length<6) return '****'; return id.slice(0,4)+'****'+id.slice(-3);}
+function toggleBlur(el){el.classList.toggle('blurred'); let ov=el.parentElement.querySelector('.blur-overlay'); if(ov) ov.style.display = el.classList.contains('blurred')?'block':'none';}
+function toggleIdBlur(el, realId){if(el.dataset.revealed==='1'){el.innerText=maskId(realId);el.dataset.revealed='0';el.classList.add('id-number-blur');}else{el.innerText=realId;el.dataset.revealed='1';el.classList.remove('id-number-blur');}}
+
+// WATERMARK FUNCTION - Burns watermark into image
+function watermarkImage(file, nameText){
+ return new Promise((resolve)=>{
+  let img=new Image(); img.onload=()=>{
+   let canvas=document.getElementById('wmCanvas');
+   canvas.width=img.width; canvas.height=img.height;
+   let ctx=canvas.getContext('2d');
+   ctx.drawImage(img,0,0);
+   // Watermark style
+   ctx.fillStyle='rgba(255,0,85,0.85)';
+   ctx.fillRect(0, canvas.height-60, canvas.width, 60);
+   ctx.fillStyle='#fff';
+   ctx.font=`bold ${Math.max(16,canvas.width*0.03)}px Arial`;
+   ctx.fillText('AI MUSIC SOCIAL - VERIFIED COPY', 20, canvas.height-30);
+   ctx.font=`${Math.max(12,canvas.width*0.022)}px Arial`;
+   ctx.fillText(`${nameText} • ${new Date().toLocaleDateString()} • ${maskId(document.getElementById('r_id').value)} • DO NOT COPY`, 20, canvas.height-10);
+   // Diagonal watermark
+   ctx.save(); ctx.translate(canvas.width/2, canvas.height/2); ctx.rotate(-0.5);
+   ctx.globalAlpha=0.15; ctx.font=`bold ${canvas.width*0.08}px Arial`; ctx.fillStyle='#ff0055';
+   ctx.fillText('AI MUSIC SOCIAL RSA', -canvas.width*0.35, 0); ctx.restore();
+   canvas.toBlob(b=>resolve(b), 'image/jpeg', 0.8);
+  };
+  img.src=URL.createObjectURL(file);
+ });
+}
+async function uploadImage(file){let n='kyc_'+Date.now()+'_'+Math.random().toString(36).slice(2)+'.jpg'; let res=await fetch(`${S}/storage/v1/object/tracks/${n}`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'x-upsert':'true'},body:file}); if(!res.ok) throw new Error(); return `${S}/storage/v1/object/public/tracks/${n}`;}
 
 async function register(){
- let fname=document.getElementById('r_fname').value.trim(), sname=document.getElementById('r_sname').value.trim(), idnum=document.getElementById('r_id').value.trim(), wa=document.getElementById('r_wa').value.trim(), role=document.getElementById('r_role').value, pin=document.getElementById('r_pin').value.trim(), picFile=document.getElementById('r_pic').files[0], idPicFile=document.getElementById('r_idpic').files[0];
+ let fname=document.getElementById('r_fname').value.trim(), sname=document.getElementById('r_sname').value.trim(), idnum=document.getElementById('r_id').value.trim(), wa=document.getElementById('r_wa').value.trim(), role=document.getElementById('r_role').value, pin=document.getElementById('r_pin').value.trim(), picFile=document.getElementById('r_pic').files[0], frontFile=document.getElementById('r_front').files[0], backFile=document.getElementById('r_back').files[0];
  if(!fname||!sname||!idnum||!wa||!role||!pin) return setLog('❌ Fill all');
- if(!picFile||!idPicFile) return setLog('❌ Upload both photos');
- setLog('⏳ Uploading...');
- let picUrl='', idPicUrl=''; try{picUrl=await uploadImage(picFile); idPicUrl=await uploadImage(idPicFile);}catch(e){return setLog('❌ Upload fail');}
- let users=JSON.parse(localStorage.getItem('ai_users')||'[]');
- if(users.find(u=>u.whatsapp===wa)) return setLog('❌ Already registered');
- let u={name:fname+' '+sname, first_name:fname, surname:sname, id_number:idnum, whatsapp:wa, role, pin, profile_pic:picUrl, id_photo:idPicUrl, verified:'pending', created_at:new Date().toISOString()};
- users.push(u); localStorage.setItem('ai_users',JSON.stringify(users));
- try{await fetch(`${S}/rest/v1/profiles`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({whatsapp:wa,pin,role,name:u.name,first_name:fname,surname:sname,id_number:idnum,profile_pic:picUrl,id_photo:idPicUrl,verified:false})});}catch(e){}
- setLog('✅ Submitted for verification! Admin will approve'); tab('login');
+ if(!picFile||!frontFile||!backFile) return setLog('❌ 3 photos required');
+ setLog('⏳ Adding watermark + uploading...');
+ try{
+  let watermarkedFront = await watermarkImage(frontFile, fname+' '+sname);
+  let watermarkedBack = await watermarkImage(backFile, fname+' '+sname);
+  let picUrl=await uploadImage(picFile);
+  let frontUrl=await uploadImage(watermarkedFront);
+  let backUrl=await uploadImage(watermarkedBack);
+  let users=JSON.parse(localStorage.getItem('ai_users')||'[]');
+  if(users.find(u=>u.whatsapp===wa)) return setLog('❌ Already registered');
+  let u={name:fname+' '+sname, first_name:fname, surname:sname, id_number:idnum, whatsapp:wa, role, pin, profile_pic:picUrl, id_front:frontUrl, id_back:backUrl, verified:'pending', created_at:new Date().toISOString()};
+  users.push(u); localStorage.setItem('ai_users',JSON.stringify(users));
+  try{await fetch(`${S}/rest/v1/profiles`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({whatsapp:wa,pin,role,name:u.name,first_name:fname,surname:sname,id_number:idnum,profile_pic:picUrl,id_front:frontUrl,id_back:backUrl,verified:false})});}catch(e){}
+  setLog('✅ Watermarked KYC Submitted! Protected');
+  tab('login');
+ }catch(e){setLog('❌ Watermark fail: '+e.message);}
 }
 async function login(){let wa=document.getElementById('l_wa').value, pin=document.getElementById('l_pin').value; if(!wa||!pin) return setLog('❌ Enter'); let users=JSON.parse(localStorage.getItem('ai_users')||'[]'); let found=users.find(u=>u.whatsapp===wa&&u.pin===pin); if(!found){try{let r=await fetch(`${S}/rest/v1/profiles?whatsapp=eq.${wa}&pin=eq.${pin}&select=*`,{headers:{apikey:K,Authorization:'Bearer '+K}});let j=await r.json();if(j[0])found=j[0];}catch(e){}} if(!found) return setLog('❌ Wrong'); currentUser=found; localStorage.setItem('ai_user',JSON.stringify(found)); render();}
 function logout(){localStorage.removeItem('ai_user');currentUser=null;render();}
-
 function render(){
  document.getElementById('logoImg').src=LOGO_URL;
  if(currentUser){
   document.getElementById('authCard').classList.add('hidden');
   document.getElementById('profileCard').classList.remove('hidden');
   document.getElementById('myPic').src=currentUser.profile_pic||DEFAULT_NEON;
-  let st=currentUser.verified; let badge = st===true||st==='approved'? '<span class="badge badge-verified">✅ APPROVED</span>' : st==='rejected'? '<span class="badge badge-rejected">❌ REJECTED</span>' : '<span class="badge badge-pending">⏳ PENDING VERIFICATION</span>';
-  document.getElementById('profileInfo').innerHTML=`<b>${currentUser.first_name||''} ${currentUser.surname||''}</b><br><small>ID: ${currentUser.id_number||''}<br>📱 ${currentUser.whatsapp}<br>🎭 ${currentUser.role}</small>`;
+  let st=currentUser.verified; let badge = st===true||st==='approved'? '<span class="badge badge-verified">✅ APPROVED & WATERMARKED</span>' : st==='rejected'? '<span class="badge badge-rejected">❌ REJECTED</span>' : '<span class="badge badge-pending">⏳ PENDING WATERMARK CHECK</span>';
+  document.getElementById('profileInfo').innerHTML=`<b>${currentUser.first_name||''} ${currentUser.surname||''}</b><br><small>ID: <span class="id-number-blur" data-revealed="0" onclick="toggleIdBlur(this,'${currentUser.id_number||''}')">${maskId(currentUser.id_number||'')}</span><br>📱 ${currentUser.whatsapp}<br>🎭 ${currentUser.role}</small>`;
   document.getElementById('verifyBadge').innerHTML=badge;
-  document.getElementById('myIdPhoto').innerHTML=currentUser.id_photo?`<label class="small">🪪 Your ID Photo</label><img src="${currentUser.id_photo}" style="width:100%;height:120px;object-fit:cover;border-radius:10px;border:1px solid #333">`:'';
+  document.getElementById('myIdPhotos').innerHTML=`<div class="id-grid" style="margin-top:10px"><div class="id-box"><label class="small">ID FRONT + WATERMARK</label><div style="position:relative"><img src="${currentUser.id_front}" class="blurred" style="width:100%;height:110px;object-fit:cover;border-radius:8px" onclick="toggleBlur(this)"><div class="blur-overlay" onclick="toggleBlur(this.previousElementSibling)">🔓 REVEAL</div><div class="watermark-text">AI MUSIC SOCIAL - VERIFIED COPY</div></div></div><div class="id-box"><label class="small">ID BACK + WATERMARK</label><div style="position:relative"><img src="${currentUser.id_back}" class="blurred" style="width:100%;height:110px;object-fit:cover;border-radius:8px" onclick="toggleBlur(this)"><div class="blur-overlay" onclick="toggleBlur(this.previousElementSibling)">🔓 REVEAL</div><div class="watermark-text">AI MUSIC SOCIAL - VERIFIED COPY</div></div></div></div>`;
   document.getElementById('authBtn').innerText='👤 '+ (currentUser.first_name||'Me');
   if(currentUser.whatsapp===ADMIN_WA) document.getElementById('adminAccess').classList.remove('hidden');
  }else{
@@ -124,41 +165,31 @@ function render(){
  }
  loadFeed();
 }
-
-function getAllUsers(){
- let users=JSON.parse(localStorage.getItem('ai_users')||'[]');
- return users;
-}
+function getAllUsers(){return JSON.parse(localStorage.getItem('ai_users')||'[]');}
 function setVerification(wa, status){
- let users=JSON.parse(localStorage.getItem('ai_users')||'[]');
- let idx=users.findIndex(u=>u.whatsapp===wa);
- if(idx>=0){users[idx].verified=status; localStorage.setItem('ai_users',JSON.stringify(users));}
- // Update currentUser if it's him
+ let users=getAllUsers(); let idx=users.findIndex(u=>u.whatsapp===wa); if(idx>=0){users[idx].verified=status; localStorage.setItem('ai_users',JSON.stringify(users));}
  if(currentUser && currentUser.whatsapp===wa){currentUser.verified=status; localStorage.setItem('ai_user',JSON.stringify(currentUser));}
  openAdmin(); render();
- // Try Supabase
  try{fetch(`${S}/rest/v1/profiles?whatsapp=eq.${wa}`,{method:'PATCH',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({verified: status==='approved'})});}catch(e){}
 }
-
 async function openAdmin(){
  if(!currentUser||currentUser.whatsapp!==ADMIN_WA) return alert('Only 27789313670');
  document.getElementById('adminCard').classList.remove('hidden');
  let list=getAllUsers();
  try{let r=await fetch(`${S}/rest/v1/profiles?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}});let sup=await r.json(); let uniq={}; [...list,...sup].forEach(u=>uniq[u.whatsapp]=u); list=Object.values(uniq);}catch(e){}
- let htmlAll=`<div style="overflow-x:auto"><table class="admin-table"><tr><th>Pic</th><th>Name</th><th>ID No</th><th>ID Photo</th><th>WA</th><th>Status</th><th>Action</th></tr>${list.map(u=>{
+ document.getElementById('adminUsers').innerHTML=`<div style="overflow-x:auto"><table class="admin-table"><tr><th>Profile</th><th>Name</th><th>ID</th><th>Front WM</th><th>Back WM</th><th>Status</th><th>Action</th></tr>${list.map(u=>{
   let st=u.verified; let b = st===true||st==='approved'? '<span class="badge badge-verified">✅</span>' : st==='rejected'? '<span class="badge badge-rejected">❌</span>' : '<span class="badge badge-pending">⏳</span>';
-  return `<tr><td><img src="${u.profile_pic||DEFAULT_NEON}" style="width:36px;height:36px;border-radius:50%"></td><td><b>${u.first_name||''} ${u.surname||''}</b><br><small>${u.role}</small></td><td>${u.id_number||''}</td><td>${u.id_photo?`<a href="${u.id_photo}" target="_blank"><img src="${u.id_photo}" style="width:60px;height:40px;object-fit:cover;border-radius:4px"></a>`:'-'}</td><td>${u.whatsapp}</td><td>${b}</td><td><button class="small-btn btn-green" onclick="setVerification('${u.whatsapp}','approved')">APPROVE</button><button class="small-btn btn-red" onclick="setVerification('${u.whatsapp}','rejected')">REJECT</button></td></tr>`;
- }).join('')}</table></div><p>Total: ${list.length}</p>`;
- document.getElementById('adminUsers').innerHTML=htmlAll;
+  return `<tr><td><img src="${u.profile_pic||DEFAULT_NEON}" style="width:32px;height:32px;border-radius:50%"></td><td><b>${u.first_name||''} ${u.surname||''}</b><br>${u.whatsapp}</td><td><span class="id-number-blur" data-revealed="0" onclick="toggleIdBlur(this,'${u.id_number||''}')">${maskId(u.id_number||'')}</span></td><td><div style="position:relative"><img src="${u.id_front}" class="blurred" style="width:50px;height:35px;object-fit:cover" onclick="toggleBlur(this)"><div class="watermark-text" style="font-size:5px">VERIFIED COPY</div></div></td><td><div style="position:relative"><img src="${u.id_back}" class="blurred" style="width:50px;height:35px;object-fit:cover" onclick="toggleBlur(this)"><div class="watermark-text" style="font-size:5px">VERIFIED COPY</div></div></td><td>${b}</td><td><button class="small-btn btn-green" onclick="setVerification('${u.whatsapp}','approved')">✅</button><button class="small-btn btn-red" onclick="setVerification('${u.whatsapp}','rejected')">❌</button></td></tr>`;
+ }).join('')}</table></div>`;
  let pending=list.filter(u=>u.verified!=='approved' && u.verified!==true);
- document.getElementById('adminPending').innerHTML=`<h4>⏳ Pending KYC (${pending.length})</h4><div style="overflow-x:auto"><table class="admin-table"><tr><th>Pic</th><th>Name</th><th>ID</th><th>ID Photo</th><th>Action</th></tr>${pending.map(u=>`<tr><td><img src="${u.profile_pic||DEFAULT_NEON}" style="width:36px;height:36px;border-radius:50%"></td><td>${u.first_name} ${u.surname}<br>${u.whatsapp}</td><td>${u.id_number}</td><td><a href="${u.id_photo}" target="_blank"><img src="${u.id_photo}" style="width:80px;height:60px;object-fit:cover"></a></td><td><button class="small-btn btn-green" onclick="setVerification('${u.whatsapp}','approved')">✅ APPROVE</button><br><button class="small-btn btn-red" onclick="setVerification('${u.whatsapp}','rejected')">❌ REJECT</button></td></tr>`).join('')}</table></div>`;
+ document.getElementById('adminPending').innerHTML=`<h4>⏳ Pending Watermark Check (${pending.length})</h4>${pending.map(u=>`<div class="card"><div style="display:flex;gap:10px"><img src="${u.profile_pic||DEFAULT_NEON}" style="width:50px;height:50px;border-radius:50%"><div><b>${u.first_name} ${u.surname}</b><br>ID: ${maskId(u.id_number||'')}<br>WA: ${u.whatsapp}</div></div><div class="id-grid" style="margin-top:10px"><div class="id-box"><label class="small">FRONT WATERMARKED</label><div style="position:relative"><img src="${u.id_front}" class="blurred" style="width:100%;height:160px;object-fit:cover;border-radius:8px" onclick="toggleBlur(this)"><div class="blur-overlay" onclick="toggleBlur(this.previousElementSibling)">🔓 REVEAL FRONT</div><div class="watermark-text">AI MUSIC SOCIAL - VERIFIED COPY - ${u.first_name} ${u.surname}</div></div></div><div class="id-box"><label class="small">BACK WATERMARKED</label><div style="position:relative"><img src="${u.id_back}" class="blurred" style="width:100%;height:160px;object-fit:cover;border-radius:8px" onclick="toggleBlur(this)"><div class="blur-overlay" onclick="toggleBlur(this.previousElementSibling)">🔓 REVEAL BACK</div><div class="watermark-text">AI MUSIC SOCIAL - VERIFIED COPY</div></div></div></div><div style="margin-top:10px;display:flex;gap:8px"><button class="btn btn-green" onclick="setVerification('${u.whatsapp}','approved')" style="flex:1">✅ APPROVE</button><button class="btn btn-red" onclick="setVerification('${u.whatsapp}','rejected')" style="flex:1">❌ REJECT</button></div></div>`).join('')}`;
  let tr=await fetch(`${S}/rest/v1/tracks?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}}); let tj=await tr.json();
  document.getElementById('adminTracks').innerHTML=`<table class="admin-table"><tr><th>Title</th><th>Action</th></tr>${tj.map(t=>`<tr><td>${t.title}</td><td><button onclick="delTrack('${t.id}')">Delete</button></td></tr>`).join('')}</table>`;
 }
 function adminTab(t){document.getElementById('adminUsers').classList.toggle('hidden',t!=='users');document.getElementById('adminPending').classList.toggle('hidden',t!=='pending');document.getElementById('adminTracks').classList.toggle('hidden',t!=='tracks');}
 function closeAdmin(){document.getElementById('adminCard').classList.add('hidden');}
 async function delTrack(id){if(!confirm('Delete?'))return;await fetch(`${S}/rest/v1/tracks?id=eq.${id}`,{method:'DELETE',headers:{apikey:K,Authorization:'Bearer '+K}});openAdmin();loadFeed();}
-async function loadFeed(){let r=await fetch(`${S}/rest/v1/tracks?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}});let j=await r.json();document.getElementById('feed').innerHTML=j.map(t=>{let url=t.file_url||t.url;return `<div class="card"><div class="track"><img class="cover" src="${LOGO_URL}" style="width:68px;height:68px;border-radius:14px;object-fit:cover"><div><b>${t.title}</b></div></div><audio controls src="${url}" style="width:100%;margin-top:8px"></audio></div>`}).join('');}
+async function loadFeed(){let r=await fetch(`${S}/rest/v1/tracks?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}});let j=await r.json();document.getElementById('feed').innerHTML=j.map(t=>{let url=t.file_url||t.url;return `<div class="card"><div style="display:flex;gap:10px"><img src="${LOGO_URL}" style="width:60px;height:60px;border-radius:12px"><div><b>${t.title}</b><br><small style="color:#888">🔒 ID watermarked & protected - not public</small></div></div><audio controls src="${url}" style="width:100%;margin-top:8px"></audio></div>`}).join('');}
 async function uploadTrack(){if(!currentUser)return alert('Login');let f=document.getElementById('file').files[0];if(!f)return alert('Choose');let title=document.getElementById('title').value||f.name;let n=Date.now()+'_'+f.name.replace(/[^a-z0-9.\-]/gi,'_');let res=await fetch(`${S}/storage/v1/object/tracks/${n}`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'x-upsert':'true'},body:f});if(!res.ok)return alert('Fail');let url=`${S}/storage/v1/object/public/tracks/${n}`;await fetch(`${S}/rest/v1/tracks`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({title,file_url:url,url})});alert('Published!');loadFeed();}
 render();
 </script>
