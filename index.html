@@ -6,76 +6,63 @@
 body{margin:0;background:#06060a;color:#fff;font-family:Inter,Arial}
 header{position:sticky;top:0;background:rgba(0,0,0,.92);backdrop-filter:blur(10px);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;z-index:10}
 .logo{display:flex;gap:10px;align-items:center;font-weight:900}
-.logo-img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--pink);background:#111}
+.logo-img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)}
 .container{max-width:620px;margin:0 auto;padding:16px}
 .card{background:#12121a;border:1px solid #24243a;border-radius:18px;padding:16px;margin:14px 0}
 input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#0a0a10;color:#fff;margin:8px 0;box-sizing:border-box}
-.btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(90deg,var(--pink),#ff7a00);color:#fff;font-weight:900;font-size:15px}
+.btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(90deg,var(--pink),#ff7a00);color:#fff;font-weight:900}
 .btn2{background:#1a1a2a;border:1px solid #333}
 .tabs{display:flex;gap:8px;margin-bottom:10px}
 .tabs button{flex:1;padding:12px;border-radius:10px;border:1px solid #333;background:#111;color:#fff}
-.tabs button.active{background:var(--pink);border-color:var(--pink)}
+.tabs button.active{background:var(--pink)}
 .hidden{display:none}
 .cover{width:68px;height:68px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid #333}
 .track{display:flex;gap:12px}
-.meta{flex:1}
-.badge{padding:3px 8px;border-radius:20px;font-size:11px;background:#1e1e32;border:1px solid #333}
-.admin-table{width:100%;font-size:12px;border-collapse:collapse}
-.admin-table th,.admin-table td{border:1px solid #333;padding:8px;text-align:left}
+.badge{padding:3px 8px;border-radius:20px;font-size:11px;background:#1e1e32}
+.admin-table{width:100%;font-size:11px;border-collapse:collapse}
+.admin-table th,.admin-table td{border:1px solid #333;padding:6px;text-align:left}
+.user-pic{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)}
 #log{color:#0f0;font-size:12px;white-space:pre-wrap}
-.counts{font-size:12px;color:#888;margin-top:4px}
-.counts span{color:#fff;font-weight:bold}
+.row2{display:flex;gap:8px}.row2 input{flex:1}
 </style>
 </head><body>
 <header>
-<div class="logo"><img id="logoImg" class="logo-img" src="./dj_bigsam_neon_logo.jpg" onerror="this.src='https://via.placeholder.com/100/ff0055/fff?text=🎧'"><div><span style="color:var(--pink)">AI</span> MUSIC SOCIAL<br><small style="font-size:11px;color:#888">DJ BIGSAM RSA • DURBAN</small></div></div>
-<button onclick="showAuth()" id="authBtn" style="background:linear-gradient(90deg,var(--pink),var(--cyan));border:none;padding:8px 14px;border-radius:20px;color:#fff;font-weight:bold">Login</button>
+<div class="logo"><img id="logoImg" class="logo-img" src="./dj_bigsam_neon_logo.jpg"><div><span style="color:var(--pink)">AI</span> MUSIC SOCIAL</div></div>
+<button id="authBtn" onclick="showAuth()" style="background:linear-gradient(90deg,var(--pink),var(--cyan));border:none;padding:8px 14px;border-radius:20px;color:#fff;font-weight:bold">Login</button>
 </header>
 <div class="container">
 
 <div class="card" id="authCard">
-<div class="tabs">
-<button id="tLogin" class="active" onclick="tab('login')">Login</button>
-<button id="tReg" onclick="tab('reg')">Register</button>
-</div>
+<div class="tabs"><button id="tLogin" class="active" onclick="tab('login')">Login</button><button id="tReg" onclick="tab('reg')">Register</button></div>
 <div id="loginForm">
-<input id="l_wa" placeholder="WhatsApp e.g. 27789313670" value="27789313670">
+<input id="l_wa" placeholder="WhatsApp e.g. 27789313670">
 <input id="l_pin" type="password" placeholder="PIN 4 digits" maxlength="4">
-<button class="btn" onclick="login()">🔓 LOGIN WITH WHATSAPP</button>
+<button class="btn" onclick="login()">🔓 LOGIN</button>
 </div>
 <div id="regForm" class="hidden">
-<input id="r_name" placeholder="Artist Name">
-<input id="r_wa" placeholder="WhatsApp Number">
+<div class="row2"><input id="r_fname" placeholder="First Name"><input id="r_sname" placeholder="Surname"></div>
+<input id="r_id" placeholder="ID Number (13 digits)" maxlength="13">
+<input id="r_wa" placeholder="WhatsApp Number e.g. 27789313670">
 <select id="r_role"><option value="">Select Role</option><option value="musician">Musician</option><option value="producer">Producer</option><option value="artist">Artist</option><option value="ai-creator">AI Creator</option><option value="dj">DJ</option></select>
+<label style="font-size:12px;color:#888">Profile Picture</label><input type="file" id="r_pic" accept="image/*">
 <input id="r_pin" type="password" placeholder="Create 4-digit PIN" maxlength="4">
-<button class="btn" onclick="register()">✨ REGISTER</button>
+<button class="btn" onclick="register()">✨ REGISTER WITH ID & PHOTO</button>
 </div>
-<div id="log">Ready • Admin: 27789313670 • Logo: Neon Default</div>
-</div>
-
-<div class="card hidden" id="profileCard">
-<h3 style="margin:0">👤 My Profile</h3>
-<div id="profileInfo" style="margin:10px 0"></div>
-<div class="counts">Role verified • WhatsApp PIN login</div>
-<button class="btn btn2" onclick="logout()" style="margin-top:10px">Logout</button>
+<div id="log">Admin: 27789313670 • New: ID + Photo + Names</div>
 </div>
 
-<div class="card" id="uploadCard">
-<h3 style="margin:0 0 8px 0">🎛️ Drop Your Mix</h3>
-<input type="file" id="logoFile" accept="image/*" onchange="uploadLogo()"><small style="color:#666">Change logo (optional)</small>
-<input type="file" id="file" accept="audio/*" style="margin-top:10px">
-<input id="title" placeholder="Track title e.g. Amapiano Sunset Mix">
-<button class="btn" onclick="uploadTrack()">🚀 PUBLISH TO FEED</button>
-</div>
+<div class="card hidden" id="profileCard"><div style="display:flex;gap:12px;align-items:center"><img id="myPic" class="user-pic" src=""><div id="profileInfo"></div></div><button class="btn btn2" onclick="logout()" style="margin-top:10px">Logout</button></div>
 
-<div class="card hidden" id="adminAccess"><button class="btn" onclick="openAdmin()" style="background:linear-gradient(90deg,#00f2ff,#7000ff)">🛡️ ADMIN DASHBOARD (Only You - 27789313670)</button></div>
+<div class="card" id="uploadCard"><h3>🎛️ Drop Your Mix</h3><input type="file" id="file" accept="audio/*"><input id="title" placeholder="Track title"><button class="btn" onclick="uploadTrack()">🚀 PUBLISH</button></div>
+
+<div class="card hidden" id="adminAccess"><button class="btn" onclick="openAdmin()" style="background:linear-gradient(90deg,#00f2ff,#7000ff)">🛡️ ADMIN DASHBOARD (27789313670)</button></div>
 
 <div class="card hidden" id="adminCard">
 <h3>🛡️ Admin - AI Music Social RSA</h3>
-<div class="tabs"><button id="au" class="active" onclick="adminTab('users')">Users</button><button id="at" onclick="adminTab('tracks')">Tracks</button></div>
+<div class="tabs"><button id="au" class="active" onclick="adminTab('users')">Users (ID + Photo)</button><button id="at" onclick="adminTab('tracks')">Tracks</button></div>
 <div id="adminUsers"></div>
 <div id="adminTracks" class="hidden"></div>
-<button class="btn btn2" onclick="closeAdmin()">Close Admin</button>
+<button class="btn btn2" onclick="closeAdmin()">Close</button>
 </div>
 
 <div id="feed"></div>
@@ -89,51 +76,62 @@ let DEFAULT_NEON="./dj_bigsam_neon_logo.jpg";
 let LOGO_URL=localStorage.getItem('bigsam_logo')||DEFAULT_NEON;
 let currentUser=JSON.parse(localStorage.getItem('ai_user')||'null');
 
-function tab(t){
- document.getElementById('tLogin').classList.toggle('active',t==='login');
- document.getElementById('tReg').classList.toggle('active',t==='reg');
- document.getElementById('loginForm').classList.toggle('hidden',t!=='login');
- document.getElementById('regForm').classList.toggle('hidden',t!=='reg');
-}
+function tab(t){document.getElementById('tLogin').classList.toggle('active',t==='login');document.getElementById('tReg').classList.toggle('active',t==='reg');document.getElementById('loginForm').classList.toggle('hidden',t!=='login');document.getElementById('regForm').classList.toggle('hidden',t!=='reg');}
 function showAuth(){document.getElementById('authCard').classList.remove('hidden');}
 function setLog(m){document.getElementById('log').innerText=m}
 
+async function uploadImage(file){
+ let n='profile_'+Date.now()+'_'+file.name.replace(/[^a-z0-9.\-]/gi,'_');
+ let res=await fetch(`${S}/storage/v1/object/tracks/${n}`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'x-upsert':'true'},body:file});
+ if(!res.ok) throw new Error('pic upload failed');
+ return `${S}/storage/v1/object/public/tracks/${n}`;
+}
+
 async function register(){
- let name=document.getElementById('r_name').value, wa=document.getElementById('r_wa').value, role=document.getElementById('r_role').value, pin=document.getElementById('r_pin').value;
- if(!wa||!pin||!role||!name) return setLog('❌ Fill all fields');
+ let fname=document.getElementById('r_fname').value.trim();
+ let sname=document.getElementById('r_sname').value.trim();
+ let idnum=document.getElementById('r_id').value.trim();
+ let wa=document.getElementById('r_wa').value.trim();
+ let role=document.getElementById('r_role').value;
+ let pin=document.getElementById('r_pin').value.trim();
+ let picFile=document.getElementById('r_pic').files[0];
+ if(!fname||!sname||!idnum||!wa||!role||!pin) return setLog('❌ Fill First Name, Surname, ID, WhatsApp, Role, PIN');
+ if(idnum.length<6) return setLog('❌ Invalid ID number');
+ let picUrl='';
+ if(picFile){
+  setLog('⏳ Uploading profile picture...');
+  try{picUrl=await uploadImage(picFile);}catch(e){return setLog('❌ Photo upload failed');}
+ }
  let users=JSON.parse(localStorage.getItem('ai_users')||'[]');
  if(users.find(u=>u.whatsapp===wa)) return setLog('❌ WhatsApp already registered');
- let u={name,whatsapp:wa,role,pin,created_at:new Date().toISOString()};
+ let u={name:fname+' '+sname, first_name:fname, surname:sname, id_number:idnum, whatsapp:wa, role, pin, profile_pic:picUrl, created_at:new Date().toISOString()};
  users.push(u); localStorage.setItem('ai_users',JSON.stringify(users));
- try{await fetch(`${S}/rest/v1/profiles`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({whatsapp:wa,pin,role,name})});}catch(e){}
- setLog('✅ Registered! Now login'); tab('login');
+ try{await fetch(`${S}/rest/v1/profiles`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({whatsapp:wa,pin,role,name:u.name,first_name:fname,surname:sname,id_number:idnum,profile_pic:picUrl})});}catch(e){}
+ setLog('✅ Registered! '+fname+' '+sname+' - Now login'); tab('login');
 }
+
 async function login(){
  let wa=document.getElementById('l_wa').value, pin=document.getElementById('l_pin').value;
  if(!wa||!pin) return setLog('❌ Enter WhatsApp + PIN');
  let users=JSON.parse(localStorage.getItem('ai_users')||'[]');
  let found=users.find(u=>u.whatsapp===wa && u.pin===pin);
  if(!found){
-  try{
-   let r=await fetch(`${S}/rest/v1/profiles?whatsapp=eq.${wa}&pin=eq.${pin}&select=*`,{headers:{apikey:K,Authorization:'Bearer '+K}});
-   let j=await r.json(); if(j[0]) found=j[0];
-  }catch(e){}
+  try{let r=await fetch(`${S}/rest/v1/profiles?whatsapp=eq.${wa}&pin=eq.${pin}&select=*`,{headers:{apikey:K,Authorization:'Bearer '+K}});let j=await r.json();if(j[0])found=j[0];}catch(e){}
  }
  if(!found) return setLog('❌ Wrong WhatsApp or PIN');
- currentUser=found; localStorage.setItem('ai_user',JSON.stringify(found));
- setLog('✅ Welcome '+found.name); render();
+ currentUser=found; localStorage.setItem('ai_user',JSON.stringify(found)); setLog('✅ Welcome '+found.first_name); render();
 }
-function logout(){localStorage.removeItem('ai_user'); currentUser=null; render(); setLog('Logged out');}
-
+function logout(){localStorage.removeItem('ai_user'); currentUser=null; render();}
 function render(){
  document.getElementById('logoImg').src=LOGO_URL;
  if(currentUser){
   document.getElementById('authCard').classList.add('hidden');
   document.getElementById('profileCard').classList.remove('hidden');
-  document.getElementById('profileInfo').innerHTML=`<p><b>${currentUser.name||'User'}</b><br>📱 ${currentUser.whatsapp}<br>🎭 Role: <span class="badge">${currentUser.role}</span><br>${currentUser.whatsapp===ADMIN_WA?'👑 ADMIN ACCESS - 27789313670':'✅ Verified Creator'}</p>`;
-  document.getElementById('authBtn').innerText='👤 '+(currentUser.name||'Me');
-  if(currentUser.whatsapp===ADMIN_WA){document.getElementById('adminAccess').classList.remove('hidden');} else {document.getElementById('adminAccess').classList.add('hidden');}
- } else {
+  document.getElementById('myPic').src=currentUser.profile_pic||DEFAULT_NEON;
+  document.getElementById('profileInfo').innerHTML=`<b>${currentUser.first_name||''} ${currentUser.surname||''}</b><br><small>ID: ${currentUser.id_number||'N/A'}<br>📱 ${currentUser.whatsapp}<br>🎭 ${currentUser.role}</small>`;
+  document.getElementById('authBtn').innerText='👤 '+ (currentUser.first_name||'Me');
+  if(currentUser.whatsapp===ADMIN_WA) document.getElementById('adminAccess').classList.remove('hidden'); else document.getElementById('adminAccess').classList.add('hidden');
+ }else{
   document.getElementById('profileCard').classList.add('hidden');
   document.getElementById('authCard').classList.remove('hidden');
   document.getElementById('adminAccess').classList.add('hidden');
@@ -141,46 +139,25 @@ function render(){
  }
  loadFeed();
 }
-
-async function uploadLogo(){
- let f=document.getElementById('logoFile').files[0]; if(!f) return;
- setLog('Uploading logo...');
- let n='logo_'+Date.now()+'.jpg';
- let res=await fetch(`${S}/storage/v1/object/tracks/${n}`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'x-upsert':'true'},body:f});
- if(res.ok){let url=`${S}/storage/v1/object/public/tracks/${n}`; LOGO_URL=url; localStorage.setItem('bigsam_logo',url); setLog('✅ Logo updated!'); render();}
-}
 async function openAdmin(){
- if(!currentUser||currentUser.whatsapp!==ADMIN_WA) return alert('Not admin - only 27789313670');
+ if(!currentUser||currentUser.whatsapp!==ADMIN_WA) return alert('Only 27789313670');
  document.getElementById('adminCard').classList.remove('hidden');
  let users=JSON.parse(localStorage.getItem('ai_users')||'[]');
- let supUsers=[]; try{let r=await fetch(`${S}/rest/v1/profiles?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}}); supUsers=await r.json();}catch(e){}
+ let supUsers=[]; try{let r=await fetch(`${S}/rest/v1/profiles?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}});supUsers=await r.json();}catch(e){}
  let all=[...users,...supUsers]; let uniq={}; all.forEach(u=>uniq[u.whatsapp]=u); let list=Object.values(uniq);
- document.getElementById('adminUsers').innerHTML=`<table class="admin-table"><tr><th>Name</th><th>WhatsApp</th><th>Role</th><th>PIN</th></tr>${list.map(u=>`<tr><td>${u.name||''}</td><td>${u.whatsapp}</td><td>${u.role}</td><td>${u.pin}</td></tr>`).join('')}</table><p>Total: ${list.length} creators</p>`;
+ document.getElementById('adminUsers').innerHTML=`<table class="admin-table"><tr><th>Photo</th><th>First Name</th><th>Surname</th><th>ID Number</th><th>WhatsApp</th><th>Role</th></tr>${list.map(u=>`<tr><td><img src="${u.profile_pic||DEFAULT_NEON}" style="width:32px;height:32px;border-radius:50%;object-fit:cover"></td><td>${u.first_name||''}</td><td>${u.surname||''}</td><td>${u.id_number||''}</td><td>${u.whatsapp}</td><td>${u.role}</td></tr>`).join('')}</table><p>Total: ${list.length} creators</p>`;
  let tr=await fetch(`${S}/rest/v1/tracks?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}}); let tj=await tr.json();
  document.getElementById('adminTracks').innerHTML=`<table class="admin-table"><tr><th>Title</th><th>Date</th><th>Action</th></tr>${tj.map(t=>`<tr><td>${t.title}</td><td>${new Date(t.created_at).toLocaleDateString()}</td><td><button onclick="delTrack('${t.id}')">Delete</button></td></tr>`).join('')}</table>`;
 }
 function adminTab(t){document.getElementById('au').classList.toggle('active',t==='users');document.getElementById('at').classList.toggle('active',t==='tracks');document.getElementById('adminUsers').classList.toggle('hidden',t!=='users');document.getElementById('adminTracks').classList.toggle('hidden',t!=='tracks');}
 function closeAdmin(){document.getElementById('adminCard').classList.add('hidden');}
-async function delTrack(id){if(!confirm('Delete?')) return; await fetch(`${S}/rest/v1/tracks?id=eq.${id}`,{method:'DELETE',headers:{apikey:K,Authorization:'Bearer '+K}}); openAdmin(); loadFeed();}
+async function delTrack(id){if(!confirm('Delete?'))return;await fetch(`${S}/rest/v1/tracks?id=eq.${id}`,{method:'DELETE',headers:{apikey:K,Authorization:'Bearer '+K}});openAdmin();loadFeed();}
 async function loadFeed(){
  let r=await fetch(`${S}/rest/v1/tracks?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}});
  let j=await r.json();
- document.getElementById('feed').innerHTML=j.map(t=>{
-  let url=t.file_url||t.url;
-  return `<div class="card"><div class="track"><img class="cover" src="${LOGO_URL}" onerror="this.src='${DEFAULT_NEON}'"><div class="meta"><b>${t.title||'Untitled'}</b><br><small>DJ BIGSAM • ${new Date(t.created_at).toLocaleDateString()}</small><div class="counts">▶️ <span>${localStorage.getItem('play_'+(t.id||url))||0}</span> plays</div></div></div><audio controls src="${url}" style="width:100%;margin-top:8px" onplay="let k='play_'+'${t.id||url}';localStorage.setItem(k,(parseInt(localStorage.getItem(k)||0)+1))"></audio></div>`;
- }).join('');
+ document.getElementById('feed').innerHTML=j.map(t=>{let url=t.file_url||t.url;return `<div class="card"><div class="track"><img class="cover" src="${LOGO_URL}"><div class="meta"><b>${t.title}</b></div></div><audio controls src="${url}" style="width:100%;margin-top:8px"></audio></div>`}).join('');
 }
-async function uploadTrack(){
- if(!currentUser) return alert('Login first with WhatsApp + PIN');
- let f=document.getElementById('file').files[0]; if(!f) return alert('Choose file');
- let title=document.getElementById('title').value||f.name;
- let n=Date.now()+'_'+f.name.replace(/[^a-z0-9.\-]/gi,'_');
- let res=await fetch(`${S}/storage/v1/object/tracks/${n}`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'x-upsert':'true'},body:f});
- if(!res.ok){let txt=await res.text(); return alert('Upload failed: '+txt);}
- let url=`${S}/storage/v1/object/public/tracks/${n}`;
- await fetch(`${S}/rest/v1/tracks`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({title:title,file_url:url,url:url})});
- alert('🔥 Published!'); loadFeed();
-}
+async function uploadTrack(){if(!currentUser)return alert('Login first');let f=document.getElementById('file').files[0];if(!f)return alert('Choose file');let title=document.getElementById('title').value||f.name;let n=Date.now()+'_'+f.name.replace(/[^a-z0-9.\-]/gi,'_');let res=await fetch(`${S}/storage/v1/object/tracks/${n}`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'x-upsert':'true'},body:f});if(!res.ok)return alert('Upload failed');let url=`${S}/storage/v1/object/public/tracks/${n}`;await fetch(`${S}/rest/v1/tracks`,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({title,file_url:url,url})});alert('Published!');loadFeed();}
 render();
 </script>
 </body></html>
