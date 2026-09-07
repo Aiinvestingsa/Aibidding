@@ -1,53 +1,53 @@
-<!-- WELCOME MP3 PLAYER - 1ST SA AI MUSIC SOCIAL -->
-<div id="voiceBanner" class="card" style="background:linear-gradient(90deg,#ff0055,#7000ff,#00f2ff);text-align:center;border:2px solid #fff">
-<div style="font-size:18px;font-weight:900">🇿🇦 WELCOME TO 1ST SA AI MUSIC SOCIAL 🇿🇦</div>
-<audio id="welcomeAudio" controls autoplay style="width:100%;margin:10px 0">
-<source src="https://cdn.pixabay.com/audio/2022/03/24/audio_2a34e6dcc7.mp3" type="audio/mpeg">
-Your browser does not support audio.
-</audio>
-<div style="display:flex;gap:8px">
-<button onclick="playWelcomeVoice()" style="flex:1;background:#fff;color:#ff0055;border:none;padding:12px;border-radius:25px;font-weight:900">🔊 PLAY WELCOME VOICE</button>
-<button onclick="document.getElementById('welcomeAudio').pause()" style="flex:1;background:#111;color:#fff;border:1px solid #333;padding:12px;border-radius:25px">🔇 MUTE</button>
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI MUSIC SOCIAL - DJ BIGSAM RSA - 1ST SA AI MUSIC SOCIAL</title>
+<style>
+:root{--pink:#ff0055;--cyan:#00f2ff;--green:#00ff88;--red:#ff3344}
+body{margin:0;background:#06060a;color:#fff;font-family:Inter,Arial}
+header{position:sticky;top:0;background:rgba(0,0,0,.92);backdrop-filter:blur(10px);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;z-index:10}
+.logo{display:flex;gap:10px;align-items:center;font-weight:900}
+.logo-img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)}
+.container{max-width:700px;margin:0 auto;padding:16px}
+.card{background:#12121a;border:1px solid #24243a;border-radius:18px;padding:16px;margin:14px 0}
+input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#0a0a10;color:#fff;margin:8px 0;box-sizing:border-box}
+.btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(90deg,var(--pink),#ff7a00);color:#fff;font-weight:900;cursor:pointer}
+.btn2{background:#1a1a2a;border:1px solid #333}
+.btn-green{background:var(--green);color:#000}
+.btn-red{background:var(--red);color:#fff}
+.tabs{display:flex;gap:8px;margin-bottom:10px}
+.tabs button{flex:1;padding:12px;border-radius:10px;border:1px solid #333;background:#111;color:#fff}
+.tabs button.active{background:var(--pink)}
+.hidden{display:none}
+.user-pic{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)}
+.badge{padding:4px 10px;border-radius:20px;font-size:11px;background:#1e1e32;border:1px solid #333;display:inline-block}
+.badge-verified{background:rgba(0,255,136,.15);border-color:var(--green);color:var(--green);font-weight:800}
+.badge-pending{background:rgba(255,200,0,.15);border-color:#ffcc00;color:#ffcc00}
+.badge-rejected{background:rgba(255,51,68,.15);border-color:var(--red);color:var(--red)}
+.admin-table{width:100%;font-size:10px;border-collapse:collapse}
+.admin-table th,.admin-table td{border:1px solid #333;padding:5px;text-align:left;vertical-align:top}
+.row2{display:flex;gap:8px}.row2 input{flex:1}
+#log{color:#0f0;font-size:12px}
+label.small{font-size:11px;color:#ffb86a;display:block;margin-top:10px;font-weight:bold}
+.small-btn{padding:6px 10px;border-radius:8px;border:none;font-size:11px;font-weight:bold;margin:2px;cursor:pointer}
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.id-box{border:1px solid #333;border-radius:10px;padding:6px;background:#0a0a10;position:relative;overflow:hidden}
+.blurred{filter:blur(14px);transition:filter .3s}
+.blur-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.85);color:#fff;padding:6px 10px;border-radius:20px;font-size:10px;cursor:pointer;border:1px solid var(--pink);z-index:2}
+.watermark-text{position:absolute;bottom:4px;right:4px;background:rgba(255,0,85,.9);color:#fff;font-size:7px;padding:2px 6px;border-radius:10px;font-weight:900;z-index:3}
+.id-number-blur{filter:blur(6px);user-select:none;cursor:pointer}
+canvas{display:none}
+audio{outline:none}
+</style>
+</head><body>
+<header>
+<div class="logo"><img id="logoImg" class="logo-img" src="./dj_bigsam_neon_logo.jpg"><div><span style="color:var(--pink)">AI</span> MUSIC SOCIAL</div></div>
+<div style="display:flex;gap:6px">
+<button onclick="playWelcomeVoice()" style="background:#111;border:1px solid var(--pink);padding:7px 10px;border-radius:20px;color:#fff">🔊</button>
+<button id="authBtn" onclick="showAuth()" style="background:linear-gradient(90deg,var(--pink),var(--cyan));border:none;padding:8px 14px;border-radius:20px;color:#fff;font-weight:bold">Login</button>
 </div>
-<div style="font-size:11px;margin-top:8px" id="voiceText">🎙️ "Welcome to the First South African AI Music Social Media, powered by DJ BIGSAM RSA!"</div>
-</div>
+</header>
 
-<script>
-// REAL VOICE MP3 SYSTEM
-const WELCOME_TEXT = "Welcome to the First South African AI Music Social Media! Powered by DJ Big Sam! The home of Musicians, Producers, Artists, and A I Creators!";
-
-function playWelcomeVoice(){
-  let audio = document.getElementById('welcomeAudio');
-  // Try to play MP3 file if you uploaded it
-  // If not, use phone's voice as backup
-  audio.play().catch(()=>{
-    // Fallback to TTS if MP3 not found
-    if('speechSynthesis' in window){
-      speechSynthesis.cancel();
-      let msg = new SpeechSynthesisUtterance(WELCOME_TEXT);
-      msg.rate = 0.85;
-      msg.pitch = 1.1;
-      msg.volume = 1;
-      let voices = speechSynthesis.getVoices();
-      let best = voices.find(v=>v.lang==='en-ZA') || voices.find(v=>v.name.includes('Google UK English Male')) || voices[0];
-      if(best) msg.voice = best;
-      speechSynthesis.speak(msg);
-    }
-  });
-}
-
-// Auto-play welcome on first visit
-window.addEventListener('load', ()=>{
-  setTimeout(()=>{
-    if(!sessionStorage.getItem('welcomed')){
-      playWelcomeVoice();
-      sessionStorage.setItem('welcomed','1');
-      // Auto-hide banner after 8 sec
-      setTimeout(()=>{document.getElementById('voiceBanner').style.opacity='0.7';},8000);
-    }
-  },2000);
-});
-
-// Preload voices
-if('speechSynthesis' in window){ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged = ()=>{}; }
-</script>
+<div class="container">
+<!-- WELCOME VOICE BANNER - BACKGROUND VOICE -->
+<div id="voiceBanner" class="card" style="background:linear-gradient(90deg,#ff0055,#7000ff,#00f2ff);text-align:center;border:2px solid #fff;position:relative;overflow:hidden">
+<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:re
