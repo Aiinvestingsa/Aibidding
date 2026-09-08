@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI MUSIC SOCIAL - ADMIN DELETE BAN RESET - 27789313670</title>
+<title>AI MUSIC SOCIAL - BROADCAST POPUP - 27789313670</title>
 <style>
 :root{--pink:#ff0055;--cyan:#00f2ff;--green:#00ff88;--gold:#ffcc00;--wa:#25D366}
 body{margin:0;background:#06060a;color:#fff;font-family:Inter,Arial}
@@ -9,7 +9,8 @@ header{position:sticky;top:0;background:rgba(0,0,0,.92);padding:12px 16px;displa
 .logo-img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)}
 .container{max-width:750px;margin:0 auto;padding:16px}
 .card{background:#12121a;border:1px solid #24243a;border-radius:18px;padding:16px;margin:14px 0}
-input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#0a0a10;color:#fff;margin:8px 0;box-sizing:border-box}
+input,select,textarea{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#0a0a10;color:#fff;margin:8px 0;box-sizing:border-box}
+textarea{resize:vertical;min-height:80px}
 .btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(90deg,var(--pink),#ff7a00);color:#fff;font-weight:900;cursor:pointer}
 .btn-wa{background:linear-gradient(90deg,#25D366,#128C7E);color:#fff}
 .btn-gold{background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000}
@@ -22,12 +23,34 @@ input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #333;ba
 .voucher-code{font-size:13px;font-weight:900;color:var(--gold);background:#000;padding:8px;border-radius:8px;border:1px solid var(--gold);font-family:monospace}
 .small-btn{padding:6px 9px;border-radius:7px;border:none;font-size:10px;font-weight:bold;margin:2px;cursor:pointer}
 #log{color:#0f0;font-size:12px}label.small{font-size:11px;color:#ffb86a;display:block;margin-top:10px;font-weight:bold}
-.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.id-box{border:1px solid #333;border-radius:10px;padding:6px;background:#0a0a10;position:relative;overflow:hidden}
-.blurred{filter:blur(14px)}.blur-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.85);color:#fff;padding:6px 10px;border-radius:20px;font-size:10px;border:1px solid var(--pink);z-index:2}
-canvas{display:none}
 .admin-user-card{background:#0a0a12;border:1px solid #333;border-radius:12px;padding:12px;margin:8px 0}
+canvas{display:none}
+
+/* BROADCAST POPUP */
+#broadcastOverlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px)}
+#broadcastPopup{background:linear-gradient(135deg,#12121a,#1a0a2a);border:2px solid var(--pink);border-radius:20px;padding:20px;max-width:420px;width:100%;box-shadow:0 0 40px rgba(255,0,85,.4);animation:popIn.4s ease}
+@keyframes popIn{0%{transform:scale(.8);opacity:0}100%{transform:scale(1);opacity:1}}
+.broadcast-title{font-size:18px;font-weight:900;color:var(--pink);text-align:center;margin-bottom:8px}
+.broadcast-msg{font-size:14px;line-height:1.5;background:#000;padding:12px;border-radius:12px;border:1px solid #333;white-space:pre-wrap}
+.broadcast-meta{font-size:10px;color:#888;text-align:center;margin-top:8px}
 </style>
 </head><body>
+
+<!-- BROADCAST POPUP - SHOWS WHEN OPEN WEBSITE -->
+<div id="broadcastOverlay" class="hidden" onclick="if(event.target===this) closeBroadcast()">
+<div id="broadcastPopup">
+<div style="text-align:center;font-size:28px">📢</div>
+<div class="broadcast-title" id="bTitle">ANNOUNCEMENT FROM ADMIN 27789313670</div>
+<div class="broadcast-msg" id="bMsg">Loading...</div>
+<div class="broadcast-meta" id="bMeta"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px">
+<button class="btn btn2" onclick="closeBroadcast()">✖️ Close</button>
+<button class="btn btn-wa" id="bActionBtn" onclick="handleBroadcastAction()">💬 WhatsApp 27789313670</button>
+</div>
+<div style="text-align:center;margin-top:8px"><label style="font-size:10px;color:#888"><input type="checkbox" id="dontShowToday"> Don't show again today</label></div>
+</div>
+</div>
+
 <header>
 <div class="logo"><img id="logoImg" class="logo-img" src="./dj_bigsam_neon_logo.jpg"><div><span style="color:var(--pink)">AI</span> MUSIC SOCIAL</div></div>
 <button id="authBtn" onclick="showAuth()" style="background:linear-gradient(90deg,var(--pink),var(--cyan));border:none;padding:8px 14px;border-radius:20px;color:#fff;font-weight:bold">Login</button>
@@ -35,39 +58,36 @@ canvas{display:none}
 
 <div class="container">
 <div class="card" style="background:linear-gradient(90deg,#ff0055,#7000ff);text-align:center;border:2px solid #fff">
-<div style="font-size:15px;font-weight:900">🛡️ ADMIN 27789313670 - DELETE / BAN / RESET PASSWORD</div>
-<div style="font-size:10px;margin-top:4px">Free 3 songs/month • Paid unlimited • Admin controls all users</div>
+<div style="font-size:14px;font-weight:900">📢 BROADCAST POPUP + DELETE/BAN/RESET — ADMIN 27789313670</div>
+<div style="font-size:10px;margin-top:4px">Pop-up when open website • Free 3/month • Paid unlimited</div>
 </div>
 
 <div class="card" id="authCard">
 <div class="tabs">
 <button id="tLogin" class="active" onclick="tab('login')">Login</button>
 <button id="tFree" onclick="tab('free')">🆓 Free 3 Songs</button>
-<button id="tReg" onclick="tab('reg')">💎 Paid Voucher</button>
+<button id="tReg" onclick="tab('reg')">💎 Paid</button>
 </div>
-
 <div id="loginForm"><input id="l_wa" placeholder="WhatsApp 2778..."><input id="l_pin" type="password" placeholder="PIN"><button class="btn" onclick="login()">🔓 LOGIN</button><div id="bannedMsg" style="color:#ff3344;font-size:11px;margin-top:8px;text-align:center"></div></div>
-
 <div id="freeForm" class="hidden">
-<div class="free-box"><div style="font-weight:900;color:var(--cyan)">🆓 FREE — 3 SONGS PER MONTH</div><div style="font-size:10px;color:#aaa">No voucher • Instant • 3 uploads / month</div></div>
+<div class="free-box"><div style="font-weight:900;color:var(--cyan)">🆓 FREE — 3 SONGS PER MONTH</div></div>
 <div style="display:flex;gap:8px"><input id="f_fname" placeholder="First Name"><input id="f_sname" placeholder="Surname"></div>
 <input id="f_wa" placeholder="WhatsApp 2778..."><select id="f_role"><option value="">Role</option><option value="musician">Musician</option><option value="producer">Producer</option><option value="artist">Artist</option><option value="dj">DJ</option><option value="ai-creator">AI Creator</option></select>
 <input id="f_pin" type="password" placeholder="Create 4-digit PIN" maxlength="4">
-<button class="btn btn-free" onclick="registerFree()">🆓 REGISTER FREE — 3 SONGS/MONTH</button>
+<button class="btn btn-free" onclick="registerFree()">🆓 REGISTER FREE — 3/MONTH</button>
 </div>
-
 <div id="regForm" class="hidden">
 <div style="display:flex;gap:8px"><input id="r_fname" placeholder="First Name"><input id="r_sname" placeholder="Surname"></div>
-<input id="r_id" placeholder="ID Number" maxlength="13"><input id="r_wa" placeholder="WhatsApp 2778..."><select id="r_role"><option value="">Role</option><option value="musician">Musician</option><option value="producer">Producer</option><option value="artist">Artist</option><option value="ai-creator">AI Creator</option><option value="dj">DJ</option></select>
+<input id="r_id" placeholder="ID Number" maxlength="13"><input id="r_wa" placeholder="WhatsApp 2778..."><select id="r_role"><option value="">Role</option><option value="musician">Musician</option><option value="producer">Producer</option><option value="artist">Artist</option></select>
 <label class="small">📸 Profile</label><input type="file" id="r_pic" accept="image/*">
 <label class="small">🪪 ID FRONT</label><input type="file" id="r_front" accept="image/*">
 <label class="small">🪪 ID BACK</label><input type="file" id="r_back" accept="image/*">
 <input id="r_pin" type="password" placeholder="PIN" maxlength="4">
-<div class="voucher-box" style="border:2px solid var(--wa)"><div style="font-weight:900;color:var(--wa)">💬 WHATSAPP 27789313670 TO PAY</div><button class="btn btn-wa" onclick="whatsappPay(50)">💬 WHATSAPP 27789313670 R50 KYC</button></div>
-<div class="voucher-box"><input id="r_voucher" placeholder="BIGSAM-50-XXXXXX" style="text-align:center;font-weight:900;letter-spacing:2px;text-transform:uppercase;border:2px solid var(--gold)"><button class="btn btn-gold" onclick="registerPaid()" style="margin-top:10px">💎 REDEEM VOUCHER</button></div>
+<div class="voucher-box" style="border:2px solid var(--wa)"><div style="font-weight:900;color:var(--wa)">💬 WHATSAPP 27789313670 TO PAY</div><button class="btn btn-wa" onclick="whatsappPay(50)">💬 WHATSAPP 27789313670 R50</button></div>
+<div class="voucher-box"><input id="r_voucher" placeholder="BIGSAM-50-XXXXXX" style="text-align:center;font-weight:900;text-transform:uppercase;border:2px solid var(--gold)"><button class="btn btn-gold" onclick="registerPaid()" style="margin-top:10px">💎 REDEEM VOUCHER</button></div>
 <canvas id="wmCanvas"></canvas>
 </div>
-<div id="log">Free 3/month • Paid unlimited • Admin 27789313670 can Delete/Ban/Reset</div>
+<div id="log">📢 Broadcast popup • Free 3/month • Admin 27789313670 full control</div>
 </div>
 
 <div class="card hidden" id="profileCard">
@@ -77,41 +97,58 @@ canvas{display:none}
 <button class="btn btn2" onclick="logout()" style="margin-top:10px">Logout</button>
 </div>
 
-<div class="card hidden" id="adminAccess"><button class="btn" onclick="openAdmin()" style="background:linear-gradient(90deg,#00f2ff,#7000ff)">🛡️ ADMIN 27789313670 - DELETE / BAN / RESET</button></div>
+<div class="card hidden" id="adminAccess"><button class="btn" onclick="openAdmin()" style="background:linear-gradient(90deg,#00f2ff,#7000ff)">🛡️ ADMIN 27789313670 - BROADCAST + DELETE/BAN/RESET</button></div>
 
 <div class="card hidden" id="adminCard">
-<h3>🛡️ ADMIN 27789313670 — FULL CONTROL: DELETE / BAN / RESET PASSWORD</h3>
+<h3>🛡️ ADMIN 27789313670 — BROADCAST POPUP + FULL CONTROL</h3>
 
-<!-- ADMIN QUICK ACTIONS -->
-<div style="background:#111;padding:12px;border-radius:12px;border:2px solid var(--pink);margin-bottom:10px">
-<div style="font-weight:900;color:var(--pink);text-align:center">⚡ QUICK ADMIN ACTIONS</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
-<input id="adminSearchWA" placeholder="Search WhatsApp 2778..."><button class="btn btn2" onclick="searchUser()" style="padding:10px">🔍 Search User</button>
+<!-- BROADCAST CREATOR -->
+<div style="background:linear-gradient(135deg,#1a0010,#2a0a1a);padding:14px;border-radius:14px;border:2px solid var(--pink);margin-bottom:12px">
+<div style="font-weight:900;color:var(--pink);text-align:center;font-size:14px">📢 BROADCAST ANNOUNCEMENT — POPUP WHEN OPEN WEBSITE</div>
+<div style="font-size:10px;text-align:center;color:#aaa;margin:4px 0">This pop-up shows to everyone when they open website — 27789313670 only</div>
+<input id="broadcastTitle" placeholder="📢 Title - e.g. NEW UPDATE! R50 SPECIAL!" style="margin-top:8px">
+<textarea id="broadcastMessage" placeholder="📝 Message - e.g. Hello family! Today we have special... Free users upgrade to paid now via WhatsApp 27789313670 - Only 1 voucher per person!"></textarea>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<select id="broadcastType"><option value="info">🔵 Info - Blue</option><option value="warning">🟡 Warning - Gold</option><option value="urgent">🔴 Urgent - Red</option><option value="promo">🟢 Promo - Green</option></select>
+<input id="broadcastActionText" placeholder="Button text - e.g. WhatsApp Now">
 </div>
+<input id="broadcastActionLink" placeholder="Button action - e.g. https://wa.me/27789313670 or leave empty">
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px">
+<button class="btn" style="background:linear-gradient(90deg,var(--pink),#7000ff)" onclick="createBroadcast()">📢 BROADCAST NOW - POPUP</button>
+<button class="btn btn2" onclick="previewBroadcast()">👁️ Preview Popup</button>
+<button class="btn btn-red" onclick="clearBroadcast()">❌ Clear Broadcast</button>
+</div>
+<div id="activeBroadcastDisplay" style="margin-top:10px;background:#000;padding:10px;border-radius:10px;border:1px solid #333"></div>
+</div>
+
+<div style="background:#111;padding:12px;border-radius:12px;border:2px solid var(--gold);margin-bottom:10px">
+<div style="font-weight:900;color:var(--gold);text-align:center">🎫 CREATE VOUCHER</div>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px">
 <button class="btn btn-gold" onclick="createVoucher(50)">🎫 R50</button>
 <button class="btn" style="background:linear-gradient(90deg,#ff0055,#ff7a00)" onclick="createVoucher(99)">⭐ R99</button>
 <button class="btn" style="background:linear-gradient(90deg,#00f2ff,#7000ff)" onclick="createVoucher(150)">🔥 R150</button>
 </div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+<input id="adminSearchWA" placeholder="Search WA 2778..."><button class="btn btn2" onclick="searchUser()" style="padding:10px">🔍 Search</button>
+</div>
 </div>
 
 <div id="moneyStats"></div>
-<div id="voucherList" style="background:#000;padding:10px;border-radius:10px;border:1px solid #333;max-height:250px;overflow-y:auto;margin-top:10px"></div>
+<div id="voucherList" style="background:#000;padding:10px;border-radius:10px;border:1px solid #333;max-height:200px;overflow-y:auto;margin-top:10px"></div>
 
 <div class="tabs" style="margin-top:12px">
 <button id="tabV" class="active" onclick="adminTab('vouchers')">🎫 Vouchers</button>
-<button id="au" onclick="adminTab('users')">👥 All Users</button>
+<button id="tabB" onclick="adminTab('broadcasts')">📢 Broadcasts</button>
+<button id="au" onclick="adminTab('users')">👥 Paid</button>
 <button onclick="adminTab('free')">🆓 Free</button>
 <button onclick="adminTab('banned')">🚫 Banned</button>
-<button onclick="adminTab('pending')">⏳ Pending</button>
 </div>
 
 <div id="adminVouchers"></div>
+<div id="adminBroadcasts" class="hidden"></div>
 <div id="adminUsers" class="hidden"></div>
 <div id="adminFree" class="hidden"></div>
 <div id="adminBanned" class="hidden"></div>
-<div id="adminPending" class="hidden"></div>
-
 <div id="adminSearchResult" style="margin-top:10px"></div>
 
 <button class="btn btn2" onclick="closeAdmin()" style="margin-top:10px">Close Admin</button>
@@ -137,7 +174,6 @@ let currentUser=JSON.parse(localStorage.getItem('ai_user')||'null');
 const PRELOADED=[
 {code:'BIGSAM-50-K9X2M1',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},
 {code:'BIGSAM-50-A7B4C9',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},
-{code:'BIGSAM-50-P3Q8R2',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},
 {code:'BIGSAM-99-G8H2J5',amount:99,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},
 {code:'BIGSAM-150-M2C5X8',amount:150,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA}
 ];
@@ -145,29 +181,112 @@ if(!localStorage.getItem('vouchers')) localStorage.setItem('vouchers',JSON.strin
 function getVouchers(){return JSON.parse(localStorage.getItem('vouchers')||'[]');}
 function saveVouchers(v){localStorage.setItem('vouchers',JSON.stringify(v));}
 function formatWA(num){ let n=(num||'').replace(/[^0-9]/g,''); if(n.startsWith('0')) n='27'+n.substring(1); if(!n.startsWith('27')) n='27'+n; return n; }
-
 function getUploadsThisMonth(wa){ let all=JSON.parse(localStorage.getItem('uploads_'+wa)||'[]'); let now=new Date(); let ms=new Date(now.getFullYear(),now.getMonth(),1).getTime(); return all.filter(t=>t>=ms); }
 function addUploadRecord(wa){ let all=JSON.parse(localStorage.getItem('uploads_'+wa)||'[]'); all.push(Date.now()); localStorage.setItem('uploads_'+wa,JSON.stringify(all)); }
 
-function whatsappPay(amount){
-  let fname=document.getElementById('r_fname').value.trim(); let sname=document.getElementById('r_sname').value.trim(); let wa=document.getElementById('r_wa').value.trim();
-  if(!fname||!sname||!wa){ alert('Fill name and WhatsApp'); return; }
-  let waClean=formatWA(wa); let type=amount==50?'KYC R50':amount==99?'PREMIUM R99':'BOOST R150';
-  let msg=`Hi Admin ${ADMIN_WA} - ${fname} ${sname} - ${waClean} - Want ${type} - WhatsApp via website`;
-  window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(msg)}`,'_blank');
-}
-function createVoucher(amount){
+// BROADCAST SYSTEM - POPUP WHEN OPEN WEBSITE
+function getBroadcasts(){ return JSON.parse(localStorage.getItem('broadcasts')||'[]'); }
+function getActiveBroadcast(){ return JSON.parse(localStorage.getItem('active_broadcast')||'null'); }
+function saveActiveBroadcast(b){ localStorage.setItem('active_broadcast',JSON.stringify(b)); }
+
+function createBroadcast(){
   if(!currentUser||formatWA(currentUser.whatsapp)!==ADMIN_WA) return alert(`Only admin ${ADMIN_WA}!`);
-  let code='BIGSAM-'+amount+'-'+Math.random().toString(36).substring(2,8).toUpperCase();
-  let v=getVouchers(); v.push({code,amount,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA}); saveVouchers(v); renderVouchers();
-  alert(`✅ VOUCHER ${code} R${amount} - Admin ${ADMIN_WA}`); navigator.clipboard.writeText(code);
+  let title=document.getElementById('broadcastTitle').value.trim();
+  let msg=document.getElementById('broadcastMessage').value.trim();
+  let type=document.getElementById('broadcastType').value;
+  let actionText=document.getElementById('broadcastActionText').value.trim()||`WhatsApp ${ADMIN_WA}`;
+  let actionLink=document.getElementById('broadcastActionLink').value.trim()||`https://wa.me/${ADMIN_WA}`;
+  if(!title||!msg) return alert('Enter title and message for broadcast popup');
+  let broadcast={id:Date.now(),title,msg,type,actionText,actionLink,created:Date.now(),createdBy:ADMIN_WA,active:true};
+  let all=getBroadcasts(); all.push(broadcast); localStorage.setItem('broadcasts',JSON.stringify(all));
+  saveActiveBroadcast(broadcast);
+  alert(`📢 BROADCAST CREATED BY ADMIN ${ADMIN_WA}!\n\nTitle: ${title}\n\nNow everyone will see popup when they open website!`);
+  document.getElementById('broadcastTitle').value=''; document.getElementById('broadcastMessage').value='';
+  renderBroadcasts(); showBroadcastPopup(broadcast);
 }
-function renderVouchers(){
-  let vs=getVouchers().slice().reverse(); let used=vs.filter(v=>v.used).length, avail=vs.filter(v=>!v.used).length, money=vs.filter(v=>v.used).reduce((s,v)=>s+v.amount,0);
-  document.getElementById('moneyStats').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;text-align:center;background:#111;padding:10px;border-radius:10px;border:1px solid var(--gold)"><div><div style="font-size:16px;font-weight:900;color:var(--gold)">${vs.length}</div><div style="font-size:9px">Total</div></div><div><div style="font-size:16px;font-weight:900;color:var(--green)">${avail}</div><div style="font-size:9px">Available</div></div><div><div style="font-size:16px;font-weight:900;color:#ff3344">${used}</div><div style="font-size:9px">Used</div></div><div><div style="font-size:16px;font-weight:900;color:var(--gold)">R${money}</div><div style="font-size:9px">Revenue</div></div></div>`;
-  document.getElementById('voucherList').innerHTML=vs.map(v=>`<div style="display:flex;justify-content:space-between;align-items:center;background:${v.used?'#1a0000':'#111'};padding:6px;border-radius:8px;margin:4px 0;border:1px solid ${v.used?'#ff3344':'#ffcc00'}"><div><div class="voucher-code" style="font-size:11px">${v.code}</div><div style="font-size:9px">${v.used?'🔴 USED '+v.usedBy:'🟢 AVAILABLE'} | R${v.amount}</div></div><div><button class="small-btn" style="background:var(--gold);color:#000" onclick="copyVoucher('${v.code}')">📋</button><button class="small-btn btn-red" onclick="deleteVoucher('${v.code}')">🗑️</button></div></div>`).join('');
-  document.getElementById('adminVouchers').innerHTML=document.getElementById('voucherList').innerHTML;
+
+function previewBroadcast(){
+  let title=document.getElementById('broadcastTitle').value.trim()||'📢 PREVIEW ANNOUNCEMENT';
+  let msg=document.getElementById('broadcastMessage').value.trim()||'This is preview of your broadcast popup message...';
+  let type=document.getElementById('broadcastType').value;
+  let actionText=document.getElementById('broadcastActionText').value.trim()||`WhatsApp ${ADMIN_WA}`;
+  let actionLink=document.getElementById('broadcastActionLink').value.trim()||`https://wa.me/${ADMIN_WA}`;
+  let preview={title,msg,type,actionText,actionLink,created:Date.now(),createdBy:ADMIN_WA};
+  showBroadcastPopup(preview);
 }
+
+function clearBroadcast(){
+  if(!confirm(`❌ Clear active broadcast popup?\n\nNo popup will show when users open website.\n\nAdmin ${ADMIN_WA} confirm?`)) return;
+  localStorage.removeItem('active_broadcast');
+  alert(`✅ Broadcast popup cleared by admin ${ADMIN_WA} - No popup will show now`);
+  renderBroadcasts();
+  closeBroadcast();
+}
+
+function showBroadcastPopup(b){
+  if(!b) return;
+  document.getElementById('bTitle').innerText=b.title;
+  document.getElementById('bMsg').innerText=b.msg;
+  document.getElementById('bMeta').innerText=`📢 From Admin ${b.createdBy} • ${new Date(b.created).toLocaleString()} • ${b.type.toUpperCase()}`;
+  document.getElementById('bActionBtn').innerText=b.actionText||`💬 WhatsApp ${ADMIN_WA}`;
+  let popup=document.getElementById('broadcastPopup');
+  // Color by type
+  if(b.type==='warning') popup.style.borderColor='#ffcc00';
+  else if(b.type==='urgent') popup.style.borderColor='#ff3344';
+  else if(b.type==='promo') popup.style.borderColor='#00ff88';
+  else popup.style.borderColor='#00f2ff';
+  document.getElementById('broadcastOverlay').classList.remove('hidden');
+  // Store for action button
+  window._currentBroadcast=b;
+}
+
+function closeBroadcast(){
+  document.getElementById('broadcastOverlay').classList.add('hidden');
+  let dontShow=document.getElementById('dontShowToday');
+  if(dontShow&&dontShow.checked){
+    let b=getActiveBroadcast();
+    if(b) localStorage.setItem('broadcast_dismissed_'+b.id, new Date().toDateString());
+  }
+}
+
+function handleBroadcastAction(){
+  let b=window._currentBroadcast;
+  if(!b) return;
+  let link=b.actionLink||`https://wa.me/${ADMIN_WA}`;
+  window.open(link,'_blank');
+  closeBroadcast();
+}
+
+// Check on page load if should show broadcast popup
+function checkBroadcastOnLoad(){
+  let active=getActiveBroadcast();
+  if(!active) return;
+  let dismissed=localStorage.getItem('broadcast_dismissed_'+active.id);
+  if(dismissed===new Date().toDateString()) return; // Don't show if dismissed today
+  setTimeout(()=>showBroadcastPopup(active),1500); // Show after 1.5 sec
+}
+
+function renderBroadcasts(){
+  let active=getActiveBroadcast();
+  let all=getBroadcasts().slice().reverse();
+  document.getElementById('activeBroadcastDisplay').innerHTML=active?`<div style="font-size:11px"><b style="color:var(--green)">🟢 ACTIVE POPUP:</b> ${active.title}<br><small>${active.msg.substring(0,80)}... • ${new Date(active.created).toLocaleString()}</small></div>`:`<div style="font-size:11px;color:#888">No active broadcast popup - No popup shows when open website</div>`;
+  document.getElementById('adminBroadcasts').innerHTML=all.length===0?'<div style="text-align:center;color:#888">No broadcasts yet - Create one - Admin 27789313670</div>':all.map(b=>`
+  <div class="admin-user-card" style="border-color:${b.type==='urgent'?'#ff3344':b.type==='warning'?'#ffcc00':b.type==='promo'?'#00ff88':'#00f2ff'};background:${b.id===active?.id?'#1a1a00':'#111'}">
+    <div><b>${b.active&&b.id===active?.id?'🟢 ACTIVE POPUP • ':''}${b.title}</b> <small style="color:#888">${b.type} • ${new Date(b.created).toLocaleString()}</small><br><small>${b.msg.substring(0,120)}...</small></div>
+    <div style="display:flex;gap:4px;margin-top:8px">
+      <button class="small-btn btn-green" onclick="activateBroadcast(${b.id})">📢 Activate Popup</button>
+      <button class="small-btn btn2" onclick="showBroadcastById(${b.id})">👁️ Preview</button>
+      <button class="small-btn btn-red" onclick="deleteBroadcast(${b.id})">🗑️ Delete</button>
+    </div>
+  </div>`).join('');
+}
+function showBroadcastById(id){ let b=getBroadcasts().find(x=>x.id===id); if(b) showBroadcastPopup(b); }
+function activateBroadcast(id){ let b=getBroadcasts().find(x=>x.id===id); if(b){ saveActiveBroadcast(b); alert(`📢 Activated popup: ${b.title} - Now shows when open website`); renderBroadcasts(); } }
+function deleteBroadcast(id){ if(!confirm('Delete broadcast '+id+'?'))return; let all=getBroadcasts().filter(x=>x.id!==id); localStorage.setItem('broadcasts',JSON.stringify(all)); let active=getActiveBroadcast(); if(active&&active.id===id) localStorage.removeItem('active_broadcast'); renderBroadcasts(); }
+
+function whatsappPay(amount){ let fname=document.getElementById('r_fname').value.trim(); let sname=document.getElementById('r_sname').value.trim(); let wa=document.getElementById('r_wa').value.trim(); if(!fname||!sname||!wa){ alert('Fill name and WhatsApp'); return; } let waClean=formatWA(wa); let msg=`Hi Admin ${ADMIN_WA} - ${fname} ${sname} - ${waClean} - Want R${amount} - WhatsApp via website`; window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(msg)}`,'_blank'); }
+function createVoucher(amount){ if(!currentUser||formatWA(currentUser.whatsapp)!==ADMIN_WA) return alert(`Only admin ${ADMIN_WA}!`); let code='BIGSAM-'+amount+'-'+Math.random().toString(36).substring(2,8).toUpperCase(); let v=getVouchers(); v.push({code,amount,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA}); saveVouchers(v); renderVouchers(); alert(`✅ VOUCHER ${code} R${amount}`); navigator.clipboard.writeText(code); }
+function renderVouchers(){ let vs=getVouchers().slice().reverse(); let used=vs.filter(v=>v.used).length, avail=vs.filter(v=>!v.used).length, money=vs.filter(v=>v.used).reduce((s,v)=>s+v.amount,0); document.getElementById('moneyStats').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;text-align:center;background:#111;padding:10px;border-radius:10px;border:1px solid var(--gold)"><div><div style="font-size:16px;font-weight:900;color:var(--gold)">${vs.length}</div><div style="font-size:9px">Total</div></div><div><div style="font-size:16px;font-weight:900;color:var(--green)">${avail}</div><div style="font-size:9px">Available</div></div><div><div style="font-size:16px;font-weight:900;color:#ff3344">${used}</div><div style="font-size:9px">Used</div></div><div><div style="font-size:16px;font-weight:900;color:var(--gold)">R${money}</div><div style="font-size:9px">Revenue</div></div></div>`; document.getElementById('voucherList').innerHTML=vs.map(v=>`<div style="display:flex;justify-content:space-between;align-items:center;background:${v.used?'#1a0000':'#111'};padding:6px;border-radius:8px;margin:4px 0;border:1px solid ${v.used?'#ff3344':'#ffcc00'}"><div><div class="voucher-code" style="font-size:11px">${v.code}</div><div style="font-size:9px">${v.used?'🔴 USED '+v.usedBy:'🟢 AVAILABLE'} | R${v.amount}</div></div><div><button class="small-btn" style="background:var(--gold);color:#000" onclick="copyVoucher('${v.code}')">📋</button><button class="small-btn btn-red" onclick="deleteVoucher('${v.code}')">🗑️</button></div></div>`).join(''); document.getElementById('adminVouchers').innerHTML=document.getElementById('voucherList').innerHTML; }
 function copyVoucher(c){navigator.clipboard.writeText(c); alert('Copied '+c);}
 function deleteVoucher(c){if(!confirm('Delete voucher '+c+'?'))return; saveVouchers(getVouchers().filter(x=>x.code!==c)); renderVouchers();}
 function validateVoucher(code,exp){ let v=getVouchers().find(v=>v.code.toUpperCase()===code.toUpperCase()); if(!v) return {valid:false,msg:`❌ Invalid voucher - Not from ${ADMIN_WA}`}; if(v.used) return {valid:false,msg:`❌ Already used by ${v.usedBy}`}; if(exp&&v.amount!==exp) return {valid:false,msg:`❌ This is R${v.amount} not R${exp}`}; return {valid:true,voucher:v}; }
@@ -192,7 +311,6 @@ async function registerFree(){
   if(!fname||!sname||!wa||!role||!pin) return setLog('❌ Fill all for free');
   let waClean=formatWA(wa); let users=JSON.parse(localStorage.getItem('ai_users')||'[]');
   if(users.find(u=>formatWA(u.whatsapp)===waClean)) return setLog(`❌ ${waClean} already exists`);
-  if(users.find(u=>u.banned===true&&formatWA(u.whatsapp)===waClean)) return setLog(`❌ This number is banned`);
   let u={name:fname+' '+sname,first_name:fname,surname:sname,whatsapp:waClean,role,pin,profile_pic:DEFAULT_NEON,verified:'free',account_type:'free',voucher:'FREE-3SONGS',banned:false,created_at:new Date().toISOString()};
   users.push(u); localStorage.setItem('ai_users',JSON.stringify(users)); setLog('✅ FREE REGISTERED 3/month'); tab('login');
 }
@@ -211,16 +329,12 @@ async function registerPaid(){
   users.push(u); localStorage.setItem('ai_users',JSON.stringify(users)); useVoucher(voucherCode,waClean); setLog(`✅ PAID REGISTERED Unlimited - ${voucherCode}`); tab('login');
  }catch(e){setLog('❌ Fail '+e.message);}
 }
-
 async function login(){
   let wa=document.getElementById('l_wa').value, pin=document.getElementById('l_pin').value;
   if(!wa||!pin) return setLog('❌ Enter WhatsApp and PIN');
   let waClean=formatWA(wa); let users=JSON.parse(localStorage.getItem('ai_users')||'[]');
   let found=users.find(u=>formatWA(u.whatsapp)===waClean);
-  if(found&&found.banned===true){
-    document.getElementById('bannedMsg').innerText=`🚫 This account ${waClean} is BANNED by admin ${ADMIN_WA} - Contact admin`;
-    return setLog(`🚫 BANNED - ${waClean} cannot login - Admin ${ADMIN_WA} banned you`);
-  }
+  if(found&&found.banned===true){ document.getElementById('bannedMsg').innerText=`🚫 BANNED ${waClean} by admin ${ADMIN_WA} - Reason: ${found.ban_reason||'Violation'}`; return setLog(`🚫 BANNED`); }
   let match=users.find(u=>formatWA(u.whatsapp)===waClean&&u.pin===pin);
   if(!match) return setLog('❌ Wrong WhatsApp or PIN');
   currentUser=match; localStorage.setItem('ai_user',JSON.stringify(currentUser)); render();
@@ -235,10 +349,9 @@ function render(){
   let isFree=currentUser.account_type==='free'||currentUser.voucher==='FREE-3SONGS';
   let uploads=getUploadsThisMonth(formatWA(currentUser.whatsapp));
   let badge=isFree?`<span class="badge badge-free">🆓 FREE 3/MONTH</span>`:currentUser.verified===true||currentUser.verified==='approved'?'<span class="badge badge-verified">✅ VERIFIED UNLIMITED</span>':'<span class="badge" style="background:rgba(255,200,0,.15);color:#ffcc00">⏳ PENDING</span>';
-  if(currentUser.banned) badge+=` <span class="badge badge-banned">🚫 BANNED</span>`;
   document.getElementById('profileInfo').innerHTML=`<b>${currentUser.first_name||''} ${currentUser.surname||''}</b> ${isFree?'🆓':'💎'}<br><small>📱 ${formatWA(currentUser.whatsapp)}<br>${isFree?`🆓 ${uploads.length}/3 this month`:`💎 ${currentUser.voucher||''}`}</small>`;
   document.getElementById('verifyBadge').innerHTML=badge;
-  document.getElementById('uploadLimitInfo').innerHTML=isFree?`<div style="color:var(--cyan)">🆓 FREE: <b>${uploads.length}/3</b> used this month - ${3-uploads.length} left</div>`:`<div style="color:var(--gold)">💎 PAID UNLIMITED</div>`;
+  document.getElementById('uploadLimitInfo').innerHTML=isFree?`<div style="color:var(--cyan)">🆓 FREE: <b>${uploads.length}/3</b> used - ${3-uploads.length} left</div>`:`<div style="color:var(--gold)">💎 PAID UNLIMITED</div>`;
   document.getElementById('uploadLimitText').innerText=isFree?`FREE ${uploads.length}/3`:'UNLIMITED';
   document.getElementById('authBtn').innerText='👤 '+(currentUser.first_name||'Me');
   if(formatWA(currentUser.whatsapp)===ADMIN_WA) document.getElementById('adminAccess').classList.remove('hidden');
@@ -250,140 +363,44 @@ function render(){
  }
  loadFeed(); if(currentUser&&formatWA(currentUser.whatsapp)===ADMIN_WA) renderVouchers();
 }
-
-// ADMIN FUNCTIONS - DELETE / BAN / RESET PASSWORD
 function getAllUsers(){return JSON.parse(localStorage.getItem('ai_users')||'[]');}
 function saveAllUsers(list){localStorage.setItem('ai_users',JSON.stringify(list));}
-
-function deleteUser(wa){
-  if(!confirm(`⚠️ DELETE USER ${wa}?\n\nThis will permanently delete:\n- User account\n- Upload history\n- Cannot be undone!\n\nAdmin ${ADMIN_WA} confirm delete?`)) return;
-  let users=getAllUsers().filter(u=>formatWA(u.whatsapp)!==formatWA(wa));
-  saveAllUsers(users);
-  localStorage.removeItem('uploads_'+formatWA(wa));
-  alert(`✅ DELETED ${wa} by admin ${ADMIN_WA}`);
-  openAdmin(); render();
-}
-
-function banUser(wa){
-  let reason=prompt(`🚫 BAN USER ${wa}\n\nEnter ban reason (user will see this):`,"Violation of terms");
-  if(reason===null) return;
-  let users=getAllUsers(); let idx=users.findIndex(u=>formatWA(u.whatsapp)===formatWA(wa));
-  if(idx>=0){ users[idx].banned=true; users[idx].ban_reason=reason; users[idx].banned_at=Date.now(); users[idx].banned_by=ADMIN_WA; saveAllUsers(users); alert(`🚫 BANNED ${wa}\nReason: ${reason}\nBy admin ${ADMIN_WA}`); openAdmin(); }
-}
-
-function unbanUser(wa){
-  if(!confirm(`✅ UNBAN USER ${wa}?\n\nAdmin ${ADMIN_WA} will unban this account`)) return;
-  let users=getAllUsers(); let idx=users.findIndex(u=>formatWA(u.whatsapp)===formatWA(wa));
-  if(idx>=0){ users[idx].banned=false; users[idx].ban_reason=null; users[idx].unbanned_at=Date.now(); saveAllUsers(users); alert(`✅ UNBANNED ${wa} by admin ${ADMIN_WA}`); openAdmin(); }
-}
-
-function resetPassword(wa){
-  let newPin=prompt(`🔑 RESET PASSWORD FOR ${wa}\n\nAdmin ${ADMIN_WA}\n\nEnter new 4-digit PIN for this user:`,"1234");
-  if(!newPin) return;
-  if(newPin.length<4){ alert('PIN must be at least 4 digits'); return; }
-  let users=getAllUsers(); let idx=users.findIndex(u=>formatWA(u.whatsapp)===formatWA(wa));
-  if(idx>=0){
-    let oldPin=users[idx].pin;
-    users[idx].pin=newPin;
-    users[idx].password_reset_at=Date.now();
-    users[idx].password_reset_by=ADMIN_WA;
-    saveAllUsers(users);
-    alert(`✅ PASSWORD RESET FOR ${wa}\n\nOld PIN: ${oldPin}\nNew PIN: ${newPin}\nBy admin ${ADMIN_WA}\n\nSend new PIN to user via WhatsApp 27789313670`);
-    // Offer to WhatsApp new PIN
-    if(confirm(`Send new PIN ${newPin} to user ${wa} via WhatsApp 27789313670?`)){
-      let msg=`Hi ${users[idx].first_name} - Your password was reset by admin ${ADMIN_WA}\n\nYour new PIN: ${newPin}\nWhatsApp: ${wa}\nLogin at website now\n\nAdmin: ${ADMIN_WA}`;
-      window.open(`https://wa.me/${formatWA(wa)}?text=${encodeURIComponent(msg)}`,'_blank');
-    }
-    openAdmin();
-  }
-}
-
-function resetUploadLimit(wa){
-  if(!confirm(`🔄 RESET UPLOAD LIMIT FOR ${wa}?\n\nFree user has ${getUploadsThisMonth(formatWA(wa)).length}/3 uploads this month.\nReset to 0/3?\n\nAdmin ${ADMIN_WA}`)) return;
-  localStorage.setItem('uploads_'+formatWA(wa),JSON.stringify([]));
-  alert(`✅ Upload limit reset for ${wa} - Now 0/3 by admin ${ADMIN_WA}`);
-  openAdmin(); render();
-}
-
-function searchUser(){
-  let wa=document.getElementById('adminSearchWA').value.trim();
-  if(!wa) return alert('Enter WhatsApp 2778...');
-  wa=formatWA(wa);
-  let users=getAllUsers(); let u=users.find(x=>formatWA(x.whatsapp)===wa);
-  if(!u){ document.getElementById('adminSearchResult').innerHTML=`<div class="card" style="border-color:#ff3344"><b>❌ Not found:</b> ${wa}<br>Admin ${ADMIN_WA}</div>`; return; }
-  let uploads=getUploadsThisMonth(wa).length;
-  document.getElementById('adminSearchResult').innerHTML=`
-  <div class="admin-user-card" style="border:2px solid var(--pink)">
-    <div style="display:flex;gap:12px"><img src="${u.profile_pic||DEFAULT_NEON}" style="width:50px;height:50px;border-radius:50%"><div><b>${u.first_name} ${u.surname}</b><br>📱 ${wa}<br>${u.account_type==='free'?'🆓 FREE '+uploads+'/3':'💎 PAID '+u.voucher} ${u.banned?'<span class="badge badge-banned">🚫 BANNED</span>':''}</div></div>
-    <div style="font-size:10px;margin-top:8px">PIN: ${u.pin} | Verified: ${u.verified} | Role: ${u.role} | Created: ${new Date(u.created_at).toLocaleDateString()} ${u.ban_reason?'<br>Ban Reason: '+u.ban_reason:''}</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px">
-      <button class="small-btn btn-green" onclick="resetPassword('${wa}')">🔑 Reset Password</button>
-      <button class="small-btn" style="background:#00f2ff;color:#000" onclick="resetUploadLimit('${wa}')">🔄 Reset 3 Songs Limit</button>
-      ${u.banned?`<button class="small-btn btn-green" onclick="unbanUser('${wa}')">✅ Unban</button>`:`<button class="small-btn" style="background:#ff8800;color:#fff" onclick="banUser('${wa}')">🚫 Ban User</button>`}
-      <button class="small-btn btn-red" onclick="deleteUser('${wa}')">🗑️ Delete User</button>
-      <button class="small-btn btn2" onclick="setVerification('${wa}','approved')">✅ Approve</button>
-      <button class="small-btn btn2" onclick="window.open('https://wa.me/${wa}?text=Hi%20from%20admin%20${ADMIN_WA}','_blank')">💬 WhatsApp User</button>
-    </div>
-  </div>`;
-}
-
+function deleteUser(wa){ if(!confirm(`DELETE USER ${wa}? Permanent! Admin ${ADMIN_WA}?`)) return; let users=getAllUsers().filter(u=>formatWA(u.whatsapp)!==formatWA(wa)); saveAllUsers(users); localStorage.removeItem('uploads_'+formatWA(wa)); alert(`✅ DELETED ${wa} by admin ${ADMIN_WA}`); openAdmin(); render(); }
+function banUser(wa){ let reason=prompt(`BAN USER ${wa} - Enter reason:`, "Violation"); if(reason===null) return; let users=getAllUsers(); let idx=users.findIndex(u=>formatWA(u.whatsapp)===formatWA(wa)); if(idx>=0){ users[idx].banned=true; users[idx].ban_reason=reason; users[idx].banned_at=Date.now(); users[idx].banned_by=ADMIN_WA; saveAllUsers(users); alert(`🚫 BANNED ${wa}`); openAdmin(); } }
+function unbanUser(wa){ if(!confirm(`UNBAN ${wa}? Admin ${ADMIN_WA}`)) return; let users=getAllUsers(); let idx=users.findIndex(u=>formatWA(u.whatsapp)===formatWA(wa)); if(idx>=0){ users[idx].banned=false; users[idx].ban_reason=null; saveAllUsers(users); alert(`✅ UNBANNED ${wa}`); openAdmin(); } }
+function resetPassword(wa){ let newPin=prompt(`RESET PASSWORD FOR ${wa} - Enter new PIN:`, "1234"); if(!newPin) return; let users=getAllUsers(); let idx=users.findIndex(u=>formatWA(u.whatsapp)===formatWA(wa)); if(idx>=0){ let oldPin=users[idx].pin; users[idx].pin=newPin; users[idx].password_reset_by=ADMIN_WA; saveAllUsers(users); alert(`✅ RESET ${wa} Old:${oldPin} New:${newPin} by admin ${ADMIN_WA}`); if(confirm(`Send new PIN to ${wa} via WhatsApp?`)){ window.open(`https://wa.me/${formatWA(wa)}?text=${encodeURIComponent(`Hi ${users[idx].first_name} - New PIN: ${newPin} from admin ${ADMIN_WA}`)}`,'_blank'); } openAdmin(); } }
+function resetUploadLimit(wa){ if(!confirm(`Reset limit for ${wa}? Admin ${ADMIN_WA}`)) return; localStorage.setItem('uploads_'+formatWA(wa),JSON.stringify([])); alert(`✅ Reset ${wa} to 0/3`); openAdmin(); render(); }
+function searchUser(){ let wa=document.getElementById('adminSearchWA').value.trim(); if(!wa) return alert('Enter WA'); wa=formatWA(wa); let users=getAllUsers(); let u=users.find(x=>formatWA(x.whatsapp)===wa); if(!u){ document.getElementById('adminSearchResult').innerHTML=`<div class="card" style="border-color:#ff3344">❌ Not found ${wa}</div>`; return; } let uploads=getUploadsThisMonth(wa).length; document.getElementById('adminSearchResult').innerHTML=`<div class="admin-user-card" style="border:2px solid var(--pink)"><div><b>${u.first_name} ${u.surname}</b> - ${wa} - PIN:${u.pin} - ${u.account_type==='free'?'🆓 FREE '+uploads+'/3':'💎 PAID '+u.voucher} ${u.banned?'<span class="badge badge-banned">BANNED</span>':''}</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><button class="small-btn btn-green" onclick="resetPassword('${wa}')">🔑 Reset PIN</button><button class="small-btn" style="background:#00f2ff;color:#000" onclick="resetUploadLimit('${wa}')">🔄 Reset Limit</button>${u.banned?`<button class="small-btn btn-green" onclick="unbanUser('${wa}')">✅ Unban</button>`:`<button class="small-btn" style="background:#ff8800;color:#fff" onclick="banUser('${wa}')">🚫 Ban</button>`}<button class="small-btn btn-red" onclick="deleteUser('${wa}')">🗑️ Delete</button></div></div>`; }
 function setVerification(wa,status){let users=getAllUsers(); let idx=users.findIndex(u=>formatWA(u.whatsapp)===formatWA(wa)); if(idx>=0){users[idx].verified=status; saveAllUsers(users);} if(currentUser&&formatWA(currentUser.whatsapp)===formatWA(wa)){currentUser.verified=status; localStorage.setItem('ai_user',JSON.stringify(currentUser));} openAdmin(); render();}
-
 async function openAdmin(){
  if(!currentUser||formatWA(currentUser.whatsapp)!==ADMIN_WA) return alert(`Only admin ${ADMIN_WA}!`);
  document.getElementById('adminCard').classList.remove('hidden');
- renderVouchers();
- adminTab('vouchers');
+ renderVouchers(); renderBroadcasts(); adminTab('vouchers');
  let list=getAllUsers();
- document.getElementById('adminUsers').innerHTML=`<div style="overflow-x:auto">${list.filter(u=>u.account_type!=='free'&&u.voucher!=='FREE-3SONGS').map(u=>`
- <div class="admin-user-card">
-   <div style="display:flex;justify-content:space-between"><div style="display:flex;gap:8px"><img src="${u.profile_pic||DEFAULT_NEON}" style="width:36px;height:36px;border-radius:50%"><div><b>${u.first_name} ${u.surname}</b><br><small>${formatWA(u.whatsapp)} • PIN: ${u.pin} • ${u.voucher||''} ${u.banned?'<span class="badge badge-banned">BANNED</span>':''}</small></div></div><div><small>${u.verified}</small></div></div>
-   <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px">
-     <button class="small-btn btn-green" onclick="resetPassword('${formatWA(u.whatsapp)}')">🔑 Reset PIN</button>
-     ${u.banned?`<button class="small-btn btn-green" onclick="unbanUser('${formatWA(u.whatsapp)}')">✅ Unban</button>`:`<button class="small-btn" style="background:#ff8800;color:#fff" onclick="banUser('${formatWA(u.whatsapp)}')">🚫 Ban</button>`}
-     <button class="small-btn btn-red" onclick="deleteUser('${formatWA(u.whatsapp)}')">🗑️ Delete</button>
-     <button class="small-btn btn2" onclick="setVerification('${formatWA(u.whatsapp)}','approved')">✅ Approve</button>
-     <button class="small-btn btn2" onclick="window.open('https://wa.me/${formatWA(u.whatsapp)}?text=Hi%20from%20admin%20${ADMIN_WA}','_blank')">💬 WA</button>
-   </div>
- </div>`).join('')}</div>`;
-
- document.getElementById('adminFree').innerHTML=`<div>${list.filter(u=>u.account_type==='free'||u.voucher==='FREE-3SONGS').map(u=>{let up=getUploadsThisMonth(formatWA(u.whatsapp)).length; return `
- <div class="admin-user-card" style="border-color:var(--cyan)">
-   <div><b>${u.first_name} ${u.surname}</b> - ${formatWA(u.whatsapp)} - PIN: ${u.pin} - ${up}/3 ${u.banned?'<span class="badge badge-banned">BANNED</span>':''}</div>
-   <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px">
-     <button class="small-btn btn-green" onclick="resetPassword('${formatWA(u.whatsapp)}')">🔑 Reset PIN</button>
-     <button class="small-btn" style="background:#00f2ff;color:#000" onclick="resetUploadLimit('${formatWA(u.whatsapp)}')">🔄 Reset Limit ${up}/3</button>
-     ${u.banned?`<button class="small-btn btn-green" onclick="unbanUser('${formatWA(u.whatsapp)}')">✅ Unban</button>`:`<button class="small-btn" style="background:#ff8800;color:#fff" onclick="banUser('${formatWA(u.whatsapp)}')">🚫 Ban</button>`}
-     <button class="small-btn btn-red" onclick="deleteUser('${formatWA(u.whatsapp)}')">🗑️ Delete</button>
-   </div>
- </div>`;}).join('')}</div>`;
-
- document.getElementById('adminBanned').innerHTML=`<h4>🚫 Banned Users (${list.filter(u=>u.banned).length})</h4><div>${list.filter(u=>u.banned).map(u=>`
- <div class="admin-user-card" style="border-color:#ff3344;background:#1a0000">
-   <b>${u.first_name} ${u.surname}</b> - ${formatWA(u.whatsapp)}<br><small>Reason: ${u.ban_reason||'No reason'} • Banned by ${u.banned_by} • ${new Date(u.banned_at).toLocaleString()}</small><br>
-   <div style="margin-top:8px"><button class="small-btn btn-green" onclick="unbanUser('${formatWA(u.whatsapp)}')">✅ Unban</button><button class="small-btn btn-red" onclick="deleteUser('${formatWA(u.whatsapp)}')">🗑️ Delete Permanently</button></div>
- </div>`).join('')||'<div style="color:#888;text-align:center">No banned users</div>'}</div>`;
-
- let pending=list.filter(u=>u.verified!=='approved'&&u.verified!==true&&u.account_type!=='free'&&!u.banned);
- document.getElementById('adminPending').innerHTML=`<h4>⏳ Pending Paid (${pending.length})</h4>${pending.map(u=>`<div class="card"><b>${u.first_name} ${u.surname}</b> - ${formatWA(u.whatsapp)} - PIN: ${u.pin} - Voucher ${u.voucher}<br><div style="display:flex;gap:6px;margin-top:8px"><button class="btn btn-green" onclick="setVerification('${formatWA(u.whatsapp)}','approved')" style="flex:1">✅ APPROVE</button><button class="btn btn-red" onclick="deleteUser('${formatWA(u.whatsapp)}')" style="flex:1">🗑️ DELETE</button><button class="btn btn2" onclick="resetPassword('${formatWA(u.whatsapp)}')" style="flex:1">🔑 RESET PIN</button></div></div>`).join('')}`;
+ document.getElementById('adminUsers').innerHTML=`<div>${list.filter(u=>u.account_type!=='free'&&u.voucher!=='FREE-3SONGS').map(u=>`<div class="admin-user-card"><div><b>${u.first_name} ${u.surname}</b> - ${formatWA(u.whatsapp)} - PIN:${u.pin} - ${u.voucher} ${u.banned?'<span class="badge badge-banned">BANNED</span>':''}</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px"><button class="small-btn btn-green" onclick="resetPassword('${formatWA(u.whatsapp)}')">🔑 Reset</button>${u.banned?`<button class="small-btn btn-green" onclick="unbanUser('${formatWA(u.whatsapp)}')">✅ Unban</button>`:`<button class="small-btn" style="background:#ff8800;color:#fff" onclick="banUser('${formatWA(u.whatsapp)}')">🚫 Ban</button>`}<button class="small-btn btn-red" onclick="deleteUser('${formatWA(u.whatsapp)}')">🗑️ Delete</button><button class="small-btn btn2" onclick="setVerification('${formatWA(u.whatsapp)}','approved')">✅ Approve</button></div></div>`).join('')}</div>`;
+ document.getElementById('adminFree').innerHTML=`<div>${list.filter(u=>u.account_type==='free'||u.voucher==='FREE-3SONGS').map(u=>{let up=getUploadsThisMonth(formatWA(u.whatsapp)).length; return `<div class="admin-user-card" style="border-color:var(--cyan)"><div><b>${u.first_name} ${u.surname}</b> - ${formatWA(u.whatsapp)} - PIN:${u.pin} - ${up}/3 ${u.banned?'<span class="badge badge-banned">BANNED</span>':''}</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px"><button class="small-btn btn-green" onclick="resetPassword('${formatWA(u.whatsapp)}')">🔑 Reset</button><button class="small-btn" style="background:#00f2ff;color:#000" onclick="resetUploadLimit('${formatWA(u.whatsapp)}')">🔄 Reset ${up}/3</button>${u.banned?`<button class="small-btn btn-green" onclick="unbanUser('${formatWA(u.whatsapp)}')">✅ Unban</button>`:`<button class="small-btn" style="background:#ff8800;color:#fff" onclick="banUser('${formatWA(u.whatsapp)}')">🚫 Ban</button>`}<button class="small-btn btn-red" onclick="deleteUser('${formatWA(u.whatsapp)}')">🗑️ Delete</button></div></div>`;}).join('')}</div>`;
+ document.getElementById('adminBanned').innerHTML=`<h4>🚫 Banned (${list.filter(u=>u.banned).length})</h4>${list.filter(u=>u.banned).map(u=>`<div class="admin-user-card" style="border-color:#ff3344;background:#1a0000"><b>${u.first_name} ${u.surname}</b> - ${formatWA(u.whatsapp)}<br><small>Reason: ${u.ban_reason} • ${new Date(u.banned_at).toLocaleString()}</small><br><button class="small-btn btn-green" onclick="unbanUser('${formatWA(u.whatsapp)}')">✅ Unban</button><button class="small-btn btn-red" onclick="deleteUser('${formatWA(u.whatsapp)}')">🗑️ Delete</button></div>`).join('')||'No banned'}`;
 }
 function adminTab(t){
   document.getElementById('tabV').classList.toggle('active',t==='vouchers');
+  document.getElementById('tabB').classList.toggle('active',t==='broadcasts');
   document.getElementById('au').classList.toggle('active',t==='users');
   document.getElementById('adminVouchers').classList.toggle('hidden',t!=='vouchers');
+  document.getElementById('adminBroadcasts').classList.toggle('hidden',t!=='broadcasts');
   document.getElementById('adminUsers').classList.toggle('hidden',t!=='users');
   document.getElementById('adminFree').classList.toggle('hidden',t!=='free');
   document.getElementById('adminBanned').classList.toggle('hidden',t!=='banned');
-  document.getElementById('adminPending').classList.toggle('hidden',t!=='pending');
   document.getElementById('voucherList').classList.toggle('hidden',t!=='vouchers');
   document.getElementById('moneyStats').classList.toggle('hidden',t!=='vouchers');
   if(t==='vouchers') renderVouchers();
+  if(t==='broadcasts') renderBroadcasts();
 }
 function closeAdmin(){document.getElementById('adminCard').classList.add('hidden');}
 async function loadFeed(){let r=await fetch(`${S}/rest/v1/tracks?select=*&order=created_at.desc`,{headers:{apikey:K,Authorization:'Bearer '+K}});let j=await r.json();document.getElementById('feed').innerHTML=j.map(t=>`<div class="card"><b>${t.title}</b><br><audio controls src="${t.file_url||t.url}" style="width:100%;margin-top:8px"></audio></div>`).join('');}
 async function uploadTrack(){
   if(!currentUser) return alert('Login first');
   let waClean=formatWA(currentUser.whatsapp);
+  if(currentUser.banned){ alert(`🚫 You are BANNED by admin ${ADMIN_WA} - Reason: ${currentUser.ban_reason}`); return; }
   let isFree=currentUser.account_type==='free'||currentUser.voucher==='FREE-3SONGS';
   if(isFree){ let up=getUploadsThisMonth(waClean); if(up.length>=3){ alert(`❌ FREE LIMIT 3/month reached! Upgrade via 27789313670`); return; } }
   let f=document.getElementById('file').files[0]; if(!f) return alert('Choose audio'); let title=document.getElementById('title').value||f.name;
@@ -393,5 +410,6 @@ async function uploadTrack(){
   if(isFree) addUploadRecord(waClean); alert('✅ Published!'); loadFeed(); render();
 }
 render();
+checkBroadcastOnLoad();
 </script>
 </body></html>
