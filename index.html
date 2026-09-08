@@ -1,30 +1,49 @@
 <!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI MUSIC SOCIAL - INBOX MESSAGING - 27789313670</title>
+<title>AI MUSIC SOCIAL - WITH SUPABASE - FIXED BANNER - 27789313670</title>
 <style>
 :root{--pink:#ff0055;--cyan:#00f2ff;--green:#00ff88;--gold:#ffcc00;--wa:#25D366}
 body{margin:0;background:#06060a;color:#fff;font-family:Inter,Arial}
-header{position:sticky;top:0;background:rgba(0,0,0,.92);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;z-index:10}
+header{position:sticky;top:0;background:rgba(0,0,0,.95);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;z-index:100}
 .logo{display:flex;gap:10px;align-items:center;font-weight:900}
 .logo-img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)}
 .container{max-width:760px;margin:0 auto;padding:16px}
 .card{background:#12121a;border:1px solid #24243a;border-radius:18px;padding:16px;margin:14px 0}
 input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#0a0a10;color:#fff;margin:6px 0;box-sizing:border-box}
-textarea{resize:vertical;min-height:60px}
 .btn{width:100%;padding:12px;border:none;border-radius:12px;background:linear-gradient(90deg,var(--pink),#ff7a00);color:#fff;font-weight:900;cursor:pointer}
 .btn-wa{background:linear-gradient(90deg,#25D366,#128C7E);color:#fff}
 .btn-gold{background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000}
 .btn-free{background:linear-gradient(90deg,#00f2ff,#7000ff);color:#fff}
 .btn-green{background:var(--green);color:#000}.btn-red{background:#ff3344;color:#fff}.btn2{background:#1a1a2a;border:1px solid #333;color:#fff}
 .tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}.tabs button{flex:1;padding:9px;border-radius:10px;border:1px solid #333;background:#111;color:#fff;min-width:50px;font-size:11px}.tabs button.active{background:var(--pink)}
-.hidden{display:none}.badge{padding:3px 8px;border-radius:20px;font-size:10px;border:1px solid #333;display:inline-block}.badge-verified{background:rgba(0,255,136,.15);border-color:var(--green);color:var(--green);font-weight:800}.badge-banned{background:rgba(255,51,68,.25);border-color:#ff3344;color:#ff3344}.badge-free{background:rgba(0,242,255,.15);border-color:var(--cyan);color:var(--cyan)}.badge-unread{background:var(--pink);color:#fff;font-weight:900}
-.small-btn{padding:6px 10px;border-radius:8px;border:none;font-size:10px;font-weight:bold;margin:2px;cursor:pointer}
-#log{color:#0f0;font-size:11px}label.small{font-size:10px;color:#ffb86a;display:block;margin-top:8px;font-weight:bold}
+.hidden{display:none}
 .admin-user-card{background:#0a0a12;border:1px solid #333;border-radius:12px;padding:12px;margin:8px 0}
-canvas{display:none}
+.small-btn{padding:6px 10px;border-radius:8px;border:none;font-size:10px;font-weight:bold;margin:2px;cursor:pointer}
+
+/* FIXED BANNER */
+#announcementBanner{position:sticky;top:52px;z-index:90;padding:0;overflow:hidden;border-bottom:2px solid #fff;animation:slideDown.4s ease}
+@keyframes slideDown{0%{transform:translateY(-100%)}100%{transform:translateY(0)}}
+#announcementBanner.hidden{display:none!important}
+.banner-inner{display:flex;align-items:center;gap:10px;padding:10px 14px}
+.banner-icon{font-size:20px;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.banner-content{flex:1;min-width:0}
+.banner-title{font-weight:900;font-size:13px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.banner-text{font-size:11px;color:rgba(255,255,255,.9);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.banner-actions{display:flex;gap:6px}
+.banner-btn{padding:6px 12px;border-radius:20px;border:none;font-size:10px;font-weight:900;cursor:pointer;white-space:nowrap}
+.banner-btn-action{background:#fff;color:#000}
+.banner-btn-close{background:rgba(0,0,0,.3);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.banner-type-urgent{background:linear-gradient(90deg,#ff3344,#ff0055)!important}
+.banner-type-warning{background:linear-gradient(90deg,#ffcc00,#ff7a00)!important}
+.banner-type-warning.banner-title,.banner-type-warning.banner-text{color:#000!important}
+.banner-type-promo{background:linear-gradient(90deg,#00ff88,#00f2ff)!important}
+.banner-type-promo.banner-title,.banner-type-promo.banner-text{color:#000!important}
+.banner-type-info{background:linear-gradient(90deg,#00f2ff,#7000ff)!important}
+
 #broadcastOverlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px)}
-#broadcastPopup{background:linear-gradient(135deg,#12121a,#1a0a2a);border:2px solid var(--pink);border-radius:20px;padding:20px;max-width:420px;width:100%;box-shadow:0 0 40px rgba(255,0,85,.4)}
-.broadcast-msg{font-size:13px;line-height:1.5;background:#000;padding:10px;border-radius:12px;border:1px solid #333;white-space:pre-wrap}
+#broadcastPopup{background:linear-gradient(135deg,#12121a,#1a0a2a);border:2px solid var(--pink);border-radius:20px;padding:20px;max-width:420px;width:100%}
+
 .profile-card{background:linear-gradient(135deg,#12121a,#1a0a2a);border:1px solid #333;border-radius:18px;padding:14px;margin:10px 0}
 .profile-top{display:flex;gap:12px;align-items:center}
 .profile-pic{width:56px;height:56px;border-radius:50%;border:2px solid var(--pink);object-fit:cover}
@@ -36,36 +55,53 @@ canvas{display:none}
 .message-btn{background:linear-gradient(90deg,var(--wa),#128C7E);color:#fff;flex:1;padding:9px;border-radius:10px;border:none;font-weight:900;cursor:pointer}
 .like-btn{background:#111;border:1px solid #333;color:#fff;padding:6px 10px;border-radius:20px;font-size:11px;cursor:pointer}
 .like-btn.liked{background:rgba(255,0,85,.2);border-color:var(--pink);color:var(--pink)}
-
-/* INBOX STYLES */
 .inbox-item{display:flex;gap:10px;padding:10px;background:#111;border:1px solid #333;border-radius:12px;margin:6px 0;cursor:pointer}
 .inbox-item.unread{background:#1a0a1a;border-color:var(--pink)}
-.inbox-item:hover{background:#1a1a2a}
 .chat-box{background:#000;border:1px solid #333;border-radius:12px;padding:10px;max-height:350px;overflow-y:auto;margin:10px 0}
-.chat-msg{max-width:75%;padding:8px 12px;border-radius:14px;margin:6px 0;font-size:13px;line-height:1.3}
-.chat-msg.sent{background:linear-gradient(90deg,var(--pink),#ff7a00);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
-.chat-msg.received{background:#222;color:#fff;margin-right:auto;border-bottom-left-radius:4px}
-.chat-meta{font-size:9px;color:#888;margin-top:2px}
+.chat-msg{max-width:75%;padding:8px 12px;border-radius:14px;margin:6px 0;font-size:13px}
+.chat-msg.sent{background:linear-gradient(90deg,var(--pink),#ff7a00);color:#fff;margin-left:auto}
+.chat-msg.received{background:#222;color:#fff;margin-right:auto}
 </style>
 </head><body>
+
+<div id="announcementBanner" class="hidden">
+<div class="banner-inner">
+<div class="banner-icon" id="bannerIcon">📢</div>
+<div class="banner-content" onclick="expandBanner()">
+<div class="banner-title" id="bannerTitle">ANNOUNCEMENT FROM ADMIN 27789313670</div>
+<div class="banner-text" id="bannerText">Loading...</div>
+</div>
+<div class="banner-actions">
+<button class="banner-btn banner-btn-action" id="bannerActionBtn" onclick="handleBannerAction()">WhatsApp</button>
+<button class="banner-btn banner-btn-close" onclick="dismissBanner(false)">✖️</button>
+</div>
+</div>
+<div id="bannerExpanded" class="hidden" style="background:rgba(0,0,0,.9);padding:12px;border-top:1px solid rgba(255,255,255,.2)">
+<div style="font-size:12px;line-height:1.5;white-space:pre-wrap" id="bannerFullText"></div>
+<div style="display:flex;gap:8px;margin-top:10px">
+<button class="btn btn-wa" id="bannerExpandedAction" onclick="handleBannerAction()" style="flex:1;padding:8px">💬 Action</button>
+<button class="btn btn2" onclick="collapseBanner()" style="flex:1;padding:8px">Collapse</button>
+</div>
+<div style="text-align:center;margin-top:8px"><label style="font-size:10px;color:#aaa"><input type="checkbox" id="bannerDontShow"> Don't show today</label> <button class="small-btn btn2" onclick="dismissBanner(true)" style="margin-left:8px">Dismiss Today</button></div>
+</div>
+</div>
 
 <div id="broadcastOverlay" class="hidden" onclick="if(event.target===this) closeBroadcast()">
 <div id="broadcastPopup">
 <div style="text-align:center;font-size:26px">📢</div>
 <div style="font-size:16px;font-weight:900;color:var(--pink);text-align:center" id="bTitle">ANNOUNCEMENT</div>
-<div class="broadcast-msg" id="bMsg">Loading...</div>
+<div style="font-size:13px;line-height:1.5;background:#000;padding:10px;border-radius:12px;border:1px solid #333;white-space:pre-wrap;margin-top:8px" id="bMsg">Loading...</div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
 <button class="btn btn2" onclick="closeBroadcast()">✖️ Close</button>
 <button class="btn btn-wa" id="bActionBtn" onclick="handleBroadcastAction()">💬 WhatsApp 27789313670</button>
 </div>
-<div style="text-align:center;margin-top:6px"><label style="font-size:10px;color:#888"><input type="checkbox" id="dontShowToday"> Don't show today</label></div>
 </div>
 </div>
 
 <header>
-<div class="logo"><img id="logoImg" class="logo-img" src="./dj_bigsam_neon_logo.jpg"><div><span style="color:var(--pink)">AI</span> MUSIC SOCIAL</div></div>
+<div class="logo"><img id="logoImg" class="logo-img" src="./dj_bigsam_neon_logo.jpg" onerror="this.src='https://i.pravatar.cc/100?img=12'"><div><span style="color:var(--pink)">AI</span> MUSIC SOCIAL</div></div>
 <div style="display:flex;gap:6px;align-items:center">
-<button id="inboxBadge" onclick="mainTab('inbox')" style="background:#111;border:1px solid #333;padding:6px 10px;border-radius:20px;color:#fff;font-size:11px">📩 Inbox <span id="unreadCount" class="badge badge-unread hidden">0</span></button>
+<button id="inboxBadge" onclick="mainTab('inbox')" style="background:#111;border:1px solid #333;padding:6px 10px;border-radius:20px;color:#fff;font-size:11px">📩 <span id="unreadCount" style="background:var(--pink);color:#fff;padding:2px 6px;border-radius:10px">0</span></button>
 <button id="authBtn" onclick="showAuth()" style="background:linear-gradient(90deg,var(--pink),var(--cyan));border:none;padding:7px 12px;border-radius:20px;color:#fff;font-weight:bold;font-size:12px">Login</button>
 </div>
 </header>
@@ -74,17 +110,13 @@ canvas{display:none}
 <div class="tabs">
 <button id="mainFeed" class="active" onclick="mainTab('feed')">🎵 Feed</button>
 <button id="mainProfiles" onclick="mainTab('profiles')">👥 Artists</button>
-<button id="mainInbox" onclick="mainTab('inbox')">📩 Inbox <span id="unreadCount2" class="badge badge-unread hidden">0</span></button>
+<button id="mainInbox" onclick="mainTab('inbox')">📩 Inbox <span id="unreadCount2" style="background:var(--pink);color:#fff;padding:2px 6px;border-radius:10px">0</span></button>
 <button id="mainMyProfile" onclick="mainTab('my')">👤 Me</button>
 </div>
 
 <div id="feedSection">
 <div class="card" id="authCard">
-<div class="tabs">
-<button id="tLogin" class="active" onclick="tab('login')">Login</button>
-<button id="tFree" onclick="tab('free')">🆓 Free</button>
-<button id="tReg" onclick="tab('reg')">💎 Paid</button>
-</div>
+<div class="tabs"><button id="tLogin" class="active" onclick="tab('login')">Login</button><button id="tFree" onclick="tab('free')">🆓 Free 3 Songs</button><button id="tReg" onclick="tab('reg')">💎 Paid Voucher</button></div>
 <div id="loginForm"><input id="l_wa" placeholder="WhatsApp 2778..."><input id="l_pin" type="password" placeholder="PIN"><button class="btn" onclick="login()">🔓 LOGIN</button><div id="bannedMsg" style="color:#ff3344;font-size:11px;margin-top:6px;text-align:center"></div></div>
 <div id="freeForm" class="hidden">
 <div style="display:flex;gap:8px"><input id="f_fname" placeholder="First Name"><input id="f_sname" placeholder="Surname"></div>
@@ -95,66 +127,51 @@ canvas{display:none}
 <div id="regForm" class="hidden">
 <div style="display:flex;gap:8px"><input id="r_fname" placeholder="First Name"><input id="r_sname" placeholder="Surname"></div>
 <input id="r_id" placeholder="ID Number" maxlength="13"><input id="r_wa" placeholder="WhatsApp 2778..."><select id="r_role"><option value="">Role</option><option value="musician">Musician</option><option value="producer">Producer</option><option value="artist">Artist</option></select>
-<label class="small">📸 Profile</label><input type="file" id="r_pic" accept="image/*">
-<label class="small">🪪 ID FRONT</label><input type="file" id="r_front" accept="image/*">
-<label class="small">🪪 ID BACK</label><input type="file" id="r_back" accept="image/*">
+<label style="font-size:10px;color:#ffb86a">📸 Profile</label><input type="file" id="r_pic" accept="image/*">
+<label style="font-size:10px;color:#ffb86a">🪪 ID FRONT</label><input type="file" id="r_front" accept="image/*">
+<label style="font-size:10px;color:#ffb86a">🪪 ID BACK</label><input type="file" id="r_back" accept="image/*">
 <input id="r_pin" type="password" placeholder="PIN" maxlength="4">
-<button class="btn btn-wa" onclick="whatsappPay(50)">💬 WHATSAPP 27789313670 R50</button>
-<input id="r_voucher" placeholder="BIGSAM-50-XXXXXX" style="text-align:center;font-weight:900;text-transform:uppercase;border:2px solid var(--gold);margin-top:8px"><button class="btn btn-gold" onclick="registerPaid()" style="margin-top:8px">💎 REDEEM VOUCHER — UNLIMITED + INBOX</button>
-<canvas id="wmCanvas"></canvas>
+<button class="btn btn-wa" onclick="whatsappPay(50)">💬 WHATSAPP 27789313670 R50 KYC</button>
+<input id="r_voucher" placeholder="BIGSAM-50-XXXXXX" style="text-align:center;font-weight:900;text-transform:uppercase;border:2px solid var(--gold);margin-top:8px"><button class="btn btn-gold" onclick="registerPaid()" style="margin-top:8px">💎 REDEEM VOUCHER — UNLIMITED + SUPABASE</button>
+<canvas id="wmCanvas" style="display:none"></canvas>
 </div>
-<div id="log">📩 Inbox messaging • Follow • Likes • Admin 27789313670 direct messages</div>
-</div>
-
-<div class="card hidden" id="profileCard">
-<div style="display:flex;gap:12px"><img id="myPic" style="width:56px;height:56px;border-radius:50%;border:2px solid var(--pink);object-fit:cover" src=""><div id="profileInfo"></div></div>
-<div id="verifyBadge" style="margin-top:8px"></div>
-<div id="uploadLimitInfo" style="margin-top:8px;background:#111;padding:8px;border-radius:10px;border:1px solid #333;font-size:11px"></div>
-<button class="btn btn2" onclick="logout()" style="margin-top:8px">Logout</button>
+<div id="log" style="font-size:10px;color:#0f0">✅ SUPABASE KEPT — Fixed Banner — Inbox DM — Admin 27789313670</div>
 </div>
 
-<div class="card hidden" id="adminAccess"><button class="btn" onclick="openAdmin()" style="background:linear-gradient(90deg,#00f2ff,#7000ff)">🛡️ ADMIN 27789313670 - BROADCAST + INBOX + DELETE/BAN</button></div>
+<div class="card hidden" id="profileCard"><div style="display:flex;gap:12px"><img id="myPic" style="width:56px;height:56px;border-radius:50%;border:2px solid var(--pink);object-fit:cover" src=""><div id="profileInfo"></div></div><div id="verifyBadge" style="margin-top:8px"></div><div id="uploadLimitInfo" style="margin-top:8px;background:#111;padding:8px;border-radius:10px;border:1px solid #333;font-size:11px"></div><button class="btn btn2" onclick="logout()" style="margin-top:8px">Logout</button></div>
+<div class="card hidden" id="adminAccess"><button class="btn" onclick="openAdmin()" style="background:linear-gradient(90deg,#00f2ff,#7000ff)">🛡️ ADMIN 27789313670 — WITH SUPABASE — FIXED BANNER + INBOX</button></div>
 
 <div class="card hidden" id="adminCard">
-<h3>🛡️ ADMIN 27789313670 — BROADCAST + INBOX DIRECT + CONTROL</h3>
+<h3>🛡️ ADMIN 27789313670 — WITH SUPABASE — FIXED BANNER</h3>
 
 <div style="background:linear-gradient(135deg,#1a0010,#2a0a1a);padding:12px;border-radius:14px;border:2px solid var(--pink);margin-bottom:10px">
-<div style="font-weight:900;color:var(--pink);text-align:center;font-size:13px">📢 BROADCAST POPUP WHEN OPEN WEBSITE</div>
-<input id="broadcastTitle" placeholder="Title"><textarea id="broadcastMessage" placeholder="Message..."></textarea>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><select id="broadcastType"><option value="info">🔵 Info</option><option value="warning">🟡 Warning</option><option value="urgent">🔴 Urgent</option><option value="promo">🟢 Promo</option></select><input id="broadcastActionText" placeholder="Button text"></div>
-<input id="broadcastActionLink" placeholder="Button link - https://wa.me/27789313670">
+<div style="font-weight:900;color:var(--pink);text-align:center">📢 FIXED ANNOUNCEMENT BANNER — TOP — FIXED!</div>
+<input id="broadcastTitle" placeholder="📢 Banner Title"><textarea id="broadcastMessage" placeholder="Banner Message..."></textarea>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><select id="broadcastType"><option value="info">🔵 Info</option><option value="warning">🟡 Warning</option><option value="urgent">🔴 Urgent</option><option value="promo">🟢 Promo</option><option value="popup">💥 Popup</option></select><input id="broadcastActionText" placeholder="Button text"></div>
+<input id="broadcastActionLink" placeholder="Link - https://wa.me/27789313670">
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6px">
-<button class="btn" style="background:linear-gradient(90deg,var(--pink),#7000ff)" onclick="createBroadcast()">📢 BROADCAST NOW</button>
-<button class="btn btn2" onclick="previewBroadcast()">👁️ Preview</button>
-<button class="btn btn-red" onclick="clearBroadcast()">❌ Clear</button>
+<button class="btn" style="background:linear-gradient(90deg,var(--pink),#7000ff)" onclick="createBroadcast()">📢 SHOW FIXED BANNER</button>
+<button class="btn btn2" onclick="previewBanner()">👁️ Preview</button>
+<button class="btn btn-red" onclick="clearBroadcast()">❌ Remove Banner</button>
 </div>
 <div id="activeBroadcastDisplay" style="margin-top:8px;background:#000;padding:8px;border-radius:8px;border:1px solid #333;font-size:11px"></div>
 </div>
 
 <div style="background:linear-gradient(135deg,#0a1a0a,#1a2a1a);padding:12px;border-radius:14px;border:2px solid var(--wa);margin-bottom:10px">
-<div style="font-weight:900;color:var(--wa);text-align:center">📩 SEND DIRECT MESSAGE TO USER INBOX — ADMIN 27789313670</div>
-<div style="font-size:10px;text-align:center;color:#aaa">Send message directly to any user's inbox — Not WhatsApp, inbox inside website</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px">
-<input id="dmToWA" placeholder="To WhatsApp 2778..."><input id="dmSubject" placeholder="Subject - e.g. Your account approved">
-</div>
-<textarea id="dmMessage" placeholder="Message to user inbox - e.g. Hello, your account is approved! You now have unlimited uploads... From Admin 27789313670"></textarea>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-<button class="btn btn-wa" onclick="sendDirectMessage()">📩 SEND INBOX MESSAGE</button>
-<button class="btn btn-gold" onclick="broadcastToAllInbox()">📢 BROADCAST TO ALL INBOXES</button>
-</div>
-<div style="font-size:9px;color:#888;margin-top:4px;text-align:center">Direct inbox — User sees unread badge — Different from WhatsApp</div>
+<div style="font-weight:900;color:var(--wa);text-align:center">📩 SEND DIRECT INBOX — ADMIN 27789313670</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><input id="dmToWA" placeholder="To WA 2778..."><input id="dmSubject" placeholder="Subject"></div>
+<textarea id="dmMessage" placeholder="Inbox message..."></textarea>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><button class="btn btn-wa" onclick="sendDirectMessage()">📩 SEND INBOX DM</button><button class="btn btn-gold" onclick="broadcastToAllInbox()">📢 BROADCAST ALL INBOXES</button></div>
 </div>
 
 <div style="background:#111;padding:10px;border-radius:12px;border:2px solid var(--gold);margin-bottom:10px">
-<div style="font-weight:900;color:var(--gold);text-align:center;font-size:12px">🎫 VOUCHER + SEARCH USER</div>
+<div style="font-weight:900;color:var(--gold);text-align:center">🎫 VOUCHER + SEARCH — WITH SUPABASE</div>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6px">
 <button class="btn btn-gold" onclick="createVoucher(50)" style="padding:8px">🎫 R50</button>
 <button class="btn" style="background:linear-gradient(90deg,#ff0055,#ff7a00);padding:8px" onclick="createVoucher(99)">⭐ R99</button>
 <button class="btn" style="background:linear-gradient(90deg,#00f2ff,#7000ff);padding:8px" onclick="createVoucher(150)">🔥 R150</button>
 </div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px">
-<input id="adminSearchWA" placeholder="Search WA 2778..."><button class="btn btn2" onclick="searchUser()" style="padding:8px">🔍 Search</button>
-</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px"><input id="adminSearchWA" placeholder="Search WA 2778..."><button class="btn btn2" onclick="searchUser()" style="padding:8px">🔍 Search</button></div>
 </div>
 
 <div id="moneyStats"></div>
@@ -162,8 +179,9 @@ canvas{display:none}
 
 <div class="tabs" style="margin-top:10px">
 <button id="tabV" class="active" onclick="adminTab('vouchers')">🎫 Vouchers</button>
-<button id="tabB" onclick="adminTab('broadcasts')">📢 Popups</button>
-<button id="tabM" onclick="adminTab('messages')">📩 Inbox Msgs</button>
+<button id="tabB" onclick="adminTab('broadcasts')">📢 Banners</button>
+<button id="tabM" onclick="adminTab('messages')">📩 Inbox</button>
+<button id="tabT" onclick="adminTab('tracks')">🎵 Tracks</button>
 <button id="au" onclick="adminTab('users')">👥 Paid</button>
 <button onclick="adminTab('free')">🆓 Free</button>
 <button onclick="adminTab('banned')">🚫 Banned</button>
@@ -172,6 +190,7 @@ canvas{display:none}
 <div id="adminVouchers"></div>
 <div id="adminBroadcasts" class="hidden"></div>
 <div id="adminMessages" class="hidden"></div>
+<div id="adminTracks" class="hidden"></div>
 <div id="adminUsers" class="hidden"></div>
 <div id="adminFree" class="hidden"></div>
 <div id="adminBanned" class="hidden"></div>
@@ -179,56 +198,24 @@ canvas{display:none}
 <button class="btn btn2" onclick="closeAdmin()" style="margin-top:8px">Close Admin</button>
 </div>
 
-<div class="card" id="uploadCard">
-<h3>🎛️ Drop Mix — <span id="uploadLimitText" style="font-size:11px;color:var(--cyan)"></span></h3>
-<input type="file" id="file" accept="audio/*"><input id="title" placeholder="Title">
-<button class="btn" onclick="uploadTrack()">🚀 PUBLISH</button>
-<div id="uploadMsg" style="font-size:10px;margin-top:4px;color:#aaa"></div>
-</div>
+<div class="card" id="uploadCard"><h3>🎛️ Drop Mix — <span id="uploadLimitText" style="font-size:11px;color:var(--cyan)"></span></h3><input type="file" id="file" accept="audio/*"><input id="title" placeholder="Title"><button class="btn" onclick="uploadTrack()">🚀 PUBLISH — WITH SUPABASE</button><div id="uploadMsg" style="font-size:10px;margin-top:4px;color:#aaa"></div></div>
 <div id="feed"></div>
 </div>
 
-<div id="profilesSection" class="hidden">
-<div class="card" style="background:linear-gradient(90deg,#00f2ff,#7000ff);text-align:center">
-<h3 style="margin:0;font-size:14px">👥 ARTISTS PROFILES — FOLLOW • MESSAGE INBOX • LIKES</h3>
-<div style="display:flex;gap:6px;margin-top:8px"><input id="profileSearch" placeholder="🔍 Search artist..." onkeyup="searchProfiles()" style="margin:0"><select id="profileRoleFilter" onchange="searchProfiles()" style="margin:0;max-width:120px"><option value="">All</option><option value="musician">Musician</option><option value="producer">Producer</option><option value="artist">Artist</option><option value="dj">DJ</option></select></div>
-</div>
-<div id="profilesList"></div>
-</div>
+<div id="profilesSection" class="hidden"><div class="card" style="background:linear-gradient(90deg,#00f2ff,#7000ff);text-align:center"><h3 style="margin:0;font-size:14px">👥 ARTISTS PROFILES — FOLLOW • INBOX • LIKES — WITH SUPABASE</h3><div style="display:flex;gap:6px;margin-top:8px"><input id="profileSearch" placeholder="🔍 Search..." onkeyup="searchProfiles()" style="margin:0"><select id="profileRoleFilter" onchange="searchProfiles()" style="margin:0;max-width:120px"><option value="">All</option><option value="musician">Musician</option><option value="producer">Producer</option><option value="artist">Artist</option><option value="dj">DJ</option></select></div></div><div id="profilesList"></div></div>
 
 <div id="inboxSection" class="hidden">
-<div class="card" style="background:linear-gradient(90deg,#25D366,#128C7E);text-align:center">
-<h3 style="margin:0">📩 INBOX — USER MESSAGES + ADMIN DIRECT MESSAGES</h3>
-<div style="font-size:10px;margin-top:4px">Message other artists • Admin 27789313670 can message you directly here • WhatsApp also available</div>
+<div class="card" style="background:linear-gradient(90deg,#25D366,#128C7E);text-align:center"><h3 style="margin:0">📩 INBOX — WITH SUPABASE + LOCAL</h3></div>
+<div id="inboxConversations" class="card"><div style="font-weight:900">💬 Conversations</div><div id="conversationsList"></div></div>
+<div id="chatSection" class="card hidden"><div style="display:flex;justify-content:space-between"><div><b id="chatWithName">Chat</b><br><small id="chatWithWA" style="color:#888"></small></div><button class="small-btn btn2" onclick="closeChat()">✖️ Close</button></div><div id="chatBox" class="chat-box"></div><div style="display:flex;gap:6px;margin-top:8px"><input id="chatInput" placeholder="Type message..." style="margin:0;flex:1" onkeypress="if(event.key==='Enter') sendChatMessage()"><button class="btn" style="width:80px;margin:0" onclick="sendChatMessage()">📩 Send</button></div><div style="display:flex;gap:6px;margin-top:6px"><button class="small-btn" style="background:var(--wa);color:#fff" onclick="whatsappCurrentChat()">💬 WhatsApp</button><button class="small-btn btn-red" onclick="deleteConversation()">🗑️ Delete</button></div></div>
 </div>
 
-<div id="inboxConversations" class="card">
-<div style="font-weight:900">💬 Conversations</div>
-<div id="conversationsList"></div>
-</div>
-
-<div id="chatSection" class="card hidden">
-<div style="display:flex;justify-content:space-between;align-items:center"><div><b id="chatWithName">Chat</b><br><small id="chatWithWA" style="color:#888"></small></div><button class="small-btn btn2" onclick="closeChat()">✖️ Close Chat</button></div>
-<div id="chatBox" class="chat-box"></div>
-<div style="display:flex;gap:6px;margin-top:8px">
-<input id="chatInput" placeholder="Type message to inbox..." style="margin:0;flex:1" onkeypress="if(event.key==='Enter') sendChatMessage()">
-<button class="btn" style="width:80px;margin:0" onclick="sendChatMessage()">📩 Send</button>
-</div>
-<div style="display:flex;gap:6px;margin-top:6px">
-<button class="small-btn" style="background:var(--wa);color:#fff" onclick="whatsappCurrentChat()">💬 WhatsApp Instead</button>
-<button class="small-btn btn-red" onclick="deleteConversation()">🗑️ Delete Chat</button>
-</div>
-</div>
-</div>
-
-<div id="myProfileSection" class="hidden">
-<div id="myFullProfile"></div>
-<div class="card"><h4>🎵 My Tracks</h4><div id="myTracks"></div></div>
-</div>
+<div id="myProfileSection" class="hidden"><div id="myFullProfile"></div><div class="card"><h4>🎵 My Tracks — With Supabase</h4><div id="myTracks"></div></div></div>
 
 </div>
 
 <script>
+// SUPABASE KEPT - NOT REMOVED
 const S="https://ogndqvdzuuufdygkhzae.supabase.co";
 const K="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9nbmRxdmR6dXV1ZmR5Z2toemFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2OTEzNjEsImV4cCI6MjEwNDI2NzM2MX0.sPRCVdn9CrEnN48xw8M0FSbGp4UCmkfrU93dHDqE5_4";
 const ADMIN_WA="27789313670";
@@ -237,15 +224,15 @@ let LOGO_URL=localStorage.getItem('bigsam_logo')||DEFAULT_NEON;
 let currentUser=JSON.parse(localStorage.getItem('ai_user')||'null');
 let currentChatWA=null;
 
-const PRELOADED=[{code:'BIGSAM-50-K9X2M1',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},{code:'BIGSAM-50-A7B4C9',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA}];
+const PRELOADED=[{code:'BIGSAM-50-K9X2M1',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},{code:'BIGSAM-50-A7B4C9',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},{code:'BIGSAM-99-G8H2J5',amount:99,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},{code:'BIGSAM-150-M2C5X8',amount:150,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA}];
 if(!localStorage.getItem('vouchers')) localStorage.setItem('vouchers',JSON.stringify(PRELOADED));
 function getVouchers(){return JSON.parse(localStorage.getItem('vouchers')||'[]');}
 function saveVouchers(v){localStorage.setItem('vouchers',JSON.stringify(v));}
 function formatWA(num){ let n=(num||'').replace(/[^0-9]/g,''); if(n.startsWith('0')) n='27'+n.substring(1); if(!n.startsWith('27')) n='27'+n; return n; }
 function getUploadsThisMonth(wa){ let all=JSON.parse(localStorage.getItem('uploads_'+wa)||'[]'); let now=new Date(); let ms=new Date(now.getFullYear(),now.getMonth(),1).getTime(); return all.filter(t=>t>=ms); }
 function addUploadRecord(wa){ let all=JSON.parse(localStorage.getItem('uploads_'+wa)||'[]'); all.push(Date.now()); localStorage.setItem('uploads_'+wa,JSON.stringify(all)); }
-
-// FOLLOW / LIKES
+function getAllUsers(){return JSON.parse(localStorage.getItem('ai_users')||'[]');}
+function saveAllUsers(list){localStorage.setItem('ai_users',JSON.stringify(list));}
 function getFollows(){ return JSON.parse(localStorage.getItem('follows')||'{}'); }
 function getLikes(){ return JSON.parse(localStorage.getItem('profile_likes')||'{}'); }
 function getFollowersCount(wa){ let follows=getFollows(); let c=0; for(let f in follows){ if(follows[f].includes(formatWA(wa))) c++; } return c; }
@@ -265,80 +252,38 @@ function toggleLike(tWA){
   let likes=getLikes(); if(!likes[tWA]) likes[tWA]=[]; if(likes[tWA].includes(myWA)) likes[tWA]=likes[tWA].filter(x=>x!==myWA); else likes[tWA].push(myWA);
   localStorage.setItem('profile_likes',JSON.stringify(likes)); renderProfiles(); renderMyFullProfile();
 }
-
-// INBOX MESSAGING SYSTEM - USERS CAN SEND EACH OTHER + ADMIN DIRECT
 function getMessages(){ return JSON.parse(localStorage.getItem('ai_messages')||'[]'); }
 function saveMessages(msgs){ localStorage.setItem('ai_messages',JSON.stringify(msgs)); }
-
-function sendInboxMessage(toWA, text, subject=''){
-  if(!currentUser) return alert('Login to send inbox message');
-  toWA=formatWA(toWA); let fromWA=formatWA(currentUser.whatsapp);
-  if(!text.trim()) return alert('Enter message');
-  let msgs=getMessages();
-  let msg={id:Date.now()+Math.random(),from:fromWA,to:toWA,text:text.trim(),subject:subject||'',time:Date.now(),read:false,fromName:currentUser.first_name||currentUser.name||fromWA};
-  msgs.push(msg); saveMessages(msgs);
-  updateUnreadBadge();
-  return msg;
+function sendInboxMessage(toWA,text,subject=''){
+  if(!currentUser) return alert('Login to send inbox'); toWA=formatWA(toWA); let fromWA=formatWA(currentUser.whatsapp); if(!text.trim()) return alert('Enter message');
+  let msgs=getMessages(); let msg={id:Date.now()+Math.random(),from:fromWA,to:toWA,text:text.trim(),subject:subject||'',time:Date.now(),read:false,fromName:currentUser.first_name||currentUser.name||fromWA};
+  msgs.push(msg); saveMessages(msgs); updateUnreadBadge(); return msg;
 }
-
 function sendDirectMessage(){
-  if(!currentUser||formatWA(currentUser.whatsapp)!==ADMIN_WA) return alert(`Only admin ${ADMIN_WA} can send direct inbox messages!`);
+  if(!currentUser||formatWA(currentUser.whatsapp)!==ADMIN_WA) return alert(`Only admin ${ADMIN_WA}!`);
   let toWA=document.getElementById('dmToWA').value.trim(); let subject=document.getElementById('dmSubject').value.trim(); let text=document.getElementById('dmMessage').value.trim();
-  if(!toWA||!text) return alert('Enter To WhatsApp 2778... and message');
-  toWA=formatWA(toWA);
-  let users=getAllUsers(); if(!users.find(u=>formatWA(u.whatsapp)===toWA)) return alert(`User ${toWA} not found`);
-  let msgs=getMessages();
-  let msg={id:Date.now()+Math.random(),from:ADMIN_WA,to:toWA,text,subject:subject||'Message from Admin 27789313670',time:Date.now(),read:false,fromName:'ADMIN 27789313670',isAdmin:true};
-  msgs.push(msg); saveMessages(msgs);
-  alert(`✅ DIRECT INBOX MESSAGE SENT TO ${toWA}\n\nSubject: ${subject}\nMessage: ${text}\nBy admin ${ADMIN_WA}\n\nUser will see unread badge in inbox!`);
-  document.getElementById('dmToWA').value=''; document.getElementById('dmSubject').value=''; document.getElementById('dmMessage').value='';
-  updateUnreadBadge(); renderInboxMessages();
+  if(!toWA||!text) return alert('Enter To WA and message'); toWA=formatWA(toWA);
+  if(!getAllUsers().find(u=>formatWA(u.whatsapp)===toWA)) return alert(`User ${toWA} not found`);
+  let msgs=getMessages(); msgs.push({id:Date.now()+Math.random(),from:ADMIN_WA,to:toWA,text,subject:subject||'Message from Admin 27789313670',time:Date.now(),read:false,fromName:'ADMIN 27789313670',isAdmin:true}); saveMessages(msgs);
+  alert(`✅ DIRECT INBOX SENT TO ${toWA} by admin ${ADMIN_WA}`); document.getElementById('dmToWA').value=''; document.getElementById('dmSubject').value=''; document.getElementById('dmMessage').value=''; updateUnreadBadge(); renderInboxMessages();
 }
-
 function broadcastToAllInbox(){
   if(!currentUser||formatWA(currentUser.whatsapp)!==ADMIN_WA) return alert(`Only admin ${ADMIN_WA}!`);
-  let subject=document.getElementById('dmSubject').value.trim()||'Announcement from Admin 27789313670';
-  let text=document.getElementById('dmMessage').value.trim();
-  if(!text) return alert('Enter message to broadcast to all inboxes');
-  if(!confirm(`📢 BROADCAST TO ALL USERS INBOX?\n\nSubject: ${subject}\nMessage: ${text}\n\nThis will send to ALL ${getAllUsers().length} users inbox - Admin ${ADMIN_WA} confirm?`)) return;
+  let subject=document.getElementById('dmSubject').value.trim()||'Announcement from Admin 27789313670'; let text=document.getElementById('dmMessage').value.trim();
+  if(!text) return alert('Enter message'); if(!confirm(`📢 BROADCAST TO ALL ${getAllUsers().length} USERS INBOX? Admin ${ADMIN_WA} confirm?`)) return;
   let users=getAllUsers(); let msgs=getMessages();
-  users.forEach(u=>{
-    if(formatWA(u.whatsapp)===ADMIN_WA) return;
-    msgs.push({id:Date.now()+Math.random(),from:ADMIN_WA,to:formatWA(u.whatsapp),text,subject,time:Date.now(),read:false,fromName:'ADMIN 27789313670',isAdmin:true,isBroadcast:true});
-  });
-  saveMessages(msgs);
-  alert(`✅ BROADCAST SENT TO ${users.length-1} USERS INBOXES!\nBy admin ${ADMIN_WA}\nAll users will see unread badge!`);
-  document.getElementById('dmMessage').value=''; document.getElementById('dmSubject').value='';
-  updateUnreadBadge(); renderInboxMessages();
+  users.forEach(u=>{ if(formatWA(u.whatsapp)===ADMIN_WA) return; msgs.push({id:Date.now()+Math.random(),from:ADMIN_WA,to:formatWA(u.whatsapp),text,subject,time:Date.now(),read:false,fromName:'ADMIN 27789313670',isAdmin:true,isBroadcast:true}); });
+  saveMessages(msgs); alert(`✅ BROADCAST SENT TO ${users.length-1} INBOXES by ${ADMIN_WA}`); document.getElementById('dmMessage').value=''; updateUnreadBadge(); renderInboxMessages();
 }
-
 function getConversations(){
-  if(!currentUser) return [];
-  let myWA=formatWA(currentUser.whatsapp); let msgs=getMessages().filter(m=>m.from===myWA||m.to===myWA);
-  let convMap={};
-  msgs.forEach(m=>{
-    let other=m.from===myWA?m.to:m.from;
-    if(!convMap[other]) convMap[other]=[];
-    convMap[other].push(m);
-  });
-  // Sort by latest message time
-  let convs=Object.entries(convMap).map(([wa,messages])=>{
-    messages.sort((a,b)=>a.time-b.time);
-    let last=messages[messages.length-1];
-    let unread=messages.filter(m=>m.to===myWA&&!m.read).length;
-    let user=getAllUsers().find(u=>formatWA(u.whatsapp)===formatWA(wa));
-    return {wa,user,messages,last,unread};
-  });
-  convs.sort((a,b)=>b.last.time-a.last.time);
-  return convs;
+  if(!currentUser) return []; let myWA=formatWA(currentUser.whatsapp); let msgs=getMessages().filter(m=>m.from===myWA||m.to===myWA);
+  let convMap={}; msgs.forEach(m=>{ let other=m.from===myWA?m.to:m.from; if(!convMap[other]) convMap[other]=[]; convMap[other].push(m); });
+  let convs=Object.entries(convMap).map(([wa,messages])=>{ messages.sort((a,b)=>a.time-b.time); let last=messages[messages.length-1]; let unread=messages.filter(m=>m.to===myWA&&!m.read).length; let user=getAllUsers().find(u=>formatWA(u.whatsapp)===formatWA(wa)); return {wa,user,messages,last,unread}; });
+  convs.sort((a,b)=>b.last.time-a.last.time); return convs;
 }
-
 function renderInboxConversations(){
-  if(!currentUser){ document.getElementById('conversationsList').innerHTML='<div style="text-align:center;color:#888">Login to see inbox messages - Admin 27789313670 can message you directly here</div>'; return; }
-  let convs=getConversations();
-  if(convs.length===0){ document.getElementById('conversationsList').innerHTML='<div style="text-align:center;color:#888">No conversations yet - Go to Artists tab and tap 💬 Message to start inbox chat - Admin 27789313670 can send you direct messages</div>'; return; }
+  if(!currentUser){ document.getElementById('conversationsList').innerHTML='<div style="text-align:center;color:#888">Login to see inbox</div>'; return; }
+  let convs=getConversations(); if(convs.length===0){ document.getElementById('conversationsList').innerHTML='<div style="text-align:center;color:#888">No conversations - Message artists from Profiles tab</div>'; return; }
   document.getElementById('conversationsList').innerHTML=convs.map(c=>{
-    let name=c.user?c.user.first_name+' '+c.user.surname:c.wa+(c.wa===ADMIN_WA?' (ADMIN)':'');
-    let isAdmin=c.wa===ADMIN_WA;
-    return `<div class="inbox-item ${c.unread>0?'unread':''}" onclick="openChat('${c.wa}')">
-      <img src="${c.user?.
+    let name=c.user?c.user.first_name+' '+c.user.surname:c.wa+(c.wa===ADMIN_WA?' (ADMIN)':''); let isAdmin=c.wa===ADMIN_WA;
+    return `<div class="inbox-item ${c.unread>0?'unread':''}" onclick="openChat('${c.wa}')"><img src
