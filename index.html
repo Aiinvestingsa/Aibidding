@@ -3,222 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mzansi AI Battery Alert - CUSTOM %</title>
+<title>Mzansi AI Battery - R20/month</title>
 <link id="manifestLink" rel="manifest" href="">
 <style>
-body{margin:0;background:#000;color:#fff;font-family:Arial;text-align:center;padding:20px;transition:background 0.1s}
-h1{color:#FFD700;font-size:24px;margin:10px}
-.card{background:#1a1a1a;border-radius:20px;padding:20px;margin:15px 0;border:2px solid #333;transition:all 0.1s}
-.percent{font-size:80px;font-weight:900;color:#00FF00;text-shadow:0 0 20px #00FF00}
-.status{font-size:15px;color:#aaa;margin:8px}
-.btn{width:100%;padding:16px;border:none;border-radius:15px;font-size:18px;font-weight:900;margin:6px 0;cursor:pointer}
-.green{background:#00FF00;color:#000;box-shadow:0 0 20px #00FF00}
-.red{background:#FF0000;color:#fff}
-select{width:100%;padding:14px;border-radius:12px;background:#000;color:#fff;border:1px solid #555;font-size:16px;margin:8px 0}
-.police-red{background:#FF0000 !important}
-.police-blue{background:#0000FF !important}
+body{margin:0;background:#000;color:#fff;font-family:Arial;text-align:center;padding:15px}
+h1{color:#FFD700;font-size:22px}
+.card{background:#1a1a1a;border-radius:18px;padding:18px;margin:12px 0;border:2px solid #333}
+input{width:100%;padding:15px;border-radius:12px;background:#000;color:#fff;border:2px solid #555;font-size:16px;margin:8px 0;box-sizing:border-box}
+.btn{width:100%;padding:16px;border:none;border-radius:12px;font-size:18px;font-weight:900;margin:6px 0;cursor:pointer}
+.green{background:#00FF00;color:#000} .gold{background:#FFD700;color:#000} .red{background:#FF0000;color:#fff} .grey{background:#333;color:#fff}
+.percent{font-size:70px;font-weight:900;color:#00FF00}
+.police-red{background:#FF0000 !important} .police-blue{background:#0000FF !important}
 .flash-card{animation:policeBorder 0.2s infinite}
-@keyframes policeBorder{0%{border-color:#FF0000;box-shadow:0 0 30px #FF0000}50%{border-color:#0000FF;box-shadow:0 0 30px #0000FF}}
-.blinkText{animation:blink 0.2s infinite}
-@keyframes blink{0%{opacity:1}50%{opacity:0.2}}
+@keyframes policeBorder{0%{border-color:#FF0000}50%{border-color:#0000FF}}
+.blinkText{animation:blink 0.2s infinite} @keyframes blink{0%{opacity:1}50%{opacity:0.3}}
+.hidden{display:none}
 </style>
 </head>
 <body id="body">
-<h1>🇿🇦 MZANSI AI BY DJ BIGSAM RSA - CUSTOM % ALERT</h1>
-<p style="color:#FFD700">ONE FILE - Set ANY % + Police Flash + Loud Zulu</p>
 
+<div id="authScreen">
+<h1>🇿🇦 MZANSI AI BATTERY - R20/MONTH</h1>
+<div class="card" id="registerBox">
+<h3 style="color:#FFD700">📝 REGISTER - First Time</h3>
+<input id="regName" placeholder="Full Name - e.g. Thabo Dlamini">
+<input id="regWhatsApp" placeholder="WhatsApp Number - e.g. 0731234567" type="tel">
+<input id="regPin" placeholder="Create 4-digit PIN - e.g. 1234" type="password" maxlength="4">
+<button class="btn gold" onclick="doRegister()">✅ REGISTER</button>
+<p style="color:#aaa;font-size:12px">Already have account? <a href="#" onclick="showLogin()" style="color:#FFD700">LOGIN</a></p>
+</div>
+
+<div class="card hidden" id="loginBox">
+<h3 style="color:#FFD700">🔐 LOGIN</h3>
+<input id="loginWhatsApp" placeholder="WhatsApp Number" type="tel">
+<input id="loginPin" placeholder="PIN" type="password">
+<button class="btn green" onclick="doLogin()">🔓 LOGIN</button>
+<p style="color:#aaa;font-size:12px">New? <a href="#" onclick="showRegister()" style="color:#FFD700">REGISTER</a></p>
+</div>
+
+<div class="card hidden" id="voucherBox">
+<h3 style="color:#FF0000">🎟️ ENTER VOUCHER CODE - R20 / MONTH</h3>
+<p style="font-size:13px;color:#aaa">Admin will give you code after paying R20 via WhatsApp</p>
+<input id="voucherInput" placeholder="e.g. MZANSI-A1B2-C3D4">
+<button class="btn gold" onclick="checkVoucher()">✅ ACTIVATE APP</button>
+<p id="voucherMsg" style="color:#00FF00;font-size:12px"></p>
+<div style="margin-top:15px;background:#000;padding:10px;border-radius:10px">
+<p style="font-size:12px;color:#FFD700">Need voucher? WhatsApp Admin: 07X XXX XXXX</p>
+<p id="demoVoucher" style="font-size:11px;color:#555">Demo free code: FREE-MZANSI-2024 (7 days)</p>
+</div>
+<p style="margin-top:10px"><a href="#" onclick="adminLogin()" style="color:#555;font-size:11px">Admin Panel</a></p>
+</div>
+
+<div class="card hidden" id="adminBox">
+<h3 style="color:#FF0000">👑 ADMIN - GENERATE VOUCHERS</h3>
+<input id="adminPass" placeholder="Admin PIN (default 12345)" type="password">
+<button class="btn grey" onclick="unlockAdmin()">UNLOCK ADMIN</button>
+<div id="adminTools" class="hidden">
+<button class="btn gold" onclick="generateVoucher()">🎟️ GENERATE NEW VOUCHER (R20 = 30 DAYS)</button>
+<div id="voucherList" style="text-align:left;background:#000;padding:10px;border-radius:10px;margin-top:10px;max-height:200px;overflow:auto;font-size:12px"></div>
+</div>
+<button class="btn grey" onclick="showVoucher()">BACK</button>
+</div>
+</div>
+
+<div id="appScreen" class="hidden">
+<h1>🇿🇦 MZANSI AI - CUSTOM %</h1>
+<p id="welcomeUser" style="color:#FFD700"></p>
+<p id="expiryInfo" style="font-size:12px;color:#00FF00"></p>
 <div class="card" id="main">
 <div class="percent" id="pct">--%</div>
-<div class="status" id="stat">Reading battery %...</div>
-<div class="status blinkText" id="zuluStat" style="color:#FFD700;font-weight:900;font-size:18px"></div>
+<div class="status" id="stat">Reading battery...</div>
+<div class="blinkText" id="zuluStat" style="color:#FFD700;font-weight:900"></div>
 </div>
-
 <div class="card">
-<h3 style="color:#FFD700">🔋 SET CUSTOM % TO MAKE ALERT:</h3>
-<p style="color:#aaa;font-size:12px">Drag or type any % (10% to 100%)</p>
-<input type="range" id="targetSlider" min="10" max="100" value="100" style="width:100%;accent-color:#FFD700;height:30px" oninput="setCustom(this.value)">
+<h3 style="color:#FFD700">🔋 SET CUSTOM %:</h3>
+<input type="range" id="targetSlider" min="10" max="100" value="80" style="width:100%;accent-color:#FFD700" oninput="setCustom(this.value)">
 <div style="display:flex;gap:10px;margin:10px 0">
-<input type="number" id="targetLevel" value="100" min="10" max="100" style="width:50%;padding:16px;border-radius:12px;background:#000;color:#FFD700;border:2px solid #FFD700;font-size:26px;font-weight:900;text-align:center" oninput="setCustom(this.value)">
-<div style="width:50%;background:#FFD700;color:#000;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900" id="targetShow">100%</div>
+<input type="number" id="targetLevel" value="80" min="10" max="100" style="width:50%;padding:14px;border-radius:12px;background:#000;color:#FFD700;border:2px solid #FFD700;font-size:24px;font-weight:900;text-align:center" oninput="setCustom(this.value)">
+<div style="width:50%;background:#FFD700;color:#000;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900" id="targetShow">80%</div>
 </div>
-<div style="display:flex;gap:6px">
-<button class="btn" style="background:#222;color:#fff;padding:10px;font-size:14px" onclick="setCustom(75)">75%</button>
-<button class="btn" style="background:#222;color:#fff;padding:10px;font-size:14px" onclick="setCustom(80)">80%</button>
-<button class="btn" style="background:#222;color:#fff;padding:10px;font-size:14px" onclick="setCustom(90)">90%</button>
-<button class="btn" style="background:#FFD700;color:#000;padding:10px;font-size:14px" onclick="setCustom(100)">100%</button>
 </div>
-<p id="aiAdvice" style="font-size:12px;color:#00FF00;margin-top:10px">AI Advice: 80% = battery lasts 3 years longer</p>
-</div>
-
 <div class="card">
-<h3 style="color:#FFD700">🎵 ZULU RINGTONE:</h3>
-<select id="voice">
-<option value="zulu1">👵 Zulu Gogo: Mntanami! Battery igcwele! Khipha shaja manje!</option>
-<option value="zulu2">👨 Zulu Baba: Hey! Battery full! Khipha i-plug!</option>
-<option value="sotho">🗣️ Sotho: Tjha! E tletse! Ntlosha shaja!</option>
-<option value="xhosa">🗣️ Xhosa: Battery igcwele! Khupha iplagi!</option>
-<option value="english">🇬🇧 English: Boss! Battery full! Unplug now!</option>
-<option value="custom">📁 My Own Song / Voice Note</option>
+<select id="voice" style="width:100%;padding:12px;border-radius:12px;background:#000;color:#fff;border:1px solid #555">
+<option value="zulu1">👵 Zulu Gogo: Mntanami! Battery igcwele!</option>
+<option value="zulu2">👨 Zulu Baba: Hey! Battery full!</option>
+<option value="english">🇬🇧 English: Boss! Battery full!</option>
+<option value="custom">📁 My MP3</option>
 </select>
-<button class="btn" style="background:#333;color:#fff" onclick="document.getElementById('file').click()">📁 Choose Your Own MP3 from Phone</button>
+<button class="btn grey" onclick="document.getElementById('file').click()">📁 Choose MP3</button>
 <input type="file" id="file" accept="audio/*" style="display:none" onchange="loadCustom(this)">
 <audio id="audio" controls style="width:100%;margin-top:10px;display:none" loop></audio>
-<p id="chosen" style="color:#00FF00;font-size:12px">Chosen: Zulu Gogo</p>
-<button class="btn" style="background:#333;color:#fff" onclick="previewVoice()">🔊 PREVIEW VOICE</button>
+<button class="btn grey" onclick="previewVoice()">🔊 PREVIEW</button>
 </div>
-
 <div class="card">
-<button class="btn green" id="startBtn" onclick="startAlert()">🟢 START ALERT - CUSTOM %</button>
-<button class="btn red" id="stopBtn" onclick="stopAlert()" style="display:none;font-size:22px;padding:22px">🔴 STOP - I UNPLUGGED - SIYABONGA!</button>
-<p style="font-size:11px;color:#aaa">Upload ONE file to GitHub → Works offline → Loud + Flash</p>
+<button class="btn green" id="startBtn" onclick="startAlert()">🟢 START ALERT</button>
+<button class="btn red hidden" id="stopBtn" onclick="stopAlert()">🔴 STOP - SIYABONGA!</button>
+<button class="btn grey" onclick="doLogout()" style="font-size:12px">LOGOUT</button>
+</div>
 </div>
 
 <script>
-// MAKE IT ONE FILE - CREATE MANIFEST AND SW INSIDE
+// ONE FILE SETUP
 (function(){
-  const manifest = {
-    name: "Mzansi AI Battery Alert",
-    short_name: "Mzansi Battery",
-    start_url: "./",
-    display: "standalone",
-    background_color: "#000000",
-    theme_color: "#FFD700",
-    icons: [{src:"https://cdn-icons-png.flaticon.com/512/664/664886.png",sizes:"512x512",type:"image/png"}]
-  };
-  const blob = new Blob([JSON.stringify(manifest)], {type:'application/json'});
-  document.getElementById('manifestLink').href = URL.createObjectURL(blob);
-  
-  // Create service worker from blob so no external file needed
-  const swCode = `self.addEventListener('install', e => self.skipWaiting()); self.addEventListener('activate', e => self.clients.claim()); self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(()=>{})));`;
-  if('serviceWorker' in navigator){
-    const swBlob = new Blob([swCode], {type:'text/javascript'});
-    const swUrl = URL.createObjectURL(swBlob);
-    navigator.serviceWorker.register(swUrl).catch(()=>{});
-  }
+  const manifest={name:"Mzansi Battery R20",short_name:"Mzansi Battery",start_url:"./",display:"standalone",background_color:"#000",theme_color:"#FFD700",icons:[{src:"https://cdn-icons-png.flaticon.com/512/664/664886.png",sizes:"512x512",type:"image/png"}]};
+  const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
+  document.getElementById('manifestLink').href=URL.createObjectURL(blob);
 })();
 
-let battery=null, target=100, alertOn=false, alarmLoop=null, flashLoop=null, audioCtx=null,
-pctEl=document.getElementById('pct'), statEl=document.getElementById('stat'), zuluStatEl=document.getElementById('zuluStat'),
-chosenEl=document.getElementById('chosen'), audioEl=document.getElementById('audio'), bodyEl=document.getElementById('body'),
-customAudioURL=null, currentVoice='zulu1';
+// AUTH + VOUCHER SYSTEM
+let users = JSON.parse(localStorage.getItem('mzansi_users')||'{}');
+let vouchers = JSON.parse(localStorage.getItem('mzansi_vouchers')||'{}');
+let currentUser = localStorage.getItem('mzansi_current_user')||null;
 
-const voices={
- zulu1:{text:"Mntanami! Battery igcwele! Khipha shaja manje! Battery igcwele! Khipha! Khipha!", lang:"zu-ZA"},
- zulu2:{text:"Hey! Battery full! Khipha i-plug! Full! Full! Full!", lang:"zu-ZA"},
- sotho:{text:"Tjha! E tletse! Ntlosha shaja! Battery e tletse!", lang:"st-ZA"},
- xhosa:{text:"Battery igcwele! Khupha iplagi! Enkosi! Khawuleza!", lang:"xh-ZA"},
- english:{text:"Boss! Battery fully charged! Unplug now! Unplug! Unplug!", lang:"en-ZA"}
-};
+// Create default vouchers if empty
+if(Object.keys(vouchers).length===0){
+ vouchers['FREE-MZANSI-2024']={days:7, used:false, created:Date.now()};
+ vouchers['MZANSI-TEST-1234']={days:30, used:false, created:Date.now()};
+ localStorage.setItem('mzansi_vouchers', JSON.stringify(vouchers));
+}
 
-function setCustom(val){
-  target=parseInt(val); if(isNaN(target)) return;
-  if(target<10) target=10; if(target>100) target=100;
-  document.getElementById('targetLevel').value=target;
-  document.getElementById('targetSlider').value=target;
-  document.getElementById('targetShow').innerText=target+'%';
-  localStorage.setItem('mzansi_target', target);
-  let advice=document.getElementById('aiAdvice');
-  if(target<=80) advice.innerText='✅ AI: '+target+'% = EXCELLENT! Battery will last 3 years longer!';
-  else if(target<=90) advice.innerText='⚠️ AI: '+target+'% = Good balance';
-  else advice.innerText='🔴 AI: '+target+'% = Full but battery ages faster';
-  if(alertOn) statEl.innerText=`Guard ON - Will FLASH & SHOUT at ${target}%`;
+function showRegister(){document.getElementById('registerBox').classList.remove('hidden');document.getElementById('loginBox').classList.add('hidden');document.getElementById('voucherBox').classList.add('hidden');document.getElementById('adminBox').classList.add('hidden')}
+function showLogin(){document.getElementById('registerBox').classList.add('hidden');document.getElementById('loginBox').classList.remove('hidden');}
+function showVoucher(){document.getElementById('registerBox').classList.add('hidden');document.getElementById('loginBox').classList.add('hidden');document.getElementById('voucherBox').classList.remove('hidden');document.getElementById('adminBox').classList.add('hidden'); renderDemo();}
+function adminLogin(){document.getElementById('adminBox').classList.remove('hidden');document.getElementById('voucherBox').classList.add('hidden');}
+function unlockAdmin(){if(document.getElementById('adminPass').value==='12345'){document.getElementById('adminTools').classList.remove('hidden'); renderVouchers();}else{alert('Wrong admin PIN. Default is 12345 - change it in code later')}} 
+
+function doRegister(){
+ let name=document.getElementById('regName').value.trim();
+ let wa=document.getElementById('regWhatsApp').value.trim().replace(/\s/g,'');
+ let pin=document.getElementById('regPin').value.trim();
+ if(!name||!wa||pin.length<4){alert('Fill all - Name, WhatsApp, 4-digit PIN');return}
+ if(users[wa]){alert('This WhatsApp already registered - Login');showLogin();return}
+ users[wa]={name, pin, expiry:0, voucher:''};
+ localStorage.setItem('mzansi_users', JSON.stringify(users));
+ currentUser=wa; localStorage.setItem('mzansi_current_user', wa);
+ showVoucher();
 }
-async function init(){
- if('getBattery' in navigator){
-   battery=await navigator.getBattery();
-   updateBattery();
-   battery.addEventListener('levelchange', updateBattery);
-   battery.addEventListener('chargingchange', updateBattery);
- }
- target=localStorage.getItem('mzansi_target')? parseInt(localStorage.getItem('mzansi_target')):100;
- setCustom(target);
+function doLogin(){
+ let wa=document.getElementById('loginWhatsApp').value.trim().replace(/\s/g,'');
+ let pin=document.getElementById('loginPin').value.trim();
+ if(!users[wa]||users[wa].pin!==pin){alert('Wrong WhatsApp or PIN');return}
+ currentUser=wa; localStorage.setItem('mzansi_current_user', wa);
+ checkExpiry();
 }
-function updateBattery(){
- if(!battery) return;
- let p=Math.round(battery.level*100);
- if(!alarmLoop) pctEl.innerText=p+'%';
- pctEl.style.color=p>=100?'#FF0000':p>=80?'#FFD700':'#00FF00';
- statEl.innerText=battery.charging?`⚡ Charging - ${p}% - Will FLASH at ${target}%`:`🔋 Not charging - ${p}%`;
- zuluStatEl.innerText=battery.charging?`AI reading: ${p}% - Target ${target}%`:`Linda - Shaja ifuna ukugcwalisa`;
- if(alertOn && battery.charging && p>=target) shout();
- if(alertOn && !battery.charging && alarmLoop) stopShout();
+function checkExpiry(){
+ let u=users[currentUser];
+ if(!u) return;
+ if(u.expiry && Date.now() < u.expiry){ openApp(); }
+ else{ showVoucher(); document.getElementById('voucherMsg').innerText = u.expiry? '❌ Subscription expired on '+new Date(u.expiry).toLocaleDateString()+' - Enter new voucher' : 'Enter voucher to activate R20/month'; }
 }
-function previewVoice(){
- currentVoice=document.getElementById('voice').value;
- if(currentVoice==='custom'){
-   if(customAudioURL){ audioEl.src=customAudioURL; audioEl.style.display='block'; playLoud(audioEl); chosenEl.innerText='Playing CUSTOM LOUD'; }
-   else{ alert('Choose your MP3 first'); return; }
- } else { let v=voices[currentVoice]; chosenEl.innerText=document.getElementById('voice').selectedOptions[0].text; speakLoud(v.text, v.lang); }
+function checkVoucher(){
+ let code=document.getElementById('voucherInput').value.trim().toUpperCase();
+ if(!vouchers[code]){document.getElementById('voucherMsg').innerText='❌ Invalid voucher code'; return}
+ if(vouchers[code].used && vouchers[code].usedBy!==currentUser){document.getElementById('voucherMsg').innerText='❌ Voucher already used'; return}
+ let days=vouchers[code].days;
+ let expiry=Date.now() + days*24*60*60*1000;
+ users[currentUser].expiry=expiry; users[currentUser].voucher=code;
+ vouchers[code].used=true; vouchers[code].usedBy=currentUser; vouchers[code].usedAt=Date.now();
+ localStorage.setItem('mzansi_users', JSON.stringify(users));
+ localStorage.setItem('mzansi_vouchers', JSON.stringify(vouchers));
+ document.getElementById('voucherMsg').innerText='✅ Activated '+days+' days! Until '+new Date(expiry).toLocaleDateString();
+ setTimeout(openApp, 1000);
 }
-function speakLoud(text, lang){
- if('speechSynthesis' in window){
-   speechSynthesis.cancel();
-   let u=new SpeechSynthesisUtterance(text); u.lang=lang; u.rate=0.85; u.volume=1; u.pitch=1.1;
-   let vs=speechSynthesis.getVoices(); let z=vs.find(x=>x.lang.includes('zu')||x.lang.includes('ZA')); if(z) u.voice=z;
-   speechSynthesis.speak(u);
- }
- playSiren();
+function generateVoucher(){
+ let code='MZANSI-'+Math.random().toString(36).substring(2,6).toUpperCase()+'-'+Math.random().toString(36).substring(2,6).toUpperCase();
+ vouchers[code]={days:30, used:false, created:Date.now()};
+ localStorage.setItem('mzansi_vouchers', JSON.stringify(vouchers));
+ renderVouchers();
+ alert('New Voucher: '+code+' - Send to client after R20 payment');
 }
-function playSiren(){
- try{
-   if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
-   let o=audioCtx.createOscillator(); let g=audioCtx.createGain();
-   o.type='square'; o.frequency.value=900; g.gain.value=0.3;
-   o.connect(g); g.connect(audioCtx.destination); o.start();
-   setTimeout(()=>{o.frequency.value=600},200);
-   setTimeout(()=>{o.stop()},600);
- }catch(e){}
+function renderVouchers(){
+ let html=''; for(let k in vouchers){ let v=vouchers[k]; html+=`<div style="border-bottom:1px solid #333;padding:5px">${k} - ${v.days} days - ${v.used?'USED by '+v.usedBy:'FREE'} <button onclick="copyCode('${k}')" style="float:right">Copy</button></div>`}
+ document.getElementById('voucherList').innerHTML=html;
 }
-function playLoud(el){ el.volume=1.0; el.play().catch(()=>{}); }
-function loadCustom(input){
- let f=input.files[0]; if(!f) return;
- customAudioURL=URL.createObjectURL(f);
- audioEl.src=customAudioURL; audioEl.style.display='block';
- document.getElementById('voice').value='custom'; currentVoice='custom';
- chosenEl.innerText='Custom: '+f.name+' - Will FLASH at '+target+'%';
- playLoud(audioEl);
+function renderDemo(){ let first=Object.keys(vouchers).find(k=>!vouchers[k].used); if(first) document.getElementById('demoVoucher').innerText='Demo free code: '+first+' (for testing)';}
+function copyCode(c){navigator.clipboard.writeText(c); alert('Copied: '+c)}
+function doLogout(){localStorage.removeItem('mzansi_current_user'); location.reload()}
+function openApp(){
+ document.getElementById('authScreen').classList.add('hidden');
+ document.getElementById('appScreen').classList.remove('hidden');
+ let u=users[currentUser];
+ document.getElementById('welcomeUser').innerText='Sawubona, '+u.name+' ('+currentUser+')';
+ if(u.expiry){ let daysLeft=Math.ceil((u.expiry-Date.now())/(24*60*60*1000)); document.getElementById('expiryInfo').innerText='✅ Active: '+daysLeft+' days left - Expires '+new Date(u.expiry).toLocaleDateString() }
+ init();
 }
-function shout(){
- if(alarmLoop) return;
- let isRed=true;
- flashLoop=setInterval(()=>{
-   if(isRed){ bodyEl.className='police-red'; document.getElementById('main').className='card police-blue flash-card'; }
-   else{ bodyEl.className='police-blue'; document.getElementById('main').className='card police-red flash-card'; }
-   isRed=!isRed;
-   if(navigator.vibrate) navigator.vibrate([300,100,300,100,500]);
-   playSiren();
- },200);
- pctEl.innerText=target+'% FULL!'; pctEl.style.color='#fff'; pctEl.className='percent blinkText';
- statEl.innerHTML=`<b style="color:#fff;font-size:22px;background:#000;padding:8px;border-radius:10px">🚨 KHIPHA SHAJA MANJE! ${target}% FULL! 🚨</b>`;
- zuluStatEl.innerText='🚨 MNTANAMI! BATTERY IGCWELE! KHIPHA! KHIPHA! 🚨';
- if(currentVoice==='custom' && customAudioURL){ audioEl.loop=true; playLoud(audioEl); }
- else{ let v=voices[currentVoice]||voices.zulu1; alarmLoop=setInterval(()=>{ speakLoud(v.text, v.lang); },2500); speakLoud(v.text+' '+v.text, v.lang); }
- if(Notification && Notification.permission==="granted"){ new Notification(`🚨 ${target}% FULL! KHIPHA SHAJA!`,{body:'MZANSI POLICE FLASH ALERT', requireInteraction:true}); }
- document.getElementById('stopBtn').style.display='block';
- document.getElementById('startBtn').innerText='🚨 FLASHING RED/BLUE - UNPLUG NOW!';
-}
-function stopShout(){
- bodyEl.className=''; bodyEl.style.background='#000';
- document.getElementById('main').className='card'; document.getElementById('main').style.background='#1a1a1a';
- if(flashLoop){clearInterval(flashLoop); flashLoop=null;}
- if(alarmLoop){clearInterval(alarmLoop); alarmLoop=null;}
- speechSynthesis.cancel(); audioEl.pause(); audioEl.loop=false;
- pctEl.className='percent'; updateBattery();
-}
-function startAlert(){
- alertOn=true; target=parseInt(document.getElementById('targetLevel').value); setCustom(target);
- currentVoice=document.getElementById('voice').value;
- localStorage.setItem('mzansi_target', target);
- if(Notification && Notification.permission!=="granted") Notification.requestPermission();
- if('wakeLock' in navigator){navigator.wakeLock.request('screen').catch(()=>{});}
- if(audioCtx && audioCtx.state==='suspended') audioCtx.resume();
- audioEl.play().then(()=>{audioEl.pause();}).catch(()=>{});
- document.getElementById('startBtn').innerText=`🟢 ON - WILL FLASH AT ${target}%`;
- document.getElementById('startBtn').style.background='#FFD700'; document.getElementById('startBtn').style.color='#000';
- updateBattery();
-}
-function stopAlert(){ alertOn=false; stopShout(); document.getElementById('startBtn').innerText='🟢 START ALERT - CUSTOM %'; document.getElementById('startBtn').style.background='#00FF00'; document.getElementById('stopBtn').style.display='none'; statEl.innerText='Guard OFF'; }
-init();
+function initCheck(){ if(currentUser && users[currentUser]) checkExpiry(); else showRegister(); }
+initCheck();
+
+// BATTERY APP LOGIC (same as before)
+let battery=null,target=80,alertOn=false,alarmLoop=null,flashLoop=null,audioCtx=null,
+pctEl=document.getElementById('pct'),statEl=document.getElementById('stat'),zuluStatEl=document.getElementById('zuluStat'),
+audioEl=document.getElementById('audio'),bodyEl=document.getElementById('body'),customAudioURL=null,currentVoice='zulu1';
+const voices={zulu1:{text:"Mntanami! Battery igcwele! Khipha shaja manje!",lang:"zu-ZA"},zulu2:{text:"Hey! Battery full! Khipha i-plug!",lang:"zu-ZA"},english:{text:"Boss! Battery full! Unplug now!",lang:"en-ZA"}};
+function setCustom(val){target=parseInt(val); if(isNaN(target)) return; if(target<10)target=10; if(target>100)target=100; document.getElementById('targetLevel').value=target; document.getElementById('targetSlider').value=target; document.getElementById('targetShow').innerText=target+'%'; localStorage.setItem('mzansi_target',target)}
+async function init(){if('getBattery' in navigator){battery=await navigator.getBattery(); updateBattery(); battery.addEventListener('levelchange',updateBattery); battery.addEventListener('chargingchange',updateBattery)} target=localStorage.getItem('mzansi_target')?parseInt(localStorage.getItem('mzansi_target')):80; setCustom(target)}
+function updateBattery(){if(!battery) return; let p=Math.round(battery.level*100); if(!alarmLoop) pctEl.innerText=p+'%'; statEl.innerText=battery.charging?`⚡ Charging ${p}% → ${target}%`:`🔋 ${p}%`; if(alertOn&&battery.charging&&p>=target) shout(); if(alertOn&&!battery.charging&&alarmLoop) stopShout()}
+function previewVoice(){currentVoice=document.getElementById('voice').value; if(currentVoice==='custom'){if(customAudioURL){audioEl.src=customAudioURL; audioEl.style.display='block'; audioEl.play()}else alert('Choose MP3')} else{speakLoud(voices[currentVoice].text,voices[currentVoice].lang)}}
+function speakLoud(t,l){if('speechSynthesis' in window){speechSynthesis.cancel(); let u=new SpeechSynthesisUtterance(t); u.lang=l; u.volume=1; speechSynthesis.speak(u)}}
+function playSiren(){try{if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); let o=audioCtx.createOscillator(),g=audioCtx.createGain(); o.type='square'; o.frequency.value=900; g.gain.value=0.3; o.connect(g); g.connect(audioCtx.destination); o.start(); setTimeout(()=>o.frequency.value=600,200); setTimeout(()=>o.stop(),600)}catch(e){}}
+function loadCustom(i){let f=i.files[0]; if(!f) return; customAudioURL=URL.createObjectURL(f); audioEl.src=customAudioURL; audioEl.style.display='block'; document.getElementById('voice').value='custom'; currentVoice='custom'; audioEl.play()}
+function shout(){if(alarmLoop) return; let isRed=true; flashLoop=setInterval(()=>{if(isRed){bodyEl.className='police-red'; document.getElementById('main').className='card police-blue flash-card'}else{bodyEl.className='police-blue'; document.getElementById('main').className='card police-red flash-card'} isRed=!isRed; if(navigator.vibrate) navigator.vibrate([300,100,300]); playSiren()},200); pctEl.innerText=target+'% FULL!'; pctEl.className='percent blinkText'; alarmLoop=setInterval(()=>{let v=voices[currentVoice]||voices.zulu1; speakLoud(v.text,v.lang)},2500); document.getElementById('stopBtn').classList.remove('hidden'); document.getElementById('startBtn').innerText='🚨 FLASHING - UNPLUG!'}
+function stopShout(){bodyEl.className=''; document.getElementById('main').className='card'; if(flashLoop)clearInterval(flashLoop); if(alarmLoop)clearInterval(alarmLoop); flashLoop=null; alarmLoop=null; speechSynthesis.cancel(); audioEl.pause(); pctEl.className='percent'; updateBattery()}
+function startAlert(){alertOn=true; target=parseInt(document.getElementById('targetLevel').value); setCustom(target); if('wakeLock' in navigator) navigator.wakeLock.request('screen').catch(()=>{}); document.getElementById('startBtn').innerText=`🟢 ON - ${target}%`; updateBattery()}
+function stopAlert(){alertOn=false; stopShout(); document.getElementById('startBtn').innerText='🟢 START ALERT'; document.getElementById('stopBtn').classList.add('hidden')}
 </script>
 </body>
 </html>
