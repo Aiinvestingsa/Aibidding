@@ -3,304 +3,222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mzansi AI Battery Alert</title>
-<link rel="manifest" href="manifest.json">
+<title>Mzansi AI Battery Alert - CUSTOM %</title>
+<link id="manifestLink" rel="manifest" href="">
 <style>
-body{margin:0;background:#000;color:#fff;font-family:Arial;text-align:center;padding:20px}
-h1{color:#FFD700;font-size:28px;margin:10px}
-.card{background:#1a1a1a;border-radius:20px;padding:20px;margin:15px 0;border:2px solid #333}
-.percent{font-size:80px;font-weight:900;color:#00FF00}
-.status{font-size:16px;color:#aaa;margin:8px}
-.btn{width:100%;padding:18px;border:none;border-radius:15px;font-size:20px;font-weight:900;margin:8px 0}
-.green{background:#00FF00;color:#000}
-.red{background:#FF0000;color:#fff;animation:blink 0.5s infinite}
-@keyframes blink{0%{opacity:1}50%{opacity:0.3}}
+body{margin:0;background:#000;color:#fff;font-family:Arial;text-align:center;padding:20px;transition:background 0.1s}
+h1{color:#FFD700;font-size:24px;margin:10px}
+.card{background:#1a1a1a;border-radius:20px;padding:20px;margin:15px 0;border:2px solid #333;transition:all 0.1s}
+.percent{font-size:80px;font-weight:900;color:#00FF00;text-shadow:0 0 20px #00FF00}
+.status{font-size:15px;color:#aaa;margin:8px}
+.btn{width:100%;padding:16px;border:none;border-radius:15px;font-size:18px;font-weight:900;margin:6px 0;cursor:pointer}
+.green{background:#00FF00;color:#000;box-shadow:0 0 20px #00FF00}
+.red{background:#FF0000;color:#fff}
 select{width:100%;padding:14px;border-radius:12px;background:#000;color:#fff;border:1px solid #555;font-size:16px;margin:8px 0}
+.police-red{background:#FF0000 !important}
+.police-blue{background:#0000FF !important}
+.flash-card{animation:policeBorder 0.2s infinite}
+@keyframes policeBorder{0%{border-color:#FF0000;box-shadow:0 0 30px #FF0000}50%{border-color:#0000FF;box-shadow:0 0 30px #0000FF}}
+.blinkText{animation:blink 0.2s infinite}
+@keyframes blink{0%{opacity:1}50%{opacity:0.2}}
 </style>
 </head>
-<body>
-
-<h1>🇿🇦 MZANSI AI BATTERY ALERT</h1>
-<p style="color:#FFD700">Reads % - Speaks Zulu - Custom Ringtone</p>
+<body id="body">
+<h1>🇿🇦 MZANSI AI BY DJ BIGSAM RSA - CUSTOM % ALERT</h1>
+<p style="color:#FFD700">ONE FILE - Set ANY % + Police Flash + Loud Zulu</p>
 
 <div class="card" id="main">
 <div class="percent" id="pct">--%</div>
 <div class="status" id="stat">Reading battery %...</div>
-<div class="status" id="zuluStat" style="color:#FFD700;font-weight:800"></div>
+<div class="status blinkText" id="zuluStat" style="color:#FFD700;font-weight:900;font-size:18px"></div>
 </div>
 
 <div class="card">
-<h3 style="color:#FFD700">🔋 SET WHEN TO SHOUT:</h3>
-<select id="targetLevel" onchange="setTarget()">
-<option value="80">80% - Battery lasts 3 years (AI Recommend)</option>
-<option value="90">90% - Balanced</option>
-<option value="100" selected>100% - Fully Charged - Shout Now</option>
-</select>
-<p style="font-size:12px;color:#aaa">AI will read % every second and shout at your chosen %</p>
+<h3 style="color:#FFD700">🔋 SET CUSTOM % TO MAKE ALERT:</h3>
+<p style="color:#aaa;font-size:12px">Drag or type any % (10% to 100%)</p>
+<input type="range" id="targetSlider" min="10" max="100" value="100" style="width:100%;accent-color:#FFD700;height:30px" oninput="setCustom(this.value)">
+<div style="display:flex;gap:10px;margin:10px 0">
+<input type="number" id="targetLevel" value="100" min="10" max="100" style="width:50%;padding:16px;border-radius:12px;background:#000;color:#FFD700;border:2px solid #FFD700;font-size:26px;font-weight:900;text-align:center" oninput="setCustom(this.value)">
+<div style="width:50%;background:#FFD700;color:#000;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900" id="targetShow">100%</div>
+</div>
+<div style="display:flex;gap:6px">
+<button class="btn" style="background:#222;color:#fff;padding:10px;font-size:14px" onclick="setCustom(75)">75%</button>
+<button class="btn" style="background:#222;color:#fff;padding:10px;font-size:14px" onclick="setCustom(80)">80%</button>
+<button class="btn" style="background:#222;color:#fff;padding:10px;font-size:14px" onclick="setCustom(90)">90%</button>
+<button class="btn" style="background:#FFD700;color:#000;padding:10px;font-size:14px" onclick="setCustom(100)">100%</button>
+</div>
+<p id="aiAdvice" style="font-size:12px;color:#00FF00;margin-top:10px">AI Advice: 80% = battery lasts 3 years longer</p>
 </div>
 
 <div class="card">
-<h3 style="color:#FFD700">🎵 CHOOSE ZULU RINGTONE:</h3>
-<select id="voice" onchange="previewVoice()">
+<h3 style="color:#FFD700">🎵 ZULU RINGTONE:</h3>
+<select id="voice">
 <option value="zulu1">👵 Zulu Gogo: Mntanami! Battery igcwele! Khipha shaja manje!</option>
 <option value="zulu2">👨 Zulu Baba: Hey! Battery full! Khipha i-plug!</option>
 <option value="sotho">🗣️ Sotho: Tjha! E tletse! Ntlosha shaja!</option>
 <option value="xhosa">🗣️ Xhosa: Battery igcwele! Khupha iplagi!</option>
 <option value="english">🇬🇧 English: Boss! Battery full! Unplug now!</option>
-<option value="custom">📁 My Own Song / Voice Note from Phone</option>
+<option value="custom">📁 My Own Song / Voice Note</option>
 </select>
-<button class="btn" style="background:#333;color:#fff" onclick="document.getElementById('file').click()" id="fileBtn">📁 Choose Your Own Ringtone (MP3/Audio from Phone)</button>
+<button class="btn" style="background:#333;color:#fff" onclick="document.getElementById('file').click()">📁 Choose Your Own MP3 from Phone</button>
 <input type="file" id="file" accept="audio/*" style="display:none" onchange="loadCustom(this)">
-<audio id="audio" controls style="width:100%;margin-top:10px;display:none"></audio>
-<p id="chosen" style="color:#00FF00;font-size:12px">Chosen: Zulu Gogo - Mntanami battery full</p>
-<button class="btn" style="background:#333;color:#fff" onclick="previewVoice()">🔊 PREVIEW ZULU VOICE</button>
+<audio id="audio" controls style="width:100%;margin-top:10px;display:none" loop></audio>
+<p id="chosen" style="color:#00FF00;font-size:12px">Chosen: Zulu Gogo</p>
+<button class="btn" style="background:#333;color:#fff" onclick="previewVoice()">🔊 PREVIEW VOICE</button>
 </div>
 
 <div class="card">
-<button class="btn green" id="startBtn" onclick="startAlert()">🟢 START MZANSI ALERT - READ % NOW</button>
-<button class="btn red" id="stopBtn" onclick="stopAlert()" style="display:none">🔴 STOP - I UNPLUGGED - THANK YOU MZANSI AI</button>
-<p style="font-size:11px;color:#aaa">Add to Home Screen → Works offline → Loud even if silent → No data needed after install</p>
+<button class="btn green" id="startBtn" onclick="startAlert()">🟢 START ALERT - CUSTOM %</button>
+<button class="btn red" id="stopBtn" onclick="stopAlert()" style="display:none;font-size:22px;padding:22px">🔴 STOP - I UNPLUGGED - SIYABONGA!</button>
+<p style="font-size:11px;color:#aaa">Upload ONE file to GitHub → Works offline → Loud + Flash</p>
 </div>
 
 <script>
-let battery=null, target=100, alertOn=false, alarmLoop=null, pctEl=document.getElementById('pct'), statEl=document.getElementById('stat'), zuluStatEl=document.getElementById('zuluStat'), chosenEl=document.getElementById('chosen'), audioEl=document.getElementById('audio'), customAudioURL=null, currentVoice='zulu1';
+// MAKE IT ONE FILE - CREATE MANIFEST AND SW INSIDE
+(function(){
+  const manifest = {
+    name: "Mzansi AI Battery Alert",
+    short_name: "Mzansi Battery",
+    start_url: "./",
+    display: "standalone",
+    background_color: "#000000",
+    theme_color: "#FFD700",
+    icons: [{src:"https://cdn-icons-png.flaticon.com/512/664/664886.png",sizes:"512x512",type:"image/png"}]
+  };
+  const blob = new Blob([JSON.stringify(manifest)], {type:'application/json'});
+  document.getElementById('manifestLink').href = URL.createObjectURL(blob);
+  
+  // Create service worker from blob so no external file needed
+  const swCode = `self.addEventListener('install', e => self.skipWaiting()); self.addEventListener('activate', e => self.clients.claim()); self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(()=>{})));`;
+  if('serviceWorker' in navigator){
+    const swBlob = new Blob([swCode], {type:'text/javascript'});
+    const swUrl = URL.createObjectURL(swBlob);
+    navigator.serviceWorker.register(swUrl).catch(()=>{});
+  }
+})();
+
+let battery=null, target=100, alertOn=false, alarmLoop=null, flashLoop=null, audioCtx=null,
+pctEl=document.getElementById('pct'), statEl=document.getElementById('stat'), zuluStatEl=document.getElementById('zuluStat'),
+chosenEl=document.getElementById('chosen'), audioEl=document.getElementById('audio'), bodyEl=document.getElementById('body'),
+customAudioURL=null, currentVoice='zulu1';
 
 const voices={
- zulu1:{text:"Mntanami! Battery igcwele! Khipha shaja manje! Battery igcwele!", lang:"zu-ZA"},
- zulu2:{text:"Hey! Battery full! Khipha i-plug! Siyabonga!", lang:"zu-ZA"},
+ zulu1:{text:"Mntanami! Battery igcwele! Khipha shaja manje! Battery igcwele! Khipha! Khipha!", lang:"zu-ZA"},
+ zulu2:{text:"Hey! Battery full! Khipha i-plug! Full! Full! Full!", lang:"zu-ZA"},
  sotho:{text:"Tjha! E tletse! Ntlosha shaja! Battery e tletse!", lang:"st-ZA"},
- xhosa:{text:"Battery igcwele! Khupha iplagi! Enkosi!", lang:"xh-ZA"},
- english:{text:"Boss! Battery fully charged! Unplug now! Protect battery!", lang:"en-ZA"}
+ xhosa:{text:"Battery igcwele! Khupha iplagi! Enkosi! Khawuleza!", lang:"xh-ZA"},
+ english:{text:"Boss! Battery fully charged! Unplug now! Unplug! Unplug!", lang:"en-ZA"}
 };
 
-function setTarget(){target=parseInt(document.getElementById('targetLevel').value); if(alertOn) statEl.innerText=`Guard ON - Will shout at ${target}%`; }
-
+function setCustom(val){
+  target=parseInt(val); if(isNaN(target)) return;
+  if(target<10) target=10; if(target>100) target=100;
+  document.getElementById('targetLevel').value=target;
+  document.getElementById('targetSlider').value=target;
+  document.getElementById('targetShow').innerText=target+'%';
+  localStorage.setItem('mzansi_target', target);
+  let advice=document.getElementById('aiAdvice');
+  if(target<=80) advice.innerText='✅ AI: '+target+'% = EXCELLENT! Battery will last 3 years longer!';
+  else if(target<=90) advice.innerText='⚠️ AI: '+target+'% = Good balance';
+  else advice.innerText='🔴 AI: '+target+'% = Full but battery ages faster';
+  if(alertOn) statEl.innerText=`Guard ON - Will FLASH & SHOUT at ${target}%`;
+}
 async function init(){
  if('getBattery' in navigator){
    battery=await navigator.getBattery();
    updateBattery();
    battery.addEventListener('levelchange', updateBattery);
    battery.addEventListener('chargingchange', updateBattery);
- } else {
-   pctEl.innerText="80%"; statEl.innerText="iPhone: Battery % limited - Using timer mode - Will still shout Zulu";
-   setInterval(()=>{ if(alertOn){ let fake=parseInt(pctEl.innerText)||0; if(fake<100){ fake+=1; pctEl.innerText=fake+'%'; if(fake>=target) shout(); } } },2000);
  }
+ target=localStorage.getItem('mzansi_target')? parseInt(localStorage.getItem('mzansi_target')):100;
+ setCustom(target);
 }
 function updateBattery(){
  if(!battery) return;
  let p=Math.round(battery.level*100);
- pctEl.innerText=p+'%';
- pctEl.style.color = p>=100? '#FF0000' : p>=80? '#FFD700' : '#00FF00';
- statEl.innerText= battery.charging? `⚡ Charging - ${p}% - Will shout at ${target}% in Zulu` : `🔋 Not charging - ${p}% - Plug in charger`;
- zuluStatEl.innerText = battery.charging? `AI Mzansi reading: ${p}%` : `Linda - Shaja ifuna ukugcwalisa`;
+ if(!alarmLoop) pctEl.innerText=p+'%';
+ pctEl.style.color=p>=100?'#FF0000':p>=80?'#FFD700':'#00FF00';
+ statEl.innerText=battery.charging?`⚡ Charging - ${p}% - Will FLASH at ${target}%`:`🔋 Not charging - ${p}%`;
+ zuluStatEl.innerText=battery.charging?`AI reading: ${p}% - Target ${target}%`:`Linda - Shaja ifuna ukugcwalisa`;
  if(alertOn && battery.charging && p>=target) shout();
- if(alertOn &&!battery.charging && alarmLoop) stopShout();
+ if(alertOn && !battery.charging && alarmLoop) stopShout();
 }
 function previewVoice(){
  currentVoice=document.getElementById('voice').value;
- if(currentVoice==='custom'){ if(customAudioURL){ audioEl.src=customAudioURL; audioEl.style.display='block'; audioEl.play(); chosenEl.innerText='Playing your custom song'; } else { alert('Choose your song from phone first - Click Choose Your Own Ringtone'); return; } }
- else { let v=voices[currentVoice]; if(!v) return; chosenEl.innerText='Chosen: '+document.getElementById('voice').selectedOptions[0].text; speakZulu(v.text, v.lang); }
+ if(currentVoice==='custom'){
+   if(customAudioURL){ audioEl.src=customAudioURL; audioEl.style.display='block'; playLoud(audioEl); chosenEl.innerText='Playing CUSTOM LOUD'; }
+   else{ alert('Choose your MP3 first'); return; }
+ } else { let v=voices[currentVoice]; chosenEl.innerText=document.getElementById('voice').selectedOptions[0].text; speakLoud(v.text, v.lang); }
 }
-function speakZulu(text, lang){
+function speakLoud(text, lang){
  if('speechSynthesis' in window){
    speechSynthesis.cancel();
-   let u=new SpeechSynthesisUtterance(text);
-   u.lang=lang; u.rate=0.9; u.volume=1; u.pitch=1;
+   let u=new SpeechSynthesisUtterance(text); u.lang=lang; u.rate=0.85; u.volume=1; u.pitch=1.1;
+   let vs=speechSynthesis.getVoices(); let z=vs.find(x=>x.lang.includes('zu')||x.lang.includes('ZA')); if(z) u.voice=z;
    speechSynthesis.speak(u);
  }
+ playSiren();
 }
+function playSiren(){
+ try{
+   if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+   let o=audioCtx.createOscillator(); let g=audioCtx.createGain();
+   o.type='square'; o.frequency.value=900; g.gain.value=0.3;
+   o.connect(g); g.connect(audioCtx.destination); o.start();
+   setTimeout(()=>{o.frequency.value=600},200);
+   setTimeout(()=>{o.stop()},600);
+ }catch(e){}
+}
+function playLoud(el){ el.volume=1.0; el.play().catch(()=>{}); }
 function loadCustom(input){
  let f=input.files[0]; if(!f) return;
  customAudioURL=URL.createObjectURL(f);
  audioEl.src=customAudioURL; audioEl.style.display='block';
- document.getElementById('voice').value='custom';
- chosenEl.innerText='Custom Ringtone: '+f.name+' - Will play when '+target+'%';
- audioEl.play();
+ document.getElementById('voice').value='custom'; currentVoice='custom';
+ chosenEl.innerText='Custom: '+f.name+' - Will FLASH at '+target+'%';
+ playLoud(audioEl);
 }
 function shout(){
  if(alarmLoop) return;
- document.getElementById('main').style.background='#FF0000';
- pctEl.innerText=target+'% FULL!';
- statEl.innerHTML=`<b style="color:#fff;font-size:20px">🔴 KHIPHA SHAJA MANJE! ${target}% FULL!</b>`;
- zuluStatEl.innerText='Mntanami! Battery igcwele! Khipha!';
- // Play custom or Zulu
- if(currentVoice==='custom' && customAudioURL){ audioEl.loop=true; audioEl.play().catch(()=>{}); }
- else { let v=voices[currentVoice]||voices.zulu1; speakZulu(v.text+' '+v.text+' '+v.text, v.lang); alarmLoop=setInterval(()=>{ speakZulu(v.text, v.lang); if(navigator.vibrate) navigator.vibrate(1000); },3000); }
- if(navigator.vibrate) navigator.vibrate([1000,500,1000,500,1000]);
- if(Notification && Notification.permission==="granted"){ new Notification(`🔋 ${target}% FULL! Khipha shaja!`,{body:'Mzansi AI Battery Alert - Unplug now', requireInteraction:true}); }
+ let isRed=true;
+ flashLoop=setInterval(()=>{
+   if(isRed){ bodyEl.className='police-red'; document.getElementById('main').className='card police-blue flash-card'; }
+   else{ bodyEl.className='police-blue'; document.getElementById('main').className='card police-red flash-card'; }
+   isRed=!isRed;
+   if(navigator.vibrate) navigator.vibrate([300,100,300,100,500]);
+   playSiren();
+ },200);
+ pctEl.innerText=target+'% FULL!'; pctEl.style.color='#fff'; pctEl.className='percent blinkText';
+ statEl.innerHTML=`<b style="color:#fff;font-size:22px;background:#000;padding:8px;border-radius:10px">🚨 KHIPHA SHAJA MANJE! ${target}% FULL! 🚨</b>`;
+ zuluStatEl.innerText='🚨 MNTANAMI! BATTERY IGCWELE! KHIPHA! KHIPHA! 🚨';
+ if(currentVoice==='custom' && customAudioURL){ audioEl.loop=true; playLoud(audioEl); }
+ else{ let v=voices[currentVoice]||voices.zulu1; alarmLoop=setInterval(()=>{ speakLoud(v.text, v.lang); },2500); speakLoud(v.text+' '+v.text, v.lang); }
+ if(Notification && Notification.permission==="granted"){ new Notification(`🚨 ${target}% FULL! KHIPHA SHAJA!`,{body:'MZANSI POLICE FLASH ALERT', requireInteraction:true}); }
  document.getElementById('stopBtn').style.display='block';
+ document.getElementById('startBtn').innerText='🚨 FLASHING RED/BLUE - UNPLUG NOW!';
 }
-function stopShout(){ document.getElementById('main').style.background='#1a1a1a'; if(alarmLoop){clearInterval(alarmLoop); alarmLoop=null;} speechSynthesis.cancel(); audioEl.pause(); audioEl.loop=false; }
-function startAlert(){ alertOn=true; target=parseInt(document.getElementById('targetLevel').value); currentVoice=document.getElementById('voice').value; if(Notification && Notification.permission!=="granted") Notification.requestPermission(); if('wakeLock' in navigator){navigator.wakeLock.request('screen').catch(()=>{});} document.getElementById('startBtn').innerText=`🟢 MZANSI ALERT ON - Reading % - Will shout at ${target}%`; document.getElementById('startBtn').style.background='#555'; updateBattery(); }
-function stopAlert(){ alertOn=false; stopShout(); document.getElementById('startBtn').innerText='🟢 START MZANSI ALERT - READ % NOW'; document.getElementById('startBtn').style.background='#00FF00'; document.getElementById('stopBtn').style.display='none'; document.getElementById('main').style.background='#1a1a1a'; statEl.innerText='Guard OFF - Plug charger to start'; }
-
+function stopShout(){
+ bodyEl.className=''; bodyEl.style.background='#000';
+ document.getElementById('main').className='card'; document.getElementById('main').style.background='#1a1a1a';
+ if(flashLoop){clearInterval(flashLoop); flashLoop=null;}
+ if(alarmLoop){clearInterval(alarmLoop); alarmLoop=null;}
+ speechSynthesis.cancel(); audioEl.pause(); audioEl.loop=false;
+ pctEl.className='percent'; updateBattery();
+}
+function startAlert(){
+ alertOn=true; target=parseInt(document.getElementById('targetLevel').value); setCustom(target);
+ currentVoice=document.getElementById('voice').value;
+ localStorage.setItem('mzansi_target', target);
+ if(Notification && Notification.permission!=="granted") Notification.requestPermission();
+ if('wakeLock' in navigator){navigator.wakeLock.request('screen').catch(()=>{});}
+ if(audioCtx && audioCtx.state==='suspended') audioCtx.resume();
+ audioEl.play().then(()=>{audioEl.pause();}).catch(()=>{});
+ document.getElementById('startBtn').innerText=`🟢 ON - WILL FLASH AT ${target}%`;
+ document.getElementById('startBtn').style.background='#FFD700'; document.getElementById('startBtn').style.color='#000';
+ updateBattery();
+}
+function stopAlert(){ alertOn=false; stopShout(); document.getElementById('startBtn').innerText='🟢 START ALERT - CUSTOM %'; document.getElementById('startBtn').style.background='#00FF00'; document.getElementById('stopBtn').style.display='none'; statEl.innerText='Guard OFF'; }
 init();
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
 </script>
 </body>
-</html>xlength="4">
-<button class="btn btn-free" onclick="registerFree()">🆓 REGISTER FREE — 3/MONTH + INBOX</button>
-</div>
-<div id="regForm" class="hidden">
-<div style="display:flex;gap:8px"><input id="r_fname" placeholder="First Name"><input id="r_sname" placeholder="Surname"></div>
-<input id="r_id" placeholder="ID Number" maxlength="13"><input id="r_wa" placeholder="WhatsApp 2778..."><select id="r_role"><option value="">Role</option><option value="musician">Musician</option><option value="producer">Producer</option><option value="artist">Artist</option></select>
-<label style="font-size:10px;color:#ffb86a">📸 Profile</label><input type="file" id="r_pic" accept="image/*">
-<label style="font-size:10px;color:#ffb86a">🪪 ID FRONT</label><input type="file" id="r_front" accept="image/*">
-<label style="font-size:10px;color:#ffb86a">🪪 ID BACK</label><input type="file" id="r_back" accept="image/*">
-<input id="r_pin" type="password" placeholder="PIN" maxlength="4">
-<button class="btn btn-wa" onclick="whatsappPay(50)">💬 WHATSAPP 27789313670 R50 KYC</button>
-<input id="r_voucher" placeholder="BIGSAM-50-XXXXXX" style="text-align:center;font-weight:900;text-transform:uppercase;border:2px solid var(--gold);margin-top:8px"><button class="btn btn-gold" onclick="registerPaid()" style="margin-top:8px">💎 REDEEM VOUCHER — UNLIMITED + SUPABASE</button>
-<canvas id="wmCanvas" style="display:none"></canvas>
-</div>
-<div id="log" style="font-size:10px;color:#0f0">✅ SUPABASE KEPT — Fixed Banner — Inbox DM — Admin 27789313670</div>
-</div>
-
-<div class="card hidden" id="profileCard"><div style="display:flex;gap:12px"><img id="myPic" style="width:56px;height:56px;border-radius:50%;border:2px solid var(--pink);object-fit:cover" src=""><div id="profileInfo"></div></div><div id="verifyBadge" style="margin-top:8px"></div><div id="uploadLimitInfo" style="margin-top:8px;background:#111;padding:8px;border-radius:10px;border:1px solid #333;font-size:11px"></div><button class="btn btn2" onclick="logout()" style="margin-top:8px">Logout</button></div>
-<div class="card hidden" id="adminAccess"><button class="btn" onclick="openAdmin()" style="background:linear-gradient(90deg,#00f2ff,#7000ff)">🛡️ ADMIN 27789313670 — WITH SUPABASE — FIXED BANNER + INBOX</button></div>
-
-<div class="card hidden" id="adminCard">
-<h3>🛡️ ADMIN 27789313670 — WITH SUPABASE — FIXED BANNER</h3>
-
-<div style="background:linear-gradient(135deg,#1a0010,#2a0a1a);padding:12px;border-radius:14px;border:2px solid var(--pink);margin-bottom:10px">
-<div style="font-weight:900;color:var(--pink);text-align:center">📢 FIXED ANNOUNCEMENT BANNER — TOP — FIXED!</div>
-<input id="broadcastTitle" placeholder="📢 Banner Title"><textarea id="broadcastMessage" placeholder="Banner Message..."></textarea>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><select id="broadcastType"><option value="info">🔵 Info</option><option value="warning">🟡 Warning</option><option value="urgent">🔴 Urgent</option><option value="promo">🟢 Promo</option><option value="popup">💥 Popup</option></select><input id="broadcastActionText" placeholder="Button text"></div>
-<input id="broadcastActionLink" placeholder="Link - https://wa.me/27789313670">
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6px">
-<button class="btn" style="background:linear-gradient(90deg,var(--pink),#7000ff)" onclick="createBroadcast()">📢 SHOW FIXED BANNER</button>
-<button class="btn btn2" onclick="previewBanner()">👁️ Preview</button>
-<button class="btn btn-red" onclick="clearBroadcast()">❌ Remove Banner</button>
-</div>
-<div id="activeBroadcastDisplay" style="margin-top:8px;background:#000;padding:8px;border-radius:8px;border:1px solid #333;font-size:11px"></div>
-</div>
-
-<div style="background:linear-gradient(135deg,#0a1a0a,#1a2a1a);padding:12px;border-radius:14px;border:2px solid var(--wa);margin-bottom:10px">
-<div style="font-weight:900;color:var(--wa);text-align:center">📩 SEND DIRECT INBOX — ADMIN 27789313670</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><input id="dmToWA" placeholder="To WA 2778..."><input id="dmSubject" placeholder="Subject"></div>
-<textarea id="dmMessage" placeholder="Inbox message..."></textarea>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><button class="btn btn-wa" onclick="sendDirectMessage()">📩 SEND INBOX DM</button><button class="btn btn-gold" onclick="broadcastToAllInbox()">📢 BROADCAST ALL INBOXES</button></div>
-</div>
-
-<div style="background:#111;padding:10px;border-radius:12px;border:2px solid var(--gold);margin-bottom:10px">
-<div style="font-weight:900;color:var(--gold);text-align:center">🎫 VOUCHER + SEARCH — WITH SUPABASE</div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6px">
-<button class="btn btn-gold" onclick="createVoucher(50)" style="padding:8px">🎫 R50</button>
-<button class="btn" style="background:linear-gradient(90deg,#ff0055,#ff7a00);padding:8px" onclick="createVoucher(99)">⭐ R99</button>
-<button class="btn" style="background:linear-gradient(90deg,#00f2ff,#7000ff);padding:8px" onclick="createVoucher(150)">🔥 R150</button>
-</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px"><input id="adminSearchWA" placeholder="Search WA 2778..."><button class="btn btn2" onclick="searchUser()" style="padding:8px">🔍 Search</button></div>
-</div>
-
-<div id="moneyStats"></div>
-<div id="voucherList" style="background:#000;padding:8px;border-radius:10px;border:1px solid #333;max-height:180px;overflow-y:auto;margin-top:8px"></div>
-
-<div class="tabs" style="margin-top:10px">
-<button id="tabV" class="active" onclick="adminTab('vouchers')">🎫 Vouchers</button>
-<button id="tabB" onclick="adminTab('broadcasts')">📢 Banners</button>
-<button id="tabM" onclick="adminTab('messages')">📩 Inbox</button>
-<button id="tabT" onclick="adminTab('tracks')">🎵 Tracks</button>
-<button id="au" onclick="adminTab('users')">👥 Paid</button>
-<button onclick="adminTab('free')">🆓 Free</button>
-<button onclick="adminTab('banned')">🚫 Banned</button>
-</div>
-
-<div id="adminVouchers"></div>
-<div id="adminBroadcasts" class="hidden"></div>
-<div id="adminMessages" class="hidden"></div>
-<div id="adminTracks" class="hidden"></div>
-<div id="adminUsers" class="hidden"></div>
-<div id="adminFree" class="hidden"></div>
-<div id="adminBanned" class="hidden"></div>
-<div id="adminSearchResult" style="margin-top:8px"></div>
-<button class="btn btn2" onclick="closeAdmin()" style="margin-top:8px">Close Admin</button>
-</div>
-
-<div class="card" id="uploadCard"><h3>🎛️ Drop Mix — <span id="uploadLimitText" style="font-size:11px;color:var(--cyan)"></span></h3><input type="file" id="file" accept="audio/*"><input id="title" placeholder="Title"><button class="btn" onclick="uploadTrack()">🚀 PUBLISH — WITH SUPABASE</button><div id="uploadMsg" style="font-size:10px;margin-top:4px;color:#aaa"></div></div>
-<div id="feed"></div>
-</div>
-
-<div id="profilesSection" class="hidden"><div class="card" style="background:linear-gradient(90deg,#00f2ff,#7000ff);text-align:center"><h3 style="margin:0;font-size:14px">👥 ARTISTS PROFILES — FOLLOW • INBOX • LIKES — WITH SUPABASE</h3><div style="display:flex;gap:6px;margin-top:8px"><input id="profileSearch" placeholder="🔍 Search..." onkeyup="searchProfiles()" style="margin:0"><select id="profileRoleFilter" onchange="searchProfiles()" style="margin:0;max-width:120px"><option value="">All</option><option value="musician">Musician</option><option value="producer">Producer</option><option value="artist">Artist</option><option value="dj">DJ</option></select></div></div><div id="profilesList"></div></div>
-
-<div id="inboxSection" class="hidden">
-<div class="card" style="background:linear-gradient(90deg,#25D366,#128C7E);text-align:center"><h3 style="margin:0">📩 INBOX — WITH SUPABASE + LOCAL</h3></div>
-<div id="inboxConversations" class="card"><div style="font-weight:900">💬 Conversations</div><div id="conversationsList"></div></div>
-<div id="chatSection" class="card hidden"><div style="display:flex;justify-content:space-between"><div><b id="chatWithName">Chat</b><br><small id="chatWithWA" style="color:#888"></small></div><button class="small-btn btn2" onclick="closeChat()">✖️ Close</button></div><div id="chatBox" class="chat-box"></div><div style="display:flex;gap:6px;margin-top:8px"><input id="chatInput" placeholder="Type message..." style="margin:0;flex:1" onkeypress="if(event.key==='Enter') sendChatMessage()"><button class="btn" style="width:80px;margin:0" onclick="sendChatMessage()">📩 Send</button></div><div style="display:flex;gap:6px;margin-top:6px"><button class="small-btn" style="background:var(--wa);color:#fff" onclick="whatsappCurrentChat()">💬 WhatsApp</button><button class="small-btn btn-red" onclick="deleteConversation()">🗑️ Delete</button></div></div>
-</div>
-
-<div id="myProfileSection" class="hidden"><div id="myFullProfile"></div><div class="card"><h4>🎵 My Tracks — With Supabase</h4><div id="myTracks"></div></div></div>
-
-</div>
-
-<script>
-// SUPABASE KEPT - NOT REMOVED
-const S="https://ogndqvdzuuufdygkhzae.supabase.co";
-const K="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9nbmRxdmR6dXV1ZmR5Z2toemFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2OTEzNjEsImV4cCI6MjEwNDI2NzM2MX0.sPRCVdn9CrEnN48xw8M0FSbGp4UCmkfrU93dHDqE5_4";
-const ADMIN_WA="27789313670";
-let DEFAULT_NEON="./dj_bigsam_neon_logo.jpg";
-let LOGO_URL=localStorage.getItem('bigsam_logo')||DEFAULT_NEON;
-let currentUser=JSON.parse(localStorage.getItem('ai_user')||'null');
-let currentChatWA=null;
-
-const PRELOADED=[{code:'BIGSAM-50-K9X2M1',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},{code:'BIGSAM-50-A7B4C9',amount:50,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},{code:'BIGSAM-99-G8H2J5',amount:99,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA},{code:'BIGSAM-150-M2C5X8',amount:150,created:Date.now(),used:false,usedBy:null,createdBy:ADMIN_WA}];
-if(!localStorage.getItem('vouchers')) localStorage.setItem('vouchers',JSON.stringify(PRELOADED));
-function getVouchers(){return JSON.parse(localStorage.getItem('vouchers')||'[]');}
-function saveVouchers(v){localStorage.setItem('vouchers',JSON.stringify(v));}
-function formatWA(num){ let n=(num||'').replace(/[^0-9]/g,''); if(n.startsWith('0')) n='27'+n.substring(1); if(!n.startsWith('27')) n='27'+n; return n; }
-function getUploadsThisMonth(wa){ let all=JSON.parse(localStorage.getItem('uploads_'+wa)||'[]'); let now=new Date(); let ms=new Date(now.getFullYear(),now.getMonth(),1).getTime(); return all.filter(t=>t>=ms); }
-function addUploadRecord(wa){ let all=JSON.parse(localStorage.getItem('uploads_'+wa)||'[]'); all.push(Date.now()); localStorage.setItem('uploads_'+wa,JSON.stringify(all)); }
-function getAllUsers(){return JSON.parse(localStorage.getItem('ai_users')||'[]');}
-function saveAllUsers(list){localStorage.setItem('ai_users',JSON.stringify(list));}
-function getFollows(){ return JSON.parse(localStorage.getItem('follows')||'{}'); }
-function getLikes(){ return JSON.parse(localStorage.getItem('profile_likes')||'{}'); }
-function getFollowersCount(wa){ let follows=getFollows(); let c=0; for(let f in follows){ if(follows[f].includes(formatWA(wa))) c++; } return c; }
-function getFollowingCount(wa){ return (getFollows()[formatWA(wa)]||[]).length; }
-function getLikesCount(wa){ return (getLikes()[formatWA(wa)]||[]).length; }
-function isFollowing(fWA,tWA){ return (getFollows()[formatWA(fWA)]||[]).includes(formatWA(tWA)); }
-function isLiked(lWA,tWA){ return (getLikes()[formatWA(tWA)]||[]).includes(formatWA(lWA)); }
-function toggleFollow(tWA){
-  if(!currentUser) return alert('Login to follow');
-  let myWA=formatWA(currentUser.whatsapp); tWA=formatWA(tWA); if(myWA===tWA) return alert('Cannot follow yourself');
-  let follows=getFollows(); if(!follows[myWA]) follows[myWA]=[]; if(follows[myWA].includes(tWA)) follows[myWA]=follows[myWA].filter(x=>x!==tWA); else follows[myWA].push(tWA);
-  localStorage.setItem('follows',JSON.stringify(follows)); renderProfiles(); renderMyFullProfile();
-}
-function toggleLike(tWA){
-  if(!currentUser) return alert('Login to like');
-  let myWA=formatWA(currentUser.whatsapp); tWA=formatWA(tWA); if(myWA===tWA) return alert('Cannot like yourself');
-  let likes=getLikes(); if(!likes[tWA]) likes[tWA]=[]; if(likes[tWA].includes(myWA)) likes[tWA]=likes[tWA].filter(x=>x!==myWA); else likes[tWA].push(myWA);
-  localStorage.setItem('profile_likes',JSON.stringify(likes)); renderProfiles(); renderMyFullProfile();
-}
-function getMessages(){ return JSON.parse(localStorage.getItem('ai_messages')||'[]'); }
-function saveMessages(msgs){ localStorage.setItem('ai_messages',JSON.stringify(msgs)); }
-function sendInboxMessage(toWA,text,subject=''){
-  if(!currentUser) return alert('Login to send inbox'); toWA=formatWA(toWA); let fromWA=formatWA(currentUser.whatsapp); if(!text.trim()) return alert('Enter message');
-  let msgs=getMessages(); let msg={id:Date.now()+Math.random(),from:fromWA,to:toWA,text:text.trim(),subject:subject||'',time:Date.now(),read:false,fromName:currentUser.first_name||currentUser.name||fromWA};
-  msgs.push(msg); saveMessages(msgs); updateUnreadBadge(); return msg;
-}
-function sendDirectMessage(){
-  if(!currentUser||formatWA(currentUser.whatsapp)!==ADMIN_WA) return alert(`Only admin ${ADMIN_WA}!`);
-  let toWA=document.getElementById('dmToWA').value.trim(); let subject=document.getElementById('dmSubject').value.trim(); let text=document.getElementById('dmMessage').value.trim();
-  if(!toWA||!text) return alert('Enter To WA and message'); toWA=formatWA(toWA);
-  if(!getAllUsers().find(u=>formatWA(u.whatsapp)===toWA)) return alert(`User ${toWA} not found`);
-  let msgs=getMessages(); msgs.push({id:Date.now()+Math.random(),from:ADMIN_WA,to:toWA,text,subject:subject||'Message from Admin 27789313670',time:Date.now(),read:false,fromName:'ADMIN 27789313670',isAdmin:true}); saveMessages(msgs);
-  alert(`✅ DIRECT INBOX SENT TO ${toWA} by admin ${ADMIN_WA}`); document.getElementById('dmToWA').value=''; document.getElementById('dmSubject').value=''; document.getElementById('dmMessage').value=''; updateUnreadBadge(); renderInboxMessages();
-}
-function broadcastToAllInbox(){
-  if(!currentUser||formatWA(currentUser.whatsapp)!==ADMIN_WA) return alert(`Only admin ${ADMIN_WA}!`);
-  let subject=document.getElementById('dmSubject').value.trim()||'Announcement from Admin 27789313670'; let text=document.getElementById('dmMessage').value.trim();
-  if(!text) return alert('Enter message'); if(!confirm(`📢 BROADCAST TO ALL ${getAllUsers().length} USERS INBOX? Admin ${ADMIN_WA} confirm?`)) return;
-  let users=getAllUsers(); let msgs=getMessages();
-  users.forEach(u=>{ if(formatWA(u.whatsapp)===ADMIN_WA) return; msgs.push({id:Date.now()+Math.random(),from:ADMIN_WA,to:formatWA(u.whatsapp),text,subject,time:Date.now(),read:false,fromName:'ADMIN 27789313670',isAdmin:true,isBroadcast:true}); });
-  saveMessages(msgs); alert(`✅ BROADCAST SENT TO ${users.length-1} INBOXES by ${ADMIN_WA}`); document.getElementById('dmMessage').value=''; updateUnreadBadge(); renderInboxMessages();
-}
-function getConversations(){
-  if(!currentUser) return []; let myWA=formatWA(currentUser.whatsapp); let msgs=getMessages().filter(m=>m.from===myWA||m.to===myWA);
-  let convMap={}; msgs.forEach(m=>{ let other=m.from===myWA?m.to:m.from; if(!convMap[other]) convMap[other]=[]; convMap[other].push(m); });
-  let convs=Object.entries(convMap).map(([wa,messages])=>{ messages.sort((a,b)=>a.time-b.time); let last=messages[messages.length-1]; let unread=messages.filter(m=>m.to===myWA&&!m.read).length; let user=getAllUsers().find(u=>formatWA(u.whatsapp)===formatWA(wa)); return {wa,user,messages,last,unread}; });
-  convs.sort((a,b)=>b.last.time-a.last.time); return convs;
-}
-function renderInboxConversations(){
-  if(!currentUser){ document.getElementById('conversationsList').innerHTML='<div style="text-align:center;color:#888">Login to see inbox</div>'; return; }
-  let convs=getConversations(); if(convs.length===0){ document.getElementById('conversationsList').innerHTML='<div style="text-align:center;color:#888">No conversations - Message artists from Profiles tab</div>'; return; }
-  document.getElementById('conversationsList').innerHTML=convs.map(c=>{
-    let name=c.user?c.user.first_name+' '+c.user.surname:c.wa+(c.wa===ADMIN_WA?' (ADMIN)':''); let isAdmin=c.wa===ADMIN_WA;
-    return `<div class="inbox-item ${c.unread>0?'unread':''}" onclick="openChat('${c.wa}')"><img src
+</html>
