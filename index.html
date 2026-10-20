@@ -1,211 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mzansi AI Battery - R20/month</title>
-<link id="manifestLink" rel="manifest" href="">
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mzansi Battery - R20</title>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <style>
 body{margin:0;background:#000;color:#fff;font-family:Arial;text-align:center;padding:15px}
-h1{color:#FFD700;font-size:22px}
-.card{background:#1a1a1a;border-radius:18px;padding:18px;margin:12px 0;border:2px solid #333}
-input{width:100%;padding:15px;border-radius:12px;background:#000;color:#fff;border:2px solid #555;font-size:16px;margin:8px 0;box-sizing:border-box}
-.btn{width:100%;padding:16px;border:none;border-radius:12px;font-size:18px;font-weight:900;margin:6px 0;cursor:pointer}
-.green{background:#00FF00;color:#000} .gold{background:#FFD700;color:#000} .red{background:#FF0000;color:#fff} .grey{background:#333;color:#fff}
-.percent{font-size:70px;font-weight:900;color:#00FF00}
-.police-red{background:#FF0000 !important} .police-blue{background:#0000FF !important}
-.flash-card{animation:policeBorder 0.2s infinite}
-@keyframes policeBorder{0%{border-color:#FF0000}50%{border-color:#0000FF}}
-.blinkText{animation:blink 0.2s infinite} @keyframes blink{0%{opacity:1}50%{opacity:0.3}}
-.hidden{display:none}
-</style>
-</head>
-<body id="body">
-
+.card{background:#1a1a1a;border-radius:15px;padding:15px;margin:10px 0;border:1px solid #333}
+input{width:100%;padding:14px;border-radius:10px;background:#000;color:#fff;border:1px solid #555;margin:6px 0;box-sizing:border-box}
+.btn{width:100%;padding:14px;border:none;border-radius:10px;font-weight:900;margin:5px 0}
+.gold{background:#FFD700;color:#000} .green{background:#00FF00;color:#000} .grey{background:#333;color:#fff}
+.percent{font-size:60px;font-weight:900;color:#00FF00} .hidden{display:none}
+</style></head><body>
 <div id="authScreen">
-<h1>🇿🇦 MZANSI AI BATTERY - R20/MONTH</h1>
-<div class="card" id="registerBox">
-<h3 style="color:#FFD700">📝 REGISTER - First Time</h3>
-<input id="regName" placeholder="Full Name - e.g. Thabo Dlamini">
-<input id="regWhatsApp" placeholder="WhatsApp Number - e.g. 0731234567" type="tel">
-<input id="regPin" placeholder="Create 4-digit PIN - e.g. 1234" type="password" maxlength="4">
-<button class="btn gold" onclick="doRegister()">✅ REGISTER</button>
-<p style="color:#aaa;font-size:12px">Already have account? <a href="#" onclick="showLogin()" style="color:#FFD700">LOGIN</a></p>
+<h2 style="color:#FFD700">🇿🇦 MZANSI BATTERY - R20/MONTH</h2>
+<div class="card" id="regBox">
+<input id="regName" placeholder="Full Name"><input id="regWA" placeholder="WhatsApp e.g. 0731234567"><input id="regPin" placeholder="4-digit PIN" type="password" maxlength="4">
+<button class="btn gold" onclick="doRegister()">REGISTER</button>
+<p><a href="#" onclick="showLogin()" style="color:#FFD700">Already have account? LOGIN</a></p>
 </div>
-
-<div class="card hidden" id="loginBox">
-<h3 style="color:#FFD700">🔐 LOGIN</h3>
-<input id="loginWhatsApp" placeholder="WhatsApp Number" type="tel">
-<input id="loginPin" placeholder="PIN" type="password">
-<button class="btn green" onclick="doLogin()">🔓 LOGIN</button>
-<p style="color:#aaa;font-size:12px">New? <a href="#" onclick="showRegister()" style="color:#FFD700">REGISTER</a></p>
+<div class="card hidden" id="logBox">
+<input id="logWA" placeholder="WhatsApp"><input id="logPin" placeholder="PIN" type="password">
+<button class="btn green" onclick="doLogin()">LOGIN</button>
+<p><a href="#" onclick="showReg()" style="color:#FFD700">New? REGISTER</a></p>
 </div>
-
-<div class="card hidden" id="voucherBox">
-<h3 style="color:#FF0000">🎟️ ENTER VOUCHER CODE - R20 / MONTH</h3>
-<p style="font-size:13px;color:#aaa">Admin will give you code after paying R20 via WhatsApp</p>
-<input id="voucherInput" placeholder="e.g. MZANSI-A1B2-C3D4">
-<button class="btn gold" onclick="checkVoucher()">✅ ACTIVATE APP</button>
-<p id="voucherMsg" style="color:#00FF00;font-size:12px"></p>
-<div style="margin-top:15px;background:#000;padding:10px;border-radius:10px">
-<p style="font-size:12px;color:#FFD700">Need voucher? WhatsApp Admin: 07X XXX XXXX</p>
-<p id="demoVoucher" style="font-size:11px;color:#555">Demo free code: FREE-MZANSI-2024 (7 days)</p>
-</div>
-<p style="margin-top:10px"><a href="#" onclick="adminLogin()" style="color:#555;font-size:11px">Admin Panel</a></p>
-</div>
-
-<div class="card hidden" id="adminBox">
-<h3 style="color:#FF0000">👑 ADMIN - GENERATE VOUCHERS</h3>
-<input id="adminPass" placeholder="Admin PIN (default 12345)" type="password">
-<button class="btn grey" onclick="unlockAdmin()">UNLOCK ADMIN</button>
-<div id="adminTools" class="hidden">
-<button class="btn gold" onclick="generateVoucher()">🎟️ GENERATE NEW VOUCHER (R20 = 30 DAYS)</button>
-<div id="voucherList" style="text-align:left;background:#000;padding:10px;border-radius:10px;margin-top:10px;max-height:200px;overflow:auto;font-size:12px"></div>
-</div>
-<button class="btn grey" onclick="showVoucher()">BACK</button>
+<div class="card hidden" id="vouBox">
+<h3 style="color:#FF0000">🎟️ ENTER VOUCHER - R20</h3>
+<input id="vouInput" placeholder="MZANSI-XXXX-XXXX">
+<button class="btn gold" onclick="checkVoucher()">ACTIVATE</button>
+<p id="vouMsg"></p>
+<p style="font-size:11px;color:#555">Need voucher? WhatsApp Admin<br>Demo: FREE-MZANSI-2024</p>
 </div>
 </div>
-
 <div id="appScreen" class="hidden">
-<h1>🇿🇦 MZANSI AI - CUSTOM %</h1>
-<p id="welcomeUser" style="color:#FFD700"></p>
-<p id="expiryInfo" style="font-size:12px;color:#00FF00"></p>
-<div class="card" id="main">
-<div class="percent" id="pct">--%</div>
-<div class="status" id="stat">Reading battery...</div>
-<div class="blinkText" id="zuluStat" style="color:#FFD700;font-weight:900"></div>
-</div>
+<h2>🇿🇦 MZANSI AI</h2><p id="welcome" style="color:#FFD700"></p><p id="expiry" style="font-size:12px;color:#00FF00"></p>
+<div class="card"><div class="percent" id="pct">--%</div><div id="stat">Reading...</div></div>
 <div class="card">
-<h3 style="color:#FFD700">🔋 SET CUSTOM %:</h3>
-<input type="range" id="targetSlider" min="10" max="100" value="80" style="width:100%;accent-color:#FFD700" oninput="setCustom(this.value)">
-<div style="display:flex;gap:10px;margin:10px 0">
-<input type="number" id="targetLevel" value="80" min="10" max="100" style="width:50%;padding:14px;border-radius:12px;background:#000;color:#FFD700;border:2px solid #FFD700;font-size:24px;font-weight:900;text-align:center" oninput="setCustom(this.value)">
-<div style="width:50%;background:#FFD700;color:#000;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900" id="targetShow">80%</div>
-</div>
-</div>
-<div class="card">
-<select id="voice" style="width:100%;padding:12px;border-radius:12px;background:#000;color:#fff;border:1px solid #555">
-<option value="zulu1">👵 Zulu Gogo: Mntanami! Battery igcwele!</option>
-<option value="zulu2">👨 Zulu Baba: Hey! Battery full!</option>
-<option value="english">🇬🇧 English: Boss! Battery full!</option>
-<option value="custom">📁 My MP3</option>
-</select>
-<button class="btn grey" onclick="document.getElementById('file').click()">📁 Choose MP3</button>
-<input type="file" id="file" accept="audio/*" style="display:none" onchange="loadCustom(this)">
-<audio id="audio" controls style="width:100%;margin-top:10px;display:none" loop></audio>
-<button class="btn grey" onclick="previewVoice()">🔊 PREVIEW</button>
-</div>
-<div class="card">
+<input type="range" id="slider" min="10" max="100" value="80" oninput="setCustom(this.value)" style="width:100%">
+<div style="display:flex;gap:8px"><input id="target" type="number" value="80" min="10" max="100" oninput="setCustom(this.value)" style="width:50%;font-size:22px;text-align:center;color:#FFD700;font-weight:900"><div id="show" style="width:50%;background:#FFD700;color:#000;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900">80%</div></div>
 <button class="btn green" id="startBtn" onclick="startAlert()">🟢 START ALERT</button>
-<button class="btn red hidden" id="stopBtn" onclick="stopAlert()">🔴 STOP - SIYABONGA!</button>
-<button class="btn grey" onclick="doLogout()" style="font-size:12px">LOGOUT</button>
+<button class="btn grey" onclick="logout()" style="font-size:11px">LOGOUT</button>
 </div>
 </div>
-
 <script>
-// ONE FILE SETUP
-(function(){
-  const manifest={name:"Mzansi Battery R20",short_name:"Mzansi Battery",start_url:"./",display:"standalone",background_color:"#000",theme_color:"#FFD700",icons:[{src:"https://cdn-icons-png.flaticon.com/512/664/664886.png",sizes:"512x512",type:"image/png"}]};
-  const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
-  document.getElementById('manifestLink').href=URL.createObjectURL(blob);
-})();
+// === REPLACE THIS WITH YOUR FIREBASE CONFIG FROM STEP 1 ===
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123456789:web:abcdef"
+};
+// === END CONFIG ===
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
-// AUTH + VOUCHER SYSTEM
-let users = JSON.parse(localStorage.getItem('mzansi_users')||'{}');
-let vouchers = JSON.parse(localStorage.getItem('mzansi_vouchers')||'{}');
-let currentUser = localStorage.getItem('mzansi_current_user')||null;
-
-// Create default vouchers if empty
-if(Object.keys(vouchers).length===0){
- vouchers['FREE-MZANSI-2024']={days:7, used:false, created:Date.now()};
- vouchers['MZANSI-TEST-1234']={days:30, used:false, created:Date.now()};
- localStorage.setItem('mzansi_vouchers', JSON.stringify(vouchers));
-}
-
-function showRegister(){document.getElementById('registerBox').classList.remove('hidden');document.getElementById('loginBox').classList.add('hidden');document.getElementById('voucherBox').classList.add('hidden');document.getElementById('adminBox').classList.add('hidden')}
-function showLogin(){document.getElementById('registerBox').classList.add('hidden');document.getElementById('loginBox').classList.remove('hidden');}
-function showVoucher(){document.getElementById('registerBox').classList.add('hidden');document.getElementById('loginBox').classList.add('hidden');document.getElementById('voucherBox').classList.remove('hidden');document.getElementById('adminBox').classList.add('hidden'); renderDemo();}
-function adminLogin(){document.getElementById('adminBox').classList.remove('hidden');document.getElementById('voucherBox').classList.add('hidden');}
-function unlockAdmin(){if(document.getElementById('adminPass').value==='12345'){document.getElementById('adminTools').classList.remove('hidden'); renderVouchers();}else{alert('Wrong admin PIN. Default is 12345 - change it in code later')}} 
+let currentUser=null, battery=null, target=80;
+function showReg(){document.getElementById('regBox').classList.remove('hidden');document.getElementById('logBox').classList.add('hidden')}
+function showLogin(){document.getElementById('regBox').classList.add('hidden');document.getElementById('logBox').classList.remove('hidden')}
+function showVou(){document.getElementById('regBox').classList.add('hidden');document.getElementById('logBox').classList.add('hidden');document.getElementById('vouBox').classList.remove('hidden')}
 
 function doRegister(){
  let name=document.getElementById('regName').value.trim();
- let wa=document.getElementById('regWhatsApp').value.trim().replace(/\s/g,'');
+ let wa=document.getElementById('regWA').value.trim().replace(/\s/g,'');
  let pin=document.getElementById('regPin').value.trim();
- if(!name||!wa||pin.length<4){alert('Fill all - Name, WhatsApp, 4-digit PIN');return}
- if(users[wa]){alert('This WhatsApp already registered - Login');showLogin();return}
- users[wa]={name, pin, expiry:0, voucher:''};
- localStorage.setItem('mzansi_users', JSON.stringify(users));
- currentUser=wa; localStorage.setItem('mzansi_current_user', wa);
- showVoucher();
+ if(!name||!wa||pin.length<4){alert('Fill all');return}
+ db.ref('users/'+wa).once('value',snap=>{
+   if(snap.exists()){alert('Already registered - login'); showLogin(); return}
+   db.ref('users/'+wa).set({name, pin, wa, created:Date.now(), expiry:0, voucher:''});
+   currentUser=wa; localStorage.setItem('mzansi_user',wa); showVou();
+ });
 }
 function doLogin(){
- let wa=document.getElementById('loginWhatsApp').value.trim().replace(/\s/g,'');
- let pin=document.getElementById('loginPin').value.trim();
- if(!users[wa]||users[wa].pin!==pin){alert('Wrong WhatsApp or PIN');return}
- currentUser=wa; localStorage.setItem('mzansi_current_user', wa);
- checkExpiry();
+ let wa=document.getElementById('logWA').value.trim().replace(/\s/g,'');
+ let pin=document.getElementById('logPin').value.trim();
+ db.ref('users/'+wa).once('value',snap=>{
+   let u=snap.val(); if(!u||u.pin!==pin){alert('Wrong WhatsApp or PIN');return}
+   currentUser=wa; localStorage.setItem('mzansi_user',wa); checkExpiry();
+ });
 }
 function checkExpiry(){
- let u=users[currentUser];
- if(!u) return;
- if(u.expiry && Date.now() < u.expiry){ openApp(); }
- else{ showVoucher(); document.getElementById('voucherMsg').innerText = u.expiry? '❌ Subscription expired on '+new Date(u.expiry).toLocaleDateString()+' - Enter new voucher' : 'Enter voucher to activate R20/month'; }
+ db.ref('users/'+currentUser).once('value',snap=>{
+   let u=snap.val(); if(u.expiry && u.expiry>Date.now()) openApp(u); else{ showVou(); document.getElementById('vouMsg').innerText=u.expiry?'Expired - enter new voucher':'Enter voucher R20/month'; }
+ });
 }
 function checkVoucher(){
- let code=document.getElementById('voucherInput').value.trim().toUpperCase();
- if(!vouchers[code]){document.getElementById('voucherMsg').innerText='❌ Invalid voucher code'; return}
- if(vouchers[code].used && vouchers[code].usedBy!==currentUser){document.getElementById('voucherMsg').innerText='❌ Voucher already used'; return}
- let days=vouchers[code].days;
- let expiry=Date.now() + days*24*60*60*1000;
- users[currentUser].expiry=expiry; users[currentUser].voucher=code;
- vouchers[code].used=true; vouchers[code].usedBy=currentUser; vouchers[code].usedAt=Date.now();
- localStorage.setItem('mzansi_users', JSON.stringify(users));
- localStorage.setItem('mzansi_vouchers', JSON.stringify(vouchers));
- document.getElementById('voucherMsg').innerText='✅ Activated '+days+' days! Until '+new Date(expiry).toLocaleDateString();
- setTimeout(openApp, 1000);
+ let code=document.getElementById('vouInput').value.trim().toUpperCase();
+ db.ref('vouchers/'+code).once('value',snap=>{
+   let v=snap.val(); if(!v){document.getElementById('vouMsg').innerText='❌ Invalid voucher';return}
+   if(v.used && v.usedBy!==currentUser){document.getElementById('vouMsg').innerText='❌ Already used';return}
+   let expiry=Date.now()+v.days*24*60*60*1000;
+   db.ref('users/'+currentUser).update({expiry, voucher:code});
+   db.ref('vouchers/'+code).update({used:true, usedBy:currentUser, usedAt:Date.now()});
+   document.getElementById('vouMsg').innerText='✅ Activated '+v.days+' days!';
+   setTimeout(()=>db.ref('users/'+currentUser).once('value',s=>openApp(s.val())),1000);
+ });
 }
-function generateVoucher(){
- let code='MZANSI-'+Math.random().toString(36).substring(2,6).toUpperCase()+'-'+Math.random().toString(36).substring(2,6).toUpperCase();
- vouchers[code]={days:30, used:false, created:Date.now()};
- localStorage.setItem('mzansi_vouchers', JSON.stringify(vouchers));
- renderVouchers();
- alert('New Voucher: '+code+' - Send to client after R20 payment');
-}
-function renderVouchers(){
- let html=''; for(let k in vouchers){ let v=vouchers[k]; html+=`<div style="border-bottom:1px solid #333;padding:5px">${k} - ${v.days} days - ${v.used?'USED by '+v.usedBy:'FREE'} <button onclick="copyCode('${k}')" style="float:right">Copy</button></div>`}
- document.getElementById('voucherList').innerHTML=html;
-}
-function renderDemo(){ let first=Object.keys(vouchers).find(k=>!vouchers[k].used); if(first) document.getElementById('demoVoucher').innerText='Demo free code: '+first+' (for testing)';}
-function copyCode(c){navigator.clipboard.writeText(c); alert('Copied: '+c)}
-function doLogout(){localStorage.removeItem('mzansi_current_user'); location.reload()}
-function openApp(){
+function openApp(u){
  document.getElementById('authScreen').classList.add('hidden');
  document.getElementById('appScreen').classList.remove('hidden');
- let u=users[currentUser];
- document.getElementById('welcomeUser').innerText='Sawubona, '+u.name+' ('+currentUser+')';
- if(u.expiry){ let daysLeft=Math.ceil((u.expiry-Date.now())/(24*60*60*1000)); document.getElementById('expiryInfo').innerText='✅ Active: '+daysLeft+' days left - Expires '+new Date(u.expiry).toLocaleDateString() }
- init();
+ document.getElementById('welcome').innerText='Sawubona, '+u.name;
+ let days=Math.ceil((u.expiry-Date.now())/86400000);
+ document.getElementById('expiry').innerText='Active: '+days+' days left until '+new Date(u.expiry).toLocaleDateString();
+ initBattery();
 }
-function initCheck(){ if(currentUser && users[currentUser]) checkExpiry(); else showRegister(); }
-initCheck();
-
-// BATTERY APP LOGIC (same as before)
-let battery=null,target=80,alertOn=false,alarmLoop=null,flashLoop=null,audioCtx=null,
-pctEl=document.getElementById('pct'),statEl=document.getElementById('stat'),zuluStatEl=document.getElementById('zuluStat'),
-audioEl=document.getElementById('audio'),bodyEl=document.getElementById('body'),customAudioURL=null,currentVoice='zulu1';
-const voices={zulu1:{text:"Mntanami! Battery igcwele! Khipha shaja manje!",lang:"zu-ZA"},zulu2:{text:"Hey! Battery full! Khipha i-plug!",lang:"zu-ZA"},english:{text:"Boss! Battery full! Unplug now!",lang:"en-ZA"}};
-function setCustom(val){target=parseInt(val); if(isNaN(target)) return; if(target<10)target=10; if(target>100)target=100; document.getElementById('targetLevel').value=target; document.getElementById('targetSlider').value=target; document.getElementById('targetShow').innerText=target+'%'; localStorage.setItem('mzansi_target',target)}
-async function init(){if('getBattery' in navigator){battery=await navigator.getBattery(); updateBattery(); battery.addEventListener('levelchange',updateBattery); battery.addEventListener('chargingchange',updateBattery)} target=localStorage.getItem('mzansi_target')?parseInt(localStorage.getItem('mzansi_target')):80; setCustom(target)}
-function updateBattery(){if(!battery) return; let p=Math.round(battery.level*100); if(!alarmLoop) pctEl.innerText=p+'%'; statEl.innerText=battery.charging?`⚡ Charging ${p}% → ${target}%`:`🔋 ${p}%`; if(alertOn&&battery.charging&&p>=target) shout(); if(alertOn&&!battery.charging&&alarmLoop) stopShout()}
-function previewVoice(){currentVoice=document.getElementById('voice').value; if(currentVoice==='custom'){if(customAudioURL){audioEl.src=customAudioURL; audioEl.style.display='block'; audioEl.play()}else alert('Choose MP3')} else{speakLoud(voices[currentVoice].text,voices[currentVoice].lang)}}
-function speakLoud(t,l){if('speechSynthesis' in window){speechSynthesis.cancel(); let u=new SpeechSynthesisUtterance(t); u.lang=l; u.volume=1; speechSynthesis.speak(u)}}
-function playSiren(){try{if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); let o=audioCtx.createOscillator(),g=audioCtx.createGain(); o.type='square'; o.frequency.value=900; g.gain.value=0.3; o.connect(g); g.connect(audioCtx.destination); o.start(); setTimeout(()=>o.frequency.value=600,200); setTimeout(()=>o.stop(),600)}catch(e){}}
-function loadCustom(i){let f=i.files[0]; if(!f) return; customAudioURL=URL.createObjectURL(f); audioEl.src=customAudioURL; audioEl.style.display='block'; document.getElementById('voice').value='custom'; currentVoice='custom'; audioEl.play()}
-function shout(){if(alarmLoop) return; let isRed=true; flashLoop=setInterval(()=>{if(isRed){bodyEl.className='police-red'; document.getElementById('main').className='card police-blue flash-card'}else{bodyEl.className='police-blue'; document.getElementById('main').className='card police-red flash-card'} isRed=!isRed; if(navigator.vibrate) navigator.vibrate([300,100,300]); playSiren()},200); pctEl.innerText=target+'% FULL!'; pctEl.className='percent blinkText'; alarmLoop=setInterval(()=>{let v=voices[currentVoice]||voices.zulu1; speakLoud(v.text,v.lang)},2500); document.getElementById('stopBtn').classList.remove('hidden'); document.getElementById('startBtn').innerText='🚨 FLASHING - UNPLUG!'}
-function stopShout(){bodyEl.className=''; document.getElementById('main').className='card'; if(flashLoop)clearInterval(flashLoop); if(alarmLoop)clearInterval(alarmLoop); flashLoop=null; alarmLoop=null; speechSynthesis.cancel(); audioEl.pause(); pctEl.className='percent'; updateBattery()}
-function startAlert(){alertOn=true; target=parseInt(document.getElementById('targetLevel').value); setCustom(target); if('wakeLock' in navigator) navigator.wakeLock.request('screen').catch(()=>{}); document.getElementById('startBtn').innerText=`🟢 ON - ${target}%`; updateBattery()}
-function stopAlert(){alertOn=false; stopShout(); document.getElementById('startBtn').innerText='🟢 START ALERT'; document.getElementById('stopBtn').classList.add('hidden')}
-</script>
-</body>
-</html>
+function setCustom(v){target=parseInt(v); document.getElementById('target').value=target; document.getElementById('slider').value=target; document.getElementById('show').innerText=target+'%';}
+async function initBattery(){if('getBattery' in navigator){battery=await navigator.getBattery(); battery.addEventListener('levelchange',upd); battery.addEventListener('chargingchange',upd); upd()} setCustom(localStorage.getItem('mzansi_target')||80)}
+function upd(){if(!battery) return; let p=Math.round(battery.level*100); document.getElementById('pct').innerText=p+'%'; document.getElementById('stat').innerText=battery.charging?`Charging ${p}% → Alert at ${target}%`:`${p}%`; if(p>=target&&battery.charging) { if('speechSynthesis' in window){let u=new SpeechSynthesisUtterance('Mntanami battery igcwele khipha shaja manje'); u.lang='zu-ZA'; speechSynthesis.speak(u)} if(navigator.vibrate) navigator.vibrate([500,200,500]); }}
+function startAlert(){document.getElementById('startBtn').innerText='🟢 ON - Will shout at '+target+'%'; localStorage.setItem('mzansi_target',target)}
+function logout(){localStorage.removeItem('mzansi_user'); location.reload()}
+let saved=localStorage.getItem('mzansi_user'); if(saved){currentUser=saved; checkExpiry()}
+</script></body></html>
